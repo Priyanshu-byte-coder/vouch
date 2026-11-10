@@ -31,7 +31,7 @@
 - 🤖 Created private repo `Priyanshu-byte-coder/vouch` and pushed all history.
 - ✅ Done when: https://github.com/Priyanshu-byte-coder/vouch shows the docs.
 
-### 0.2 Accounts and API keys (👤 you, ~20 min)
+### 0.2 Accounts and API keys (👤 you, ~20 min) ✅ (S2 key pending, Vercel login deferred to Phase 5)
 | # | What | Where | Notes |
 |---|---|---|---|
 | a | **Semantic Scholar API key** | https://www.semanticscholar.org/product/api#api-key-form | Approval can take hours or days. Request it **first**. We work without it meanwhile |
@@ -49,15 +49,15 @@
 - Smoke-test each API with a single request: Crossref, OpenAlex, S2, arXiv, and the LLM `/models` endpoint.
 - ✅ Done when: the smoke-test script prints OK for every source and lists the LLM model names. We then pick `LLM_MODEL_PARSE` and `LLM_MODEL_JUDGE`.
 
-### 0.4 GROBID container (🤖, you approve the Docker pull)
-- `docker run -d --name grobid -p 8070:8070 lfoppiano/grobid:<stable tag>`
+### 0.4 GROBID container (🤖, you approve the Docker pull) ✅
+- `docker run -d --name grobid --restart unless-stopped -p 8070:8070 --memory 4g grobid/grobid:0.9.1-crf` (lightweight CRF models, 0.5 GB; the 15 GB `-full` image isn't needed for references)
 - ✅ Done when: `curl localhost:8070/api/isalive` returns `true`.
 
 ---
 
 ## Phase 1 — Data + baseline
 
-### 1.1 Download datasets (🤖)
+### 1.1 Download datasets (🤖) ✅
 - CiteAudit `benchmark.json` (9,442 citations) · AtomGPT `data/` (CiteAudit-300, NeurIPS-100) · SciFact · Retraction Watch CSV · PPS tortured-phrase fingerprints
 - Record each licence in `eval/data/SOURCES.md`. Large raw files go in `eval/data/raw/` (gitignored), with download scripts committed.
 - ✅ Done when: `python eval/data/download.py` fetches everything and prints row counts.

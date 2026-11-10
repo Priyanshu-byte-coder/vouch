@@ -70,3 +70,9 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Results: Crossref ✅ · OpenAlex ✅ (key) · Semantic Scholar ✅ without a key (the shared pool sometimes returns 429) · arXiv ✅ · DataCite ✅ · Open Library ✅ · Retraction Watch repo ✅ (data for 2026-11-09) · LLM ✅ (33 models) · GROBID ⏳ (step 0.4) · **DBLP ❌** (HTTP 202 anti-bot challenge page)
 - Decision: drop DBLP from the cascade. CS venues are covered by OpenAlex, Crossref and S2.
 - Learned: **Crossref's top hit for "Attention is all you need" is a different paper, "Is Attention All You Need?" (Springer 2025).** Taking the first search result is unsafe; the matcher must score several candidates per source. Good example for the README.
+
+### S2 — GROBID + datasets (steps 0.4, 1.1)
+- When / who: 2026-11-10 ~14:15 IST · Priyanshu
+- GROBID `grobid/grobid:0.9.1-crf`: `processReferences` on arXiv:1706.03762 gave **40 references in 10.1 s** (the paper has 40). One entry had no article-level title (preprint/monograph tagging), so the parser must fall back to monograph titles.
+- Datasets: see `eval/data/SOURCES.md`. CiteAudit = 9,442 (6,475 real / 2,967 fake). CiteAudit-300 = 150/150. NeurIPS-2025 = 100 fake. SciFact 809/300/300 claims. Retraction Watch 73,718 notices.
+- Note: CiteAudit has no licence file, so we use it for evaluation only and never commit it.
