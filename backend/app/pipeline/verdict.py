@@ -5,7 +5,7 @@ Starting thresholds; tuned on the dev split only in step 3.1 (frozen in eval/con
 
 from dataclasses import dataclass
 
-from ..models import HARD_TO_INDEX, ParsedRef, Status
+from ..models import HARD_TO_INDEX, ParsedRef, RefType, Status
 from .match import Scored
 
 
@@ -16,6 +16,8 @@ class Thresholds:
     author_min: float = 60.0     # share of cited authors found
     same_work_title: float = 90.0  # title this close = same work, so other disagreements are "detail mismatch"
     found: float = 60.0          # below this composite, nothing plausible was found
+    year_tolerance: int = 1      # years apart that still count as the same work (preprint vs published)
+    book_year_any: bool = False  # books are reprinted in new editions: ignore the year for books
 
 
 DEFAULT = Thresholds()
@@ -26,6 +28,14 @@ class Verdict:
     status: Status
     confidence: float
     issues: list[str]
+
+
+def _year_ok(ref: ParsedRef, best: Scored, t: Thresholds) -> bool:
+    if not ref.year or not best.candidate.year:
+        return True
+    if t.book_year_any and ref.type_guess in (RefType.book, RefType.chapter):
+        return True
+    return abs(ref.year - best.candidate.year) <= t.year_tolerance
 
 
 def decide(ref: ParsedRef, best: Scored | None, *, all_sources_failed: bool = False,
@@ -47,10 +57,10 @@ def decide(ref: ParsedRef, best: Scored | None, *, all_sources_failed: bool = Fa
     s = best.scores
     composite, title = s.composite or 0, s.title or 0
     authors_ok = s.authors is None or s.authors >= t.author_min
-    year_ok = s.year is None or s.year >= 0.5
+    year_ok = _year_ok(ref, best, t)
     venue_ok = s.venue is None or s.venue >= 50
     if composite >= t.verified and title >= t.title_min and authors_ok and year_ok:
-        info = [i for i in best.issues if i.startswith("year off by one") or i.startswith("DOI cited")]
+        info = [i for i in best.issues if i.startswith(("year", "DOI cited"))]
         return Verdict(Status.verified, round(composite / 100, 2), info)
     if title >= t.same_work_title and not (authors_ok and year_ok and venue_ok):
         # A very short title ("Delft", "Grobid") matches unrelated records; without agreeing authors or DOI

@@ -203,3 +203,26 @@ Every run that produces a number goes here: what we tried, what happened and why
   - **PDF upload** (Attention Is All You Need, 40 references): first version **38/40** verified. GROBID's own field parsing **dropped the title** of "Layer normalization" and **shifted author names** in the GNMT reference ("Quoc, V", "Le, Mohammad"…). Fix: GROBID now only splits the bibliography and keeps the raw strings; fields come from the same LLM parser as bibliographies. Re-run: **40/40 verified**, 18.6 s, 5 LLM calls, **$0.0097**.
 - Tests: 88 pass (incl. 4 offline API tests with a fake pipeline: lifecycle, report cache, SSE replay, validation/rate limit, health).
 - **🚩 Checkpoint 1 met:** an arXiv ID, a bibliography or a PDF gives a real report through the API. The baseline is reproduced (E0a).
+
+### E1-dev / S11 — Tuning on dev_1000 (step 3.1) — candidate config, awaiting approval
+- When / who: 2026-11-10 17:41–19:30 IST · Priyanshu
+- Collection: `eval/collect.py dev_1000` — 1,000 citations in 47.9 min, 125 LLM calls (**$0.275**), API: crossref 1022, openalex 737, datacite 761, arxiv 772, openlibrary 454. S2 excluded (throttled; ablation in E3).
+- arXiv: 222 title searches timed out (19 on real citations) because arXiv allows 1 request / 3 s and later took ~45 s per answer. The retry pass (`eval/patch_failed.py`) ran at ~2 items/min, so it was **stopped**. **Measured effect of removing arXiv candidates entirely: 2/1000 verdicts change (FPR +0.004)**, because OpenAlex already indexes arXiv. Data used as collected.
+- Tuner: `eval/tune_rq1.py dev_1000 --fpr-cap=0.10` (offline replay, 5-fold CV with the full search inside each fold).
+- **Three flaws found and fixed in the tuner along the way** (all logged so the result can be trusted):
+  1. Grid edges: early runs picked values at the boundary, so the grids were widened.
+  2. **Tie-breaking**: ties went to the last grid entry (largest values). `found` / `same_work_title` don't affect flagged-vs-verified at all, so they were set to arbitrary maxima, which collapsed labels (only 15 "detail mismatch"). Fix: those two stay at defaults; ties now go to lower FPR, then closeness to defaults.
+  3. **Objective**: pure F1 on a balanced benchmark chose FPR **0.19**, i.e. it wrongly flags 1 in 5 real references. Fix: **maximise F1 subject to FPR ≤ cap** (policy; cap 0.10 < baseline 0.12). A trade-off curve is saved in the results file.
+- Data-driven matcher changes made during this step: **year tolerance** and **ignore-year-for-books** settings (editions, preprint vs journal), plus a year tie-break in candidate selection. Before these, most real-world false positives had perfect title + authors with a different year.
+- **Results (fake = positive):**
+  | Config | P | R | F1 [95% CI] | FPR |
+  |---|---|---|---|---|
+  | Default (pre-tuning) | 0.896 | 0.656 | 0.758 | 0.076 |
+  | Tuned, in-sample | 0.914 | 0.830 | 0.870 | 0.078 |
+  | **Tuned, 5-fold CV (honest dev estimate)** | **0.898** | **0.826** | **0.860** [0.836, 0.883] | **0.094** |
+  | CV, generated citations | 0.949 | 0.797 | 0.866 | 0.065 |
+  | CV, real-world citations | 0.731 | 0.975 | 0.836 | 0.129 |
+- Candidate config (`eval/configs/rq1_candidate.json`): weights {'title': 0.55, 'authors': 0.4, 'venue': 0.1, 'year': 0.05}; thresholds {'verified': 95, 'title_min': 95, 'author_min': 90, 'same_work_title': 90.0, 'found': 60.0, 'year_tolerance': 2, 'book_year_any': True}. Labels on dev: {'verified': 546, 'cant_verify': 210, 'detail_mismatch': 175, 'not_found': 69}.
+- **Outside check (not CiteAudit) with the candidate config:** 100 real references (3 arXiv papers + bib20 + retracted list), **1 wrongly called a mismatch**: AlexNet (NIPS 2012). The indexes only hold the 2017 *Communications of the ACM* reprint with full metadata, and OpenAlex's NIPS 2012 record has broken authors. A coverage gap, and a target for the LLM adjudicator (3.3). All 3 planted fakes flagged.
+- Regression found and fixed: with the stricter verified bar, Obokata 2014 became "can't verify" and lost its retraction flag (the lookup used the matched DOI only for verified refs). The lookup now runs whenever the work is clearly identified (title ≥ 95). Both retractions are caught again.
+- Not yet frozen. Test sets untouched.

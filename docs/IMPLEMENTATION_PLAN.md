@@ -1,6 +1,6 @@
 # Vouch — Implementation Plan
 
-> Written Tue 10 Nov 2026, 07:00 IST. **Submit by Thu 12 Nov, 23:00 IST** (portal closes 13 Nov 00:00). About 64 hours.
+> Written Tue 10 Nov 2026, ~12:40 IST (an earlier version said 07:00: the shell clock was UTC). **Submit by Thu 12 Nov, 23:00 IST** (portal closes 13 Nov 00:00). About 58 hours.
 > Idea and research questions: [IDEATION.md](IDEATION.md). Running log: [../EXPERIMENTS.md](../EXPERIMENTS.md).
 
 ---

@@ -230,7 +230,9 @@ def select_best(scored: list[Scored]) -> Scored | None:
     record matches the title almost exactly: then the work exists and only the DOI is wrong."""
     if not scored:
         return None
-    best = max(scored, key=lambda x: (x.scores.composite or 0) + (5 if x.doi_match and (x.scores.title or 0) >= 85 else 0))
+    # tie-break by year agreement (up to 0.5 points) so the right-year copy/edition wins among equals
+    best = max(scored, key=lambda x: (x.scores.composite or 0) + (5 if x.doi_match and (x.scores.title or 0) >= 85 else 0)
+               + 0.5 * (x.scores.year or 0))
     doi_hits = [x for x in scored if x.doi_match]
     if doi_hits and not best.doi_match and (best.scores.title or 0) < 90:
         return max(doi_hits, key=lambda x: x.scores.composite or 0)

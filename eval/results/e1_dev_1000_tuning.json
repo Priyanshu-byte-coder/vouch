@@ -1,0 +1,373 @@
+{
+ "split": "dev_1000",
+ "n": 1000,
+ "seconds": 131.0,
+ "fpr_cap": 0.1,
+ "frontier": [
+  {
+   "fpr_cap": 0.06,
+   "f1": 0.7773933102652827,
+   "recall": 0.674,
+   "precision": 0.9182561307901907,
+   "fpr": 0.06
+  },
+  {
+   "fpr_cap": 0.07,
+   "f1": 0.8454054054054055,
+   "recall": 0.782,
+   "precision": 0.92,
+   "fpr": 0.068
+  },
+  {
+   "fpr_cap": 0.08,
+   "f1": 0.870020964360587,
+   "recall": 0.83,
+   "precision": 0.9140969162995595,
+   "fpr": 0.078
+  },
+  {
+   "fpr_cap": 0.09,
+   "f1": 0.870020964360587,
+   "recall": 0.83,
+   "precision": 0.9140969162995595,
+   "fpr": 0.078
+  },
+  {
+   "fpr_cap": 0.1,
+   "f1": 0.870020964360587,
+   "recall": 0.83,
+   "precision": 0.9140969162995595,
+   "fpr": 0.078
+  },
+  {
+   "fpr_cap": 0.12,
+   "f1": 0.870020964360587,
+   "recall": 0.83,
+   "precision": 0.9140969162995595,
+   "fpr": 0.078
+  },
+  {
+   "fpr_cap": 0.15,
+   "f1": 0.870020964360587,
+   "recall": 0.83,
+   "precision": 0.9140969162995595,
+   "fpr": 0.078
+  },
+  {
+   "fpr_cap": 0.2,
+   "f1": 0.870020964360587,
+   "recall": 0.83,
+   "precision": 0.9140969162995595,
+   "fpr": 0.078
+  }
+ ],
+ "grids": {
+  "thresholds": {
+   "verified": [
+    75,
+    80,
+    85,
+    90,
+    95
+   ],
+   "title_min": [
+    80,
+    85,
+    90,
+    95,
+    98
+   ],
+   "author_min": [
+    50,
+    60,
+    75,
+    90,
+    100
+   ],
+   "year_tolerance": [
+    1,
+    2,
+    3,
+    99
+   ],
+   "book_year_any": [
+    false,
+    true
+   ]
+  },
+  "weights": {
+   "title": [
+    0.25,
+    0.35,
+    0.45,
+    0.55
+   ],
+   "authors": [
+    0.1,
+    0.2,
+    0.3,
+    0.4
+   ],
+   "venue": [
+    0.05,
+    0.1,
+    0.15
+   ],
+   "year": [
+    0.0,
+    0.05
+   ]
+  }
+ },
+ "default": {
+  "weights": {
+   "title": 0.55,
+   "authors": 0.3,
+   "venue": 0.1,
+   "year": 0.05
+  },
+  "thresholds": {
+   "verified": 85.0,
+   "title_min": 85.0,
+   "author_min": 60.0,
+   "same_work_title": 90.0,
+   "found": 60.0,
+   "year_tolerance": 1,
+   "book_year_any": false
+  },
+  "metrics": {
+   "n": 1000,
+   "precision": 0.8961748633879781,
+   "recall": 0.656,
+   "f1": 0.7575057736720555,
+   "fpr": 0.076,
+   "accuracy": 0.79,
+   "TP": 328,
+   "FN": 172,
+   "FP": 38,
+   "TN": 462
+  },
+  "by_source_type": {
+   "generated": {
+    "n": 694,
+    "precision": 0.9586466165413534,
+    "recall": 0.6085918854415274,
+    "f1": 0.7445255474452555,
+    "fpr": 0.04,
+    "accuracy": 0.7478386167146974,
+    "TP": 255,
+    "FN": 164,
+    "FP": 11,
+    "TN": 264
+   },
+   "realworld": {
+    "n": 306,
+    "precision": 0.73,
+    "recall": 0.9012345679012346,
+    "f1": 0.8066298342541436,
+    "fpr": 0.12,
+    "accuracy": 0.8856209150326797,
+    "TP": 73,
+    "FN": 8,
+    "FP": 27,
+    "TN": 198
+   }
+  }
+ },
+ "tuned": {
+  "weights": {
+   "title": 0.55,
+   "authors": 0.4,
+   "venue": 0.1,
+   "year": 0.05
+  },
+  "thresholds": {
+   "verified": 95,
+   "title_min": 95,
+   "author_min": 90,
+   "same_work_title": 90.0,
+   "found": 60.0,
+   "year_tolerance": 2,
+   "book_year_any": true
+  },
+  "metrics": {
+   "n": 1000,
+   "precision": 0.9140969162995595,
+   "recall": 0.83,
+   "f1": 0.870020964360587,
+   "fpr": 0.078,
+   "accuracy": 0.876,
+   "TP": 415,
+   "FN": 85,
+   "FP": 39,
+   "TN": 461
+  },
+  "by_source_type": {
+   "generated": {
+    "n": 694,
+    "precision": 0.96,
+    "recall": 0.801909307875895,
+    "f1": 0.8738621586475943,
+    "fpr": 0.05090909090909091,
+    "accuracy": 0.8602305475504323,
+    "TP": 336,
+    "FN": 83,
+    "FP": 14,
+    "TN": 261
+   },
+   "realworld": {
+    "n": 306,
+    "precision": 0.7596153846153846,
+    "recall": 0.9753086419753086,
+    "f1": 0.8540540540540541,
+    "fpr": 0.1111111111111111,
+    "accuracy": 0.9117647058823529,
+    "TP": 79,
+    "FN": 2,
+    "FP": 25,
+    "TN": 200
+   }
+  },
+  "labels": {
+   "verified": 546,
+   "cant_verify": 210,
+   "detail_mismatch": 175,
+   "not_found": 69
+  },
+  "ci95_f1": [
+   0.8465845464725643,
+   0.8916929547844374
+  ]
+ },
+ "cv5": {
+  "metrics": {
+   "n": 1000,
+   "precision": 0.8978260869565218,
+   "recall": 0.826,
+   "f1": 0.8604166666666666,
+   "fpr": 0.094,
+   "accuracy": 0.866,
+   "TP": 413,
+   "FN": 87,
+   "FP": 47,
+   "TN": 453
+  },
+  "by_source_type": {
+   "generated": {
+    "n": 694,
+    "precision": 0.9488636363636364,
+    "recall": 0.7971360381861575,
+    "f1": 0.8664072632944227,
+    "fpr": 0.06545454545454546,
+    "accuracy": 0.8515850144092219,
+    "TP": 334,
+    "FN": 85,
+    "FP": 18,
+    "TN": 257
+   },
+   "realworld": {
+    "n": 306,
+    "precision": 0.7314814814814815,
+    "recall": 0.9753086419753086,
+    "f1": 0.835978835978836,
+    "fpr": 0.1288888888888889,
+    "accuracy": 0.8986928104575164,
+    "TP": 79,
+    "FN": 2,
+    "FP": 29,
+    "TN": 196
+   }
+  },
+  "ci95_f1": [
+   0.8364389233954451,
+   0.8829891838741397
+  ],
+  "fold_configs": [
+   {
+    "weights": {
+     "title": 0.55,
+     "authors": 0.4,
+     "venue": 0.1,
+     "year": 0.05
+    },
+    "thresholds": {
+     "verified": 95,
+     "title_min": 95,
+     "author_min": 60,
+     "same_work_title": 90.0,
+     "found": 60.0,
+     "year_tolerance": 2,
+     "book_year_any": true
+    }
+   },
+   {
+    "weights": {
+     "title": 0.55,
+     "authors": 0.3,
+     "venue": 0.15,
+     "year": 0.0
+    },
+    "thresholds": {
+     "verified": 90,
+     "title_min": 95,
+     "author_min": 90,
+     "same_work_title": 90.0,
+     "found": 60.0,
+     "year_tolerance": 2,
+     "book_year_any": true
+    }
+   },
+   {
+    "weights": {
+     "title": 0.55,
+     "authors": 0.3,
+     "venue": 0.1,
+     "year": 0.05
+    },
+    "thresholds": {
+     "verified": 95,
+     "title_min": 95,
+     "author_min": 90,
+     "same_work_title": 90.0,
+     "found": 60.0,
+     "year_tolerance": 2,
+     "book_year_any": true
+    }
+   },
+   {
+    "weights": {
+     "title": 0.55,
+     "authors": 0.3,
+     "venue": 0.15,
+     "year": 0.0
+    },
+    "thresholds": {
+     "verified": 90,
+     "title_min": 98,
+     "author_min": 100,
+     "same_work_title": 90.0,
+     "found": 60.0,
+     "year_tolerance": 99,
+     "book_year_any": false
+    }
+   },
+   {
+    "weights": {
+     "title": 0.55,
+     "authors": 0.4,
+     "venue": 0.1,
+     "year": 0.05
+    },
+    "thresholds": {
+     "verified": 95,
+     "title_min": 95,
+     "author_min": 90,
+     "same_work_title": 90.0,
+     "found": 60.0,
+     "year_tolerance": 2,
+     "book_year_any": true
+    }
+   }
+  ]
+ }
+}

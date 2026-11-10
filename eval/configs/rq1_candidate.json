@@ -1,0 +1,21 @@
+{
+ "tuned_on": "dev_1000",
+ "fpr_cap": 0.1,
+ "weights": {
+  "title": 0.55,
+  "authors": 0.4,
+  "venue": 0.1,
+  "year": 0.05
+ },
+ "thresholds": {
+  "verified": 95,
+  "title_min": 95,
+  "author_min": 90,
+  "same_work_title": 90.0,
+  "found": 60.0,
+  "year_tolerance": 2,
+  "book_year_any": true
+ },
+ "dev_cv5_f1": 0.8604166666666666,
+ "dev_cv5_fpr": 0.094
+}
