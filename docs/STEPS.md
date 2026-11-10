@@ -66,7 +66,7 @@
 - Test = CiteAudit-300 + NeurIPS-100 (untouched). Dev = full CiteAudit **minus** any citation in the 300 set (deduplicated on normalised text).
 - ✅ Done when: the split files are written, overlap = 0, and the counts are logged in `EXPERIMENTS.md`.
 
-### 1.3 Baseline E0 (🤖 runs, 👤 reviews)
+### 1.3 Baseline E0 (🤖 runs, 👤 reviews) 🟡 (a) ✅ · (b) waiting for approval to run third-party code
 - (a) Re-score AtomGPT's **released outputs**, which reproduces their published table without any API calls.
 - (b) Re-run their detector on CiteAudit-300 with **our LLM**, so the comparison against our system is fair.
 - ✅ Done when: the E0 rows in `EXPERIMENTS.md` are filled in, and (a) matches the published P 0.80 / R 0.49 / F1 0.61 / FPR 0.12.

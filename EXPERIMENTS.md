@@ -14,7 +14,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 
 | ID | RQ | Description | Owner | Status |
 |---|---|---|---|---|
-| E0 | — | Published baseline (AtomGPT detector) on CiteAudit-300 + NeurIPS-100, with our LLM. Re-score their released outputs | B | ⬜ |
+| E0 | — | Published baseline (AtomGPT detector) on CiteAudit-300 + NeurIPS-100, with our LLM. Re-score their released outputs | B | 🟡 E0a ✅ · E0b blocked (needs approval to run third-party code) |
 | E1 | RQ1 | Our cascade on CiteAudit-300 + NeurIPS-100 (thresholds tuned on the CiteAudit dev split) | B | ⬜ |
 | E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ⬜ |
 | E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ⬜ |
@@ -26,6 +26,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 | Set | System | Precision | Recall | F1 | FPR | Notes |
 |---|---|---|---|---|---|---|
 | CiteAudit-300 | AtomGPT (published) | 0.80 | 0.49 | 0.61 | 0.12 | From their README, scoring v2 |
+| CiteAudit-300 | AtomGPT (released outputs, re-scored by us, E0a) | 0.804 | 0.493 | 0.612 [0.534, 0.679] | 0.121 | Exact match, n=299. Generated: R 0.444 FPR 0.036 · Real-world: R 0.750 FPR 0.227 |
 | CiteAudit-300 | AtomGPT (our re-run) | | | | | |
 | CiteAudit-300 | **Vouch** | | | | | |
 | NeurIPS-100 | AtomGPT (published) | n/a | 0.94 | n/a | n/a | Scoring v1, all fake |
@@ -97,3 +98,18 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Validity: our key returns 200s, while a wrong key (or the capital-I spelling from the PDF image) returns **403 Forbidden**.
 - Throttling: at a steady 1 request every 2 s, **7/15 succeeded** (7×429, then 7×200, then 429). The 429 body says "TooManyRequestsException", so this is service-side throttling, not our pace.
 - Decision: S2 client = 1.1 s minimum gap + exponential backoff (2/4/8 s, 3 retries) + cache. S2 stays **after** Crossref/OpenAlex in the cascade. The S2-only baseline (E0b) runs in the background.
+
+### E0a — Re-score AtomGPT released outputs (step 1.3a)
+- When / who: 2026-11-10 ~15:00 IST · Priyanshu
+- Command: `backend/.venv/Scripts/python eval/baselines/rescore_atomgpt.py` → `eval/results/e0a_atomgpt_released_rescored.json`
+- Results (fake = positive, flagged = not "verified"):
+  | Set | P | R | F1 [95% CI] | FPR | Matches published? |
+  |---|---|---|---|---|---|
+  | CiteAudit-300 (v2, n=299) | 0.804 | 0.493 | 0.612 [0.534, 0.679] | 0.121 | ✅ exact (0.8043 / 0.4933 / 0.6115 / 0.1208) |
+  | NeurIPS-100 (v1) | 1.000 | 0.940 [0.89, 0.98] | 0.969 | n/a | ✅ exact |
+- **Breakdown by source type, CiteAudit-300:**
+  | Subset | n | Recall | FPR |
+  |---|---|---|---|
+  | Generated citations | 209 | 0.444 | **0.036** |
+  | Real-world citations | 90 | 0.750 | **0.227** (15 of 66 real references wrongly flagged) |
+- Learned: (1) Our metric code reproduces the published numbers exactly. (2) **Early evidence for H2:** the single-source baseline wrongly flags real references from real papers **6× more often** than real generated-set references. (3) It misses 56% of generated fakes, so recall is the main thing to improve.
