@@ -38,6 +38,8 @@ class ParsedRef(BaseModel):
     isbn: str | None = None
     url: str | None = None
     type_guess: RefType = RefType.other
+    key: str | None = None  # citation key in the source (e.g. BibTeX key), when known
+    contexts: list[str] = Field(default_factory=list)  # sentences in the paper that cite this reference
 
 
 class Candidate(BaseModel):
@@ -138,6 +140,7 @@ class RunMeta(BaseModel):
     cost_usd: float = 0.0
     api_calls: dict[str, int] = Field(default_factory=dict)
     cache_hits: int = 0
+    notes: list[str] = Field(default_factory=list)
 
 
 class Report(BaseModel):

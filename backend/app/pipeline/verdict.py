@@ -53,6 +53,14 @@ def decide(ref: ParsedRef, best: Scored | None, *, all_sources_failed: bool = Fa
         info = [i for i in best.issues if i.startswith("year off by one") or i.startswith("DOI cited")]
         return Verdict(Status.verified, round(composite / 100, 2), info)
     if title >= t.same_work_title and not (authors_ok and year_ok and venue_ok):
+        # A very short title ("Delft", "Grobid") matches unrelated records; without agreeing authors or DOI
+        # there is no evidence it is the same work, so it goes to human review instead.
+        short = len(best.candidate.title.split()) <= 2 or len((ref.title or "").split()) <= 2
+        same_year_venue = s.year == 1.0 and s.venue is not None and s.venue >= 80
+        if short and not best.doi_match and not same_year_venue and not (s.authors is not None and s.authors >= t.author_min):
+            return Verdict(Status.cant_verify, 0.5,
+                           [f"only a very short title matches ('{best.candidate.title}'); not enough evidence it is the same work",
+                            *best.issues])
         return Verdict(Status.detail_mismatch, round(title / 100, 2), best.issues)
     return Verdict(Status.cant_verify, round(composite / 100, 2),
                    [f"partial match only (score {composite}): '{best.candidate.title}'", *best.issues])

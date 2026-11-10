@@ -56,7 +56,7 @@ def _surname_key(s: str) -> str:
 
 
 def parse_person(name: str) -> tuple[str, str] | None:
-    """Return (surname_key, first_initial) from 'Smith, John', 'J. Smith', 'Smith J', 'John Smith'."""
+    """Return (surname_key, given-name initials) from 'Smith, John A.', 'J. A. Smith', 'Smith JA', 'John Smith'."""
     name = re.sub(r"\s+", " ", _ETAL.sub("", name)).strip(" ,;")
     if not name:
         return None
@@ -72,24 +72,33 @@ def parse_person(name: str) -> tuple[str, str] | None:
         else:
             surname, given = tokens[-1], " ".join(tokens[:-1])
     key = _surname_key(surname)
-    initial = fold(given.strip())[:1].lower()
-    return (key, initial) if key else None
+    given = fold(given)
+    # "JR" (packed initials) -> "jr"; "John A." / "J.-P." -> "ja" / "jp"
+    if re.fullmatch(r"[A-Z]{2,3}\.?", given.strip()):
+        initials = given.strip().lower()
+    else:
+        initials = "".join(w[0].lower() for w in re.split(r"[\s.\-]+", given) if w and w[0].isalpha())
+    return (key, initials.rstrip(".")) if key else None
+
+
+def _same_person(a: tuple[str, str], b: tuple[str, str]) -> bool:
+    (sa, ia), (sb, ib) = a, b
+    same_surname = sa == sb or (min(len(sa), len(sb)) > 3 and (sa in sb or sb in sa))
+    if not same_surname:
+        return False
+    # Initials agree if either is unknown, the first initials match, or one person's first initial appears among
+    # the other's (people often drop or reorder a first name: "Mohammad Samar Ansari" vs "Samar Ansari").
+    return not ia or not ib or ia[0] == ib[0] or ia[0] in ib or ib[0] in ia
 
 
 def author_score(cited: list[str], cand: list[str]) -> float | None:
-    """0-100: share of cited authors found in the record (surname + first initial if both known).
+    """0-100: share of cited authors found in the record (surname + compatible initials).
     'et al.' entries are ignored, so a truncated list is not penalised."""
     people = [p for p in (parse_person(a) for a in cited if not _ETAL.fullmatch(a.strip())) if p]
     record = [p for p in (parse_person(a) for a in cand) if p]
     if not people or not record:
         return None
-    matched = 0
-    for surname, initial in people:
-        for rs, ri in record:
-            same_surname = surname == rs or (len(surname) > 3 and (surname in rs or rs in surname))
-            if same_surname and (not initial or not ri or initial == ri):
-                matched += 1
-                break
+    matched = sum(any(_same_person(p, r) for r in record) for p in people)
     return 100.0 * matched / len(people)
 
 

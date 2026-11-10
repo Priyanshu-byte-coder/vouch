@@ -1,0 +1,2190 @@
+{
+ "paper": {
+  "title": "CiteAudit: You Cited It, But Did You Read It? A Benchmark for Verifying Scientific References in the LLM Era",
+  "source": "arxiv:2602.23452",
+  "n_refs": 33
+ },
+ "summary": {
+  "verified": 24,
+  "detail_mismatch": 0,
+  "not_found": 0,
+  "cant_verify": 9,
+  "retracted": 0,
+  "claims_checked": 0,
+  "claims_unsupported": 0,
+  "tortured_hits": 0
+ },
+ "references": [
+  {
+   "idx": 0,
+   "raw": "Waltman, Ludo. A review of the literature on citation impact indicators. Journal of informetrics. 2016",
+   "parsed": {
+    "idx": 0,
+    "raw": "Waltman, Ludo. A review of the literature on citation impact indicators. Journal of informetrics. 2016",
+    "title": "A review of the literature on citation impact indicators",
+    "authors": [
+     "Waltman, Ludo"
+    ],
+    "year": 2016,
+    "venue": "Journal of informetrics",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "waltman2016review",
+    "contexts": [
+     "When citations are missing, inaccurate, or fabricated, the resulting break in the evidence chain can obscure logical dependencies, weaken argumentation, and jeopardize academic integrity at the level of both individual papers and the broader literature [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1016/j.joi.2016.02.007",
+    "title": "A review of the literature on citation impact indicators",
+    "authors": [
+     "Waltman, Ludo"
+    ],
+    "year": 2016,
+    "venue": "Journal of Informetrics",
+    "doi": "10.1016/j.joi.2016.02.007",
+    "url": "https://doi.org/10.1016/j.joi.2016.02.007",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 1,
+   "raw": "Chelli, Mikaël, Descamps, Jules, Lavoué, Vincent, Trojani, Christophe, Azar, Michel, Deckert, Marcel et al.. Hallucination rates and reference accuracy of ChatGPT and bard for systematic reviews: comparative analysis. Journal of medical Internet research. 2024",
+   "parsed": {
+    "idx": 1,
+    "raw": "Chelli, Mikaël, Descamps, Jules, Lavoué, Vincent, Trojani, Christophe, Azar, Michel, Deckert, Marcel et al.. Hallucination rates and reference accuracy of ChatGPT and bard for systematic reviews: comparative analysis. Journal of medical Internet research. 2024",
+    "title": "Hallucination rates and reference accuracy of ChatGPT and bard for systematic reviews: comparative analysis",
+    "authors": [
+     "Chelli, Mikaël",
+     "Descamps, Jules",
+     "Lavoué, Vincent",
+     "Trojani, Christophe",
+     "Azar, Michel",
+     "Deckert, Marcel",
+     "Raynier, Jean-Luc",
+     "Clowez, Gilles",
+     "Boileau, Pascal",
+     "Ruetsch-Chelli, Caroline"
+    ],
+    "year": 2024,
+    "venue": "Journal of medical Internet research",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "chelli2024hallucination",
+    "contexts": [
+     "When citations are missing, inaccurate, or fabricated, the resulting break in the evidence chain can obscure logical dependencies, weaken argumentation, and jeopardize academic integrity at the level of both individual papers and the broader literature [CITATION].",
+     "Among them, one of the most concerning risks lies in hallucinations in academic writing, where LLMs generate non-existent references [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.2196/53164",
+    "title": "Hallucination Rates and Reference Accuracy of ChatGPT and Bard for Systematic Reviews: Comparative Analysis",
+    "authors": [
+     "Chelli, Mikaël",
+     "Descamps, Jules",
+     "Lavoué, Vincent",
+     "Trojani, Christophe",
+     "Azar, Michel",
+     "Deckert, Marcel",
+     "Raynier, Jean-Luc",
+     "Clowez, Gilles",
+     "Boileau, Pascal",
+     "Ruetsch-Chelli, Caroline"
+    ],
+    "year": 2024,
+    "venue": "Journal of Medical Internet Research",
+    "doi": "10.2196/53164",
+    "url": "https://doi.org/10.2196/53164",
+    "abstract": "Background Large language models (LLMs) have raised both interest and concern in the academic community. They offer the potential for automating literature search and synthesis for systematic reviews but raise concerns regarding their reliability, as the tendency to generate unsupported (hallucinated) content persist. Objective The aim of the study is to assess the performance of LLMs such as ChatGPT and Bard (subsequently rebranded Gemini) to produce references in the context of scientific writing. Methods The performance of ChatGPT and Bard in replicating the results of human-conducted systematic reviews was assessed. Using systematic reviews pertaining to shoulder rotator cuff pathology, these LLMs were tested by providing the same inclusion criteria and comparing the results with original systematic review references, serving as gold standards. The study used 3 key performance metrics: recall, precision, and F1-score, alongside the hallucination rate. Papers were considered “hallucinated” if any 2 of the following information were wrong: title, first author, or year of publication. Results In total, 11 systematic reviews across 4 fields yielded 33 prompts to LLMs (3 LLMs×11 reviews), with 471 references analyzed. Precision rates for GPT-3.5, GPT-4, and Bard were 9.4% (13/139), 13.4% (16/119), and 0% (0/104) respectively (P<.001). Recall rates were 11.9% (13/109) for GPT-3.5 and 13.7% (15/109) for GPT-4, with Bard failing to retrieve any relevant papers (P<.001). Hallucination rates stood at 39.6% (55/139) for GPT-3.5, 28.6% (34/119) for GPT-4, and 91.4% (95/104) for Bard (P<.001). Further analysis of nonhallucinated papers retrieved by GPT models revealed significant differences in identifying various criteria, such as randomized studies, participant criteria, and intervention criteria. The study also noted the geographical and open-access biases in the papers retrieved by the LLMs. Conclusions Given their current performance, it is not recommended for LLMs to be deployed as the primary or exclusive tool for conducting systematic reviews. Any references generated by such models warrant thorough validation by researchers. The high occurrence of hallucinations in LLMs highlights the necessity for refining their training and functionality before confidently using them for rigorous academic purposes.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 2,
+   "raw": "Sarol, Maria Janina, Ming, Shufan, Radhakrishna, Shruthan, Schneider, Jodi, Kilicoglu, Halil. Assessing citation integrity in biomedical publications: corpus annotation and NLP models. Bioinformatics. 2024",
+   "parsed": {
+    "idx": 2,
+    "raw": "Sarol, Maria Janina, Ming, Shufan, Radhakrishna, Shruthan, Schneider, Jodi, Kilicoglu, Halil. Assessing citation integrity in biomedical publications: corpus annotation and NLP models. Bioinformatics. 2024",
+    "title": "Assessing citation integrity in biomedical publications: corpus annotation and NLP models",
+    "authors": [
+     "Sarol, Maria Janina",
+     "Ming, Shufan",
+     "Radhakrishna, Shruthan",
+     "Schneider, Jodi",
+     "Kilicoglu, Halil"
+    ],
+    "year": 2024,
+    "venue": "Bioinformatics",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "sarol2024assessing",
+    "contexts": [
+     "When citations are missing, inaccurate, or fabricated, the resulting break in the evidence chain can obscure logical dependencies, weaken argumentation, and jeopardize academic integrity at the level of both individual papers and the broader literature [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1093/bioinformatics/btae420",
+    "title": "Assessing citation integrity in biomedical publications: corpus annotation and NLP models",
+    "authors": [
+     "Sarol, Maria Janina",
+     "Ming, Shufan",
+     "Radhakrishna, Shruthan",
+     "Schneider, Jodi",
+     "Kilicoglu, Halil"
+    ],
+    "year": 2024,
+    "venue": "Bioinformatics",
+    "doi": "10.1093/bioinformatics/btae420",
+    "url": "https://doi.org/10.1093/bioinformatics/btae420",
+    "abstract": "Abstract Motivation Citations have a fundamental role in scholarly communication and assessment. Citation accuracy and transparency is crucial for the integrity of scientific evidence. In this work, we focus on quotation errors, errors in citation content that can distort the scientific evidence and that are hard to detect for humans. We construct a corpus and propose natural language processing (NLP) methods to identify such errors in biomedical publications. Results We manually annotated 100 highly-cited biomedical publications (reference articles) and citations to them. The annotation involved labeling citation context in the citing article, relevant evidence sentences in the reference article, and the accuracy of the citation. A total of 3063 citation instances were annotated (39.18% with accuracy errors). For NLP, we combined a sentence retriever with a fine-tuned claim verification model to label citations as ACCURATE, NOT_ACCURATE, or IRRELEVANT. We also explored few-shot in-context learning with generative large language models. The best performing model—which uses citation sentences as citation context, the BM25 model with MonoT5 reranker for retrieving top-20 sentences, and a fine-tuned MultiVerS model for accuracy label classification—yielded 0.59 micro-F1 and 0.52 macro-F1 score. GPT-4 in-context learning performed better in identifying accurate citations, but it lagged for erroneous citations (0.65 micro-F1, 0.45 macro-F1). Citation quotation errors are often subtle, and it is currently challenging for NLP models to identify erroneous citations. With further improvements, the models could serve to improve citation quality and accuracy. Availability and implementation We make the corpus and the best-performing NLP model publicly available at https://github.com/ScienceNLP-Lab/Citation-Integrity/.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 3,
+   "raw": "Ye, Yanfang, Zhang, Zheyuan, Ma, Tianyi, Wang, Zehong, Li, Yiyang, Hou, Shifu et al.. Llms4all: A review of large language models across academic disciplines. arXiv preprint arXiv:2509.19580. 2025",
+   "parsed": {
+    "idx": 3,
+    "raw": "Ye, Yanfang, Zhang, Zheyuan, Ma, Tianyi, Wang, Zehong, Li, Yiyang, Hou, Shifu et al.. Llms4all: A review of large language models across academic disciplines. arXiv preprint arXiv:2509.19580. 2025",
+    "title": "Llms4all: A review of large language models across academic disciplines",
+    "authors": [
+     "Ye, Yanfang",
+     "Zhang, Zheyuan",
+     "Ma, Tianyi",
+     "Wang, Zehong",
+     "Li, Yiyang",
+     "Hou, Shifu",
+     "Sun, Weixiang",
+     "Shi, Kaiwen",
+     "Ma, Yijun",
+     "Song, Wei"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2509.19580",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "ye2025llms4all",
+    "contexts": [
+     "However, the rapid adoption of large language models (LLMs) [CITATION] and other generative systems [CITATION] has introduced a qualitatively new risk: the automatic creation of bibliographic entries that have no counterpart in the scholarly record."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.20944/preprints202510.1383.v1",
+    "title": "LLMs4All: A Review of Large Language Models Across Academic Disciplines",
+    "authors": [
+     "Ye, Yanfang",
+     "Zhang, Zheyuan",
+     "Ma, Tianyi",
+     "Wang, Zehong",
+     "Li, Yiyang",
+     "Hou, Shifu",
+     "Sun, Weixiang",
+     "Shi, Kaiwen",
+     "Ma, Yijun",
+     "Song, Wei",
+     "Abbasi, Ahmed",
+     "Cheng, Ying",
+     "Cleland-Huang, Jane",
+     "Corcelli, Steven",
+     "Culligan, Patricia",
+     "Goulding, Robert",
+     "Hu, Ming",
+     "Hua, Ting",
+     "Lalor, John",
+     "Liu, Fang",
+     "Luo, Tengfei",
+     "Maginn, Ed",
+     "Moniz, Nuno",
+     "Rohr, Jason",
+     "Savoie, Brett",
+     "Slate, Daniel",
+     "Stapleford, Tom",
+     "Webber, Matthew",
+     "Wiest, Olaf",
+     "Zhang, Johnny",
+     "Chawla, Nitesh"
+    ],
+    "year": 2025,
+    "venue": null,
+    "doi": "10.20944/preprints202510.1383.v1",
+    "url": "https://doi.org/10.20944/preprints202510.1383.v1",
+    "abstract": "Cutting-edge Artificial Intelligence (AI) techniques keep reshaping our view of the world. For example, Large Language Models (LLMs) based applications such as ChatGPT have shown the capability of generating human-like conversation on extensive topics. Due to the impressive performance on a variety of language-related tasks (e.g., open-domain question answering, translation, and document summarization), one can envision the far-reaching impacts that can be brought by the LLMs with broader real-world applications (e.g., customer service, education and accessibility, and scientific discovery). Inspired by their success, this paper will offer an overview of state-of-the-art LLMs and their integration into a wide range of academic disciplines, including: (1) arts, letters, and law (e.g., history, philosophy, political science, arts and architecture, law), (2) economics and business (e.g., finance, economics, accounting, marketing), and (3) science and engineering (e.g., mathematics, physics and mechanical engineering, chemistry and chemical engineering, life sciences and bioengineering, earth sciences and civil engineering, computer science and electrical engineering). Integrating humanity and technology, in this paper, we will explore how LLMs are shaping research and practice in these fields, while also discussing key limitations, open challenges, and future directions in the era of generative AI. The review of how LLMs are engaged across disciplines—along with key observations and insights—can help researchers and practitioners interested in exploiting LLMs to advance their works in diverse real-world applications.",
+    "type": "posted-content"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 4,
+   "raw": "Yuan, Zhengqing, Liu, Yixin, Cao, Yihan, Sun, Weixiang, Jia, Haolong, Chen, Ruoxi et al.. Mora: Enabling generalist video generation via a multi-agent framework. arXiv preprint arXiv:2403.13248. 2024",
+   "parsed": {
+    "idx": 4,
+    "raw": "Yuan, Zhengqing, Liu, Yixin, Cao, Yihan, Sun, Weixiang, Jia, Haolong, Chen, Ruoxi et al.. Mora: Enabling generalist video generation via a multi-agent framework. arXiv preprint arXiv:2403.13248. 2024",
+    "title": "Mora: Enabling generalist video generation via a multi-agent framework",
+    "authors": [
+     "Yuan, Zhengqing",
+     "Liu, Yixin",
+     "Cao, Yihan",
+     "Sun, Weixiang",
+     "Jia, Haolong",
+     "Chen, Ruoxi",
+     "Li, Zhaoxu",
+     "Lin, Bin",
+     "Yuan, Li",
+     "He, Lifang"
+    ],
+    "year": 2024,
+    "venue": "arXiv preprint arXiv:2403.13248",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "yuan2024mora",
+    "contexts": [
+     "However, the rapid adoption of large language models (LLMs) [CITATION] and other generative systems [CITATION] has introduced a qualitatively new risk: the automatic creation of bibliographic entries that have no counterpart in the scholarly record."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W4393100107",
+    "title": "Mora: Enabling Generalist Video Generation via A Multi-Agent Framework",
+    "authors": [
+     "Yuan, Zhengqing",
+     "Liu, Yixin",
+     "Cao, Yihan",
+     "Sun, Weixiang",
+     "Jia, Haolong",
+     "Chen, Ruoxi",
+     "Li, Zhaoxu",
+     "Lin, Bin",
+     "Yuan, Li",
+     "He, Lifang",
+     "Wang, Chi",
+     "Ye, Yanfang",
+     "Sun, Lichao"
+    ],
+    "year": 2024,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2403.13248",
+    "url": "https://openalex.org/W4393100107",
+    "abstract": "Text-to-video generation has made significant strides, but replicating the capabilities of advanced systems like OpenAI Sora remains challenging due to their closed-source nature. Existing open-source methods struggle to achieve comparable performance, often hindered by ineffective agent collaboration and inadequate training data quality. In this paper, we introduce Mora, a novel multi-agent framework that leverages existing open-source modules to replicate Sora functionalities. We address these fundamental limitations by proposing three key techniques: (1) multi-agent fine-tuning with a self-modulation factor to enhance inter-agent coordination, (2) a data-free training strategy that uses large models to synthesize training data, and (3) a human-in-the-loop mechanism combined with multimodal large language models for data filtering to ensure high-quality training datasets. Our comprehensive experiments on six video generation tasks demonstrate that Mora achieves performance comparable to Sora on VBench, outperforming existing open-source methods across various tasks. Specifically, in the text-to-video generation task, Mora achieved a Video Quality score of 0.800, surpassing Sora 0.797 and outperforming all other baseline models across six key metrics. Additionally, in the image-to-video generation task, Mora achieved a perfect Dynamic Degree score of 1.00, demonstrating exceptional capability in enhancing motion realism and achieving higher Imaging Quality than Sora. These results highlight the potential of collaborative multi-agent systems and human-in-the-loop mechanisms in advancing text-to-video generation. Our code is available at \\url{https://github.com/lichao-sun/Mora}.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 5,
+   "raw": "GPTZero finds over 50 hallucinations in ICLR 2026 submissions. r̆lhttps://gptzero.me/news/iclr-2026. 2025",
+   "parsed": {
+    "idx": 5,
+    "raw": "GPTZero finds over 50 hallucinations in ICLR 2026 submissions. r̆lhttps://gptzero.me/news/iclr-2026. 2025",
+    "title": "GPTZero finds over 50 hallucinations in ICLR 2026 submissions",
+    "authors": [],
+    "year": 2025,
+    "venue": "r̆lhttps://gptzero.me/news/iclr-2026",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "gptzero_iclr2026",
+    "contexts": [
+     "Recent investigations have documented such cases across prominent machine learning conferences, revealing hallucinated references in multiple submissions [CITATION]."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 46.785714285714285,
+    "authors": null,
+    "year": 1.0,
+    "venue": null,
+    "composite": 51.2
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'Inaccuracies in AI Writing Detection System \"GPTZero\"', score 51.2)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 6,
+   "raw": "AI conference's papers contaminated by AI hallucinations. r̆lhttps://www.theregister.com/2026/01/22/neurips_papers_contaiminated_ai_hallucinations/. 2026",
+   "parsed": {
+    "idx": 6,
+    "raw": "AI conference's papers contaminated by AI hallucinations. r̆lhttps://www.theregister.com/2026/01/22/neurips_papers_contaiminated_ai_hallucinations/. 2026",
+    "title": "AI conference's papers contaminated by AI hallucinations",
+    "authors": [],
+    "year": 2026,
+    "venue": "r̆lhttps://www.theregister.com/2026/01/22/neurips_papers_contaiminated_ai_hallucinations/",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "register2026neurips_hallucinations",
+    "contexts": [
+     "Independent reports further indicate that similar problems have surfaced even in accepted papers at leading forums such as NeurIPS and ACL [CITATION]."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 54.57446808510638,
+    "authors": null,
+    "year": 1.0,
+    "venue": null,
+    "composite": 58.4
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'The Surprising Value of AI Hallucinations', score 58.4)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 7,
+   "raw": "Sakai, Y., Kamigaito, H., Watanabe, T.. HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences. r̆lhttps://arxiv.org/abs/2601.18724. 2026",
+   "parsed": {
+    "idx": 7,
+    "raw": "Sakai, Y., Kamigaito, H., Watanabe, T.. HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences. r̆lhttps://arxiv.org/abs/2601.18724. 2026",
+    "title": "HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences",
+    "authors": [
+     "Sakai, Y.",
+     "Kamigaito, H.",
+     "Watanabe, T."
+    ],
+    "year": 2026,
+    "venue": "r̆lhttps://arxiv.org/abs/2601.18724",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "sakoi2026hallucitation",
+    "contexts": [
+     "Independent reports further indicate that similar problems have surfaced even in accepted papers at leading forums such as NeurIPS and ACL [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2026.acl-long.2189",
+    "title": "HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences",
+    "authors": [
+     "Sakai, Yusuke",
+     "Kamigaito, Hidetaka",
+     "Watanabe, Taro"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/2026.acl-long.2189",
+    "url": "https://doi.org/10.18653/v1/2026.acl-long.2189",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 8,
+   "raw": "Dai, C.. Literary runaway: Increasingly more references cited per research paper. PLoS ONE. 2021",
+   "parsed": {
+    "idx": 8,
+    "raw": "Dai, C.. Literary runaway: Increasingly more references cited per research paper. PLoS ONE. 2021",
+    "title": "Literary runaway: Increasingly more references cited per research paper",
+    "authors": [
+     "Dai, C."
+    ],
+    "year": 2021,
+    "venue": "PLoS ONE",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "dai2021literary",
+    "contexts": [
+     "The growing scale of scholarly publishing further complicates this problem: reference lists have expanded rapidly across disciplines [CITATION], making thorough manual verification unrealistic for reviewers, editors, and co-authors."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.87,
+   "match": {
+    "source": "crossref",
+    "id": "10.1371/journal.pone.0255849",
+    "title": "Literary runaway: Increasingly more references cited per academic research article from 1980 to 2019",
+    "authors": [
+     "Dai, Can",
+     "Chen, Quan",
+     "Wan, Tao",
+     "Liu, Fan",
+     "Gong, Yanbing",
+     "Wang, Qingfeng"
+    ],
+    "year": 2021,
+    "venue": "PLOS ONE",
+    "doi": "10.1371/journal.pone.0255849",
+    "url": "https://doi.org/10.1371/journal.pone.0255849",
+    "abstract": "References are employed in most academic research papers to give credits and to reflect scholarliness. With the upsurge in academic publications in recent decades, we are curious to know how the number of references cited per research article has changed across different disciplines over that time. The results of our study showed significant linear growth in reference density in eight disciplinary categories between 1980 and 2019 indexed in Web of Science. It appears that reference saturation is not yet in sight. Overall, the general increase in the number of publications and the advanced accessibility of the Internet and digitized documents may have promoted the growth in references in certain fields. However, the seemingly runaway tendency should be well appreciated and objectively assessed. We suggest that authors focus on their research itself rather than on political considerations during the process of writing, especially the selection of important references to cite.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 75.7396449704142,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 86.7
+   },
+   "issues": [
+    "partial match only (score 86.7): 'Literary runaway: Increasingly more references cited per academic research article from 1980 to 2019'"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 9,
+   "raw": "GPTZero: AI Text Detection Service. r̆lhttps://gptzero.me/. 2023",
+   "parsed": {
+    "idx": 9,
+    "raw": "GPTZero: AI Text Detection Service. r̆lhttps://gptzero.me/. 2023",
+    "title": "GPTZero: AI Text Detection Service",
+    "authors": [],
+    "year": 2023,
+    "venue": "r̆lhttps://gptzero.me/",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "gptzero",
+    "contexts": [
+     "This has motivated the development of automated citation-auditing tools [CITATION].",
+     "To verify the authenticity of academic references, some works [CITATION] have emerged to audit references by parsing citation strings and matching them against external bibliographic databases."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.62,
+   "match": {
+    "source": "crossref",
+    "id": "10.7717/peerj-cs.2953/fig-1",
+    "title": "Figure 1: Examples of AI text detection results by GPTZero.",
+    "authors": [],
+    "year": null,
+    "venue": null,
+    "doi": "10.7717/peerj-cs.2953/fig-1",
+    "url": "https://doi.org/10.7717/peerj-cs.2953/fig-1",
+    "abstract": null,
+    "type": "component"
+   },
+   "field_scores": {
+    "title": 62.22222222222222,
+    "authors": null,
+    "year": null,
+    "venue": null,
+    "composite": 62.2
+   },
+   "issues": [
+    "partial match only (score 62.2): 'Figure 1: Examples of AI text detection results by GPTZero.'"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 10,
+   "raw": "Citely: AI Citation Assistant. r̆lhttps://citely.ai/. 2024",
+   "parsed": {
+    "idx": 10,
+    "raw": "Citely: AI Citation Assistant. r̆lhttps://citely.ai/. 2024",
+    "title": "Citely: AI Citation Assistant",
+    "authors": [],
+    "year": 2024,
+    "venue": "r̆lhttps://citely.ai/",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "citely",
+    "contexts": [
+     "This has motivated the development of automated citation-auditing tools [CITATION].",
+     "To verify the authenticity of academic references, some works [CITATION] have emerged to audit references by parsing citation strings and matching them against external bibliographic databases."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.67,
+   "match": {
+    "source": "openalex",
+    "id": "W7172216730",
+    "title": "Citation fidelity in AI research assistants",
+    "authors": [
+     "Bdira, Fredj Ben"
+    ],
+    "year": 2026,
+    "venue": null,
+    "doi": "10.17605/osf.io/7d5kf",
+    "url": "https://openalex.org/W7172216730",
+    "abstract": "A preregistered comparative evaluation of how faithfully AI research assistants represent the sources they cite. Stage 1 protocol, registered before any system is run. Author: Dr. F. Ben Bdira, ProLigand NEXUS.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 73.23943661971832,
+    "authors": null,
+    "year": 0.0,
+    "venue": null,
+    "composite": 67.1
+   },
+   "issues": [
+    "partial match only (score 67.1): 'Citation fidelity in AI research assistants'",
+    "year 2024 vs record 2026"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 11,
+   "raw": "SwanRef: Reference Verification Platform. r̆lhttps://www.swanref.org/. 2024",
+   "parsed": {
+    "idx": 11,
+    "raw": "SwanRef: Reference Verification Platform. r̆lhttps://www.swanref.org/. 2024",
+    "title": "SwanRef: Reference Verification Platform",
+    "authors": [],
+    "year": 2024,
+    "venue": "r̆lhttps://www.swanref.org/",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "swanref",
+    "contexts": [
+     "This has motivated the development of automated citation-auditing tools [CITATION].",
+     "To verify the authenticity of academic references, some works [CITATION] have emerged to audit references by parsing citation strings and matching them against external bibliographic databases."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 58.26771653543308,
+    "authors": null,
+    "year": 1.0,
+    "venue": 26.41509433962264,
+    "composite": 56.7
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'REFERENCE ARCHITECTURE FOR THE SOFTWARE PLATFORM FOR VERIFICATION OF MATHEMATICAL MODELS', score 56.7)",
+    "sources unavailable: s2"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2 (failed)"
+   ]
+  },
+  {
+   "idx": 12,
+   "raw": "Huang, Lei, Yu, Weijiang, Ma, Weitao, Zhong, Weihong, Feng, Zhangyin, Wang, Haotian et al.. A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions. ACM Transactions on Information Systems. 2025",
+   "parsed": {
+    "idx": 12,
+    "raw": "Huang, Lei, Yu, Weijiang, Ma, Weitao, Zhong, Weihong, Feng, Zhangyin, Wang, Haotian et al.. A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions. ACM Transactions on Information Systems. 2025",
+    "title": "A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions",
+    "authors": [
+     "Huang, Lei",
+     "Yu, Weijiang",
+     "Ma, Weitao",
+     "Zhong, Weihong",
+     "Feng, Zhangyin",
+     "Wang, Haotian",
+     "Chen, Qianglong",
+     "Peng, Weihua",
+     "Feng, Xiaocheng",
+     "Qin, Bing"
+    ],
+    "year": 2025,
+    "venue": "ACM Transactions on Information Systems",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "huang2025survey",
+    "contexts": [
+     "itemize Related Works Reference Hallucination Detection Reliably identifying AI-generated hallucinated content has become an increasing concern for both academia and industry [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1145/3703155",
+    "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions",
+    "authors": [
+     "Huang, Lei",
+     "Yu, Weijiang",
+     "Ma, Weitao",
+     "Zhong, Weihong",
+     "Feng, Zhangyin",
+     "Wang, Haotian",
+     "Chen, Qianglong",
+     "Peng, Weihua",
+     "Feng, Xiaocheng",
+     "Qin, Bing",
+     "Liu, Ting"
+    ],
+    "year": 2025,
+    "venue": "ACM Transactions on Information Systems",
+    "doi": "10.1145/3703155",
+    "url": "https://doi.org/10.1145/3703155",
+    "abstract": "The emergence of large language models (LLMs) has marked a significant breakthrough in natural language processing (NLP), fueling a paradigm shift in information acquisition. Nevertheless, LLMs are prone to hallucination, generating plausible yet nonfactual content. This phenomenon raises significant concerns over the reliability of LLMs in real-world information retrieval (IR) systems and has attracted intensive research to detect and mitigate such hallucinations. Given the open-ended general-purpose attributes inherent to LLMs, LLM hallucinations present distinct challenges that diverge from prior task-specific models. This divergence highlights the urgency for a nuanced understanding and comprehensive overview of recent advances in LLM hallucinations. In this survey, we begin with an innovative taxonomy of hallucination in the era of LLM and then delve into the factors contributing to hallucinations. Subsequently, we present a thorough overview of hallucination detection methods and benchmarks. Our discussion then transfers to representative methodologies for mitigating LLM hallucinations. Additionally, we delve into the current limitations faced by retrieval-augmented LLMs in combating hallucinations, offering insights for developing more robust IR systems. Finally, we highlight the promising research directions on LLM hallucinations, including hallucination in large vision-language models and understanding of knowledge boundaries in LLM hallucinations.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 13,
+   "raw": "Anh-Hoang, Dang, Tran, Vu, Nguyen, Le-Minh. Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior. Frontiers in Artificial Intelligence. 2025",
+   "parsed": {
+    "idx": 13,
+    "raw": "Anh-Hoang, Dang, Tran, Vu, Nguyen, Le-Minh. Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior. Frontiers in Artificial Intelligence. 2025",
+    "title": "Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior",
+    "authors": [
+     "Anh-Hoang, Dang",
+     "Tran, Vu",
+     "Nguyen, Le-Minh"
+    ],
+    "year": 2025,
+    "venue": "Frontiers in Artificial Intelligence",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "anh2025survey",
+    "contexts": [
+     "itemize Related Works Reference Hallucination Detection Reliably identifying AI-generated hallucinated content has become an increasing concern for both academia and industry [CITATION].",
+     "Such errors undermine scholarly trust and threaten the integrity of scientific communication [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3389/frai.2025.1622292",
+    "title": "Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior",
+    "authors": [
+     "Anh-Hoang, Dang",
+     "Tran, Vu",
+     "Nguyen, Le-Minh"
+    ],
+    "year": 2025,
+    "venue": "Frontiers in Artificial Intelligence",
+    "doi": "10.3389/frai.2025.1622292",
+    "url": "https://doi.org/10.3389/frai.2025.1622292",
+    "abstract": "Hallucination in Large Language Models (LLMs) refers to outputs that appear fluent and coherent but are factually incorrect, logically inconsistent, or entirely fabricated. As LLMs are increasingly deployed in education, healthcare, law, and scientific research, understanding and mitigating hallucinations has become critical. In this work, we present a comprehensive survey and empirical analysis of hallucination attribution in LLMs. Introducing a novel framework to determine whether a given hallucination stems from not optimize prompting or the model's intrinsic behavior. We evaluate state-of-the-art LLMs—including GPT-4, LLaMA 2, DeepSeek, and others—under various controlled prompting conditions, using established benchmarks (TruthfulQA, HallucinationEval) to judge factuality. Our attribution framework defines metrics for Prompt Sensitivity (PS) and Model Variability (MV) , which together quantify the contribution of prompts vs. model-internal factors to hallucinations. Through extensive experiments and comparative analyses, we identify distinct patterns in hallucination occurrence, severity, and mitigation across models. Notably, structured prompt strategies such as chain-of-thought (CoT) prompting significantly reduce hallucinations in prompt-sensitive scenarios, though intrinsic model limitations persist in some cases. These findings contribute to a deeper understanding of LLM reliability and provide insights for prompt engineers, model developers, and AI practitioners. We further propose best practices and future directions to reduce hallucinations in both prompt design and model development pipelines.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 14,
+   "raw": "Tonmoy, SMTI, Zaman, SM, Jain, Vinija, Rani, Anku, Rawte, Vipula, Chadha, Aman et al.. A comprehensive survey of hallucination mitigation techniques in large language models. arXiv preprint arXiv:2401.01313. 2024",
+   "parsed": {
+    "idx": 14,
+    "raw": "Tonmoy, SMTI, Zaman, SM, Jain, Vinija, Rani, Anku, Rawte, Vipula, Chadha, Aman et al.. A comprehensive survey of hallucination mitigation techniques in large language models. arXiv preprint arXiv:2401.01313. 2024",
+    "title": "A comprehensive survey of hallucination mitigation techniques in large language models",
+    "authors": [
+     "Tonmoy, SMTI",
+     "Zaman, SM",
+     "Jain, Vinija",
+     "Rani, Anku",
+     "Rawte, Vipula",
+     "Chadha, Aman",
+     "Das, Amitava"
+    ],
+    "year": 2024,
+    "venue": "arXiv preprint arXiv:2401.01313",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "tonmoy2024comprehensive",
+    "contexts": [
+     "Such errors undermine scholarly trust and threaten the integrity of scientific communication [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W4390602555",
+    "title": "A Comprehensive Survey of Hallucination Mitigation Techniques in Large Language Models",
+    "authors": [
+     "Tonmoy, S. M Towhidul Islam",
+     "Zaman, S M Mehedi",
+     "Jain, Vinija",
+     "Rani, Anku",
+     "Rawte, Vipula",
+     "Chadha, Aman R.",
+     "Das, Amitava"
+    ],
+    "year": 2024,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2401.01313",
+    "url": "https://openalex.org/W4390602555",
+    "abstract": "As Large Language Models (LLMs) continue to advance in their ability to write human-like text, a key challenge remains around their tendency to hallucinate generating content that appears factual but is ungrounded. This issue of hallucination is arguably the biggest hindrance to safely deploying these powerful LLMs into real-world production systems that impact people's lives. The journey toward widespread adoption of LLMs in practical settings heavily relies on addressing and mitigating hallucinations. Unlike traditional AI systems focused on limited tasks, LLMs have been exposed to vast amounts of online text data during training. While this allows them to display impressive language fluency, it also means they are capable of extrapolating information from the biases in training data, misinterpreting ambiguous prompts, or modifying the information to align superficially with the input. This becomes hugely alarming when we rely on language generation capabilities for sensitive applications, such as summarizing medical records, financial analysis reports, etc. This paper presents a comprehensive survey of over 32 techniques developed to mitigate hallucination in LLMs. Notable among these are Retrieval Augmented Generation (Lewis et al, 2021), Knowledge Retrieval (Varshney et al,2023), CoNLI (Lei et al, 2023), and CoVe (Dhuliawala et al, 2023). Furthermore, we introduce a detailed taxonomy categorizing these methods based on various parameters, such as dataset utilization, common tasks, feedback mechanisms, and retriever types. This classification helps distinguish the diverse approaches specifically designed to tackle hallucination issues in LLMs. Additionally, we analyze the challenges and limitations inherent in these techniques, providing a solid foundation for future research in addressing hallucinations and related phenomena within the realm of LLMs.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 15,
+   "raw": "CiteCheck: AI-powered Citation Verification. r̆lhttps://citecheck.ai/. 2024",
+   "parsed": {
+    "idx": 15,
+    "raw": "CiteCheck: AI-powered Citation Verification. r̆lhttps://citecheck.ai/. 2024",
+    "title": "CiteCheck: AI-powered Citation Verification",
+    "authors": [],
+    "year": 2024,
+    "venue": "r̆lhttps://citecheck.ai/",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "citecheck",
+    "contexts": [
+     "To address this, more recent systems [CITATION] adopt fuzzy matching strategies that compare citation fields against retrieved records using token-level similarity rather than exact string matching, enabling detection of mutated or incomplete references."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 54.385964912280706,
+    "authors": null,
+    "year": 0.5,
+    "venue": null,
+    "composite": 54.0
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'A Citation Verification Tool for Generative AI-Assisted Research Writing', score 54.0)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 16,
+   "raw": "RefCheck AI. r̆lhttps://github.com/HuaHenry/RefCheck_ai. 2024",
+   "parsed": {
+    "idx": 16,
+    "raw": "RefCheck AI. r̆lhttps://github.com/HuaHenry/RefCheck_ai. 2024",
+    "title": "RefCheck AI",
+    "authors": [],
+    "year": 2024,
+    "venue": "r̆lhttps://github.com/HuaHenry/RefCheck_ai",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "refcheck_ai",
+    "contexts": [
+     "To address this, more recent systems [CITATION] adopt fuzzy matching strategies that compare citation fields against retrieved records using token-level similarity rather than exact string matching, enabling detection of mutated or incomplete references."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 38.095238095238095,
+    "authors": null,
+    "year": 1.0,
+    "venue": 32.0,
+    "composite": 41.6
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'AI History', score 41.6)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 17,
+   "raw": "Janse van Rensburg, LJ. AI-Powered Citation Auditing: A Zero-Assumption Protocol for Systematic Reference Verification in Academic Research. arXiv e-prints. 2025",
+   "parsed": {
+    "idx": 17,
+    "raw": "Janse van Rensburg, LJ. AI-Powered Citation Auditing: A Zero-Assumption Protocol for Systematic Reference Verification in Academic Research. arXiv e-prints. 2025",
+    "title": "AI-Powered Citation Auditing: A Zero-Assumption Protocol for Systematic Reference Verification in Academic Research",
+    "authors": [
+     "Janse van Rensburg, LJ"
+    ],
+    "year": 2025,
+    "venue": "arXiv e-prints",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "janse2025ai",
+    "contexts": [
+     "More recent research begins to combine LLM-based reasoning models with retrieval for citation verification [CITATION], but these early efforts rely on overly limited and homogeneous external database sources, which can lead to false positive errors in practice."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W7104679949",
+    "title": "AI-Powered Citation Auditing: A Zero-Assumption Protocol for Systematic Reference Verification in Academic Research",
+    "authors": [
+     "van Rensburg, L. J. Janse"
+    ],
+    "year": 2025,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2511.04683",
+    "url": "https://openalex.org/W7104679949",
+    "abstract": "Academic citation integrity faces persistent challenges, with research indicating 20% of citations contain errors and manual verification requiring months of expert time. This paper presents a novel AI-powered methodology for systematic, comprehensive reference auditing using agentic AI with tool-use capabilities. We develop a zero-assumption verification protocol that independently validates every reference against multiple academic databases (Semantic Scholar, Google Scholar, CrossRef) without assuming any citation is correct. The methodology was validated across 30 academic documents (2,581 references) spanning undergraduate projects to doctoral theses and peer-reviewed publications. Results demonstrate 91.7% average verification rate on published PLOS papers, with successful detection of fabricated references, retracted articles, orphan citations, and predatory journals. Time efficiency improved dramatically: 90-minute audits for 916-reference doctoral theses versus months of manual review. The system achieved <0.5% false positive rate while identifying critical issues manual review might miss. This work establishes the first validated AI-agent methodology for academic citation integrity, demonstrating practical applicability for supervisors, students, and institutional quality assurance.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 18,
+   "raw": "Zhang, Zheyuan, Shi, Kaiwen, Yuan, Zhengqing, Wang, Zehong, Ma, Tianyi, Murugesan, Keerthiram et al.. AgentRouter: A Knowledge-Graph-Guided LLM Router for Collaborative Multi-Agent Question Answering. arXiv preprint arXiv:2510.05445. 2025",
+   "parsed": {
+    "idx": 18,
+    "raw": "Zhang, Zheyuan, Shi, Kaiwen, Yuan, Zhengqing, Wang, Zehong, Ma, Tianyi, Murugesan, Keerthiram et al.. AgentRouter: A Knowledge-Graph-Guided LLM Router for Collaborative Multi-Agent Question Answering. arXiv preprint arXiv:2510.05445. 2025",
+    "title": "AgentRouter: A Knowledge-Graph-Guided LLM Router for Collaborative Multi-Agent Question Answering",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Shi, Kaiwen",
+     "Yuan, Zhengqing",
+     "Wang, Zehong",
+     "Ma, Tianyi",
+     "Murugesan, Keerthiram",
+     "Galassi, Vincent",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2510.05445",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "zhang2025agentrouter",
+    "contexts": [
+     "Web Search Agent and Fact Checking LLM-based agents have recently demonstrated strong performance on complex, long-horizon tasks by moving beyond pure text generation toward actionable decision-making pipelines that interleave reasoning with interactions in external environments [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2026.acl-long.33",
+    "title": "AgentRouter: A Knowledge-Graph-Guided LLM Router for Collaborative Multi-Agent Question Answering",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Shi, Kaiwen",
+     "Yuan, Zhengqing",
+     "Wang, Zehong",
+     "Ma, Tianyi",
+     "Murugesan, Keerthiram",
+     "Galassi, Vincent",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/2026.acl-long.33",
+    "url": "https://doi.org/10.18653/v1/2026.acl-long.33",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2025 vs record 2026 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 19,
+   "raw": "Shi, Kaiwen, Zhang, Zheyuan, Yuan, Zhengqing, Murugesan, Keerthiram, Galass, Vincent, Zhang, Chuxu et al.. NG-Router: Graph-Supervised Multi-Agent Collaboration for Nutrition Question Answering. arXiv preprint arXiv:2510.09854. 2025",
+   "parsed": {
+    "idx": 19,
+    "raw": "Shi, Kaiwen, Zhang, Zheyuan, Yuan, Zhengqing, Murugesan, Keerthiram, Galass, Vincent, Zhang, Chuxu et al.. NG-Router: Graph-Supervised Multi-Agent Collaboration for Nutrition Question Answering. arXiv preprint arXiv:2510.09854. 2025",
+    "title": "NG-Router: Graph-Supervised Multi-Agent Collaboration for Nutrition Question Answering",
+    "authors": [
+     "Shi, Kaiwen",
+     "Zhang, Zheyuan",
+     "Yuan, Zhengqing",
+     "Murugesan, Keerthiram",
+     "Galass, Vincent",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2510.09854",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "shi2025ng",
+    "contexts": [
+     "Web Search Agent and Fact Checking LLM-based agents have recently demonstrated strong performance on complex, long-horizon tasks by moving beyond pure text generation toward actionable decision-making pipelines that interleave reasoning with interactions in external environments [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2026.eacl-long.352",
+    "title": "NG-Router: Graph-Supervised Multi-Agent Collaboration for Nutrition Question Answering",
+    "authors": [
+     "Shi, Kaiwen",
+     "Zhang, Zheyuan",
+     "Yuan, Zhengqing",
+     "Murugesan, Keerthiram",
+     "Galassi, Vincent",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/2026.eacl-long.352",
+    "url": "https://doi.org/10.18653/v1/2026.eacl-long.352",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2025 vs record 2026 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 20,
+   "raw": "Zhang, Zheyuan, Ge, Lin, Li, Hongjiang, Zhu, Weicheng, Zhang, Chuxu, Ye, Yanfang. MAPRO: Recasting Multi-Agent Prompt Optimization as Maximum a Posteriori Inference. arXiv e-prints. 2025",
+   "parsed": {
+    "idx": 20,
+    "raw": "Zhang, Zheyuan, Ge, Lin, Li, Hongjiang, Zhu, Weicheng, Zhang, Chuxu, Ye, Yanfang. MAPRO: Recasting Multi-Agent Prompt Optimization as Maximum a Posteriori Inference. arXiv e-prints. 2025",
+    "title": "MAPRO: Recasting Multi-Agent Prompt Optimization as Maximum a Posteriori Inference",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Ge, Lin",
+     "Li, Hongjiang",
+     "Zhu, Weicheng",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2025,
+    "venue": "arXiv e-prints",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "zhang2025mapro",
+    "contexts": [
+     "Web Search Agent and Fact Checking LLM-based agents have recently demonstrated strong performance on complex, long-horizon tasks by moving beyond pure text generation toward actionable decision-making pipelines that interleave reasoning with interactions in external environments [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2026.findings-eacl.233",
+    "title": "MAPRO: Recasting Multi-Agent Prompt Optimization as Maximum a Posteriori Inference",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Ge, Lin",
+     "Li, Hongjiang",
+     "Zhu, Weicheng",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2026,
+    "venue": "Findings of the Association for Computational Linguistics: EACL 2026",
+    "doi": "10.18653/v1/2026.findings-eacl.233",
+    "url": "https://doi.org/10.18653/v1/2026.findings-eacl.233",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2025 vs record 2026 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 21,
+   "raw": "Hu, Mengkang, Chen, Tianxing, Chen, Qiguang, Mu, Yao, Shao, Wenqi, Luo, Ping. Hiagent: Hierarchical working memory management for solving long-horizon agent tasks with large language model. Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2025",
+   "parsed": {
+    "idx": 21,
+    "raw": "Hu, Mengkang, Chen, Tianxing, Chen, Qiguang, Mu, Yao, Shao, Wenqi, Luo, Ping. Hiagent: Hierarchical working memory management for solving long-horizon agent tasks with large language model. Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2025",
+    "title": "Hiagent: Hierarchical working memory management for solving long-horizon agent tasks with large language model",
+    "authors": [
+     "Hu, Mengkang",
+     "Chen, Tianxing",
+     "Chen, Qiguang",
+     "Mu, Yao",
+     "Shao, Wenqi",
+     "Luo, Ping"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "hu2025hiagent",
+    "contexts": [
+     "Web Search Agent and Fact Checking LLM-based agents have recently demonstrated strong performance on complex, long-horizon tasks by moving beyond pure text generation toward actionable decision-making pipelines that interleave reasoning with interactions in external environments [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2025.acl-long.1575",
+    "title": "HiAgent: Hierarchical Working Memory Management for Solving Long-Horizon Agent Tasks with Large Language Model",
+    "authors": [
+     "Hu, Mengkang",
+     "Chen, Tianxing",
+     "Chen, Qiguang",
+     "Mu, Yao",
+     "Shao, Wenqi",
+     "Luo, Ping"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/2025.acl-long.1575",
+    "url": "https://doi.org/10.18653/v1/2025.acl-long.1575",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 22,
+   "raw": "Ferrag, Mohamed Amine, Tihanyi, Norbert, Debbah, Merouane. From llm reasoning to autonomous ai agents: A comprehensive review. arXiv preprint arXiv:2504.19678. 2025",
+   "parsed": {
+    "idx": 22,
+    "raw": "Ferrag, Mohamed Amine, Tihanyi, Norbert, Debbah, Merouane. From llm reasoning to autonomous ai agents: A comprehensive review. arXiv preprint arXiv:2504.19678. 2025",
+    "title": "From llm reasoning to autonomous ai agents: A comprehensive review",
+    "authors": [
+     "Ferrag, Mohamed Amine",
+     "Tihanyi, Norbert",
+     "Debbah, Merouane"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2504.19678",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "ferrag2025llm",
+    "contexts": [
+     "Web Search Agent and Fact Checking LLM-based agents have recently demonstrated strong performance on complex, long-horizon tasks by moving beyond pure text generation toward actionable decision-making pipelines that interleave reasoning with interactions in external environments [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.1109/access.2026.3698694",
+    "title": "From LLM Reasoning to Autonomous AI Agents: A Comprehensive Review",
+    "authors": [
+     "Ferrag, Mohamed Amine",
+     "Tihanyi, Norbert",
+     "Debbah, Mérouane"
+    ],
+    "year": 2026,
+    "venue": "IEEE Access",
+    "doi": "10.1109/access.2026.3698694",
+    "url": "https://doi.org/10.1109/access.2026.3698694",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2025 vs record 2026 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 23,
+   "raw": "Nakano, Reiichiro, Hilton, Jacob, Balaji, Suchir, Wu, Jeff, Ouyang, Long, Kim, Christina et al.. Webgpt: Browser-assisted question-answering with human feedback. arXiv preprint arXiv:2112.09332. 2021",
+   "parsed": {
+    "idx": 23,
+    "raw": "Nakano, Reiichiro, Hilton, Jacob, Balaji, Suchir, Wu, Jeff, Ouyang, Long, Kim, Christina et al.. Webgpt: Browser-assisted question-answering with human feedback. arXiv preprint arXiv:2112.09332. 2021",
+    "title": "Webgpt: Browser-assisted question-answering with human feedback",
+    "authors": [
+     "Nakano, Reiichiro",
+     "Hilton, Jacob",
+     "Balaji, Suchir",
+     "Wu, Jeff",
+     "Ouyang, Long",
+     "Kim, Christina",
+     "Hesse, Christopher",
+     "Jain, Shantanu",
+     "Kosaraju, Vineet",
+     "Saunders, William"
+    ],
+    "year": 2021,
+    "venue": "arXiv preprint arXiv:2112.09332",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "nakano2021webgpt",
+    "contexts": [
+     "A representative and widely adopted form of tool use is web search [CITATION], which enables agents to ground answers in retrieved evidence and thereby mitigate hallucinations [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W4226227340",
+    "title": "WebGPT: Browser-assisted question-answering with human feedback",
+    "authors": [
+     "Nakano, Reiichiro",
+     "Hilton, Jacob",
+     "Balaji, Suchir",
+     "Wu, Jeff",
+     "Ouyang, Long",
+     "Kim, Christina",
+     "Hesse, Christopher",
+     "Jain, Shantanu",
+     "Kosaraju, Vineet",
+     "SAUNDERS, WILLIAM H. JUN.",
+     "Jiang, Xu",
+     "Cobbe, Karl",
+     "Eloundou, Tyna",
+     "Krueger, Gretchen Marie",
+     "Button, Kevin",
+     "Knight, Matthew",
+     "Chess, Benjamin",
+     "Schulman, John"
+    ],
+    "year": 2021,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2112.09332",
+    "url": "https://openalex.org/W4226227340",
+    "abstract": "We fine-tune GPT-3 to answer long-form questions using a text-based web-browsing environment, which allows the model to search and navigate the web. By setting up the task so that it can be performed by humans, we are able to train models on the task using imitation learning, and then optimize answer quality with human feedback. To make human evaluation of factual accuracy easier, models must collect references while browsing in support of their answers. We train and evaluate our models on ELI5, a dataset of questions asked by Reddit users. Our best model is obtained by fine-tuning GPT-3 using behavior cloning, and then performing rejection sampling against a reward model trained to predict human preferences. This model's answers are preferred by humans 56% of the time to those of our human demonstrators, and 69% of the time to the highest-voted answer from Reddit.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 24,
+   "raw": "Ma, Tianyi, Qian, Yiyue, Zhang, Zheyuan, Wang, Zehong, Qian, Xiaoye, Bai, Feifan et al.. AutoData: A Multi-Agent System for Open Web Data Collection. arXiv preprint arXiv:2505.15859. 2025",
+   "parsed": {
+    "idx": 24,
+    "raw": "Ma, Tianyi, Qian, Yiyue, Zhang, Zheyuan, Wang, Zehong, Qian, Xiaoye, Bai, Feifan et al.. AutoData: A Multi-Agent System for Open Web Data Collection. arXiv preprint arXiv:2505.15859. 2025",
+    "title": "AutoData: A Multi-Agent System for Open Web Data Collection",
+    "authors": [
+     "Ma, Tianyi",
+     "Qian, Yiyue",
+     "Zhang, Zheyuan",
+     "Wang, Zehong",
+     "Qian, Xiaoye",
+     "Bai, Feifan",
+     "Ding, Yifan",
+     "Luo, Xuwei",
+     "Zhang, Shinan",
+     "Murugesan, Keerthiram"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2505.15859",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "ma2025autodata",
+    "contexts": [
+     "A representative and widely adopted form of tool use is web search [CITATION], which enables agents to ground answers in retrieved evidence and thereby mitigate hallucinations [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.52202/085713-5769",
+    "title": "AutoData: A Multi-Agent System for Open Web Data Collection",
+    "authors": [
+     "Ma, Tianyi",
+     "Qian, Yiyue",
+     "Zhang, Zheyuan",
+     "Wang, Zehong",
+     "Qian, Xiaoye",
+     "Bai, Feifan",
+     "Ding, Yifan",
+     "Luo, Xuwei",
+     "Zhang, Shinan",
+     "Murugesan, Keerthiram",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2025,
+    "venue": "Advances in Neural Information Processing Systems 38",
+    "doi": "10.52202/085713-5769",
+    "url": "https://doi.org/10.52202/085713-5769",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 25,
+   "raw": "Yao, Shunyu, Zhao, Jeffrey, Yu, Dian, Du, Nan, Shafran, Izhak, Narasimhan, Karthik R et al.. React: Synergizing reasoning and acting in language models. The eleventh international conference on learning representations. 2022",
+   "parsed": {
+    "idx": 25,
+    "raw": "Yao, Shunyu, Zhao, Jeffrey, Yu, Dian, Du, Nan, Shafran, Izhak, Narasimhan, Karthik R et al.. React: Synergizing reasoning and acting in language models. The eleventh international conference on learning representations. 2022",
+    "title": "React: Synergizing reasoning and acting in language models",
+    "authors": [
+     "Yao, Shunyu",
+     "Zhao, Jeffrey",
+     "Yu, Dian",
+     "Du, Nan",
+     "Shafran, Izhak",
+     "Narasimhan, Karthik R",
+     "Cao, Yuan"
+    ],
+    "year": 2022,
+    "venue": "The eleventh international conference on learning representations",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "yao2022react",
+    "contexts": [
+     "A representative and widely adopted form of tool use is web search [CITATION], which enables agents to ground answers in retrieved evidence and thereby mitigate hallucinations [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 0.95,
+   "match": {
+    "source": "openalex",
+    "id": "W4304195432",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "authors": [
+     "Yao, Shunyu",
+     "Zhao, Jeffrey W.",
+     "Yu, Dian",
+     "Du, Nan",
+     "J, Izhak Shafran",
+     "Narasimhan, Karthik",
+     "Cao, Yuan"
+    ],
+    "year": 2022,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2210.03629",
+    "url": "https://openalex.org/W4304195432",
+    "abstract": "While large language models (LLMs) have demonstrated impressive capabilities across tasks in language understanding and interactive decision making, their abilities for reasoning (e.g. chain-of-thought prompting) and acting (e.g. action plan generation) have primarily been studied as separate topics. In this paper, we explore the use of LLMs to generate both reasoning traces and task-specific actions in an interleaved manner, allowing for greater synergy between the two: reasoning traces help the model induce, track, and update action plans as well as handle exceptions, while actions allow it to interface with external sources, such as knowledge bases or environments, to gather additional information. We apply our approach, named ReAct, to a diverse set of language and decision making tasks and demonstrate its effectiveness over state-of-the-art baselines, as well as improved human interpretability and trustworthiness over methods without reasoning or acting components. Concretely, on question answering (HotpotQA) and fact verification (Fever), ReAct overcomes issues of hallucination and error propagation prevalent in chain-of-thought reasoning by interacting with a simple Wikipedia API, and generates human-like task-solving trajectories that are more interpretable than baselines without reasoning traces. On two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. Project site with code: https://react-lm.github.io",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 85.71428571428571,
+    "year": 1.0,
+    "venue": null,
+    "composite": 95.2
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 26,
+   "raw": "Zhang, Zheyuan, Wang, Zehong, Ma, Tianyi, Taneja, Varun Sameer, Nelson, Sofia, Le, Nhi Ha Lan et al.. Mopi-hfrs: A multi-objective personalized health-aware food recommendation system with llm-enhanced interpretation. Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 1. 2025",
+   "parsed": {
+    "idx": 26,
+    "raw": "Zhang, Zheyuan, Wang, Zehong, Ma, Tianyi, Taneja, Varun Sameer, Nelson, Sofia, Le, Nhi Ha Lan et al.. Mopi-hfrs: A multi-objective personalized health-aware food recommendation system with llm-enhanced interpretation. Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 1. 2025",
+    "title": "Mopi-hfrs: A multi-objective personalized health-aware food recommendation system with llm-enhanced interpretation",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Wang, Zehong",
+     "Ma, Tianyi",
+     "Taneja, Varun Sameer",
+     "Nelson, Sofia",
+     "Le, Nhi Ha Lan",
+     "Murugesan, Keerthiram",
+     "Ju, Mingxuan",
+     "Chawla, Nitesh V",
+     "Zhang, Chuxu"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 1",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "zhang2025mopi",
+    "contexts": [
+     "A representative and widely adopted form of tool use is web search [CITATION], which enables agents to ground answers in retrieved evidence and thereby mitigate hallucinations [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1145/3690624.3709382",
+    "title": "MOPI-HFRS: A Multi-objective Personalized Health-aware Food Recommendation System with LLM-enhanced Interpretation",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Wang, Zehong",
+     "Ma, Tianyi",
+     "Taneja, Varun Sameer",
+     "Nelson, Sofia",
+     "Le, Nhi Ha Lan",
+     "Murugesan, Keerthiram",
+     "Ju, Mingxuan",
+     "Chawla, Nitesh V.",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1",
+    "doi": "10.1145/3690624.3709382",
+    "url": "https://doi.org/10.1145/3690624.3709382",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 27,
+   "raw": "Zhang, Zheyuan, Li, Yiyang, Le, Nhi Ha Lan, Wang, Zehong, Ma, Tianyi, Galassi, Vincent et al.. NGQA: a nutritional graph question answering benchmark for personalized health-aware nutritional reasoning. Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2025",
+   "parsed": {
+    "idx": 27,
+    "raw": "Zhang, Zheyuan, Li, Yiyang, Le, Nhi Ha Lan, Wang, Zehong, Ma, Tianyi, Galassi, Vincent et al.. NGQA: a nutritional graph question answering benchmark for personalized health-aware nutritional reasoning. Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2025",
+    "title": "NGQA: a nutritional graph question answering benchmark for personalized health-aware nutritional reasoning",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Li, Yiyang",
+     "Le, Nhi Ha Lan",
+     "Wang, Zehong",
+     "Ma, Tianyi",
+     "Galassi, Vincent",
+     "Murugesan, Keerthiram",
+     "Moniz, Nuno",
+     "Geyer, Werner",
+     "Chawla, Nitesh V"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "zhang2025ngqa",
+    "contexts": [
+     "A representative and widely adopted form of tool use is web search [CITATION], which enables agents to ground answers in retrieved evidence and thereby mitigate hallucinations [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2025.acl-long.296",
+    "title": "NGQA: A Nutritional Graph Question Answering Benchmark for Personalized Health-aware Nutritional Reasoning",
+    "authors": [
+     "Zhang, Zheyuan",
+     "Li, Yiyang",
+     "Le, Nhi Ha Lan",
+     "Wang, Zehong",
+     "Ma, Tianyi",
+     "Galassi, Vincent",
+     "Murugesan, Keerthiram",
+     "Moniz, Nuno",
+     "Geyer, Werner",
+     "Chawla, Nitesh V",
+     "Zhang, Chuxu",
+     "Ye, Yanfang"
+    ],
+    "year": 2025,
+    "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/2025.acl-long.296",
+    "url": "https://doi.org/10.18653/v1/2025.acl-long.296",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 28,
+   "raw": "Tian, Jacob-Junqi, Yu, Hao, Orlovskiy, Yury, Vergho, Tyler, Rivera, Mauricio, Goel, Mayank et al.. Web retrieval agents for evidence-based misinformation detection. arXiv preprint arXiv:2409.00009. 2024",
+   "parsed": {
+    "idx": 28,
+    "raw": "Tian, Jacob-Junqi, Yu, Hao, Orlovskiy, Yury, Vergho, Tyler, Rivera, Mauricio, Goel, Mayank et al.. Web retrieval agents for evidence-based misinformation detection. arXiv preprint arXiv:2409.00009. 2024",
+    "title": "Web retrieval agents for evidence-based misinformation detection",
+    "authors": [
+     "Tian, Jacob-Junqi",
+     "Yu, Hao",
+     "Orlovskiy, Yury",
+     "Vergho, Tyler",
+     "Rivera, Mauricio",
+     "Goel, Mayank",
+     "Yang, Zachary",
+     "Godbout, Jean-Francois",
+     "Rabbany, Reihaneh",
+     "Pelrine, Kellin"
+    ],
+    "year": 2024,
+    "venue": "arXiv preprint arXiv:2409.00009",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "tian2024web",
+    "contexts": [
+     "Early works have further applied web search agents to fact-checking settings, demonstrating their effectiveness in evidence-based misinformation detection [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W4402952906",
+    "title": "Web Retrieval Agents for Evidence-Based Misinformation Detection",
+    "authors": [
+     "Tian, Jacob-Junqi",
+     "Yu, Hao",
+     "Orlovskiy, Yury",
+     "Vergho, Tyler",
+     "Rivera, Mauricio",
+     "Goel, Mayank",
+     "Yang, Zachary",
+     "Godbout, Jean‐François",
+     "Rabbany, Reihaneh",
+     "Pelrine, Kellin"
+    ],
+    "year": 2024,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2409.00009",
+    "url": "https://openalex.org/W4402952906",
+    "abstract": "This paper develops an agent-based automated fact-checking approach for detecting misinformation. We demonstrate that combining a powerful LLM agent, which does not have access to the internet for searches, with an online web search agent yields better results than when each tool is used independently. Our approach is robust across multiple models, outperforming alternatives and increasing the macro F1 of misinformation detection by as much as 20 percent compared to LLMs without search. We also conduct extensive analyses on the sources our system leverages and their biases, decisions in the construction of the system like the search tool and the knowledge base, the type of evidence needed and its impact on the results, and other parts of the overall process. By combining strong performance with in-depth understanding, we hope to provide building blocks for future search-enabled misinformation mitigation systems.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 29,
+   "raw": "Rahman, Subhey Sadi, Islam, Md Adnanul, Alam, Md Mahbub, Zeba, Musarrat, Rahman, Md Abdur, Chowa, Sadia Sultana et al.. Hallucination to truth: a review of fact-checking and factuality evaluation in large language models. Artificial Intelligence Review. 2026",
+   "parsed": {
+    "idx": 29,
+    "raw": "Rahman, Subhey Sadi, Islam, Md Adnanul, Alam, Md Mahbub, Zeba, Musarrat, Rahman, Md Abdur, Chowa, Sadia Sultana et al.. Hallucination to truth: a review of fact-checking and factuality evaluation in large language models. Artificial Intelligence Review. 2026",
+    "title": "Hallucination to truth: a review of fact-checking and factuality evaluation in large language models",
+    "authors": [
+     "Rahman, Subhey Sadi",
+     "Islam, Md Adnanul",
+     "Alam, Md Mahbub",
+     "Zeba, Musarrat",
+     "Rahman, Md Abdur",
+     "Chowa, Sadia Sultana",
+     "Raiaan, Mohaimenul Azam Khan",
+     "Azam, Sami"
+    ],
+    "year": 2026,
+    "venue": "Artificial Intelligence Review",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "rahman2026hallucination",
+    "contexts": [
+     "Benchmark While a growing set of citation-verification systems has been developed to detect hallucinated citations in academic writing, many of these systems remain closed-source and proprietary, rendering their verification mechanisms opaque and their empirical performance irreproducible [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1007/s10462-025-11454-w",
+    "title": "Hallucination to truth: a review of fact-checking and factuality evaluation in large language models",
+    "authors": [
+     "Rahman, Subhey Sadi",
+     "Islam, Md. Adnanul",
+     "Alam, Md. Mahbub",
+     "Zeba, Musarrat",
+     "Rahman, Md. Abdur",
+     "Chowa, Sadia Sultana",
+     "Raiaan, Mohaimenul Azam Khan",
+     "Azam, Sami"
+    ],
+    "year": 2026,
+    "venue": "Artificial Intelligence Review",
+    "doi": "10.1007/s10462-025-11454-w",
+    "url": "https://doi.org/10.1007/s10462-025-11454-w",
+    "abstract": "Abstract Large language models (LLMs) are trained on vast and diverse internet corpora that often include inaccurate or misleading content. Consequently, LLMs can generate misinformation, making robust fact-checking essential. This review systematically analyzes how LLM-generated content is evaluated for factual accuracy by exploring key challenges such as hallucinations, dataset limitations, and the reliability of evaluation metrics. The review emphasizes the need for strong fact-checking frameworks that integrate advanced prompting strategies, domain-specific fine-tuning, and retrieval-augmented generation (RAG) methods. It proposes five research questions that guide the analysis of the recent literature from 2020 to 2025, focusing on evaluation methods and mitigation techniques. Instruction tuning, multi-agent reasoning, and RAG frameworks for external knowledge access are also reviewed. The key findings demonstrate the limitations of current metrics, the importance of validated external evidence, and the improvement of factual consistency through domain-specific customization. The review underscores the importance of building more accurate, understandable, and context-aware fact-checking. These insights contribute to the advancement of research toward more trustworthy models.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 30,
+   "raw": "Bai, Shuai, Cai, Yuxuan, Chen, Ruizhe, Chen, Keqin, Chen, Xionghui, Cheng, Zesen et al.. Qwen3-VL Technical Report. 2025",
+   "parsed": {
+    "idx": 30,
+    "raw": "Bai, Shuai, Cai, Yuxuan, Chen, Ruizhe, Chen, Keqin, Chen, Xionghui, Cheng, Zesen et al.. Qwen3-VL Technical Report. 2025",
+    "title": "Qwen3-VL Technical Report",
+    "authors": [
+     "Bai, Shuai",
+     "Cai, Yuxuan",
+     "Chen, Ruizhe",
+     "Chen, Keqin",
+     "Chen, Xionghui",
+     "Cheng, Zesen",
+     "Deng, Lianghao",
+     "Ding, Wei",
+     "Gao, Chang",
+     "Ge, Chunjiang",
+     "Ge, Wenbin",
+     "Guo, Zhifang",
+     "Huang, Qidong",
+     "Huang, Jie",
+     "Huang, Fei",
+     "Hui, Binyuan",
+     "Jiang, Shutong",
+     "Li, Zhaohai",
+     "Li, Mingsheng",
+     "Li, Mei",
+     "Li, Kaixin",
+     "Lin, Zicheng",
+     "Lin, Junyang",
+     "Liu, Xuejing",
+     "Liu, Jiawei",
+     "Liu, Chenglong",
+     "Liu, Yang",
+     "Liu, Dayiheng",
+     "Liu, Shixuan",
+     "Lu, Dunjie",
+     "Luo, Ruilin",
+     "Lv, Chenxu",
+     "Men, Rui",
+     "Meng, Lingchen",
+     "Ren, Xuancheng",
+     "Ren, Xingzhang",
+     "Song, Sibo",
+     "Sun, Yuchong",
+     "Tang, Jun",
+     "Tu, Jianhong",
+     "Wan, Jianqiang",
+     "Wang, Peng",
+     "Wang, Pengfei",
+     "Wang, Qiuyue",
+     "Wang, Yuxuan",
+     "Xie, Tianbao",
+     "Xu, Yiheng",
+     "Xu, Haiyang",
+     "Xu, Jin",
+     "Yang, Zhibo",
+     "Yang, Mingkun",
+     "Yang, Jianxin",
+     "Yang, An",
+     "Yu, Bowen",
+     "Zhang, Fei",
+     "Zhang, Hang",
+     "Zhang, Xi",
+     "Zheng, Bo",
+     "Zhong, Humen",
+     "Zhou, Jingren",
+     "Zhou, Fan",
+     "Zhou, Jing",
+     "Zhu, Yuanzhi",
+     "Zhu, Ke"
+    ],
+    "year": 2025,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": "2511.21631",
+    "isbn": null,
+    "url": "https://arxiv.org/abs/2511.21631",
+    "type_guess": "preprint",
+    "key": "bai2025qwen3vltechnicalreport",
+    "contexts": [
+     "Extractor Agent ($ A_ext$): Utilizing the multimodal capabilities of Qwen3-VL-235B A22 [CITATION], this agent performs page-level OCR and structural parsing."
+    ]
+   },
+   "status": "verified",
+   "confidence": 0.99,
+   "match": {
+    "source": "openalex",
+    "id": "W4416780398",
+    "title": "Qwen3-VL Technical Report",
+    "authors": [
+     "Bai, Shuai",
+     "Cai, Yuxuan",
+     "Chen, Ruizhe",
+     "Chen, Keqin",
+     "Chen, Xionghui",
+     "Cheng, Zesen",
+     "Deng, Lianghao",
+     "Ding, Wei",
+     "Gao, Chang",
+     "Ge, Chunjiang",
+     "Ge, Wenbin",
+     "Guo, Zhifang",
+     "Huang, Qidong",
+     "Huang, Jie",
+     "Huang, Fei",
+     "Hui, Binyuan",
+     "Jiang, Shutong",
+     "Li, Zhaohai",
+     "Li, Mingsheng",
+     "Li, Mei",
+     "Li, Keqiang",
+     "Lin, Zicheng",
+     "Lin, Junyang",
+     "Liu, Xuejing",
+     "Liu, Jiawei",
+     "Liu, Chenglong",
+     "Liu, Yang",
+     "Liu, Dayiheng",
+     "Liu, Shixuan",
+     "Lu, Dunjie",
+     "Luo, Ruilin",
+     "Lv, Chenxu",
+     "Men, Rui",
+     "Meng, Lingchen",
+     "Ren, Xuancheng",
+     "Ren, Xingzhang",
+     "Song, Sibo",
+     "Sun, Yuchong",
+     "Tang, Jun",
+     "Tu, Jianhong",
+     "Wan, Jianqiang",
+     "Wang, Peng",
+     "Wang, Pengfei",
+     "Wang, Qiuyue",
+     "Wang, Yuxuan",
+     "Xie, Tianbao",
+     "Xu, Yiheng",
+     "Xu, Haiyang",
+     "Xu, Jin Rui",
+     "Yang, Zhibo",
+     "Yang, Mingkun",
+     "Yang, Jianxin",
+     "An, Yang",
+     "Yu, Bowen",
+     "Zhang, Fei",
+     "Hang, Zhang",
+     "Zhang, Xi",
+     "Zheng, Bo",
+     "Zhong, Humen",
+     "Zhou, Jingren",
+     "Zhou, Fan",
+     "Zhou, Jing",
+     "Zhu, Yuanzhi",
+     "Zhu, Ke"
+    ],
+    "year": 2025,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2511.21631",
+    "url": "https://openalex.org/W4416780398",
+    "abstract": "We introduce Qwen3-VL, the most capable vision-language model in the Qwen series to date, achieving superior performance across a broad range of multimodal benchmarks. It natively supports interleaved contexts of up to 256K tokens, seamlessly integrating text, images, and video. The model family includes both dense (2B/4B/8B/32B) and mixture-of-experts (30B-A3B/235B-A22B) variants to accommodate diverse latency-quality trade-offs. Qwen3-VL delivers three core pillars: (i) markedly stronger pure-text understanding, surpassing comparable text-only backbones in several cases; (ii) robust long-context comprehension with a native 256K-token window for both text and interleaved multimodal inputs, enabling faithful retention, retrieval, and cross-referencing across long documents and videos; and (iii) advanced multimodal reasoning across single-image, multi-image, and video tasks, demonstrating leading performance on comprehensive evaluations such as MMMU and visual-math benchmarks (e.g., MathVista and MathVision). Architecturally, we introduce three key upgrades: (i) an enhanced interleaved-MRoPE for stronger spatial-temporal modeling across images and video; (ii) DeepStack integration, which effectively leverages multi-level ViT features to tighten vision-language alignment; and (iii) text-based time alignment for video, evolving from T-RoPE to explicit textual timestamp alignment for more precise temporal grounding. Under comparable token budgets and latency constraints, Qwen3-VL achieves superior performance in both dense and Mixture-of-Experts (MoE) architectures. We envision Qwen3-VL serving as a foundational engine for image-grounded reasoning, agentic decision-making, and multimodal code intelligence in real-world workflows.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 96.875,
+    "year": 1.0,
+    "venue": null,
+    "composite": 99.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 31,
+   "raw": "Chhikara, Prateek, Khant, Dev, Aryan, Saket, Singh, Taranjeet, Yadav, Deshraj. Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory. arXiv preprint arXiv:2504.19413. 2025",
+   "parsed": {
+    "idx": 31,
+    "raw": "Chhikara, Prateek, Khant, Dev, Aryan, Saket, Singh, Taranjeet, Yadav, Deshraj. Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory. arXiv preprint arXiv:2504.19413. 2025",
+    "title": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory",
+    "authors": [
+     "Chhikara, Prateek",
+     "Khant, Dev",
+     "Aryan, Saket",
+     "Singh, Taranjeet",
+     "Yadav, Deshraj"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint arXiv:2504.19413",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "mem0",
+    "contexts": [
+     "Memory Agent ($ A_mem$): Developed based on the Mem0 [CITATION] framework."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3233/faia251160",
+    "title": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory",
+    "authors": [
+     "Chhikara, Prateek",
+     "Khant, Dev",
+     "Aryan, Saket",
+     "Singh, Taranjeet",
+     "Yadav, Deshraj"
+    ],
+    "year": 2025,
+    "venue": "Frontiers in Artificial Intelligence and Applications",
+    "doi": "10.3233/faia251160",
+    "url": "https://doi.org/10.3233/faia251160",
+    "abstract": "Large Language Models (LLMs) have demonstrated remarkable prowess in generating contextually coherent responses, yet their fixed context windows pose fundamental challenges for maintaining consistency over prolonged multi-session dialogues. We introduce Mem0, a scalable memory-centric architecture that addresses this issue by dynamically extracting, consolidating, and retrieving salient information from ongoing conversations. Building on this foundation, we further propose an enhanced variant that leverages graph-based memory representations to capture complex relational structures among conversational elements. Through comprehensive evaluations on the LOCOMO benchmark, we systematically compare our approaches against six baseline categories. Empirical results demonstrate that our methods consistently outperform all existing memory systems across four question categories: single-hop, temporal, multi-hop, and open-domain. Notably, Mem0 achieves 26% relative improvements in the LLM-as-a-Judge metric over OpenAI, while Mem0 with graph memory achieves around 2% higher overall score than the base Mem0 configuration. Beyond accuracy gains, we also markedly reduce computational overhead compared to the full-context approach. In particular, Mem0 attains a 91% lower p95 latency and saves more than 90% token cost, thereby offering a compelling balance between advanced reasoning capabilities and practical deployment constraints. Our findings highlight the critical role of structured, persistent memory mechanisms for long-term conversational coherence, paving the way for more reliable and efficient LLM-driven AI agents. Code: https://mem0.ai/research.",
+    "type": "book-chapter"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 32,
+   "raw": "Microsoft. Playwright for Python. r̆lhttps://github.com/microsoft/playwright-python",
+   "parsed": {
+    "idx": 32,
+    "raw": "Microsoft. Playwright for Python. r̆lhttps://github.com/microsoft/playwright-python",
+    "title": "Playwright for Python",
+    "authors": [
+     "Microsoft"
+    ],
+    "year": null,
+    "venue": "r̆lhttps://github.com/microsoft/playwright-python",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": "playwright_python",
+    "contexts": [
+     "Scholar Agent ($ A_sch$): A specialized high-precision crawler [CITATION] designed to interface with authoritative scholarly databases, such as Google Scholar, to fetch canonical ground-truth records ($ M_i$)."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 49.54545454545455,
+    "authors": 0.0,
+    "year": null,
+    "venue": 50.0,
+    "composite": 33.9
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'Integration with Python', score 33.9)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  }
+ ],
+ "tortured": [],
+ "meta": {
+  "models": {
+   "parse": "deepseek-v4.1-flash-1017",
+   "judge": "deepseek-v4.1-flash-1017"
+  },
+  "seconds": 20.6,
+  "llm_calls": 0,
+  "llm_tokens_in": 0,
+  "llm_tokens_out": 0,
+  "cost_usd": 0.0,
+  "api_calls": {
+   "s2": 7
+  },
+  "cache_hits": 92,
+  "notes": [
+   "references read from: bib"
+  ]
+ }
+}

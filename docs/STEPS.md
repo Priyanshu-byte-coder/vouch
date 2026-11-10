@@ -91,7 +91,7 @@
 - CLI: `python -m app.cli check --bib refs.txt` → report JSON.
 - ✅ Done when: a pasted 20-reference list (with 3 planted fakes) produces a report that flags the fakes.
 
-### 2.5 arXiv ingestion (🤖)
+### 2.5 arXiv ingestion (🤖) ✅
 - Fetch the e-print → parse `.bbl`/`.bib`. Map `\cite{}` to sentences (contexts for step 6).
 - ✅ Done when: `check --arxiv <id>` works on 3 real recent papers.
 

@@ -138,3 +138,18 @@ def test_wrong_doi_on_real_title_keeps_title_match():
     r = ref(title="Deep learning", authors=["LeCun, Y."], year=2015, doi="10.1038/s41586-021-03819-2")
     alphafold = cand(title="Highly accurate protein structure prediction with AlphaFold", doi="10.1038/s41586-021-03819-2")
     assert best_match(r, [alphafold, REAL]).candidate.title == "Deep learning"
+
+
+def test_middle_name_used_as_first_name():  # S8: 'Ansari, Mohammad Samar' vs 'Ansari, Samar'
+    assert author_score(["Ansari, Mohammad Samar"], ["Ansari, Samar"]) == 100
+    assert author_score(["Ansari, M. S."], ["Ansari, Samar"]) == 100
+    assert author_score(["Ansari, Mohammad"], ["Ansari, Tariq"]) == 0
+
+
+def test_short_title_alone_is_not_same_work():  # S8: 'Delft' (GitHub software) vs unrelated 'Delft' (2023)
+    r = ref(title="Delft", year=2018, venue="GitHub", type_guess=RefType.software)
+    other = cand(source="openalex", title="Delft", authors=["Brown, A."], year=2023, venue="World Literature Today")
+    assert decide(r, best_match(r, [other])).status is Status.cant_verify
+    resnet = ref(title="Deep residual learning", authors=["Smith, J."], year=2016)
+    real = cand(title="Deep Residual Learning", authors=["He, Kaiming"], year=2016)
+    assert decide(resnet, best_match(resnet, [real])).status is Status.detail_mismatch  # 3+ words: still mismatch

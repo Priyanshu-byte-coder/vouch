@@ -163,3 +163,22 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Design note: identifiers (DOI, arXiv, ISBN, URL) are taken **only from the raw text by regex**, never from the LLM. A test confirms an LLM-invented DOI is ignored.
 - Tests: 70 pass (incl. live `test_live_pipeline.py`).
 - Caveat: this is a hand-made sanity set, **not** an evaluation result. RQ1 numbers come from CiteAudit/NeurIPS in step 3.
+
+### S8 — arXiv path on 3 real papers (step 2.5)
+- When / who: 2026-11-10 ~18:30 IST · Priyanshu
+- Command: `cd backend && .venv/Scripts/python -m app.cli check --arxiv <id> --out ../eval/results/s8_arxiv_<id>.json`
+- Pipeline: e-print → `.bib` entries for cited keys (structured, **no LLM**) → `.bbl` entries for the rest (LLM-parsed) → `\cite` contexts from `.tex` → GROBID if the source is PDF-only.
+- Papers (all about hallucinated-citation detection): CiteAudit 2602.23452 (`.bib`), AtomGPT detector 2607.09774 (`.bib`), HalluCiteChecker 2604.26835 (`.bbl`, 3 LLM calls, $0.006).
+- **First run** found 2 false alarms on real references:
+  1. "Ansari, Mohammad Samar" vs record "Ansari, Samar" → *authors differ* (only first initials were compared). Fix: initials agree if one person's first initial is among the other's given-name initials.
+  2. "Delft" (DeLFT, GitHub 2018) matched an unrelated 2023 article titled "Delft" → *detail mismatch*. Fix: titles of ≤ 2 words count as the same work only with agreeing authors, the DOI, or the same year + venue. Otherwise *can't verify*.
+  Also: arXiv answered bursts of e-print downloads with 429 / dropped connections, so downloads now retry with Retry-After and alternate hosts.
+- **After the fixes:**
+  | Paper | Refs | Verified | Can't verify | Detail mismatch | Not found | Contexts captured |
+  |---|---|---|---|---|---|---|
+  | CiteAudit | 33 | 24 | 9 | 0 | 0 | 33/33 |
+  | AtomGPT detector | 28 | 25 | 3 | 0 | 0 | 28/28 |
+  | HalluCiteChecker | 18 | 16 | 2 | 0 | 0 | — (bbl) |
+  "Can't verify" items are software, web pages, news and tools (GPTZero, Citely, SwanRef, Playwright, Grobid, Crossref REST API...) plus one real paper cited with a **shortened title** ("Literary runaway…", composite 86.7, title < 85). That last one is a target for threshold tuning (3.1) and the LLM adjudicator (3.3).
+- **0 false "not found" / "detail mismatch" on 79 real references.** Unlabelled sanity set, not an evaluation result.
+- Tests: 78 pass.

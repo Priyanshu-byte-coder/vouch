@@ -1,0 +1,1202 @@
+{
+ "paper": {
+  "title": "HalluCiteChecker: A Lightweight Toolkit for Hallucinated Citation Detection and Verification in the Era of AI Scientists",
+  "source": "arxiv:2604.26835",
+  "n_refs": 18
+ },
+ "summary": {
+  "verified": 16,
+  "detail_mismatch": 0,
+  "not_found": 0,
+  "cant_verify": 2,
+  "retracted": 0,
+  "claims_checked": 0,
+  "claims_unsupported": 0,
+  "tortured_hits": 0
+ },
+ "references": [
+  {
+   "idx": 0,
+   "raw": "2008–2026. Grobid. r̆lhttps://github.com/kermitt2/grobid.",
+   "parsed": {
+    "idx": 0,
+    "raw": "2008–2026. Grobid. r̆lhttps://github.com/kermitt2/grobid.",
+    "title": "Grobid",
+    "authors": [],
+    "year": 2008,
+    "venue": "GitHub",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": "https://github.com/kermitt2/grobid",
+    "type_guess": "software",
+    "key": "GROBID",
+    "contexts": [
+     "We employ DeLFT [CITATION] to extract structured bibliographic fields, including the title, from citation strings Prior analysis work [CITATION] has used GROBID [CITATION], a de facto tool for scholarly document parsing."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": null,
+   "field_scores": {
+    "title": 52.17391304347826,
+    "authors": null,
+    "year": 0.0,
+    "venue": 22.22222222222223,
+    "composite": 44.2
+   },
+   "issues": [
+    "no match in scholarly indexes, which rarely cover this kind of source (software) (closest: 'grobid-evaluation', score 44.2)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "datacite",
+    "arxiv",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 1,
+   "raw": "2018–2024. Delft. r̆lhttps://github.com/kermitt2/delft.",
+   "parsed": {
+    "idx": 1,
+    "raw": "2018–2024. Delft. r̆lhttps://github.com/kermitt2/delft.",
+    "title": "Delft",
+    "authors": [],
+    "year": 2018,
+    "venue": "GitHub",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": "https://github.com/kermitt2/delft",
+    "type_guess": "software",
+    "key": "DeLFT",
+    "contexts": [
+     "We employ DeLFT [CITATION] to extract structured bibliographic fields, including the title, from citation strings Prior analysis work [CITATION] has used GROBID [CITATION], a de facto tool for scholarly document parsing."
+    ]
+   },
+   "status": "cant_verify",
+   "confidence": 0.5,
+   "match": {
+    "source": "openalex",
+    "id": "W4383619723",
+    "title": "Delft",
+    "authors": [
+     "Schoeffler, Katherine"
+    ],
+    "year": 2023,
+    "venue": "World Literature Today",
+    "doi": "10.1353/wlt.2023.a901409",
+    "url": "https://openalex.org/W4383619723",
+    "abstract": "Delft Katherine Schoeffler (bio) Click for larger view View full resolution DURING A RECENT TRIP to the Netherlands, my family and I visited Amsterdam—an obvious stop—and found it stunning, the elaborate architecture contrasting with the simplistic and playful bicycles. The city that stood out the most, however—which we hadn’t expected—was Delft: the city of Johannes Vermeer and Delft Blue. Since 1653, Royal Delft has been the original workshop for Delft Blue, a world-famous and unique form of pottery and craftsmanship. Each piece is handmade, and many are hand-painted. While we weren’t quite sure what to expect, when we entered the museum and factory space of Royal Delft, we were the only people there besides the employees, who were dressed to the nines in cobalt eyeliner, sapphire button-downs, navy slacks, and stunning cerulean scarves. To make a piece of Delft Blue, one must begin with a piece of clay, a unique blend of kaolin, chalk, quartz, and up to seven other raw materials (which remain unlisted to preserve the rarity of Delft Blue). Once the clay is turned to liquid, it is then transferred to one of the hundreds of plaster molds. Each plaster mold is only used 70–100 times before being retired, preserving the quality of the molds due to the absorption of water from the mixture. After it achieves the desired thickness, the piece is removed from the mold to dry. Next, the “englobe,” an additional layer of clay, is added before it is fired in the kiln at 1160°c (2120°f). It is now called the biscuit. Once removed from the kiln, it is ready for painting. Delftware painters, who begin as apprentices for many years until deemed prepared to work individually, paint the pottery by hand. The paint—gray and black at first but then blue upon emerging from the kiln—is made from a unique blend of cobalt oxide, and the water base encourages painters to utilize many coats to ensure thickness and dimension in their artwork. Finally, it is glazed and fired again in the oven for twenty-three hours at 1200°c (2192°f). The black and gray clay turns to blue, and the pottery is handed off to be inspected and given the official signature of Delft Blue if it passes the quality examination. Each artist has a special signature that they may apply to the Delft Blue logo if the piece is approved. Borrowing influences from Chinese and Japanese pottery and designs from Italian Ruben artwork, Delft Blue has become world-renowned. It is used in European ceremonies and given as a gift to visitors by Dutch royalty. My family’s pick? A petite, hand-painted blue-and-white Christmas ornament shaped like a bell to add to our collection of ornaments from our travels. Mine? A small, family-made jewelry box, hand-painted by the woman who smiled at me in the store. I decided to store a pair of old pearl earrings in it: pearls like Vermeer’s Girl in the Pearl Earring in Delft Blue, of course. How could I resist? As we made our way through the rest of Delft, trying Dutch pancakes (a crepe-like absolute must!), exploring the many canals, rolling our eyes at the large trucks attempting to parallel park beside the canals (just don’t!), and climbing up the 376 steps of the Nieuwe Kerk to see the stunning skyline (another must!), we fell in love with the quaint yet historical city, and it became my favorite stop of the trip. [End Page 80] Katherine Schoeffler Katherine Schoeffler is a recent graduate of the University of Oklahoma, where she majored in English with minors in chemistry and Spanish. She plans to pursue a career in medicine after graduation and loves traveling, working with children, photography, ballet, and a long mystery novel complete with a chai tea latte. Copyright © 2023 University of Oklahoma Press",
+    "type": "article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": null,
+    "year": 0.0,
+    "venue": 21.42857142857143,
+    "composite": 81.6
+   },
+   "issues": [
+    "only a very short title matches ('Delft'); not enough evidence it is the same work",
+    "year 2018 vs record 2023",
+    "venue 'GitHub' vs record 'World Literature Today'"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "datacite",
+    "arxiv",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 2,
+   "raw": "Christoph Auer, Maksym Lysak, Ahmed Nassar, Michele Dolfi, Nikolaos Livathinos, Panos Vagenas, Cesar Berrospi Ramis, Matteo Omenetti, Fabian Lindlbauer, Kasper Dinkla, Lokesh Mishra, Yusik Kim, Shubham Gupta, Rafael Teixeira de Lima, Valery Weber, Lucas Morin, Ingmar Meijer, Viktor Kuropiatnyk, and Peter W. J. Staar. 2024. https://arxiv.org/abs/2408.09869 Docling technical report. Preprint, arXiv:2408.09869.",
+   "parsed": {
+    "idx": 2,
+    "raw": "Christoph Auer, Maksym Lysak, Ahmed Nassar, Michele Dolfi, Nikolaos Livathinos, Panos Vagenas, Cesar Berrospi Ramis, Matteo Omenetti, Fabian Lindlbauer, Kasper Dinkla, Lokesh Mishra, Yusik Kim, Shubham Gupta, Rafael Teixeira de Lima, Valery Weber, Lucas Morin, Ingmar Meijer, Viktor Kuropiatnyk, and Peter W. J. Staar. 2024. https://arxiv.org/abs/2408.09869 Docling technical report. Preprint, arXiv:2408.09869.",
+    "title": "Docling technical report",
+    "authors": [
+     "Auer, C.",
+     "Lysak, M.",
+     "Nassar, A.",
+     "Dolfi, M.",
+     "Livathinos, N.",
+     "Vagenas, P.",
+     "Berrospi Ramis, C.",
+     "Omenetti, M.",
+     "Lindlbauer, F.",
+     "Dinkla, K.",
+     "Mishra, L.",
+     "Kim, Y.",
+     "Gupta, S.",
+     "Teixeira de Lima, R.",
+     "Weber, V.",
+     "Morin, L.",
+     "Meijer, I.",
+     "Kuropiatnyk, V.",
+     "Staar, P. W. J."
+    ],
+    "year": 2024,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "2408.09869",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": "auer2024doclingtechnicalreport",
+    "contexts": [
+     "We use Docling [CITATION] to perform PDF parsing using only CPU resources Docling provides optional OCR and LLM-based correction features that may utilize GPU resources."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W4402950921",
+    "title": "Docling Technical Report",
+    "authors": [
+     "Auer, Christoph",
+     "Lysak, Maksym",
+     "Nassar, Ahmed",
+     "Dolfi, Michele",
+     "Livathinos, Nikolaos",
+     "Vagenas, Panos",
+     "Berrospi, Cèsar",
+     "Omenetti, Matteo",
+     "Lindlbauer, Fabian",
+     "Dinkla, Kasper",
+     "Mishra, Lokesh",
+     "Kim, Yusik",
+     "Gupta, Shubham",
+     "De Lima, R. Teixeira",
+     "Weber, Valéry",
+     "Morin, Lucas",
+     "Meijer, G. I.",
+     "Kuropiatnyk, Viktor",
+     "Staar, Peter"
+    ],
+    "year": 2024,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2408.09869",
+    "url": "https://openalex.org/W4402950921",
+    "abstract": "This technical report introduces Docling, an easy to use, self-contained, MIT-licensed open-source package for PDF document conversion. It is powered by state-of-the-art specialized AI models for layout analysis (DocLayNet) and table structure recognition (TableFormer), and runs efficiently on commodity hardware in a small resource budget. The code interface allows for easy extensibility and addition of new features and models.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 3,
+   "raw": "Max Bachmann. 2025. https://doi.org/10.5281/zenodo.15133267 rapidfuzz/rapidfuzz: Release 3.13.0.",
+   "parsed": {
+    "idx": 3,
+    "raw": "Max Bachmann. 2025. https://doi.org/10.5281/zenodo.15133267 rapidfuzz/rapidfuzz: Release 3.13.0.",
+    "title": "rapidfuzz/rapidfuzz: Release 3.13.0",
+    "authors": [
+     "Bachmann, M."
+    ],
+    "year": 2025,
+    "venue": "Zenodo",
+    "doi": "10.5281/zenodo.15133267",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "software",
+    "key": "max_bachmann_2025_15133267",
+    "contexts": [
+     "Based on [CITATION], we employ character-level fuzzy matching on citation titles using similarity scores based on the normalized Levenshtein distance implemented in the RapidFuzz library [CITATION], with a threshold of 0.9."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "datacite",
+    "id": "10.5281/zenodo.15133267",
+    "title": "rapidfuzz/RapidFuzz: Release 3.13.0",
+    "authors": [
+     "Max Bachmann",
+     "layday",
+     "thomasryde",
+     "Georgia Kokkinou",
+     "Henry Schreiner",
+     "Jeppe Fihl-Pearson",
+     "dheeraj",
+     "Vioshim",
+     "pekkarr",
+     "Michał Górny",
+     "Moshe Sherman",
+     "Cristian Le",
+     "odidev",
+     "glynn",
+     "Trenton H",
+     "tr-halfspace",
+     "dotlambda",
+     "Nicolas Renkamp",
+     "Kwuang Tang",
+     "Hugo Le Moine",
+     "Guy Rosin",
+     "Dan Hess",
+     "Christian Clauss",
+     "Blake V.",
+     "Delfini"
+    ],
+    "year": 2025,
+    "venue": "Zenodo",
+    "doi": "10.5281/zenodo.15133267",
+    "url": "https://zenodo.org/doi/10.5281/zenodo.15133267",
+    "abstract": "Added add support for arrays of type 'w' add support for any DTypeLike as dtype in cdist and cpdist Changed upgrade to rapidfuzz-cpp==3.3.2",
+    "type": "software"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "datacite"
+   ]
+  },
+  {
+   "idx": 4,
+   "raw": "Amanda Bienz, Carl Pearson, and Simon Garcia de Gonzalo. 2026. https://arxiv.org/abs/2602.05867 The case of the mysterious citations. Preprint, arXiv:2602.05867.",
+   "parsed": {
+    "idx": 4,
+    "raw": "Amanda Bienz, Carl Pearson, and Simon Garcia de Gonzalo. 2026. https://arxiv.org/abs/2602.05867 The case of the mysterious citations. Preprint, arXiv:2602.05867.",
+    "title": "The case of the mysterious citations",
+    "authors": [
+     "Bienz, A.",
+     "Pearson, C.",
+     "Garcia de Gonzalo, S."
+    ],
+    "year": 2026,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "2602.05867",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": "bienz2026casemysteriouscitations",
+    "contexts": [
+     "In addition, minor inconsistencies, such as slight variations in bibliographic details, have also become increasingly common [CITATION].",
+     "While it is possible to use various citation fields for this purpose, prior studies on hallucinated citation verification have shown that title information serves as the reliable matching key [CITATION] One possible reason is that author names often appear in abbreviated or truncated forms, such as the use of initials, omission of middle names, or the use of ``et al.\" to represent multiple authors.",
+     "However, heuristic approaches based on regular expressions have inherent limitations due to variations in citation formats [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1109/mcse.2026.3713088",
+    "title": "The Case of the Mysterious Citations",
+    "authors": [
+     "Bienz, Amanda",
+     "Pearson, Carl",
+     "Garcia de Gonzalo, Simon"
+    ],
+    "year": 2026,
+    "venue": "Computing in Science &amp; Engineering",
+    "doi": "10.1109/mcse.2026.3713088",
+    "url": "https://doi.org/10.1109/mcse.2026.3713088",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 5,
+   "raw": "Jason P.C. Chiu and Eric Nichols. 2016. https://doi.org/10.1162/tacl_a_00104 Named entity recognition with bidirectional LSTM-CNNs. Transactions of the Association for Computational Linguistics, 4:357–370.",
+   "parsed": {
+    "idx": 5,
+    "raw": "Jason P.C. Chiu and Eric Nichols. 2016. https://doi.org/10.1162/tacl_a_00104 Named entity recognition with bidirectional LSTM-CNNs. Transactions of the Association for Computational Linguistics, 4:357–370.",
+    "title": "Named entity recognition with bidirectional LSTM-CNNs",
+    "authors": [
+     "Chiu, J. P. C.",
+     "Nichols, E."
+    ],
+    "year": 2016,
+    "venue": "Transactions of the Association for Computational Linguistics",
+    "doi": "10.1162/tacl_a_00104",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "chiu-nichols-2016-named",
+    "contexts": [
+     "Specifically, we use a pretrained BidLSTM_CRF_FEATURES model [CITATION] with glove840B embeddings [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1162/tacl_a_00104",
+    "title": "Named Entity Recognition with Bidirectional LSTM-CNNs",
+    "authors": [
+     "Chiu, Jason P.C.",
+     "Nichols, Eric"
+    ],
+    "year": 2016,
+    "venue": "Transactions of the Association for Computational Linguistics",
+    "doi": "10.1162/tacl_a_00104",
+    "url": "https://doi.org/10.1162/tacl_a_00104",
+    "abstract": "Named entity recognition is a challenging task that has traditionally required large amounts of knowledge in the form of feature engineering and lexicons to achieve high performance. In this paper, we present a novel neural network architecture that automatically detects word- and character-level features using a hybrid bidirectional LSTM and CNN architecture, eliminating the need for most feature engineering. We also propose a novel method of encoding partial lexicon matches in neural networks and compare it to existing approaches. Extensive evaluation shows that, given only tokenized text and publicly available word embeddings, our system is competitive on the CoNLL-2003 dataset and surpasses the previously reported state of the art performance on the OntoNotes 5.0 dataset by 2.13 F1 points. By using two lexicons constructed from publicly-available sources, we establish new state of the art performance with an F1 score of 91.62 on CoNLL-2003 and 86.28 on OntoNotes, surpassing systems that employ heavy feature engineering, proprietary lexicons, and rich entity linking information.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 6,
+   "raw": "Hiroyuki Deguchi, Yusuke Sakai, Hidetaka Kamigaito, and Taro Watanabe. 2024. https://doi.org/10.18653/v1/2024.emnlp-demo.37 mbrs: A library for minimum Bayes risk decoding. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 351–362, Miami, Florida, USA. Association for Computational Linguistics.",
+   "parsed": {
+    "idx": 6,
+    "raw": "Hiroyuki Deguchi, Yusuke Sakai, Hidetaka Kamigaito, and Taro Watanabe. 2024. https://doi.org/10.18653/v1/2024.emnlp-demo.37 mbrs: A library for minimum Bayes risk decoding. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 351–362, Miami, Florida, USA. Association for Computational Linguistics.",
+    "title": "mbrs: A library for minimum Bayes risk decoding",
+    "authors": [
+     "Deguchi, H.",
+     "Sakai, Y.",
+     "Kamigaito, H.",
+     "Watanabe, T."
+    ],
+    "year": 2024,
+    "venue": "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    "doi": "10.18653/v1/2024.emnlp-demo.37",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "deguchi-etal-2024-mbrs",
+    "contexts": [
+     "This includes a stopwatch utility for measuring processing time [CITATION] and profiling tools that export execution environment information such as memory usage."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2024.emnlp-demo.37",
+    "title": "mbrs: A Library for Minimum Bayes Risk Decoding",
+    "authors": [
+     "Deguchi, Hiroyuki",
+     "Sakai, Yusuke",
+     "Kamigaito, Hidetaka",
+     "Watanabe, Taro"
+    ],
+    "year": 2024,
+    "venue": "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    "doi": "10.18653/v1/2024.emnlp-demo.37",
+    "url": "https://doi.org/10.18653/v1/2024.emnlp-demo.37",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 7,
+   "raw": "Jiazhou Ji and Xinru Lu. 2025. https://doi.org/10.18653/v1/2025.findings-emnlp.1384 ReFLAIR: Enhancing multimodal reasoning via structured reflection and reward-guided learning. In Findings of the Association for Computational Linguistics: EMNLP 2025, pages 25401–25413, Suzhou, China. Association for Computational Linguistics.",
+   "parsed": {
+    "idx": 7,
+    "raw": "Jiazhou Ji and Xinru Lu. 2025. https://doi.org/10.18653/v1/2025.findings-emnlp.1384 ReFLAIR: Enhancing multimodal reasoning via structured reflection and reward-guided learning. In Findings of the Association for Computational Linguistics: EMNLP 2025, pages 25401–25413, Suzhou, China. Association for Computational Linguistics.",
+    "title": "ReFLAIR: Enhancing multimodal reasoning via structured reflection and reward-guided learning",
+    "authors": [
+     "Ji, J.",
+     "Lu, X."
+    ],
+    "year": 2025,
+    "venue": "Findings of the Association for Computational Linguistics: EMNLP 2025",
+    "doi": "10.18653/v1/2025.findings-emnlp.1384",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "ji-lu-2025-reflair",
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2025.findings-emnlp.1384",
+    "title": "ReFLAIR: Enhancing Multimodal Reasoning via Structured Reflection and Reward-Guided Learning",
+    "authors": [
+     "Ji, Jiazhou",
+     "Lu, Xinru"
+    ],
+    "year": 2025,
+    "venue": "Findings of the Association for Computational Linguistics: EMNLP 2025",
+    "doi": "10.18653/v1/2025.findings-emnlp.1384",
+    "url": "https://doi.org/10.18653/v1/2025.findings-emnlp.1384",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 8,
+   "raw": "Guillaume Lample, Miguel Ballesteros, Sandeep Subramanian, Kazuya Kawakami, and Chris Dyer. 2016. https://doi.org/10.18653/v1/N16-1030 Neural architectures for named entity recognition. In Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, pages 260–270, San Diego, California. Association for Computational Linguistics.",
+   "parsed": {
+    "idx": 8,
+    "raw": "Guillaume Lample, Miguel Ballesteros, Sandeep Subramanian, Kazuya Kawakami, and Chris Dyer. 2016. https://doi.org/10.18653/v1/N16-1030 Neural architectures for named entity recognition. In Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, pages 260–270, San Diego, California. Association for Computational Linguistics.",
+    "title": "Neural architectures for named entity recognition",
+    "authors": [
+     "Lample, G.",
+     "Ballesteros, M.",
+     "Subramanian, S.",
+     "Kawakami, K.",
+     "Dyer, C."
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "doi": "10.18653/v1/n16-1030",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "lample-etal-2016-neural",
+    "contexts": [
+     "Specifically, we use a pretrained BidLSTM_CRF_FEATURES model [CITATION] with glove840B embeddings [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/n16-1030",
+    "title": "Neural Architectures for Named Entity Recognition",
+    "authors": [
+     "Lample, Guillaume",
+     "Ballesteros, Miguel",
+     "Subramanian, Sandeep",
+     "Kawakami, Kazuya",
+     "Dyer, Chris"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "doi": "10.18653/v1/n16-1030",
+    "url": "https://doi.org/10.18653/v1/n16-1030",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 9,
+   "raw": "Quentin Lhoest, Albert Villanova del Moral, Yacine Jernite, Abhishek Thakur, Patrick von Platen, Suraj Patil, Julien Chaumond, Mariama Drame, Julien Plu, Lewis Tunstall, Joe Davison, Mario Šaško, Gunjan Chhablani, Bhavitvya Malik, Simon Brandeis, Teven Le Scao, Victor Sanh, Canwen Xu, Nicolas Patry, and 13 others. 2021. https://doi.org/10.18653/v1/2021.emnlp-demo.21 Datasets: A community library for natural language processing. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 175–184, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.",
+   "parsed": {
+    "idx": 9,
+    "raw": "Quentin Lhoest, Albert Villanova del Moral, Yacine Jernite, Abhishek Thakur, Patrick von Platen, Suraj Patil, Julien Chaumond, Mariama Drame, Julien Plu, Lewis Tunstall, Joe Davison, Mario Šaško, Gunjan Chhablani, Bhavitvya Malik, Simon Brandeis, Teven Le Scao, Victor Sanh, Canwen Xu, Nicolas Patry, and 13 others. 2021. https://doi.org/10.18653/v1/2021.emnlp-demo.21 Datasets: A community library for natural language processing. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 175–184, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.",
+    "title": "Datasets: A community library for natural language processing",
+    "authors": [
+     "Lhoest, Q.",
+     "Villanova del Moral, A.",
+     "Jernite, Y.",
+     "Thakur, A.",
+     "von Platen, P.",
+     "Patil, S.",
+     "Chaumond, J.",
+     "Drame, M.",
+     "Plu, J.",
+     "Tunstall, L.",
+     "Davison, J.",
+     "Šaško, M.",
+     "Chhablani, G.",
+     "Malik, B.",
+     "Brandeis, S.",
+     "Le Scao, T.",
+     "Sanh, V.",
+     "Xu, C.",
+     "Patry, N."
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    "doi": "10.18653/v1/2021.emnlp-demo.21",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "lhoest-etal-2021-datasets",
+    "contexts": [
+     "The citation databases are distributed using Hugging Face Datasets [CITATION], which leverage Apache Arrow for fast loading and efficient storage."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2021.emnlp-demo.21",
+    "title": "Datasets: A Community Library for Natural Language Processing",
+    "authors": [
+     "Lhoest, Quentin",
+     "Villanova del Moral, Albert",
+     "Jernite, Yacine",
+     "Thakur, Abhishek",
+     "von Platen, Patrick",
+     "Patil, Suraj",
+     "Chaumond, Julien",
+     "Drame, Mariama",
+     "Plu, Julien",
+     "Tunstall, Lewis",
+     "Davison, Joe",
+     "Šaško, Mario",
+     "Chhablani, Gunjan",
+     "Malik, Bhavitvya",
+     "Brandeis, Simon",
+     "Le Scao, Teven",
+     "Sanh, Victor",
+     "Xu, Canwen",
+     "Patry, Nicolas",
+     "McMillan-Major, Angelina",
+     "Schmid, Philipp",
+     "Gugger, Sylvain",
+     "Delangue, Clément",
+     "Matussière, Théo",
+     "Debut, Lysandre",
+     "Bekman, Stas",
+     "Cistac, Pierric",
+     "Goehringer, Thibault",
+     "Mustar, Victor",
+     "Lagunas, François",
+     "Rush, Alexander",
+     "Wolf, Thomas"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    "doi": "10.18653/v1/2021.emnlp-demo.21",
+    "url": "https://doi.org/10.18653/v1/2021.emnlp-demo.21",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 10,
+   "raw": "Bolaji David Oladokun, Rexwhite Tega Enakrire, Adefila Kolawole Emmanuel, Yusuf Ayodeji Ajani, and Adebowale Jeremy Adetayo. 2025. https://doi.org/10.1080/19322909.2025.2482093 Hallucitation in scientific writing: Exploring evidence from chatgpt versions 3.5 and 4o in responses to selected questions in librarianship. Journal of Web Librarianship, 19(1):62–92.",
+   "parsed": {
+    "idx": 10,
+    "raw": "Bolaji David Oladokun, Rexwhite Tega Enakrire, Adefila Kolawole Emmanuel, Yusuf Ayodeji Ajani, and Adebowale Jeremy Adetayo. 2025. https://doi.org/10.1080/19322909.2025.2482093 Hallucitation in scientific writing: Exploring evidence from chatgpt versions 3.5 and 4o in responses to selected questions in librarianship. Journal of Web Librarianship, 19(1):62–92.",
+    "title": "Hallucitation in scientific writing: Exploring evidence from chatgpt versions 3.5 and 4o in responses to selected questions in librarianship",
+    "authors": [
+     "Oladokun, B. D.",
+     "Enakrire, R. T.",
+     "Emmanuel, A. K.",
+     "Ajani, Y. A.",
+     "Adetayo, A. J."
+    ],
+    "year": 2025,
+    "venue": "Journal of Web Librarianship",
+    "doi": "10.1080/19322909.2025.2482093",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "Oladokun02012025",
+    "contexts": [
+     "While such errors were traditionally attributed to human mistakes, the LLM era has seen a rapid increase in hallucinated citations, including fabrication of non-existent works [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1080/19322909.2025.2482093",
+    "title": "Hallucitation in Scientific Writing: Exploring Evidence from ChatGPT Versions 3.5 and 4o in Responses to Selected Questions in Librarianship",
+    "authors": [
+     "Oladokun, Bolaji David",
+     "Enakrire, Rexwhite Tega",
+     "Emmanuel, Adefila Kolawole",
+     "Ajani, Yusuf Ayodeji",
+     "Adetayo, Adebowale Jeremy"
+    ],
+    "year": 2025,
+    "venue": "Journal of Web Librarianship",
+    "doi": "10.1080/19322909.2025.2482093",
+    "url": "https://doi.org/10.1080/19322909.2025.2482093",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 11,
+   "raw": "Jeffrey Pennington, Richard Socher, and Christopher Manning. 2014. https://doi.org/10.3115/v1/D14-1162 GloVe: Global vectors for word representation. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 1532–1543, Doha, Qatar. Association for Computational Linguistics.",
+   "parsed": {
+    "idx": 11,
+    "raw": "Jeffrey Pennington, Richard Socher, and Christopher Manning. 2014. https://doi.org/10.3115/v1/D14-1162 GloVe: Global vectors for word representation. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 1532–1543, Doha, Qatar. Association for Computational Linguistics.",
+    "title": "GloVe: Global vectors for word representation",
+    "authors": [
+     "Pennington, J.",
+     "Socher, R.",
+     "Manning, C."
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    "doi": "10.3115/v1/d14-1162",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "pennington-etal-2014-glove",
+    "contexts": [
+     "Specifically, we use a pretrained BidLSTM_CRF_FEATURES model [CITATION] with glove840B embeddings [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3115/v1/d14-1162",
+    "title": "Glove: Global Vectors for Word Representation",
+    "authors": [
+     "Pennington, Jeffrey",
+     "Socher, Richard",
+     "Manning, Christopher"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    "doi": "10.3115/v1/d14-1162",
+    "url": "https://doi.org/10.3115/v1/d14-1162",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 12,
+   "raw": "Yusuke Sakai, Hidetaka Kamigaito, and Taro Watanabe. 2026. https://arxiv.org/abs/2601.18724 Hallucitation matters: Revealing the impact of hallucinated references with 300 hallucinated papers in acl conferences. Preprint, arXiv:2601.18724.",
+   "parsed": {
+    "idx": 12,
+    "raw": "Yusuke Sakai, Hidetaka Kamigaito, and Taro Watanabe. 2026. https://arxiv.org/abs/2601.18724 Hallucitation matters: Revealing the impact of hallucinated references with 300 hallucinated papers in acl conferences. Preprint, arXiv:2601.18724.",
+    "title": "Hallucitation matters: Revealing the impact of hallucinated references with 300 hallucinated papers in acl conferences",
+    "authors": [
+     "Sakai, Y.",
+     "Kamigaito, H.",
+     "Watanabe, T."
+    ],
+    "year": 2026,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "2601.18724",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": "sakai2026hallucitationmattersrevealingimpact",
+    "contexts": [
+     "Recent reports indicate that their prevalence has increased rapidly [CITATION].",
+     "While it is possible to use various citation fields for this purpose, prior studies on hallucinated citation verification have shown that title information serves as the reliable matching key [CITATION] One possible reason is that author names often appear in abbreviated or truncated forms, such as the use of initials, omission of middle names, or the use of ``et al.\" to represent multiple authors.",
+     "We employ DeLFT [CITATION] to extract structured bibliographic fields, including the title, from citation strings Prior analysis work [CITATION] has used GROBID [CITATION], a de facto tool for scholarly document parsing."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2026.acl-long.2189",
+    "title": "HalluCitation Matters: Revealing the Impact of Hallucinated References with 300 Hallucinated Papers in ACL Conferences",
+    "authors": [
+     "Sakai, Yusuke",
+     "Kamigaito, Hidetaka",
+     "Watanabe, Taro"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/2026.acl-long.2189",
+    "url": "https://doi.org/10.18653/v1/2026.acl-long.2189",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 13,
+   "raw": "James H. Sweetland. 1989. http://www.jstor.org/stable/4308405 Errors in bibliographic citations: A continuing problem. The Library Quarterly: Information, Community, Policy, 59(4):291–304.",
+   "parsed": {
+    "idx": 13,
+    "raw": "James H. Sweetland. 1989. http://www.jstor.org/stable/4308405 Errors in bibliographic citations: A continuing problem. The Library Quarterly: Information, Community, Policy, 59(4):291–304.",
+    "title": "Errors in bibliographic citations: A continuing problem",
+    "authors": [
+     "Sweetland, J. H."
+    ],
+    "year": 1989,
+    "venue": "The Library Quarterly: Information, Community, Policy",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": "http://www.jstor.org/stable/4308405",
+    "type_guess": "article",
+    "key": "Errors-in-Bibliographic-Citations",
+    "contexts": [
+     "This trend poses a serious threat to the integrity and reliability of scientific communication, which has traditionally relied on an implicit assumption of good faith, where authors accurately cite existing and relevant work Erroneous citations have long been known to exist in scientific literature [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1086/602160",
+    "title": "Errors in Bibliographic Citations: A Continuing Problem",
+    "authors": [
+     "Sweetland, James H."
+    ],
+    "year": 1989,
+    "venue": "The Library Quarterly",
+    "doi": "10.1086/602160",
+    "url": "https://doi.org/10.1086/602160",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 14,
+   "raw": "William H. Walters and Esther Isabelle Wilder. 2023. https://doi.org/10.1038/s41598-023-41032-5 Fabrication and errors in the bibliographic citations generated by chatgpt. Scientific Reports, 13(1):14045.",
+   "parsed": {
+    "idx": 14,
+    "raw": "William H. Walters and Esther Isabelle Wilder. 2023. https://doi.org/10.1038/s41598-023-41032-5 Fabrication and errors in the bibliographic citations generated by chatgpt. Scientific Reports, 13(1):14045.",
+    "title": "Fabrication and errors in the bibliographic citations generated by chatgpt",
+    "authors": [
+     "Walters, W. H.",
+     "Wilder, E. I."
+    ],
+    "year": 2023,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-023-41032-5",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": "Walters2023",
+    "contexts": [
+     "While such errors were traditionally attributed to human mistakes, the LLM era has seen a rapid increase in hallucinated citations, including fabrication of non-existent works [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1038/s41598-023-41032-5",
+    "title": "Fabrication and errors in the bibliographic citations generated by ChatGPT",
+    "authors": [
+     "Walters, William H.",
+     "Wilder, Esther Isabelle"
+    ],
+    "year": 2023,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-023-41032-5",
+    "url": "https://doi.org/10.1038/s41598-023-41032-5",
+    "abstract": "Abstract Although chatbots such as ChatGPT can facilitate cost-effective text generation and editing, factually incorrect responses (hallucinations) limit their utility. This study evaluates one particular type of hallucination: fabricated bibliographic citations that do not represent actual scholarly works. We used ChatGPT-3.5 and ChatGPT-4 to produce short literature reviews on 42 multidisciplinary topics, compiling data on the 636 bibliographic citations (references) found in the 84 papers. We then searched multiple databases and websites to determine the prevalence of fabricated citations, to identify errors in the citations to non-fabricated papers, and to evaluate adherence to APA citation format. Within this set of documents, 55% of the GPT-3.5 citations but just 18% of the GPT-4 citations are fabricated. Likewise, 43% of the real (non-fabricated) GPT-3.5 citations but just 24% of the real GPT-4 citations include substantive citation errors. Although GPT-4 is a major improvement over GPT-3.5, problems remain.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 15,
+   "raw": "Dashun Wang and Albert-László Barabási. 2021. https://books.google.co.jp/books?id=OTQTEAAAQBAJ The Science of Science. Cambridge University Press.",
+   "parsed": {
+    "idx": 15,
+    "raw": "Dashun Wang and Albert-László Barabási. 2021. https://books.google.co.jp/books?id=OTQTEAAAQBAJ The Science of Science. Cambridge University Press.",
+    "title": "The Science of Science",
+    "authors": [
+     "Wang, D.",
+     "Barabási, A.-L."
+    ],
+    "year": 2021,
+    "venue": "Cambridge University Press",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": "https://books.google.co.jp/books?id=OTQTEAAAQBAJ",
+    "type_guess": "book",
+    "key": "wang2021science",
+    "contexts": [
+     "abstract Introduction Citations are a fundamental component of scientific papers [CITATION].",
+     "This trend poses a serious threat to the integrity and reliability of scientific communication, which has traditionally relied on an implicit assumption of good faith, where authors accurately cite existing and relevant work Erroneous citations have long been known to exist in scientific literature [CITATION]."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1017/9781108610834",
+    "title": "The Science of Science",
+    "authors": [
+     "Wang, Dashun",
+     "Barabási, Albert-László"
+    ],
+    "year": 2021,
+    "venue": null,
+    "doi": "10.1017/9781108610834",
+    "url": "https://doi.org/10.1017/9781108610834",
+    "abstract": "This is the first comprehensive overview of the 'science of science,' an emerging interdisciplinary field that relies on big data to unveil the reproducible patterns that govern individual scientific careers and the workings of science. It explores the roots of scientific impact, the role of productivity and creativity, when and what kind of collaborations are effective, the impact of failure and success in a scientific career, and what metrics can tell us about the fundamental workings of science. The book relies on data to draw actionable insights, which can be applied by individuals to further their career or decision makers to enhance the role of science in society. With anecdotes and detailed, easy-to-follow explanations of the research, this book is accessible to all scientists and graduate students, policymakers, and administrators with an interest in the wider scientific enterprise.",
+    "type": "monograph"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 16,
+   "raw": "Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony Moi, Pierric Cistac, Tim Rault, Remi Louf, Morgan Funtowicz, Joe Davison, Sam Shleifer, Patrick von Platen, Clara Ma, Yacine Jernite, Julien Plu, Canwen Xu, Teven Le Scao, Sylvain Gugger, and 3 others. 2020. https://doi.org/10.18653/v1/2020.emnlp-demos.6 Transformers: State-of-the-art natural language processing. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 38–45, Online. Association for Computational Linguistics.",
+   "parsed": {
+    "idx": 16,
+    "raw": "Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony Moi, Pierric Cistac, Tim Rault, Remi Louf, Morgan Funtowicz, Joe Davison, Sam Shleifer, Patrick von Platen, Clara Ma, Yacine Jernite, Julien Plu, Canwen Xu, Teven Le Scao, Sylvain Gugger, and 3 others. 2020. https://doi.org/10.18653/v1/2020.emnlp-demos.6 Transformers: State-of-the-art natural language processing. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 38–45, Online. Association for Computational Linguistics.",
+    "title": "Transformers: State-of-the-art natural language processing",
+    "authors": [
+     "Wolf, T.",
+     "Debut, L.",
+     "Sanh, V.",
+     "Chaumond, J.",
+     "Delangue, C.",
+     "Moi, A.",
+     "Cistac, P.",
+     "Rault, T.",
+     "Louf, R.",
+     "Funtowicz, M.",
+     "Davison, J.",
+     "Shleifer, S.",
+     "von Platen, P.",
+     "Ma, C.",
+     "Jernite, Y.",
+     "Plu, J.",
+     "Xu, C.",
+     "Le Scao, T.",
+     "Gugger, S."
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    "doi": "10.18653/v1/2020.emnlp-demos.6",
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": "wolf-etal-2020-transformers",
+    "contexts": [
+     "To minimize loading latency, the glove840B embeddings are distributed through the Hugging Face Hub [CITATION] in Lightning Memory-Mapped Database (LMDB) format, enabling efficient memory-mapped access."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/2020.emnlp-demos.6",
+    "title": "Transformers: State-of-the-Art Natural Language Processing",
+    "authors": [
+     "Wolf, Thomas",
+     "Debut, Lysandre",
+     "Sanh, Victor",
+     "Chaumond, Julien",
+     "Delangue, Clement",
+     "Moi, Anthony",
+     "Cistac, Pierric",
+     "Rault, Tim",
+     "Louf, Remi",
+     "Funtowicz, Morgan",
+     "Davison, Joe",
+     "Shleifer, Sam",
+     "von Platen, Patrick",
+     "Ma, Clara",
+     "Jernite, Yacine",
+     "Plu, Julien",
+     "Xu, Canwen",
+     "Le Scao, Teven",
+     "Gugger, Sylvain",
+     "Drame, Mariama",
+     "Lhoest, Quentin",
+     "Rush, Alexander"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    "doi": "10.18653/v1/2020.emnlp-demos.6",
+    "url": "https://doi.org/10.18653/v1/2020.emnlp-demos.6",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 17,
+   "raw": "Zuyao Xu, Yuqi Qiu, Lu Sun, FaSheng Miao, Fubin Wu, Xinyi Wang, Xiang Li, Haozhe Lu, ZhengZe Zhang, Yuxin Hu, Jialu Li, Jin Luo, Feng Zhang, Rui Luo, Xinran Liu, Yingxian Li, and Jiaji Liu. 2026. https://arxiv.org/abs/2602.06718 Ghostcite: A large-scale analysis of citation validity in the age of large language models. Preprint, arXiv:2602.06718.",
+   "parsed": {
+    "idx": 17,
+    "raw": "Zuyao Xu, Yuqi Qiu, Lu Sun, FaSheng Miao, Fubin Wu, Xinyi Wang, Xiang Li, Haozhe Lu, ZhengZe Zhang, Yuxin Hu, Jialu Li, Jin Luo, Feng Zhang, Rui Luo, Xinran Liu, Yingxian Li, and Jiaji Liu. 2026. https://arxiv.org/abs/2602.06718 Ghostcite: A large-scale analysis of citation validity in the age of large language models. Preprint, arXiv:2602.06718.",
+    "title": "Ghostcite: A large-scale analysis of citation validity in the age of large language models",
+    "authors": [
+     "Xu, Z.",
+     "Qiu, Y.",
+     "Sun, L.",
+     "Miao, F.",
+     "Wu, F.",
+     "Wang, X.",
+     "Li, X.",
+     "Lu, H.",
+     "Zhang, Z.",
+     "Hu, Y.",
+     "Li, J.",
+     "Luo, J.",
+     "Zhang, F.",
+     "Luo, R.",
+     "Liu, X.",
+     "Li, Y.",
+     "Liu, J."
+    ],
+    "year": 2026,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "2602.06718",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": "xu2026ghostcitelargescaleanalysiscitation",
+    "contexts": [
+     "This trend poses a serious threat to the integrity and reliability of scientific communication, which has traditionally relied on an implicit assumption of good faith, where authors accurately cite existing and relevant work Erroneous citations have long been known to exist in scientific literature [CITATION].",
+     "While such errors were traditionally attributed to human mistakes, the LLM era has seen a rapid increase in hallucinated citations, including fabrication of non-existent works [CITATION].",
+     "While it is possible to use various citation fields for this purpose, prior studies on hallucinated citation verification have shown that title information serves as the reliable matching key [CITATION] One possible reason is that author names often appear in abbreviated or truncated forms, such as the use of initials, omission of middle names, or the use of ``et al.\" to represent multiple authors."
+    ]
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W7128402130",
+    "title": "GhostCite: A Large-Scale Analysis of Citation Validity in the Age of Large Language Models",
+    "authors": [
+     "Xu, Zuyao",
+     "Qiu, Yuqi",
+     "Sun, Lu",
+     "Miao, Fasheng",
+     "Wu, Fubin",
+     "Li, Xiang",
+     "Wang, Xinyi",
+     "Lu, Haozhe",
+     "Zhang, ZhengZe",
+     "Hu, Yuxin",
+     "Li, Jialu",
+     "Luo, Jin",
+     "Zhang, Feng",
+     "Luo, Rui",
+     "Liu, Xinran",
+     "Li, Yingxian",
+     "Liu, Jiaji"
+    ],
+    "year": 2026,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.2602.06718",
+    "url": "https://openalex.org/W7128402130",
+    "abstract": "Citations provide the basis for trusting scientific claims; when they are invalid or fabricated, this trust collapses. With the advent of Large Language Models (LLMs), this risk has intensified: LLMs are increasingly used for academic writing, but their tendency to fabricate citations (``ghost citations'') poses a systemic threat to citation validity. To quantify this threat, we develop \\citeb, an open-source framework for large-scale citation verification, and conduct a comprehensive study of citation validity in the LLM era through three complementary experiments. First, we benchmark 13 LLMs on citation generation task in various research domains, finding that all models hallucinate citations at rate from 14.23\\% to 94.93\\%. Second, we analyze 2.2 million citations from 56,381 papers at AI/ML and Security venues (2020--2025), finding that 1.07\\% of papers contain invalid citations, with an 80.9\\% increase in 2025. Third, we survey 97 researchers, finding that 87.2\\% use AI-powered tools in their workflows, 76.7\\% of reviewers do not thoroughly check references, and 74.5\\% view peer review as ineffective at catching citation errors. Based on these findings, we argue that ghost citations represent a systemic threat to academic integrity, and call for coordinated efforts from community to address this challenge.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  }
+ ],
+ "tortured": [],
+ "meta": {
+  "models": {
+   "parse": "deepseek-v4.1-flash-1017",
+   "judge": "deepseek-v4.1-flash-1017"
+  },
+  "seconds": 0.1,
+  "llm_calls": 0,
+  "llm_tokens_in": 0,
+  "llm_tokens_out": 0,
+  "cost_usd": 0.0,
+  "api_calls": {},
+  "cache_hits": 49,
+  "notes": [
+   "references read from: bbl"
+  ]
+ }
+}

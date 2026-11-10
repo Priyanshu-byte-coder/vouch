@@ -10,6 +10,7 @@ from ..config import get_settings
 from ..llm import Usage, current_usage
 from ..models import (Candidate, PaperInfo, ParsedRef, RefResult, RefType, Report, RunMeta, Status)
 from .match import best_match
+from .ingest import ingest_arxiv, normalize_arxiv_id
 from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
 from .verdict import DEFAULT, Thresholds, decide
@@ -77,19 +78,18 @@ async def check_references(refs: list[ParsedRef], paper: PaperInfo, *, sources: 
     return report.refresh_summary()
 
 
-async def check_bibliography(text: str, *, sources: list[str] | None = None, t: Thresholds = DEFAULT,
-                             on_event: EventFn = None, source_label: str = "bibliography") -> Report:
-    """Full run on pasted bibliography text, with timing, LLM usage, API calls and cache stats."""
+async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, list[str]]]], *,
+               sources: list[str] | None, t: Thresholds, on_event: EventFn) -> Report:
+    """Shared wrapper: load references, check them, attach timing / LLM usage / API calls / cache stats."""
     t0 = time.perf_counter()
     usage, calls, cache = Usage(), Counter(), get_cache()
     hits0 = cache.hits
     u_tok, c_tok = current_usage.set(usage), api_calls.set(calls)
     try:
-        refs = await parse_references(split_bibliography(text))
+        refs, paper, notes = await load()
         if on_event:
-            await on_event("parsed", {"n_refs": len(refs)})
-        report = await check_references(refs, PaperInfo(source=source_label), sources=sources, t=t,
-                                        on_event=on_event)
+            await on_event("parsed", {"n_refs": len(refs), "title": paper.title, "notes": notes})
+        report = await check_references(refs, paper, sources=sources, t=t, on_event=on_event)
     finally:
         current_usage.reset(u_tok)
         api_calls.reset(c_tok)
@@ -98,6 +98,25 @@ async def check_bibliography(text: str, *, sources: list[str] | None = None, t: 
                           seconds=round(time.perf_counter() - t0, 1), llm_calls=usage.calls,
                           llm_tokens_in=usage.tokens_in, llm_tokens_out=usage.tokens_out,
                           cost_usd=round(usage.cost_usd, 5), api_calls=dict(calls), cache_hits=cache.hits - hits0)
+    report.meta.notes = notes
     if on_event:
         await on_event("done", {"summary": report.summary.model_dump()})
     return report
+
+
+async def check_bibliography(text: str, *, sources: list[str] | None = None, t: Thresholds = DEFAULT,
+                             on_event: EventFn = None, source_label: str = "bibliography") -> Report:
+    """Full run on pasted bibliography text."""
+    async def load():
+        return await parse_references(split_bibliography(text)), PaperInfo(source=source_label), []
+    return await _run(load, sources=sources, t=t, on_event=on_event)
+
+
+async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thresholds = DEFAULT,
+                      on_event: EventFn = None) -> Report:
+    """Full run on an arXiv paper (LaTeX source preferred, PDF via GROBID as fallback)."""
+    async def load():
+        ing = await ingest_arxiv(arxiv_id)
+        aid = normalize_arxiv_id(arxiv_id)
+        return ing.refs, PaperInfo(title=ing.title, source=f"arxiv:{aid}"), [f"references read from: {ing.method}", *ing.notes]
+    return await _run(load, sources=sources, t=t, on_event=on_event)
