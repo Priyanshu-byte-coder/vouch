@@ -261,3 +261,14 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Result: it hurts.** Frozen: R 0.830 / F1 0.870 / FPR 0.078. Best adjudicated setting: R 0.646 / F1 0.756 / FPR 0.062. Even restricted to records whose title already matches at ≥ 98 with confidence ≥ 0.95, it un-flags **89 fakes for 4 real references**. With "off" in the grid, **5-fold CV picked off in 5/5 folds**.
 - Why (inspected): 86 of those 89 fakes have **one or two invented or garbled author names inside a long, otherwise real author list** (e.g. AlphaCode cited with "Rémi Dadashi", "Viorica Fidjeland"; Gopher with "Tom Noland, GOR Young"). The LLM calls these "minor differences". The deterministic author matcher (≥ 90% of cited authors must be found) catches them. A first prompt allowed "light rewording between versions", which also matches CiteAudit's title-substitution fakes.
 - **Finding for the write-up:** on this benchmark's definition of a hallucinated citation (any invented field counts), strict field-level matching beats an LLM judge. LLM judges are too forgiving of corrupted author lists. Adjudicator stays **off** (`eval/configs/rq1_adjudicator.json`). The code is kept for ablations and could later be used only to *explain* verdicts.
+
+### E3b — Adding Semantic Scholar as a 6th source (step 3.3), dev, frozen config
+- When / who: 2026-11-11 01:30 IST · Priyanshu
+- `eval/add_source.py dev_1000 --source s2`: queried only the 453 citations that were not already a near-certain match (as the live cascade does). 440 ok, 13 failed, **90.3 min** (S2 throttled to ~1 answer / 16 s despite the key).
+- Frozen config, dev (n=1000):
+  | Sources | P | R | F1 [95% CI] | FPR [95% CI] | FPR real-world |
+  |---|---|---|---|---|---|
+  | 5 (no S2) | 0.914 | 0.830 | 0.870 [0.847, 0.892] | 0.078 [0.055, 0.102] | 0.111 |
+  | **6 (+ S2)** | **0.930** | 0.822 | **0.873** [0.849, 0.894] | **0.062** [0.041, 0.084] | **0.093** |
+- Changed verdicts: 8 real citations newly verified (fewer false alarms), 4 fakes newly verified (S2 holds records close enough to pass).
+- **Decision: keep S2** (the designed 6-source cascade). FPR −20% relative at −0.008 recall. Next: add S2 to both test sets and run the **disclosed second test evaluation** with the frozen config + 6 sources (adjudicator off).
