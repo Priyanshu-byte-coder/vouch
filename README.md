@@ -1,6 +1,6 @@
 # Threws Odyssey 2026 — Team Beyonders
 
-> **Status:** Ideation · **Project submission closes 13 Nov 2026, 12:00 AM IST (midnight after 12 Nov)**
+> **Status:** Building (idea locked 10 Nov) · **Project submission closes 13 Nov 2026, 12:00 AM IST (midnight after 12 Nov)**
 > Info collected 1 Nov 2026 from the Unstop listing, updated 10 Nov 2026 with the full official brief from the participant dashboard. Re-check the Unstop dashboard before deadlines.
 
 ---
@@ -61,7 +61,19 @@ The brief says projects should show **a clear problem statement, a well-defined 
 9. Web3, Privacy & Decentralised Systems
 10. Open Innovation
 
-**Our track:** _TBD (ideation phase)_
+**Our track:** DeepTech & Scientific Computing (fallback: AI & ML)
+
+---
+
+## Our project: CiteSentinel
+
+An open research-integrity screener. For every reference in a paper it checks: **does it exist, are its details right, was it retracted, does it support the claim**. It also flags **paper-mill "tortured phrases"**. Every verdict comes with evidence, and it uses open scholarly databases only.
+
+| Doc | What's in it |
+|---|---|
+| [docs/IDEATION.md](docs/IDEATION.md) | Problem + evidence, related work, gap, solution, contributions, research questions, ethics, pitch |
+| [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Scope, architecture, stack, pipeline, API, evaluation plan, roles, hour-by-hour timeline, submission mapping, demo script |
+| [EXPERIMENTS.md](EXPERIMENTS.md) | Experiment log (every number we report must come from here) |
 
 ---
 
@@ -157,7 +169,7 @@ Reusing earlier work is allowed **only** with substantial new work done during t
 ---
 
 ## Pre-submission checklist
-- [ ] Track chosen
+- [x] Track chosen (DeepTech & Scientific Computing)
 - [x] Full brief copied (rules, judging criteria, submission requirements)
 - [ ] Problem statement + proposed solution written
 - [ ] Related work / existing solutions compared
