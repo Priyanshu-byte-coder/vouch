@@ -1,0 +1,615 @@
+{
+ "name": "test_neurips100",
+ "source": "neurips100",
+ "seed": 20261110,
+ "n": 100,
+ "note": "Confirmed fabricated citations in accepted NeurIPS 2025 papers. Never tune on it.",
+ "GT_counts": {
+  "False": 100
+ },
+ "source_type_counts": {
+  "neurips2025": 100
+ },
+ "items": [
+  {
+   "index": 0,
+   "hash": "798fdbdcb2f3148d",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 1,
+   "hash": "3c535c420c819678",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 2,
+   "hash": "a414bcf7eac41297",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 3,
+   "hash": "6cea192a4f6c2258",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 4,
+   "hash": "72fe03a601e13b00",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 5,
+   "hash": "34976be7d9fdd2e8",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 6,
+   "hash": "af275661d2682e85",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 7,
+   "hash": "8f03521d002a88ad",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 8,
+   "hash": "ba6a91081a5cbe29",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 9,
+   "hash": "3e1d4a81b0b2bd09",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 10,
+   "hash": "eb51dc324b4c7b53",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 11,
+   "hash": "3cfcea16ede2318e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 12,
+   "hash": "559b5dbbbf301d87",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 13,
+   "hash": "26226a96117bac8b",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 14,
+   "hash": "752b1cca2bb655c6",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 15,
+   "hash": "9743c21d1d671f44",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 16,
+   "hash": "53f67c13edbb4d7f",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 17,
+   "hash": "5e4ca8bdbee9947e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 18,
+   "hash": "a16e47d38451289e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 19,
+   "hash": "b3ed39fc89735c77",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 20,
+   "hash": "3b8943858b4da0f7",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 21,
+   "hash": "b700b029e97c474b",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 22,
+   "hash": "e2c975fcd3d893c0",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 23,
+   "hash": "0911818736a33639",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 24,
+   "hash": "adc681d3c89d42cf",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 25,
+   "hash": "3276fad485312dec",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 26,
+   "hash": "16b71aa315eac5ce",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 27,
+   "hash": "9f8fbe0cc29c285e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 28,
+   "hash": "6d5b2278386d88a9",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 29,
+   "hash": "5a3c5e2963f73d19",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 30,
+   "hash": "0d4e37d9806d59e6",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 31,
+   "hash": "07876acdd9d8a446",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 32,
+   "hash": "c69633837838cabd",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 33,
+   "hash": "81682940ee95ac0c",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 34,
+   "hash": "60752ac0514ad4f0",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 35,
+   "hash": "31f94274edd74827",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 36,
+   "hash": "67356d2d37c2e331",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 37,
+   "hash": "41e433825d40ffc0",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 38,
+   "hash": "23663d197f06f08c",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 39,
+   "hash": "4fff16bc72634d0b",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 40,
+   "hash": "80142e0474ec2508",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 41,
+   "hash": "fb6ffa3485ec6063",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 42,
+   "hash": "f3b55da1fe2097e3",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 43,
+   "hash": "3b4779a3135375af",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 44,
+   "hash": "0473e973eba2e763",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 45,
+   "hash": "2e0ab60dabccfc26",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 46,
+   "hash": "f95d657c8e08fe85",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 47,
+   "hash": "10b6152222089664",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 48,
+   "hash": "8c287f6fc14da68f",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 49,
+   "hash": "f32eceb127ea5222",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 50,
+   "hash": "931c1970f4977460",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 51,
+   "hash": "e179568b9a8b5f22",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 52,
+   "hash": "513808b55cd4b7c1",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 53,
+   "hash": "e6fbd2b4a969ea54",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 54,
+   "hash": "ed8d70277668bad8",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 55,
+   "hash": "e8b291d96eb044df",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 56,
+   "hash": "c06b039e456980ee",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 57,
+   "hash": "e0ca0cca83d467ec",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 58,
+   "hash": "cbf41aed617cc5ae",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 59,
+   "hash": "1f2ad4271d86987e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 60,
+   "hash": "55373c57087c241e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 61,
+   "hash": "42211b21d9555297",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 62,
+   "hash": "989b74756fda0505",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 63,
+   "hash": "3f913ccd983993d2",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 64,
+   "hash": "d6725f0464b9e453",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 65,
+   "hash": "522d8fd41caa9f82",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 66,
+   "hash": "25bac1904fe8f344",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 67,
+   "hash": "d925e2d377858969",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 68,
+   "hash": "4ac2926727b4bdc2",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 69,
+   "hash": "0e475a144448aade",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 70,
+   "hash": "3375c4f800cd4e9b",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 71,
+   "hash": "a8351d30f07f6b9c",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 72,
+   "hash": "ceb00a5e3a52f6f6",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 73,
+   "hash": "4c24256529d862d3",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 74,
+   "hash": "965fad34fb70fd64",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 75,
+   "hash": "3570bf1b179ef590",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 76,
+   "hash": "5631e6c0e4bd3ba7",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 77,
+   "hash": "ec3f195a2c44afbe",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 78,
+   "hash": "0d6c150a22a4e174",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 79,
+   "hash": "ecb59186436ca3f9",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 80,
+   "hash": "5199175bddcb01ee",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 81,
+   "hash": "7a23e3a016d0204f",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 82,
+   "hash": "d34aaf5cbf530077",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 83,
+   "hash": "b946abdb39c11c9b",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 84,
+   "hash": "6c5f959814cd01f7",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 85,
+   "hash": "e6175d0145bd633a",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 86,
+   "hash": "94bd9f30f89150eb",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 87,
+   "hash": "bb70bbaaec69908d",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 88,
+   "hash": "38e6b4a4f2995ce7",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 89,
+   "hash": "1638ce1d8b1cbe52",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 90,
+   "hash": "71b601bdf46fe480",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 91,
+   "hash": "d539a184020c5dfe",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 92,
+   "hash": "70546b4c29d6953f",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 93,
+   "hash": "11f662aad576c13f",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 94,
+   "hash": "20ab54e61b83381e",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 95,
+   "hash": "e5e2a3c96f011ec7",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 96,
+   "hash": "41bb97e8070b9852",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 97,
+   "hash": "2a4328261f37001c",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 98,
+   "hash": "9d832e88ff5fd339",
+   "GT": false,
+   "source_type": "neurips2025"
+  },
+  {
+   "index": 99,
+   "hash": "ba4e956b486a70f8",
+   "GT": false,
+   "source_type": "neurips2025"
+  }
+ ]
+}

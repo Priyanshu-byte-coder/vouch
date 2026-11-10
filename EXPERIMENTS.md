@@ -76,3 +76,17 @@ Every run that produces a number goes here: what we tried, what happened and why
 - GROBID `grobid/grobid:0.9.1-crf`: `processReferences` on arXiv:1706.03762 gave **40 references in 10.1 s** (the paper has 40). One entry had no article-level title (preprint/monograph tagging), so the parser must fall back to monograph titles.
 - Datasets: see `eval/data/SOURCES.md`. CiteAudit = 9,442 (6,475 real / 2,967 fake). CiteAudit-300 = 150/150. NeurIPS-2025 = 100 fake. SciFact 809/300/300 claims. Retraction Watch 73,718 notices.
 - Note: CiteAudit has no licence file, so we use it for evaluation only and never commit it.
+
+### S3 — Dev/test split (step 1.2)
+- When / who: 2026-11-10 ~14:30 IST · Priyanshu
+- Command: `backend/.venv/Scripts/python eval/data/make_splits.py` (seed 20261110)
+- Provenance check: all **300/300** CiteAudit-300 items appear verbatim in full CiteAudit. **0/100** NeurIPS-2025 items appear in CiteAudit.
+- Leakage removal: dev excludes **303 exact** duplicates (CiteAudit contains some test items more than once) and **144 near-duplicates** (token_sort_ratio ≥ 95 after normalisation) of any test item. Verified afterwards: overlap exact = 0, near = 0.
+- Splits (indices + hashes only, in `eval/data/splits/`):
+  | Split | n | Real / fake | Generated / real-world | Use |
+  |---|---|---|---|---|
+  | test_citeaudit300 | 300 | 150 / 150 | 209 / 91 | RQ1 test (baseline's published set) |
+  | test_neurips100 | 100 | 0 / 100 | — | RQ1 test (real-world fakes) |
+  | dev_full | 8,995 | 6,252 / 2,743 | 5,737 / 3,258 | Tuning pool |
+  | dev_1000 | 1,000 | 500 / 500 | 694 / 306 | Threshold tuning within API budget |
+- Note: near-duplicate removal matters. The same reference with different formatting would otherwise leak test answers into tuning.

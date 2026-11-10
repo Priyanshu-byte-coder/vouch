@@ -1,0 +1,1817 @@
+{
+ "name": "test_citeaudit300",
+ "source": "citeaudit300",
+ "seed": 20261110,
+ "n": 300,
+ "note": "Baseline's published test set (AtomGPT data/citeaudit_300.json). Never tune on it.",
+ "GT_counts": {
+  "False": 150,
+  "True": 150
+ },
+ "source_type_counts": {
+  "generated": 209,
+  "realworld": 91
+ },
+ "items": [
+  {
+   "index": 0,
+   "hash": "7bf2b36b09a2bb79",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 1,
+   "hash": "42114ad4cb061eb9",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 2,
+   "hash": "90232a2615cd0bba",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 3,
+   "hash": "93c14077735bce32",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 4,
+   "hash": "ea6349bb655b712c",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 5,
+   "hash": "6c846945f82d107a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 6,
+   "hash": "7f01e320ba292fb1",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 7,
+   "hash": "78037959a1ece50b",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 8,
+   "hash": "e60ab67780c22869",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 9,
+   "hash": "8fab21a16b1746fc",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 10,
+   "hash": "c7a44c3bf5420c9f",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 11,
+   "hash": "d6de223ab281cea2",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 12,
+   "hash": "b9a736a118c4393e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 13,
+   "hash": "a6f396c11a7cbb96",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 14,
+   "hash": "fb2d0dfa050b1330",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 15,
+   "hash": "e127f31a517993ec",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 16,
+   "hash": "4212e2c2fca7efa1",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 17,
+   "hash": "20882cfe60062193",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 18,
+   "hash": "5d5ad704f043f631",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 19,
+   "hash": "597c9879080ec024",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 20,
+   "hash": "3f2a2f597292367f",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 21,
+   "hash": "6215749c26f461d9",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 22,
+   "hash": "18b00b04f65db872",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 23,
+   "hash": "ae7a2a438ec8535f",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 24,
+   "hash": "8933f8b13c18e3d4",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 25,
+   "hash": "c66093cd65b8922a",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 26,
+   "hash": "f44d9347e42af9ec",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 27,
+   "hash": "ed4a82b705fdc27f",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 28,
+   "hash": "9bcd60f54b2c49a5",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 29,
+   "hash": "f56cdee9b888d41a",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 30,
+   "hash": "e9655fa75d610759",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 31,
+   "hash": "2594541401638402",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 32,
+   "hash": "f4d01b4d16fb3437",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 33,
+   "hash": "d6f4c60e32e79ebb",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 34,
+   "hash": "acd2406966aceea5",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 35,
+   "hash": "3395145125c09fd5",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 36,
+   "hash": "7a89f625e536adc1",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 37,
+   "hash": "8744e9ab58f1066d",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 38,
+   "hash": "bf252ebced72abf4",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 39,
+   "hash": "d6699fe3fc8b6694",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 40,
+   "hash": "fda3b52edd7781f1",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 41,
+   "hash": "9c54d20c49f2f306",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 42,
+   "hash": "e995393dd92b7653",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 43,
+   "hash": "e8c3d295f9b119cc",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 44,
+   "hash": "2c25aae1aa96346a",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 45,
+   "hash": "fcd3dc77ce82817b",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 46,
+   "hash": "d54ac2a49b2639a5",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 47,
+   "hash": "8d34a220224ca0db",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 48,
+   "hash": "b78dbb35e590ead7",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 49,
+   "hash": "17fad780326b9b5e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 50,
+   "hash": "206eff185cc71a25",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 51,
+   "hash": "2d48001be1dd35e8",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 52,
+   "hash": "f22d7393decb452e",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 53,
+   "hash": "b9f29c5dc5429022",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 54,
+   "hash": "4708c6e0f7caaa74",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 55,
+   "hash": "abd91f8187e0cd7e",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 56,
+   "hash": "1b31ca5a0208172c",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 57,
+   "hash": "b94ca6810884c01a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 58,
+   "hash": "282de3b03c329b66",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 59,
+   "hash": "046fa585715ea344",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 60,
+   "hash": "b3c840bb6318f366",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 61,
+   "hash": "9209a205bd9a3458",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 62,
+   "hash": "71067e8e7e082223",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 63,
+   "hash": "1fa50d8c3e68b17c",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 64,
+   "hash": "3f66447010baf4e9",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 65,
+   "hash": "2daa1218f993b7ab",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 66,
+   "hash": "41a1ed39a196220e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 67,
+   "hash": "a3f1cdb1a4a4ce28",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 68,
+   "hash": "bf52ca3e86bd2418",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 69,
+   "hash": "5636a07f93056720",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 70,
+   "hash": "f136bc401feaa5f3",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 71,
+   "hash": "21724070124395d2",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 72,
+   "hash": "23e83caa782a5ddc",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 73,
+   "hash": "42bfb7ffc90699b8",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 74,
+   "hash": "68dc941b64a6ec15",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 75,
+   "hash": "d09a4d913952e6f9",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 76,
+   "hash": "4cf3f0f4038a3bfe",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 77,
+   "hash": "04496424c8d6bdb8",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 78,
+   "hash": "c7c7635bcf88d7b8",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 79,
+   "hash": "8f50f61ee61c9008",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 80,
+   "hash": "dde88e15e5eaed3d",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 81,
+   "hash": "f980521560fc4b05",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 82,
+   "hash": "734d5cafe8d4f459",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 83,
+   "hash": "2b003af3b7ab7221",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 84,
+   "hash": "17dc5370ae57d579",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 85,
+   "hash": "e1a6ce8b1374b3b1",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 86,
+   "hash": "7277406519562ee6",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 87,
+   "hash": "51b86e348725e2c4",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 88,
+   "hash": "0fad5ffa973196f6",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 89,
+   "hash": "67e52a71cee8e848",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 90,
+   "hash": "cff0468a2287ac32",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 91,
+   "hash": "6d44158ae87f2677",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 92,
+   "hash": "1c95dbfececfd1cb",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 93,
+   "hash": "f80af205e312b2c2",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 94,
+   "hash": "67957a9e9275c366",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 95,
+   "hash": "801c0f3ff2ec246d",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 96,
+   "hash": "e349ca0fc724d3dc",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 97,
+   "hash": "063e3094edbeef1b",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 98,
+   "hash": "79d35a77a284db19",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 99,
+   "hash": "e7ddd7ca7c3dd2e3",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 100,
+   "hash": "2c6da67c76fb6ec9",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 101,
+   "hash": "7b4a481f45dcb0e5",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 102,
+   "hash": "3b480c78f9d8c7e8",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 103,
+   "hash": "e128edeaba70c113",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 104,
+   "hash": "459b207b113754e3",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 105,
+   "hash": "99b694a3bd72e3cc",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 106,
+   "hash": "a41151c760641c3e",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 107,
+   "hash": "6330e0bd6256a6ed",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 108,
+   "hash": "7df03cfc2a7deb7a",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 109,
+   "hash": "bd10d195dd65af52",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 110,
+   "hash": "74a99543c283f264",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 111,
+   "hash": "93f9262dd415b85a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 112,
+   "hash": "c51b5a63132cc39d",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 113,
+   "hash": "701092921b3dbe67",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 114,
+   "hash": "b8d4c33e10c21eaf",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 115,
+   "hash": "513876a6f4f5d21d",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 116,
+   "hash": "fa13adcdac99f182",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 117,
+   "hash": "4925270312739b75",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 118,
+   "hash": "b92e6ab641f11557",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 119,
+   "hash": "0fe52f0ac2641e91",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 120,
+   "hash": "62fc1708c1b4b374",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 121,
+   "hash": "73ac4422c6f9aa6b",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 122,
+   "hash": "687eb0cf4829efbb",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 123,
+   "hash": "147356c26203872f",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 124,
+   "hash": "f75dc0e921d68387",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 125,
+   "hash": "63fda490e35f6acd",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 126,
+   "hash": "e3b55f9ed6fcc894",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 127,
+   "hash": "2eb0132eb01290eb",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 128,
+   "hash": "406e2aa410d87fd2",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 129,
+   "hash": "e179ba6b4f120d92",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 130,
+   "hash": "908b3bfbb8f79621",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 131,
+   "hash": "2047aba12bf2bac9",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 132,
+   "hash": "a590876c77b47b49",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 133,
+   "hash": "94638f61fe62c574",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 134,
+   "hash": "31114b7f1ad01ee2",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 135,
+   "hash": "6344978b401a6f07",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 136,
+   "hash": "6c5d01cc78b03054",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 137,
+   "hash": "9c68f2f0b50be08d",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 138,
+   "hash": "e6ebdfd526e6a48d",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 139,
+   "hash": "3ff1f3724e936079",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 140,
+   "hash": "a00613fa336cd800",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 141,
+   "hash": "74cf117a495df625",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 142,
+   "hash": "04220475d5315fec",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 143,
+   "hash": "47f304ac149cba3e",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 144,
+   "hash": "9011b8b49d7ffdb8",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 145,
+   "hash": "5ff3121a02d6e26e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 146,
+   "hash": "5e69b0c3461312fa",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 147,
+   "hash": "fce31e775c10d2ab",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 148,
+   "hash": "bffd82ce4db67134",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 149,
+   "hash": "1ae4b051c5627729",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 150,
+   "hash": "8eb5c00bba83735e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 151,
+   "hash": "8bb510014f812d09",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 152,
+   "hash": "f3a09e2e7dd38d75",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 153,
+   "hash": "c47c337e0640d9c3",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 154,
+   "hash": "90874edb36cad95e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 155,
+   "hash": "36b7d8d6eb4da897",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 156,
+   "hash": "816b9e8126932058",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 157,
+   "hash": "fd0d6437336953de",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 158,
+   "hash": "65f6fe55d8b8c494",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 159,
+   "hash": "359ba2e99953620c",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 160,
+   "hash": "b92d600765429ec5",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 161,
+   "hash": "a1640e46491781ba",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 162,
+   "hash": "7e59b5bbf35da115",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 163,
+   "hash": "54060fa3681a13d2",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 164,
+   "hash": "6e6cabe907fe89ce",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 165,
+   "hash": "24c742e32d57410c",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 166,
+   "hash": "f1fe294bbe5cffbe",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 167,
+   "hash": "d159aa6770b57c3a",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 168,
+   "hash": "c566988289380e8e",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 169,
+   "hash": "c3e68c1e3e320e8a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 170,
+   "hash": "6899c665452dba47",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 171,
+   "hash": "6074e8f6314cc3bf",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 172,
+   "hash": "5935e3402492fca4",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 173,
+   "hash": "5329d941800be5e7",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 174,
+   "hash": "7438db71db030365",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 175,
+   "hash": "83c917ae2b636f09",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 176,
+   "hash": "0023ce8492a4f318",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 177,
+   "hash": "79776e0703953847",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 178,
+   "hash": "75e3cd39b82a4158",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 179,
+   "hash": "fe3a1c4dcc8d6f36",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 180,
+   "hash": "4a252c5b0cefb2f0",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 181,
+   "hash": "8d07f57e94091151",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 182,
+   "hash": "995501f4cc649214",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 183,
+   "hash": "91408d37c8ab5013",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 184,
+   "hash": "37e11b5d33284f31",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 185,
+   "hash": "1681271a51358f8a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 186,
+   "hash": "0598e9efe6491b09",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 187,
+   "hash": "3e2f28d8229c4cee",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 188,
+   "hash": "62d2f5f1cf5bc226",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 189,
+   "hash": "f3f4e81dee7d317a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 190,
+   "hash": "d2667812e7210353",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 191,
+   "hash": "dd454c1c48141132",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 192,
+   "hash": "71b1e75970781d5e",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 193,
+   "hash": "0ad61950c92e945a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 194,
+   "hash": "e34a365b15808f26",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 195,
+   "hash": "89ac6f9211dfa935",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 196,
+   "hash": "02f351b68be60507",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 197,
+   "hash": "af33d927645882a4",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 198,
+   "hash": "f943c48c733345d6",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 199,
+   "hash": "8f49a5af9cc25098",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 200,
+   "hash": "5dad198ac7c41224",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 201,
+   "hash": "e00a0f2fd6fe1a9e",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 202,
+   "hash": "8e55360887b5b2e6",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 203,
+   "hash": "64e555aaf20e3473",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 204,
+   "hash": "0acb35dfc3af15b0",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 205,
+   "hash": "c4b9ca4496f7500b",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 206,
+   "hash": "89027e80c569620f",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 207,
+   "hash": "8e409c94dbb0a93b",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 208,
+   "hash": "2fb5c5344c2a35ee",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 209,
+   "hash": "997e8b2674c1e069",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 210,
+   "hash": "866ee776e9adcabe",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 211,
+   "hash": "80902ae457334c42",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 212,
+   "hash": "b90b6c1919dafd4e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 213,
+   "hash": "61ed7d464e579627",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 214,
+   "hash": "551606768d710a41",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 215,
+   "hash": "fdb2461829bed0c4",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 216,
+   "hash": "b008018bfc488345",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 217,
+   "hash": "35a6322ee10f46d9",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 218,
+   "hash": "be3482b51b951715",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 219,
+   "hash": "132ab7e540348cb8",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 220,
+   "hash": "dc70f0153d6c61e3",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 221,
+   "hash": "61ec41c28dec5357",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 222,
+   "hash": "42bd2fccc4d8dcb8",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 223,
+   "hash": "ed0696fafa63cd43",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 224,
+   "hash": "c62f183224ac4b32",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 225,
+   "hash": "89745ef6ed98f635",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 226,
+   "hash": "f358dbe2c72ea0b2",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 227,
+   "hash": "5b4eb96dce1bcdb1",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 228,
+   "hash": "0b67dde6da001b33",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 229,
+   "hash": "54433a26f05ab443",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 230,
+   "hash": "27458b94fc1ab288",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 231,
+   "hash": "aa8de70404904785",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 232,
+   "hash": "b327935c54a7679c",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 233,
+   "hash": "cd52d17ababbef72",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 234,
+   "hash": "0dbffdca0834d102",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 235,
+   "hash": "1d6cdc94e92e730d",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 236,
+   "hash": "601a949a557da312",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 237,
+   "hash": "a24e630dc251730d",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 238,
+   "hash": "c46264aa9faf6181",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 239,
+   "hash": "11f65a62a882343a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 240,
+   "hash": "7c0a259a53fe59cf",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 241,
+   "hash": "f6b8c6cb3355e102",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 242,
+   "hash": "b7434a53fb91d438",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 243,
+   "hash": "4dce96f9a1a5701e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 244,
+   "hash": "2a7aaa70f25b1538",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 245,
+   "hash": "7a1a40cd5028267e",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 246,
+   "hash": "cf4287c1a642becf",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 247,
+   "hash": "9fe2b1a0e8c740d9",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 248,
+   "hash": "9a79919ef558dfd5",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 249,
+   "hash": "a04909f83c04593a",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 250,
+   "hash": "86bc84b04a24be05",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 251,
+   "hash": "d11131658b0d663b",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 252,
+   "hash": "c3037ca6fe658c8f",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 253,
+   "hash": "a1e2085d5cf075db",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 254,
+   "hash": "a4e319b9dfa42120",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 255,
+   "hash": "9aca1d7d157a9aea",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 256,
+   "hash": "478391f2c6dcb806",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 257,
+   "hash": "caa1520fb47f4826",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 258,
+   "hash": "784452359d4e8c6b",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 259,
+   "hash": "e23fa6e501e7988a",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 260,
+   "hash": "86c1183cbc8b9ab5",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 261,
+   "hash": "8d429cab8d564aa7",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 262,
+   "hash": "3e3141cc22417b5b",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 263,
+   "hash": "f9374b4402738eba",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 264,
+   "hash": "e149f9a04809c9e7",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 265,
+   "hash": "148576d68bc6fc1d",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 266,
+   "hash": "ff7107f3b7e1fcf7",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 267,
+   "hash": "bacaadc420d35936",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 268,
+   "hash": "8754450eca322649",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 269,
+   "hash": "77f093f6891f684e",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 270,
+   "hash": "9f27ebe6ce5eeb0c",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 271,
+   "hash": "634181fb27cf0867",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 272,
+   "hash": "563eef0f528c0787",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 273,
+   "hash": "4cc9bb99e679a28d",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 274,
+   "hash": "532cb708c8ffb334",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 275,
+   "hash": "96d059a2be276656",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 276,
+   "hash": "4ca69cd5f76278fc",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 277,
+   "hash": "7c44c80b52017df0",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 278,
+   "hash": "13aaa5a41674ad70",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 279,
+   "hash": "477e5864d0eb50ee",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 280,
+   "hash": "e4e410ee1624e7d9",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 281,
+   "hash": "8703f0b1a011ecca",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 282,
+   "hash": "778d836e9d5b777f",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 283,
+   "hash": "02766870423f63e9",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 284,
+   "hash": "d0bfe51dd3ae8ef9",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 285,
+   "hash": "5b4386c7102c2032",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 286,
+   "hash": "172c7590d1d9daac",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 287,
+   "hash": "96a6e88769b3bc0a",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 288,
+   "hash": "c437b50cbfd76f48",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 289,
+   "hash": "55ac726309cf285f",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 290,
+   "hash": "7f3e30ef4d20b0f1",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 291,
+   "hash": "4aa9afd3ada1d267",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 292,
+   "hash": "78f72e6547ee3475",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 293,
+   "hash": "b4caa0580cab0067",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 294,
+   "hash": "d9c1d60fb8ec2284",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 295,
+   "hash": "1210312337abbf6b",
+   "GT": true,
+   "source_type": "generated"
+  },
+  {
+   "index": 296,
+   "hash": "0a942a9084f495a3",
+   "GT": true,
+   "source_type": "realworld"
+  },
+  {
+   "index": 297,
+   "hash": "75f88d43a541df14",
+   "GT": false,
+   "source_type": "generated"
+  },
+  {
+   "index": 298,
+   "hash": "7e0b338f7f6cfb9d",
+   "GT": false,
+   "source_type": "realworld"
+  },
+  {
+   "index": 299,
+   "hash": "f881f1b0bf9a3e77",
+   "GT": true,
+   "source_type": "realworld"
+  }
+ ]
+}

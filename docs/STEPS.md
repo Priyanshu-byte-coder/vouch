@@ -62,7 +62,7 @@
 - Record each licence in `eval/data/SOURCES.md`. Large raw files go in `eval/data/raw/` (gitignored), with download scripts committed.
 - ✅ Done when: `python eval/data/download.py` fetches everything and prints row counts.
 
-### 1.2 Dev/test split (🤖)
+### 1.2 Dev/test split (🤖) ✅
 - Test = CiteAudit-300 + NeurIPS-100 (untouched). Dev = full CiteAudit **minus** any citation in the 300 set (deduplicated on normalised text).
 - ✅ Done when: the split files are written, overlap = 0, and the counts are logged in `EXPERIMENTS.md`.
 
