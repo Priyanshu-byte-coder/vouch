@@ -28,9 +28,11 @@ Every run that produces a number goes here: what we tried, what happened and why
 | CiteAudit-300 | AtomGPT (published) | 0.80 | 0.49 | 0.61 | 0.12 | From their README, scoring v2 |
 | CiteAudit-300 | AtomGPT (released outputs, re-scored by us, E0a) | 0.804 | 0.493 | 0.612 [0.534, 0.679] | 0.121 | Exact match, n=299. Generated: R 0.444 FPR 0.036 · Real-world: R 0.750 FPR 0.227 |
 | CiteAudit-300 | Our pipeline, S2-only + AtomGPT v2 scoring (baseline re-created in our code, E3) | | | | | |
-| CiteAudit-300 | **Vouch** (frozen config, E1, after retries) | 0.803 | 0.760 | 0.781 | 0.187 | Paired McNemar p = 9e-05 vs baseline |
+| CiteAudit-300 | **Vouch, 6 sources** (frozen config, 2nd disclosed test look) | 0.842 | 0.747 | 0.792 | 0.140 | 44 vs 8 paired, McNemar p = 4e-07 |
+| CiteAudit-300 | Vouch, 5 sources (frozen config, 1st test look, after retries) | 0.803 | 0.760 | 0.781 | 0.187 | Paired McNemar p = 9e-05 vs baseline |
 | NeurIPS-100 | AtomGPT (published) | n/a | 0.94 | n/a | n/a | Scoring v1, all fake |
-| NeurIPS-100 | **Vouch** (E1) | 1.000 | 1.000 | 1.000 | n/a | 6 fakes the baseline missed; p = 0.031 |
+| NeurIPS-100 | **Vouch, 6 sources** (2nd look) | 1.000 | 0.990 | 0.995 | n/a | 1 miss: S2 record with no authors |
+| NeurIPS-100 | Vouch, 5 sources (1st look) | 1.000 | 1.000 | 1.000 | n/a | 6 fakes the baseline missed; p = 0.031 |
 
 ---
 
@@ -272,3 +274,13 @@ Every run that produces a number goes here: what we tried, what happened and why
   | **6 (+ S2)** | **0.930** | 0.822 | **0.873** [0.849, 0.894] | **0.062** [0.041, 0.084] | **0.093** |
 - Changed verdicts: 8 real citations newly verified (fewer false alarms), 4 fakes newly verified (S2 holds records close enough to pass).
 - **Decision: keep S2** (the designed 6-source cascade). FPR −20% relative at −0.008 recall. Next: add S2 to both test sets and run the **disclosed second test evaluation** with the frozen config + 6 sources (adjudicator off).
+
+### E1-test (2nd, disclosed) — frozen config + 6 sources, adjudicator off (end of step 3.3)
+- When / who: 2026-11-11 02:08 IST · Priyanshu. This is the **second and last look at the test sets**. The only change since the first look is adding S2 as a sixth source (decided on dev, E3b). Weights and thresholds are frozen; the adjudicator is off (E3a).
+- S2 added to test sets with `eval/add_source.py` (CiteAudit-300: 140 queried, 137 ok, 20.3 min · NeurIPS-100: 100 queried, 97 ok, 18.4 min). → `eval/results/e1_test_results_6sources.json`
+- **CiteAudit-300:** P 0.842 · R 0.747 [0.675, 0.812] · **F1 0.792** [0.736, 0.839] · **FPR 0.140** [0.090, 0.195]
+  - Paired vs AtomGPT (n=299): baseline F1 0.612 / FPR 0.121 (18 FP); Vouch F1 0.794 / FPR 0.134 (20 FP). Only Vouch correct **44**, only baseline correct **8**, exact McNemar **p = 4e-07**.
+- **NeurIPS-100:** recall **0.990** [0.97, 1.00] vs baseline 0.940. Paired: 5 vs 0, p = 0.06.
+- **The one NeurIPS miss:** "The impact of neural network overparameterization on gradient confusion and SGD" (ICML 2020) cited with invented co-authors. S2's record of the real paper **lists no authors**, so it verified on title + year alone. **Known limitation / next fix:** a record without authors should not verify a citation that names authors unless another source with authors agrees. Not applied: it would be a third test look.
+- **H1 final:** F1 > 0.61 ✅ (0.792, CI [0.736, 0.839]). FPR ≤ 0.12: not met on the point estimate (0.140), but the CI [0.09, 0.195] contains the baseline's 0.121 and the paired FP count is 20 vs 18. Recall +25 pts (0.747 vs 0.493).
+- Summary of all test looks (CiteAudit-300): untuned 5-src F1 0.685 / FPR 0.140 → frozen 5-src F1 0.781 / FPR 0.187 → **frozen 6-src F1 0.792 / FPR 0.140**.

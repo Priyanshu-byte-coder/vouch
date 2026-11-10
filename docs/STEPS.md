@@ -117,7 +117,7 @@
 - Run on CiteAudit-300 + NeurIPS-100 with the frozen config. Bootstrap 95% CIs. Error analysis on misses and false positives.
 - ✅ Done when: the results summary table in `EXPERIMENTS.md` has our numbers next to the baseline's.
 
-### 3.3 More sources + AI review (🤖)
+### 3.3 More sources + AI review (🤖) ✅ S2 kept (FPR ↓), LLM adjudicator tested and kept OFF (negative result)
 - (DataCite + Open Library already built in 2.2.) Add the LLM adjudicator for borderline matches → re-run on dev → re-freeze → re-test once.
 - ✅ Done when: the v2 numbers are logged. Keep whichever version is honestly better on dev; the test set is not used for that choice.
 
