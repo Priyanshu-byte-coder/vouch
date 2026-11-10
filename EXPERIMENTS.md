@@ -47,3 +47,19 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Results: P= R= F1= FPR= (95% CI ...) · cost=$ · time=
 - What we learned / what failed / next:
 ```
+
+### S0 — LLM endpoint and model selection (setup)
+- When / who: 2026-11-10 ~08:30 IST · Priyanshu
+- Endpoint: Vultr Serverless Inference (OpenAI-compatible), subscription `citesentinel`
+- Test: parse one messy reference ("[12] Vaswani A., ... arXiv:1706.03762") into JSON, temperature 0
+- Results:
+  | Model | Thinking on (max_tokens 400) | Thinking on (2000) | Thinking off | Latency (off) | Output tokens (off) |
+  |---|---|---|---|---|---|
+  | deepseek-v4.1-flash-1017 | JSON cut off | ok | ok | 1.5 s | 90 |
+  | qwen3.8-flash-next | JSON cut off | ok | ok | 1.4 s | 122 |
+  | glm-5.3-flash | JSON cut off | ok (wrapped in ```json) | switch ignored | 2.8 s | 717 |
+  | minimax-m3.1-flash | JSON cut off | ok | switch ignored | 2.1 s | 642 |
+  | mimo-v2.6-flash | ok | — | — | 1.4 s (default) | ~110 |
+- Decision: **parse = deepseek-v4.1-flash-1017 with thinking off** (`chat_template_kwargs.enable_thinking=false`, `reasoning_effort=none`). Fallback: qwen3.8-flash-next.
+  **Judge = deepseek-v4.1-flash-1017 with thinking on** for now. Compare against glm-5.3 / qwen3.8-27b on the dev split in steps 3.3 and 6.2.
+- Learned: reasoning models spend the token budget on hidden thinking, so the JSON gets cut off. Always set max_tokens ≥ 2000 when thinking is on, and strip ``` code fences when parsing output.
