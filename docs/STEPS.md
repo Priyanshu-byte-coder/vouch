@@ -83,7 +83,7 @@
 - Crossref (DOI + bibliographic search), OpenAlex (search + abstract), Semantic Scholar (match), arXiv (by ID + search). All async, cached, rate-limited.
 - ✅ Done when: 5 known references (article, preprint, book, dataset, fake) return sensible candidates from each source in a test script.
 
-### 2.3 Matcher + verdict v1 (🤖)
+### 2.3 Matcher + verdict v1 (🤖) ✅
 - Field scores (title, authors, year, venue), diacritic folding, `et al.` handling, DOI–title consistency check, the 4 labels.
 - ✅ Done when: the unit tests on the edge cases from the AtomGPT "Known limitations" list pass.
 

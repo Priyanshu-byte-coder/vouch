@@ -134,3 +134,22 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Key finding for the matcher (and for the pitch):** the baseline's title measure (`token_set_ratio`) scores **100** for "Deep learning" against "PyTorch: …Deep Learning", "Deep Learning with Differential Privacy", "Towards Deep Learning Models Resistant…", because short titles are a subset of many others. A strict measure (`token_sort_ratio`) gives 35–50 for those. **Short titles need strict title similarity plus author/year evidence.**
 - Other notes: S2 still throttles (two lookups gave up after 6 retries / ~100 s), so S2 runs last with a time budget. Crossref ~7 s per query (polite pool). A cached re-run takes 4.4 s.
 - Bug found by the tests: Crossref organisation authors ("Consortium X") were reformatted as persons ("X, Consortium"). Fixed: the bare `name` field is kept as-is.
+
+### S6 — Matcher + verdict v1 (step 2.3)
+- When / who: 2026-11-10 ~16:30 IST · Priyanshu
+- Code: `backend/app/pipeline/match.py`, `verdict.py` · tests: `backend/tests/test_match_verdict.py` (20 edge cases, each tied to a documented baseline weakness or an S5 finding)
+- Design vs the AtomGPT baseline:
+  | Weakness (their README / our S5) | Our handling | Test |
+  |---|---|---|
+  | `token_set_ratio` over-matches short titles ("Deep learning" = 100 vs longer titles) | `token_sort_ratio`; set-ratio only when lengths are similar; clean-prefix rule for omitted subtitles | `test_short_title_does_not_overmatch` (<70 / <50) |
+  | Diacritics (Grazulis ≠ Gražulis) | Unicode folding | `test_diacritics` |
+  | Literal "et al." counted as an unmatched author | Ignored; only listed authors are scored | `test_et_al_not_penalised` |
+  | Hyphenated surnames must match exactly | Letters-only surname keys | `test_hyphenated_surnames` |
+  | "Smith, J." took the initial as the surname | Parses 4 formats | `test_name_formats` |
+  | Venue abbreviations (Phys. Rev. Lett. = 66.7) | Abbreviation + alias table (NIPS/NeurIPS, ICML, ACL...) | ≥95 / ≥90 |
+  | Year not scored | Exact = 1, ±1 = 0.5 (preprint vs published), else a mismatch | `test_wrong_year...`, `test_year_off_by_one...` |
+  | Real DOI on a fabricated title (identifier hijacking) | Checked first, before any threshold | `test_identifier_hijack` |
+  | Every miss counted as a hallucination | Hard-to-index types (web, report, software) → "can't verify", not "not found" | `test_not_found_vs_cant_verify` |
+- Starting thresholds (to be tuned on dev only in step 3.1): verified composite ≥ 85 and title ≥ 85 and authors ≥ 60; same-work title ≥ 90; found ≥ 60. Weights: title 0.55, authors 0.30, venue 0.10, year 0.05.
+- Preview on the S5 references (5 sources, S2 excluded): article / preprint / book / dataset → **verified** (the preprint matched the genuine 2017 OpenAlex record, not Crossref's 2025 copy); fake → **not found** (closest composite 56.6).
+- Tests: 62 pass (56 offline + 6 live).
