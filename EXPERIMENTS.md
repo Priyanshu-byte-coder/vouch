@@ -14,7 +14,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 
 | ID | RQ | Description | Owner | Status |
 |---|---|---|---|---|
-| E0 | — | Published baseline (AtomGPT detector) on CiteAudit-300 + NeurIPS-100, with our LLM. Re-score their released outputs | B | 🟡 E0a ✅ · E0b blocked (needs approval to run third-party code) |
+| E0 | — | Published baseline (AtomGPT detector) on CiteAudit-300 + NeurIPS-100, with our LLM. Re-score their released outputs | B | ✅ E0a done · E0b replaced by the E3 'S2-only, AtomGPT scoring' ablation (decision 10 Nov) |
 | E1 | RQ1 | Our cascade on CiteAudit-300 + NeurIPS-100 (thresholds tuned on the CiteAudit dev split) | B | ⬜ |
 | E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ⬜ |
 | E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ⬜ |
@@ -27,7 +27,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 |---|---|---|---|---|---|---|
 | CiteAudit-300 | AtomGPT (published) | 0.80 | 0.49 | 0.61 | 0.12 | From their README, scoring v2 |
 | CiteAudit-300 | AtomGPT (released outputs, re-scored by us, E0a) | 0.804 | 0.493 | 0.612 [0.534, 0.679] | 0.121 | Exact match, n=299. Generated: R 0.444 FPR 0.036 · Real-world: R 0.750 FPR 0.227 |
-| CiteAudit-300 | AtomGPT (our re-run) | | | | | |
+| CiteAudit-300 | Our pipeline, S2-only + AtomGPT v2 scoring (baseline re-created in our code, E3) | | | | | |
 | CiteAudit-300 | **Vouch** | | | | | |
 | NeurIPS-100 | AtomGPT (published) | n/a | 0.94 | n/a | n/a | Scoring v1, all fake |
 | NeurIPS-100 | **Vouch** | n/a | | n/a | n/a | |
@@ -113,3 +113,9 @@ Every run that produces a number goes here: what we tried, what happened and why
   | Generated citations | 209 | 0.444 | **0.036** |
   | Real-world citations | 90 | 0.750 | **0.227** (15 of 66 real references wrongly flagged) |
 - Learned: (1) Our metric code reproduces the published numbers exactly. (2) **Early evidence for H2:** the single-source baseline wrongly flags real references from real papers **6× more often** than real generated-set references. (3) It misses 56% of generated fakes, so recall is the main thing to improve.
+
+### Decision — baseline protocol (step 1.3b)
+- When / who: 2026-11-10 ~15:10 IST · Priyanshu
+- We **do not** re-run AtomGPT's third-party code. The baseline is (1) their **published / released outputs**, re-scored exactly in E0a, plus (2) a **re-creation of their method inside our pipeline**: Semantic Scholar only, their documented v2 scoring (title 0.60 / authors 0.25 / venue 0.15, verified ≥ 80), and our LLM. This becomes a row in the E3 ablation.
+- Why: fewer moving parts and no third-party code execution. It also avoids a slow S2-only run under throttling and gives a controlled comparison where only the cascade and matcher differ.
+- Limitation to state in the README: the published baseline numbers come from a different extraction LLM (gpt-oss-20b for NeurIPS; not recorded for CiteAudit-300).
