@@ -17,3 +17,5 @@ def _load() -> tuple[dict[str, float], Thresholds, dict]:
 
 
 TUNED_WEIGHTS, TUNED_THRESHOLDS, TUNED_INFO = _load()
+# LLM adjudicator settings (step 3.3); None = adjudicator disabled
+ADJUDICATOR: dict | None = TUNED_INFO.get("adjudicator")

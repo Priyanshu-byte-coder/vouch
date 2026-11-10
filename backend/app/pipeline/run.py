@@ -9,13 +9,14 @@ from ..cache import get_cache
 from ..config import get_settings
 from ..llm import Usage, current_usage
 from ..models import (Candidate, PaperInfo, ParsedRef, RefResult, RefType, Report, RunMeta, Status)
-from .match import WEIGHTS, best_match
+from .adjudicate import adjudicate
+from .match import WEIGHTS, best_match, score_candidate
 from .ingest import grobid_references, ingest_arxiv, normalize_arxiv_id
 from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
 from .retraction import describe
 from .retraction import get_index as get_retractions
-from .tuned import TUNED_THRESHOLDS, TUNED_WEIGHTS
+from .tuned import ADJUDICATOR, TUNED_THRESHOLDS, TUNED_WEIGHTS
 from .verdict import DEFAULT, Thresholds, decide
 
 # Per-source time budget per reference (S2 throttles hard; never let it stall a report)
@@ -41,7 +42,7 @@ def cascade_order(ref: ParsedRef, sources: list[str]) -> list[str]:
 
 
 async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DEFAULT,
-                          weights: dict[str, float] = WEIGHTS) -> RefResult:
+                          weights: dict[str, float] = WEIGHTS, adjudicator: dict | None = None) -> RefResult:
     candidates: list[Candidate] = []
     tried, failed = [], []
     for name in cascade_order(ref, sources):
@@ -56,6 +57,16 @@ async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DE
             break  # confident match: stop early
     best = best_match(ref, candidates, weights)
     v = decide(ref, best, all_sources_failed=not tried, t=t)
+    # Borderline: an LLM compares the reference with the top records (it can only verify, never flag)
+    hijacked_doi = best is not None and best.doi_match and (best.scores.title or 0) < 85
+    if v.status is not Status.verified and best and adjudicator and not best.notice and not hijacked_doi:
+        a = await adjudicate(ref, [score_candidate(ref, c, weights) for c in candidates])
+        m = a["match"]
+        if m and (m.scores.title or 0) >= adjudicator["band"] and a["confidence"] >= adjudicator["confidence"]:
+            best = m
+            v = type(v)(Status.verified, round(a["confidence"], 2), [f"verified by AI review: {a['reason']}"])
+        elif a["reason"]:
+            v.issues.append(f"AI review: {a['reason']}")
     # keep the record as evidence when it explains the verdict (e.g. a hijacked DOI)
     match = best.candidate if best and ((best.scores.composite or 0) >= t.found
                                          or v.status is Status.detail_mismatch) else None
@@ -76,14 +87,14 @@ async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DE
 
 async def check_references(refs: list[ParsedRef], paper: PaperInfo, *, sources: list[str] | None = None,
                            t: Thresholds = DEFAULT, weights: dict[str, float] = WEIGHTS,
-                           on_event: EventFn = None) -> Report:
+                           adjudicator: dict | None = None, on_event: EventFn = None) -> Report:
     sources = sources or list(SOURCES)
     sem = asyncio.Semaphore(CONCURRENCY)
     report = Report(paper=paper)
 
     async def one(ref: ParsedRef) -> RefResult:
         async with sem:
-            res = await check_reference(ref, sources, t, weights)
+            res = await check_reference(ref, sources, t, weights, adjudicator)
         if on_event:
             await on_event("ref_done", res.model_dump(mode="json"))
         return res
@@ -94,7 +105,7 @@ async def check_references(refs: list[ParsedRef], paper: PaperInfo, *, sources: 
 
 async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, list[str]]]], *,
                sources: list[str] | None, t: Thresholds, on_event: EventFn,
-               weights: dict[str, float] = WEIGHTS) -> Report:
+               weights: dict[str, float] = WEIGHTS, adjudicator: dict | None = None) -> Report:
     """Shared wrapper: load references, check them, attach timing / LLM usage / API calls / cache stats."""
     t0 = time.perf_counter()
     usage, calls, cache = Usage(), Counter(), get_cache()
@@ -104,7 +115,8 @@ async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, li
         refs, paper, notes = await load()
         if on_event:
             await on_event("parsed", {"n_refs": len(refs), "title": paper.title, "notes": notes})
-        report = await check_references(refs, paper, sources=sources, t=t, weights=weights, on_event=on_event)
+        report = await check_references(refs, paper, sources=sources, t=t, weights=weights,
+                                        adjudicator=adjudicator, on_event=on_event)
     finally:
         current_usage.reset(u_tok)
         api_calls.reset(c_tok)
@@ -126,7 +138,8 @@ async def check_bibliography(text: str, *, sources: list[str] | None = None, t: 
     """Full run on pasted bibliography text."""
     async def load():
         return await parse_references(split_bibliography(text)), PaperInfo(source=source_label), []
-    return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights)
+    return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights,
+                      adjudicator=ADJUDICATOR if t == TUNED_THRESHOLDS else None)
 
 
 async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thresholds = TUNED_THRESHOLDS,
@@ -137,7 +150,8 @@ async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thr
         ing = await ingest_arxiv(arxiv_id)
         aid = normalize_arxiv_id(arxiv_id)
         return ing.refs, PaperInfo(title=ing.title, source=f"arxiv:{aid}"), [f"references read from: {ing.method}", *ing.notes]
-    return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights)
+    return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights,
+                      adjudicator=ADJUDICATOR if t == TUNED_THRESHOLDS else None)
 
 
 async def check_pdf(pdf: bytes, filename: str = "upload.pdf", *, sources: list[str] | None = None,
@@ -147,4 +161,5 @@ async def check_pdf(pdf: bytes, filename: str = "upload.pdf", *, sources: list[s
     async def load():
         refs = await grobid_references(pdf)
         return refs, PaperInfo(source=f"pdf:{filename}"), ["references read from: PDF (GROBID)"]
-    return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights)
+    return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights,
+                      adjudicator=ADJUDICATOR if t == TUNED_THRESHOLDS else None)

@@ -1,0 +1,7 @@
+{
+ "status": "OFF (decided on dev 2026-11-11: 5-fold CV chose 'off' in 5/5 folds)",
+ "tuned_on": "dev_1000.no_s2",
+ "band": 101,
+ "confidence": 0.95,
+ "reason": "the LLM accepts CiteAudit fakes whose author lists contain one or two invented names; deterministic author matching is stricter"
+}
