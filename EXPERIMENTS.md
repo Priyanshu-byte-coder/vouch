@@ -193,3 +193,13 @@ Every run that produces a number goes here: what we tried, what happened and why
   - Fixes: (1) map notice DOI → original; (2) matcher recognises notice records ("Retraction Note:", "RETRACTED:", "Correction to:", "Erratum:"...), scores them on the stripped title and ranks them 10 points below the original; (3) title fallback also runs when the DOI isn't in the database.
   - Re-run: **2/2 retracted caught** (Wakefield 2010-02-06 falsification of data; Obokata 2014-07-02 unreliable images), 2/2 clean. Regression: bib20 + 3 arXiv papers unchanged, 0 retracted among 99 refs.
 - Tests: 84 pass.
+
+### S10 — HTTP API + PDF path (step 2.7) · 🚩 Checkpoint 1
+- When / who: 2026-11-10 ~20:00 IST · Priyanshu
+- Server: `cd backend && .venv/Scripts/python -m uvicorn app.main:app --port 8000`. Endpoints: `POST /api/check` (arXiv ID or bibliography), `POST /api/check/pdf`, `GET /api/jobs/{id}`, `GET /api/jobs/{id}/events` (SSE), `GET /api/health`.
+- Built in: background jobs (max 3 concurrent), an SSE event log clients can replay (`Last-Event-ID`), finished-report cache (versioned), per-IP rate limit (12 / 10 min, only accepted jobs count), input limits (100k chars, 20 MB PDF), retraction index warmed at startup.
+- Live check:
+  - arXiv 2604.26835 (URL form) → events `status → parsed → 18 × ref_done → done → report`; 16 verified / 2 can't verify. A repeat request came from the report cache instantly.
+  - **PDF upload** (Attention Is All You Need, 40 references): first version **38/40** verified. GROBID's own field parsing **dropped the title** of "Layer normalization" and **shifted author names** in the GNMT reference ("Quoc, V", "Le, Mohammad"…). Fix: GROBID now only splits the bibliography and keeps the raw strings; fields come from the same LLM parser as bibliographies. Re-run: **40/40 verified**, 18.6 s, 5 LLM calls, **$0.0097**.
+- Tests: 88 pass (incl. 4 offline API tests with a fake pipeline: lifecycle, report cache, SSE replay, validation/rate limit, health).
+- **🚩 Checkpoint 1 met:** an arXiv ID, a bibliography or a PDF gives a real report through the API. The baseline is reproduced (E0a).

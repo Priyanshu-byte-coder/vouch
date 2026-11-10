@@ -154,7 +154,20 @@ async def from_latex(files: dict[str, str]) -> tuple[list[ParsedRef], str, list[
 
 
 async def grobid_references(pdf: bytes) -> list[ParsedRef]:
-    """Extract structured references from a PDF with GROBID (raw strings kept as evidence)."""
+    """Extract references from a PDF.
+
+    GROBID splits the bibliography and keeps each raw reference string; the fields are then parsed by
+    the same LLM parser as pasted bibliographies. GROBID's own field parsing drops titles and shifts
+    author names on some references (EXPERIMENTS.md S10), so it is only used when no raw text exists."""
+    structured = await _grobid_structured(pdf)
+    raws = [r.raw for r in structured]
+    if structured and all(len(r) > 20 for r in raws):
+        return await parse_references(raws)
+    return structured
+
+
+async def _grobid_structured(pdf: bytes) -> list[ParsedRef]:
+    """GROBID's structured references (raw strings kept as evidence)."""
     try:
         r = await http().post(f"{get_settings().grobid_url}/api/processReferences", timeout=180.0,
                               files={"input": ("paper.pdf", pdf, "application/pdf")},

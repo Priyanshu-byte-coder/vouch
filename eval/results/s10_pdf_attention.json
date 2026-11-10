@@ -1,0 +1,2341 @@
+{
+ "paper": {
+  "title": null,
+  "source": "pdf:attention.pdf",
+  "n_refs": 40
+ },
+ "summary": {
+  "verified": 40,
+  "detail_mismatch": 0,
+  "not_found": 0,
+  "cant_verify": 0,
+  "retracted": 0,
+  "claims_checked": 0,
+  "claims_unsupported": 0,
+  "tortured_hits": 0
+ },
+ "references": [
+  {
+   "idx": 0,
+   "raw": "Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint arXiv:1607.06450, 2016.",
+   "parsed": {
+    "idx": 0,
+    "raw": "Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint arXiv:1607.06450, 2016.",
+    "title": "Layer normalization",
+    "authors": [
+     "Ba, J.",
+     "Kiros, J. R.",
+     "Hinton, G. E."
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1607.06450",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W3037932933",
+    "title": "Layer Normalization",
+    "authors": [
+     "Ba, Jimmy Lei",
+     "Kiros, Jamie",
+     "Hinton, Geoffrey E."
+    ],
+    "year": 2016,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1607.06450",
+    "url": "https://openalex.org/W3037932933",
+    "abstract": "Training state-of-the-art, deep neural networks is computationally expensive. One way to reduce the training time is to normalize the activities of the neurons. A recently introduced technique called batch normalization uses the distribution of the summed input to a neuron over a mini-batch of training cases to compute a mean and variance which are then used to normalize the summed input to that neuron on each training case. This significantly reduces the training time in feed-forward neural networks. However, the effect of batch normalization is dependent on the mini-batch size and it is not obvious how to apply it to recurrent neural networks. In this paper, we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case. Like batch normalization, we also give each neuron its own adaptive bias and gain which are applied after the normalization but before the non-linearity. Unlike batch normalization, layer normalization performs exactly the same computation at training and test times. It is also straightforward to apply to recurrent neural networks by computing the normalization statistics separately at each time step. Layer normalization is very effective at stabilizing the hidden state dynamics in recurrent networks. Empirically, we show that layer normalization can substantially reduce the training time compared with previously published techniques.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 1,
+   "raw": "Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. CoRR, abs/1409.0473, 2014.",
+   "parsed": {
+    "idx": 1,
+    "raw": "Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate. CoRR, abs/1409.0473, 2014.",
+    "title": "Neural machine translation by jointly learning to align and translate",
+    "authors": [
+     "Bahdanau, D.",
+     "Cho, K.",
+     "Bengio, Y."
+    ],
+    "year": 2014,
+    "venue": "CoRR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2133564696",
+    "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+    "authors": [
+     "Bahdanau, Dzmitry",
+     "Cho, Kyunghyun",
+     "Bengio, Yoshua"
+    ],
+    "year": 2014,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1409.0473",
+    "url": "https://openalex.org/W2133564696",
+    "abstract": "Neural machine translation is a recently proposed approach to machine translation. Unlike the traditional statistical machine translation, the neural machine translation aims at building a single neural network that can be jointly tuned to maximize the translation performance. The models proposed recently for neural machine translation often belong to a family of encoder-decoders and consists of an encoder that encodes a source sentence into a fixed-length vector from which a decoder generates a translation. In this paper, we conjecture that the use of a fixed-length vector is a bottleneck in improving the performance of this basic encoder-decoder architecture, and propose to extend this by allowing a model to automatically (soft-)search for parts of a source sentence that are relevant to predicting a target word, without having to form these parts as a hard segment explicitly. With this new approach, we achieve a translation performance comparable to the existing state-of-the-art phrase-based system on the task of English-to-French translation. Furthermore, qualitative analysis reveals that the (soft-)alignments found by the model agree well with our intuition.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 2,
+   "raw": "Denny Britz, Anna Goldie, Minh-Thang Luong, and Quoc V. Le. Massive exploration of neural machine translation architectures. CoRR, abs/1703.03906, 2017.",
+   "parsed": {
+    "idx": 2,
+    "raw": "Denny Britz, Anna Goldie, Minh-Thang Luong, and Quoc V. Le. Massive exploration of neural machine translation architectures. CoRR, abs/1703.03906, 2017.",
+    "title": "Massive exploration of neural machine translation architectures",
+    "authors": [
+     "Britz, D.",
+     "Goldie, A.",
+     "Luong, M.-T.",
+     "Le, Q. V."
+    ],
+    "year": 2017,
+    "venue": "CoRR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/d17-1151",
+    "title": "Massive Exploration of Neural Machine Translation Architectures",
+    "authors": [
+     "Britz, Denny",
+     "Goldie, Anna",
+     "Luong, Minh-Thang",
+     "Le, Quoc"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the 2017 Conference on Empirical Methods in Natural\n          Language Processing",
+    "doi": "10.18653/v1/d17-1151",
+    "url": "https://doi.org/10.18653/v1/d17-1151",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 3,
+   "raw": "Jianpeng Cheng, Li Dong, and Mirella Lapata. Long short-term memory-networks for machine reading. arXiv preprint arXiv:1601.06733, 2016.",
+   "parsed": {
+    "idx": 3,
+    "raw": "Jianpeng Cheng, Li Dong, and Mirella Lapata. Long short-term memory-networks for machine reading. arXiv preprint arXiv:1601.06733, 2016.",
+    "title": "Long short-term memory-networks for machine reading",
+    "authors": [
+     "Cheng, J.",
+     "Dong, L.",
+     "Lapata, M."
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1601.06733",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/d16-1053",
+    "title": "Long Short-Term Memory-Networks for Machine Reading",
+    "authors": [
+     "Cheng, Jianpeng",
+     "Dong, Li",
+     "Lapata, Mirella"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the 2016 Conference on Empirical Methods in Natural\n          Language Processing",
+    "doi": "10.18653/v1/d16-1053",
+    "url": "https://doi.org/10.18653/v1/d16-1053",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 4,
+   "raw": "Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. CoRR, abs/1406.1078, 2014.",
+   "parsed": {
+    "idx": 4,
+    "raw": "Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. CoRR, abs/1406.1078, 2014.",
+    "title": "Learning phrase representations using rnn encoder-decoder for statistical machine translation",
+    "authors": [
+     "Cho, K.",
+     "van Merrienboer, B.",
+     "Gulcehre, C.",
+     "Bougares, F.",
+     "Schwenk, H.",
+     "Bengio, Y."
+    ],
+    "year": 2014,
+    "venue": "CoRR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3115/v1/d14-1179",
+    "title": "Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation",
+    "authors": [
+     "Cho, Kyunghyun",
+     "van Merrienboer, Bart",
+     "Gulcehre, Caglar",
+     "Bahdanau, Dzmitry",
+     "Bougares, Fethi",
+     "Schwenk, Holger",
+     "Bengio, Yoshua"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    "doi": "10.3115/v1/d14-1179",
+    "url": "https://doi.org/10.3115/v1/d14-1179",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 5,
+   "raw": "Francois Chollet. Xception: Deep learning with depthwise separable convolutions. arXiv preprint arXiv:1610.02357, 2016.",
+   "parsed": {
+    "idx": 5,
+    "raw": "Francois Chollet. Xception: Deep learning with depthwise separable convolutions. arXiv preprint arXiv:1610.02357, 2016.",
+    "title": "Xception: Deep learning with depthwise separable convolutions",
+    "authors": [
+     "Chollet, F."
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1610.02357",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.1109/cvpr.2017.195",
+    "title": "Xception: Deep Learning with Depthwise Separable Convolutions",
+    "authors": [
+     "Chollet, Francois"
+    ],
+    "year": 2017,
+    "venue": "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "doi": "10.1109/cvpr.2017.195",
+    "url": "https://doi.org/10.1109/cvpr.2017.195",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2016 vs record 2017 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 6,
+   "raw": "Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.",
+   "parsed": {
+    "idx": 6,
+    "raw": "Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.",
+    "title": "Empirical evaluation of gated recurrent neural networks on sequence modeling",
+    "authors": [
+     "Chung, J.",
+     "Gülçehre, Ç.",
+     "Cho, K.",
+     "Bengio, Y."
+    ],
+    "year": 2014,
+    "venue": "CoRR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W1924770834",
+    "title": "Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling",
+    "authors": [
+     "Chung, Junyoung",
+     "Gülçehre, Çağlar",
+     "Cho, Kyunghyun",
+     "Bengio, Yoshua"
+    ],
+    "year": 2014,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1412.3555",
+    "url": "https://openalex.org/W1924770834",
+    "abstract": "In this paper we compare different types of recurrent units in recurrent neural networks (RNNs). Especially, we focus on more sophisticated units that implement a gating mechanism, such as a long short-term memory (LSTM) unit and a recently proposed gated recurrent unit (GRU). We evaluate these recurrent units on the tasks of polyphonic music modeling and speech signal modeling. Our experiments revealed that these advanced recurrent units are indeed better than more traditional recurrent units such as tanh units. Also, we found GRU to be comparable to LSTM.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 7,
+   "raw": "Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural network grammars. In Proc. of NAACL, 2016.",
+   "parsed": {
+    "idx": 7,
+    "raw": "Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural network grammars. In Proc. of NAACL, 2016.",
+    "title": "Recurrent neural network grammars",
+    "authors": [
+     "Dyer, C.",
+     "Kuncoro, A.",
+     "Ballesteros, M.",
+     "Smith, N. A."
+    ],
+    "year": 2016,
+    "venue": "NAACL",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/n16-1024",
+    "title": "Recurrent Neural Network Grammars",
+    "authors": [
+     "Dyer, Chris",
+     "Kuncoro, Adhiguna",
+     "Ballesteros, Miguel",
+     "Smith, Noah A."
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "doi": "10.18653/v1/n16-1024",
+    "url": "https://doi.org/10.18653/v1/n16-1024",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 8,
+   "raw": "Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu- tional sequence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.",
+   "parsed": {
+    "idx": 8,
+    "raw": "Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu- tional sequence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.",
+    "title": "Convolutional sequence to sequence learning",
+    "authors": [
+     "Gehring, J.",
+     "Auli, M.",
+     "Grangier, D.",
+     "Yarats, D.",
+     "Dauphin, Y. N."
+    ],
+    "year": 2017,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1705.03122",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2613904329",
+    "title": "Convolutional Sequence to Sequence Learning",
+    "authors": [
+     "Gehring, Jonas",
+     "Auli, Michael",
+     "Grangier, David",
+     "Yarats, Denis",
+     "Dauphin, Yann"
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1705.03122",
+    "url": "https://openalex.org/W2613904329",
+    "abstract": "The prevalent approach to sequence to sequence learning maps an input sequence to a variable length output sequence via recurrent neural networks. We introduce an architecture based entirely on convolutional neural networks. Compared to recurrent models, computations over all elements can be fully parallelized during training and optimization is easier since the number of non-linearities is fixed and independent of the input length. Our use of gated linear units eases gradient propagation and we equip each decoder layer with a separate attention module. We outperform the accuracy of the deep LSTM setup of Wu et al. (2016) on both WMT'14 English-German and WMT'14 English-French translation at an order of magnitude faster speed, both on GPU and CPU.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 9,
+   "raw": "Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint arXiv:1308.0850, 2013.",
+   "parsed": {
+    "idx": 9,
+    "raw": "Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint arXiv:1308.0850, 2013.",
+    "title": "Generating sequences with recurrent neural networks",
+    "authors": [
+     "Graves, A."
+    ],
+    "year": 2013,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1308.0850",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W1810943226",
+    "title": "Generating Sequences With Recurrent Neural Networks",
+    "authors": [
+     "Graves, Alex"
+    ],
+    "year": 2013,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1308.0850",
+    "url": "https://openalex.org/W1810943226",
+    "abstract": "This paper shows how Long Short-term Memory recurrent neural networks can be used to generate complex sequences with long-range structure, simply by predicting one data point at a time. The approach is demonstrated for text (where the data are discrete) and online handwriting (where the data are real-valued). It is then extended to handwriting synthesis by allowing the network to condition its predictions on a text sequence. The resulting system is able to generate highly realistic cursive handwriting in a wide variety of styles.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 10,
+   "raw": "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for im- age recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 770-778, 2016.",
+   "parsed": {
+    "idx": 10,
+    "raw": "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for im- age recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 770-778, 2016.",
+    "title": "Deep residual learning for image recognition",
+    "authors": [
+     "He, K.",
+     "Zhang, X.",
+     "Ren, S.",
+     "Sun, J."
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1109/cvpr.2016.90",
+    "title": "Deep Residual Learning for Image Recognition",
+    "authors": [
+     "He, Kaiming",
+     "Zhang, Xiangyu",
+     "Ren, Shaoqing",
+     "Sun, Jian"
+    ],
+    "year": 2016,
+    "venue": "2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "doi": "10.1109/cvpr.2016.90",
+    "url": "https://doi.org/10.1109/cvpr.2016.90",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 11,
+   "raw": "Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in recurrent nets: the difficulty of learning long-term dependencies, 2001.",
+   "parsed": {
+    "idx": 11,
+    "raw": "Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in recurrent nets: the difficulty of learning long-term dependencies, 2001.",
+    "title": "Gradient flow in recurrent nets: the difficulty of learning long-term dependencies",
+    "authors": [
+     "Hochreiter, S.",
+     "Bengio, Y.",
+     "Frasconi, P.",
+     "Schmidhuber, J."
+    ],
+    "year": 2001,
+    "venue": null,
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "other",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W1525783482",
+    "title": "Gradient Flow in Recurrent Nets: the Difficulty of Learning Long-Term Dependencies",
+    "authors": [
+     "Hochreiter, Sepp",
+     "Bengio, Yoshua",
+     "Informatik, Fakultit F/jr",
+     "Bengio, Yoshua",
+     "Frasconi, Paolo",
+     "Schmidhuber, Jfirgen"
+    ],
+    "year": 2001,
+    "venue": null,
+    "doi": null,
+    "url": "https://openalex.org/W1525783482",
+    "abstract": "Introduction Recurrent networks (crossreference Chapter 12) can, in principle, use their feedback connections to store representations of recent input events in the form of activations. The most widely used algorithms for learning what to put in short-term memory, however, take too much time to be feasible or do not work well at all, especially when minimal time lags between inputs and corresponding teacher signals are long. Although theoretically fascinating, they do not provide clear practical advantages over, say, backprop in feedforward networks with limited time windows (see crossreference Chapters 11 and 12). With conventional \"algorithms based on the computation of the complete gradient\", such as \"Back-Propagation Through Time\" (BPTT, e.g., [22, 27, 26]) or \"Real-Time Recurrent Learning\" (RTRL, e.g., [21]) error signals \"flowing backwards in time\" tend to either (1) blow up or (2) vanish: the temporal evolution of the backpropagated error exponentially depends on the size of th",
+    "type": "article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 12,
+   "raw": "Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735-1780, 1997.",
+   "parsed": {
+    "idx": 12,
+    "raw": "Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735-1780, 1997.",
+    "title": "Long short-term memory",
+    "authors": [
+     "Hochreiter, S.",
+     "Schmidhuber, J."
+    ],
+    "year": 1997,
+    "venue": "Neural computation",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1162/neco.1997.9.8.1735",
+    "title": "Long Short-Term Memory",
+    "authors": [
+     "Hochreiter, Sepp",
+     "Schmidhuber, Jürgen"
+    ],
+    "year": 1997,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco.1997.9.8.1735",
+    "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+    "abstract": "Learning to store information over extended time intervals by recurrent backpropagation takes a very long time, mostly because of insufficient, decaying error backflow. We briefly review Hochreiter's (1991) analysis of this problem, then address it by introducing a novel, efficient, gradient based method called long short-term memory (LSTM). Truncating the gradient where this does not do harm, LSTM can learn to bridge minimal time lags in excess of 1000 discrete-time steps by enforcing constant error flow through constant error carousels within special units. Multiplicative gate units learn to open and close access to the constant error flow. LSTM is local in space and time; its computational complexity per time step and weight is O. 1. Our experiments with artificial data involve local, distributed, real-valued, and noisy pattern representations. In comparisons with real-time recurrent learning, back propagation through time, recurrent cascade correlation, Elman nets, and neural sequence chunking, LSTM leads to many more successful runs, and learns much faster. LSTM also solves complex, artificial long-time-lag tasks that have never been solved by previous recurrent network algorithms.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 13,
+   "raw": "Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations across languages. In Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing, pages 832-841. ACL, August 2009.",
+   "parsed": {
+    "idx": 13,
+    "raw": "Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations across languages. In Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing, pages 832-841. ACL, August 2009.",
+    "title": "Self-training PCFG grammars with latent annotations across languages",
+    "authors": [
+     "Huang, Z.",
+     "Harper, M."
+    ],
+    "year": 2009,
+    "venue": "Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3115/1699571.1699621",
+    "title": "Self-training PCFG grammars with latent annotations across languages",
+    "authors": [
+     "Huang, Zhongqiang",
+     "Harper, Mary"
+    ],
+    "year": 2009,
+    "venue": "Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing Volume 2 - EMNLP '09",
+    "doi": "10.3115/1699571.1699621",
+    "url": "https://doi.org/10.3115/1699571.1699621",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 14,
+   "raw": "Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring the limits of language modeling. arXiv preprint arXiv:1602.02410, 2016.",
+   "parsed": {
+    "idx": 14,
+    "raw": "Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring the limits of language modeling. arXiv preprint arXiv:1602.02410, 2016.",
+    "title": "Exploring the limits of language modeling",
+    "authors": [
+     "Jozefowicz, R.",
+     "Vinyals, O.",
+     "Schuster, M.",
+     "Shazeer, N.",
+     "Wu, Y."
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1602.02410",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2259472270",
+    "title": "Exploring the Limits of Language Modeling",
+    "authors": [
+     "Józefowicz, Rafał",
+     "Vinyals, Oriol",
+     "Schuster, Mike",
+     "Shazeer, Noam",
+     "Wu, Yonghui"
+    ],
+    "year": 2016,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1602.02410",
+    "url": "https://openalex.org/W2259472270",
+    "abstract": "In this work we explore recent advances in Recurrent Neural Networks for large scale Language Modeling, a task central to language understanding. We extend current models to deal with two key challenges present in this task: corpora and vocabulary sizes, and complex, long term structure of language. We perform an exhaustive study on techniques such as character Convolutional Neural Networks or Long-Short Term Memory, on the One Billion Word Benchmark. Our best single model significantly improves state-of-the-art perplexity from 51.3 down to 30.0 (whilst reducing the number of parameters by a factor of 20), while an ensemble of models sets a new record by improving perplexity from 41.0 down to 23.7. We also release these models for the NLP and ML community to study and improve upon.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 15,
+   "raw": "Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In Advances in Neural Information Processing Systems, (NIPS), 2016.",
+   "parsed": {
+    "idx": 15,
+    "raw": "Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In Advances in Neural Information Processing Systems, (NIPS), 2016.",
+    "title": "Can active memory replace attention?",
+    "authors": [
+     "Kaiser, Ł.",
+     "Bengio, S."
+    ],
+    "year": 2016,
+    "venue": "Advances in Neural Information Processing Systems",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "arxiv",
+    "id": "1610.08613",
+    "title": "Can Active Memory Replace Attention?",
+    "authors": [
+     "Kaiser, Łukasz",
+     "Bengio, Samy"
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": "10.48550/arxiv.1610.08613",
+    "url": "https://arxiv.org/abs/1610.08613",
+    "abstract": "Several mechanisms to focus attention of a neural network on selected parts of its input or memory have been used successfully in deep learning models in recent years. Attention has improved image classification, image captioning, speech recognition, generative models, and learning algorithmic tasks, but it had probably the largest impact on neural machine translation. Recently, similar improvements have been obtained using alternative mechanisms that do not focus on a single part of a memory but operate on all of it in parallel, in a uniform way. Such mechanism, which we call active memory, improved over attention in algorithmic tasks, image processing, and in generative modelling. So far, however, active memory has not improved over attention for most natural language processing tasks, in particular for machine translation. We analyze this shortcoming in this paper and propose an extended model of active memory that matches existing attention models on neural machine translation and generalizes better to longer sentences. We investigate this model and explain why previous active memory models did not succeed. Finally, we discuss when active memory brings most benefits and where attention can be a better choice.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv"
+   ]
+  },
+  {
+   "idx": 16,
+   "raw": "Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In International Conference on Learning Representations (ICLR), 2016.",
+   "parsed": {
+    "idx": 16,
+    "raw": "Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In International Conference on Learning Representations (ICLR), 2016.",
+    "title": "Neural GPUs learn algorithms",
+    "authors": [
+     "Kaiser, Ł.",
+     "Sutskever, I."
+    ],
+    "year": 2016,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "openalex",
+    "id": "W2173051530",
+    "title": "Neural GPUs Learn Algorithms",
+    "authors": [
+     "Kaiser, Łukasz",
+     "Sutskever, Ilya"
+    ],
+    "year": 2015,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1511.08228",
+    "url": "https://openalex.org/W2173051530",
+    "abstract": "Learning an algorithm from examples is a fundamental problem that has been widely studied. Recently it has been addressed using neural networks, in particular by Neural Turing Machines (NTMs). These are fully differentiable computers that use backpropagation to learn their own programming. Despite their appeal NTMs have a weakness that is caused by their sequential nature: they are not parallel and are are hard to train due to their large depth when unfolded. We present a neural network architecture to address this problem: the Neural GPU. It is based on a type of convolutional gated recurrent unit and, like the NTM, is computationally universal. Unlike the NTM, the Neural GPU is highly parallel which makes it easier to train and efficient to run. An essential property of algorithms is their ability to handle inputs of arbitrary size. We show that the Neural GPU can be trained on short instances of an algorithmic task and successfully generalize to long instances. We verified it on a number of tasks including long addition and long multiplication of numbers represented in binary. We train the Neural GPU on numbers with upto 20 bits and observe no errors whatsoever while testing it, even on much longer numbers. To achieve these results we introduce a technique for training deep recurrent networks: parameter sharing relaxation. We also found a small amount of dropout and gradient noise to have a large positive effect on learning and generalization.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2016 vs record 2015 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 17,
+   "raw": "Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Ko- ray Kavukcuoglu. Neural machine translation in linear time. arXiv preprint arXiv:1610.10099v2, 2017.",
+   "parsed": {
+    "idx": 17,
+    "raw": "Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Ko- ray Kavukcuoglu. Neural machine translation in linear time. arXiv preprint arXiv:1610.10099v2, 2017.",
+    "title": "Neural machine translation in linear time",
+    "authors": [
+     "Kalchbrenner, N.",
+     "Espeholt, L.",
+     "Simonyan, K.",
+     "van den Oord, A.",
+     "Graves, A.",
+     "Kavukcuoglu, K."
+    ],
+    "year": 2017,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1610.10099",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "openalex",
+    "id": "W2540404261",
+    "title": "Neural Machine Translation in Linear Time",
+    "authors": [
+     "Kalchbrenner, Nal",
+     "Espeholt, Lasse",
+     "Simonyan, Karen",
+     "van den Oord, Aäron",
+     "Graves, Alexander",
+     "Kavukcuoglu, Koray"
+    ],
+    "year": 2016,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1610.10099",
+    "url": "https://openalex.org/W2540404261",
+    "abstract": "We present a novel neural network for processing sequences. The ByteNet is a one-dimensional convolutional neural network that is composed of two parts, one to encode the source sequence and the other to decode the target sequence. The two network parts are connected by stacking the decoder on top of the encoder and preserving the temporal resolution of the sequences. To address the differing lengths of the source and the target, we introduce an efficient mechanism by which the decoder is dynamically unfolded over the representation of the encoder. The ByteNet uses dilation in the convolutional layers to increase its receptive field. The resulting network has two core properties: it runs in time that is linear in the length of the sequences and it sidesteps the need for excessive memorization. The ByteNet decoder attains state-of-the-art performance on character-level language modelling and outperforms the previous best results obtained with recurrent networks. The ByteNet also achieves state-of-the-art performance on character-to-character machine translation on the English-to-German WMT translation task, surpassing comparable neural translation models that are based on recurrent networks with attentional pooling and run in quadratic time. We find that the latent alignment structure contained in the representations reflects the expected alignment between the tokens.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2017 vs record 2016 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 18,
+   "raw": "Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks. In International Conference on Learning Representations, 2017.",
+   "parsed": {
+    "idx": 18,
+    "raw": "Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks. In International Conference on Learning Representations, 2017.",
+    "title": "Structured attention networks",
+    "authors": [
+     "Kim, Y.",
+     "Denton, C.",
+     "Hoang, L.",
+     "Rush, A. M."
+    ],
+    "year": 2017,
+    "venue": "International Conference on Learning Representations",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2586050494",
+    "title": "Structured Attention Networks",
+    "authors": [
+     "Kim, Yoon",
+     "Denton, Carl",
+     "Hoang, Luong",
+     "Rush, Alexander M."
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1702.00887",
+    "url": "https://openalex.org/W2586050494",
+    "abstract": "Attention networks have proven to be an effective approach for embedding categorical inference within a deep neural network. However, for many tasks we may want to model richer structural dependencies without abandoning end-to-end training. In this work, we experiment with incorporating richer structural distributions, encoded using graphical models, within deep networks. We show that these structured attention networks are simple extensions of the basic attention procedure, and that they allow for extending attention beyond the standard soft-selection approach, such as attending to partial segmentations or to subtrees. We experiment with two different classes of structured attention networks: a linear-chain conditional random field and a graph-based parsing model, and describe how these models can be practically implemented as neural network layers. Experiments show that this approach is effective for incorporating structural biases, and structured attention networks outperform baseline attention models on a variety of synthetic and real tasks: tree transduction, neural machine translation, question answering, and natural language inference. We further find that models trained in this way learn interesting unsupervised hidden representations that generalize simple attention.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 19,
+   "raw": "Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.",
+   "parsed": {
+    "idx": 19,
+    "raw": "Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.",
+    "title": "Adam: A method for stochastic optimization",
+    "authors": [
+     "Kingma, D.",
+     "Ba, J."
+    ],
+    "year": 2015,
+    "venue": "ICLR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "openalex",
+    "id": "W1522301498",
+    "title": "Adam: A Method for Stochastic Optimization",
+    "authors": [
+     "Kingma, Diederik P.",
+     "Ba, Jimmy Lei"
+    ],
+    "year": 2014,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1412.6980",
+    "url": "https://openalex.org/W1522301498",
+    "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2015 vs record 2014 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 20,
+   "raw": "Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks. arXiv preprint arXiv:1703.10722, 2017.",
+   "parsed": {
+    "idx": 20,
+    "raw": "Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks. arXiv preprint arXiv:1703.10722, 2017.",
+    "title": "Factorization tricks for LSTM networks",
+    "authors": [
+     "Kuchaiev, O.",
+     "Ginsburg, B."
+    ],
+    "year": 2017,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1703.10722",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2605203995",
+    "title": "Factorization tricks for LSTM networks",
+    "authors": [
+     "Kuchaiev, Oleksii",
+     "Ginsburg, Boris"
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1703.10722",
+    "url": "https://openalex.org/W2605203995",
+    "abstract": "We present two simple ways of reducing the number of parameters and accelerating the training of large Long Short-Term Memory (LSTM) networks: the first one is \"matrix factorization by design\" of LSTM matrix into the product of two smaller matrices, and the second one is partitioning of LSTM matrix, its inputs and states into the independent groups. Both approaches allow us to train large LSTM networks significantly faster to the near state-of the art perplexity while using significantly less RNN parameters.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 21,
+   "raw": "Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen Zhou, and Yoshua Bengio. A structured self-attentive sentence embedding. arXiv preprint arXiv:1703.03130, 2017.",
+   "parsed": {
+    "idx": 21,
+    "raw": "Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen Zhou, and Yoshua Bengio. A structured self-attentive sentence embedding. arXiv preprint arXiv:1703.03130, 2017.",
+    "title": "A structured self-attentive sentence embedding",
+    "authors": [
+     "Lin, Z.",
+     "Feng, M.",
+     "Nogueira dos Santos, C.",
+     "Yu, M.",
+     "Xiang, B.",
+     "Zhou, B.",
+     "Bengio, Y."
+    ],
+    "year": 2017,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1703.03130",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2597655663",
+    "title": "A Structured Self-attentive Sentence Embedding",
+    "authors": [
+     "Lin, Zhouhan",
+     "Feng, Minwei",
+     "Santos, Cícero Nogueira dos",
+     "Yu, Mo",
+     "Xiang, Bing",
+     "Zhou, Bowen",
+     "Bengio, Yoshua"
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1703.03130",
+    "url": "https://openalex.org/W2597655663",
+    "abstract": "This paper proposes a new model for extracting an interpretable sentence embedding by introducing self-attention. Instead of using a vector, we use a 2-D matrix to represent the embedding, with each row of the matrix attending on a different part of the sentence. We also propose a self-attention mechanism and a special regularization term for the model. As a side effect, the embedding comes with an easy way of visualizing what specific parts of the sentence are encoded into the embedding. We evaluate our model on 3 different tasks: author profiling, sentiment classification, and textual entailment. Results show that our model yields a significant performance gain compared to other sentence embedding methods in all of the 3 tasks.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 22,
+   "raw": "Minh-Thang Luong, Quoc V. Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task sequence to sequence learning. arXiv preprint arXiv:1511.06114, 2015.",
+   "parsed": {
+    "idx": 22,
+    "raw": "Minh-Thang Luong, Quoc V. Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task sequence to sequence learning. arXiv preprint arXiv:1511.06114, 2015.",
+    "title": "Multi-task sequence to sequence learning",
+    "authors": [
+     "Luong, M.-T.",
+     "Le, Q. V.",
+     "Sutskever, I.",
+     "Vinyals, O.",
+     "Kaiser, L."
+    ],
+    "year": 2015,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1511.06114",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.93,
+   "match": {
+    "source": "openalex",
+    "id": "W2172589779",
+    "title": "Multi-task Sequence to Sequence Learning",
+    "authors": [
+     "Luong, Minh-Thang",
+     "Le, Quoc Viet",
+     "Sutskever, Ilya",
+     "Vinyals, Oriol",
+     "Kaiser, Łukasz"
+    ],
+    "year": 2015,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1511.06114",
+    "url": "https://openalex.org/W2172589779",
+    "abstract": "Sequence to sequence learning has recently emerged as a new paradigm in supervised learning. To date, most of its applications focused on only one task and not much work explored this framework for multiple tasks. This paper examines three multi-task learning (MTL) settings for sequence to sequence models: (a) the oneto-many setting - where the encoder is shared between several tasks such as machine translation and syntactic parsing, (b) the many-to-one setting - useful when only the decoder can be shared, as in the case of translation and image caption generation, and (c) the many-to-many setting - where multiple encoders and decoders are shared, which is the case with unsupervised objectives and translation. Our results show that training on a small amount of parsing and image caption data can improve the translation quality between English and German by up to 1.5 BLEU points over strong single-task baselines on the WMT benchmarks. Furthermore, we have established a new state-of-the-art result in constituent parsing with 93.0 F1. Lastly, we reveal interesting properties of the two unsupervised learning objectives, autoencoder and skip-thought, in the MTL context: autoencoder helps less in terms of perplexities but more on BLEU scores compared to skip-thought.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 80.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 93.3
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 23,
+   "raw": "Minh-Thang Luong, Hieu Pham, and Christopher D Manning. Effective approaches to attention- based neural machine translation. arXiv preprint arXiv:1508.04025, 2015.",
+   "parsed": {
+    "idx": 23,
+    "raw": "Minh-Thang Luong, Hieu Pham, and Christopher D Manning. Effective approaches to attention- based neural machine translation. arXiv preprint arXiv:1508.04025, 2015.",
+    "title": "Effective approaches to attention-based neural machine translation",
+    "authors": [
+     "Luong, M.-T.",
+     "Pham, H.",
+     "Manning, C. D."
+    ],
+    "year": 2015,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1508.04025",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/d15-1166",
+    "title": "Effective Approaches to Attention-based Neural Machine Translation",
+    "authors": [
+     "Luong, Thang",
+     "Pham, Hieu",
+     "Manning, Christopher D."
+    ],
+    "year": 2015,
+    "venue": "Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing",
+    "doi": "10.18653/v1/d15-1166",
+    "url": "https://doi.org/10.18653/v1/d15-1166",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 24,
+   "raw": "Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated corpus of english: The penn treebank. Computational linguistics, 19(2):313-330, 1993.",
+   "parsed": {
+    "idx": 24,
+    "raw": "Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated corpus of english: The penn treebank. Computational linguistics, 19(2):313-330, 1993.",
+    "title": "Building a large annotated corpus of english: The penn treebank",
+    "authors": [
+     "Marcus, M. P.",
+     "Marcinkiewicz, M. A.",
+     "Santorini, B."
+    ],
+    "year": 1993,
+    "venue": "Computational linguistics",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "s2",
+    "id": "0b44fcbeea9415d400c5f5789d6b892b6f98daff",
+    "title": "Building a Large Annotated Corpus of English: The Penn Treebank",
+    "authors": [
+     "Marcus, Mitchell P.",
+     "Santorini, Beatrice",
+     "Marcinkiewicz, M."
+    ],
+    "year": 1993,
+    "venue": "International Conference on Computational Logic",
+    "doi": null,
+    "url": "https://www.semanticscholar.org/paper/0b44fcbeea9415d400c5f5789d6b892b6f98daff",
+    "abstract": null,
+    "type": "JournalArticle"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 68.42105263157895,
+    "composite": 96.8
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex",
+    "arxiv",
+    "datacite",
+    "openlibrary",
+    "s2"
+   ]
+  },
+  {
+   "idx": 25,
+   "raw": "David McClosky, Eugene Charniak, and Mark Johnson. Effective self-training for parsing. In Proceedings of the Human Language Technology Conference of the NAACL, Main Conference, pages 152-159. ACL, June 2006.",
+   "parsed": {
+    "idx": 25,
+    "raw": "David McClosky, Eugene Charniak, and Mark Johnson. Effective self-training for parsing. In Proceedings of the Human Language Technology Conference of the NAACL, Main Conference, pages 152-159. ACL, June 2006.",
+    "title": "Effective self-training for parsing",
+    "authors": [
+     "McClosky, D.",
+     "Charniak, E.",
+     "Johnson, M."
+    ],
+    "year": 2006,
+    "venue": "Proceedings of the Human Language Technology Conference of the NAACL, Main Conference",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3115/1220835.1220855",
+    "title": "Effective self-training for parsing",
+    "authors": [
+     "McClosky, David",
+     "Charniak, Eugene",
+     "Johnson, Mark"
+    ],
+    "year": 2006,
+    "venue": "Proceedings of the main conference on Human Language Technology Conference of the North American Chapter of the Association of Computational Linguistics  -",
+    "doi": "10.3115/1220835.1220855",
+    "url": "https://doi.org/10.3115/1220835.1220855",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 26,
+   "raw": "Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention model. In Empirical Methods in Natural Language Processing, 2016.",
+   "parsed": {
+    "idx": 26,
+    "raw": "Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention model. In Empirical Methods in Natural Language Processing, 2016.",
+    "title": "A decomposable attention model",
+    "authors": [
+     "Parikh, A.",
+     "Täckström, O.",
+     "Das, D.",
+     "Uszkoreit, J."
+    ],
+    "year": 2016,
+    "venue": "Empirical Methods in Natural Language Processing",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/d16-1244",
+    "title": "A Decomposable Attention Model for Natural Language Inference",
+    "authors": [
+     "Parikh, Ankur",
+     "Täckström, Oscar",
+     "Das, Dipanjan",
+     "Uszkoreit, Jakob"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the 2016 Conference on Empirical Methods in Natural\n          Language Processing",
+    "doi": "10.18653/v1/d16-1244",
+    "url": "https://doi.org/10.18653/v1/d16-1244",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 95.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 97.2
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 27,
+   "raw": "Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive summarization. arXiv preprint arXiv:1705.04304, 2017.",
+   "parsed": {
+    "idx": 27,
+    "raw": "Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive summarization. arXiv preprint arXiv:1705.04304, 2017.",
+    "title": "A deep reinforced model for abstractive summarization",
+    "authors": [
+     "Paulus, R.",
+     "Xiong, C.",
+     "Socher, R."
+    ],
+    "year": 2017,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1705.04304",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2612675303",
+    "title": "A Deep Reinforced Model for Abstractive Summarization",
+    "authors": [
+     "Paulus, Romain",
+     "Xiong, Caiming",
+     "Socher, Richard"
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1705.04304",
+    "url": "https://openalex.org/W2612675303",
+    "abstract": "Attentional, RNN-based encoder-decoder models for abstractive summarization have achieved good performance on short input and output sequences. For longer documents and summaries however these models often include repetitive and incoherent phrases. We introduce a neural network model with a novel intra-attention that attends over the input and continuously generated output separately, and a new training method that combines standard supervised word prediction and reinforcement learning (RL). Models trained only with supervised learning often exhibit \"exposure bias\" - they assume ground truth is provided at each step during training. However, when standard word prediction is combined with the global sequence prediction training of RL the resulting summaries become more readable. We evaluate this model on the CNN/Daily Mail and New York Times datasets. Our model obtains a 41.16 ROUGE-1 score on the CNN/Daily Mail dataset, an improvement over previous state-of-the-art models. Human evaluation also shows that our model produces higher quality summaries.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 28,
+   "raw": "Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact, and interpretable tree annotation. In Proceedings of the 21st International Conference on Computational Linguistics and 44th Annual Meeting of the ACL, pages 433-440. ACL, July 2006.",
+   "parsed": {
+    "idx": 28,
+    "raw": "Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact, and interpretable tree annotation. In Proceedings of the 21st International Conference on Computational Linguistics and 44th Annual Meeting of the ACL, pages 433-440. ACL, July 2006.",
+    "title": "Learning accurate, compact, and interpretable tree annotation",
+    "authors": [
+     "Petrov, S.",
+     "Barrett, L.",
+     "Thibaux, R.",
+     "Klein, D."
+    ],
+    "year": 2006,
+    "venue": "Proceedings of the 21st International Conference on Computational Linguistics and 44th Annual Meeting of the ACL",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.3115/1220175.1220230",
+    "title": "Learning accurate, compact, and interpretable tree annotation",
+    "authors": [
+     "Petrov, Slav",
+     "Barrett, Leon",
+     "Thibaux, Romain",
+     "Klein, Dan"
+    ],
+    "year": 2006,
+    "venue": "Proceedings of the 21st International Conference on Computational Linguistics and the 44th annual meeting of the ACL  - ACL '06",
+    "doi": "10.3115/1220175.1220230",
+    "url": "https://doi.org/10.3115/1220175.1220230",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 29,
+   "raw": "Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv preprint arXiv:1608.05859, 2016.",
+   "parsed": {
+    "idx": 29,
+    "raw": "Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv preprint arXiv:1608.05859, 2016.",
+    "title": "Using the output embedding to improve language models",
+    "authors": [
+     "Press, O.",
+     "Wolf, L."
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1608.05859",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/e17-2025",
+    "title": "Using the Output Embedding to Improve Language Models",
+    "authors": [
+     "Press, Ofir",
+     "Wolf, Lior"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the 15th Conference of the European Chapter of the\n          Association for Computational Linguistics: Volume 2, Short Papers",
+    "doi": "10.18653/v1/e17-2025",
+    "url": "https://doi.org/10.18653/v1/e17-2025",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2016 vs record 2017 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 30,
+   "raw": "Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. arXiv preprint arXiv:1508.07909, 2015.",
+   "parsed": {
+    "idx": 30,
+    "raw": "Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. arXiv preprint arXiv:1508.07909, 2015.",
+    "title": "Neural machine translation of rare words with subword units",
+    "authors": [
+     "Sennrich, R.",
+     "Haddow, B.",
+     "Birch, A."
+    ],
+    "year": 2015,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1508.07909",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.18653/v1/p16-1162",
+    "title": "Neural Machine Translation of Rare Words with Subword Units",
+    "authors": [
+     "Sennrich, Rico",
+     "Haddow, Barry",
+     "Birch, Alexandra"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    "doi": "10.18653/v1/p16-1162",
+    "url": "https://doi.org/10.18653/v1/p16-1162",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2015 vs record 2016 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 31,
+   "raw": "Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean. Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv preprint arXiv:1701.06538, 2017.",
+   "parsed": {
+    "idx": 31,
+    "raw": "Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean. Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv preprint arXiv:1701.06538, 2017.",
+    "title": "Outrageously large neural networks: The sparsely-gated mixture-of-experts layer",
+    "authors": [
+     "Shazeer, N.",
+     "Mirhoseini, A.",
+     "Maziarz, K.",
+     "Davis, A.",
+     "Le, Q.",
+     "Hinton, G.",
+     "Dean, J."
+    ],
+    "year": 2017,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1701.06538",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2581624817",
+    "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+    "authors": [
+     "Shazeer, Noam",
+     "Mirhoseini, Azalia",
+     "Maziarz, Krzysztof",
+     "Davis, Andy",
+     "Le, Quoc Viet",
+     "Hinton, Geoffrey E.",
+     "Dean, Jeff"
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1701.06538",
+    "url": "https://openalex.org/W2581624817",
+    "abstract": "The capacity of a neural network to absorb information is limited by its number of parameters. Conditional computation, where parts of the network are active on a per-example basis, has been proposed in theory as a way of dramatically increasing model capacity without a proportional increase in computation. In practice, however, there are significant algorithmic and performance challenges. In this work, we address these challenges and finally realize the promise of conditional computation, achieving greater than 1000x improvements in model capacity with only minor losses in computational efficiency on modern GPU clusters. We introduce a Sparsely-Gated Mixture-of-Experts layer (MoE), consisting of up to thousands of feed-forward sub-networks. A trainable gating network determines a sparse combination of these experts to use for each example. We apply the MoE to the tasks of language modeling and machine translation, where model capacity is critical for absorbing the vast quantities of knowledge available in the training corpora. We present model architectures in which a MoE with up to 137 billion parameters is applied convolutionally between stacked LSTM layers. On large language modeling and machine translation benchmarks, these models achieve significantly better results than state-of-the-art at lower computational cost.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 32,
+   "raw": "Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdi- nov. Dropout: a simple way to prevent neural networks from overfitting. Journal of Machine Learning Research, 15(1):1929-1958, 2014.",
+   "parsed": {
+    "idx": 32,
+    "raw": "Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdi- nov. Dropout: a simple way to prevent neural networks from overfitting. Journal of Machine Learning Research, 15(1):1929-1958, 2014.",
+    "title": "Dropout: a simple way to prevent neural networks from overfitting",
+    "authors": [
+     "Srivastava, N.",
+     "Hinton, G. E.",
+     "Krizhevsky, A.",
+     "Sutskever, I.",
+     "Salakhutdinov, R."
+    ],
+    "year": 2014,
+    "venue": "Journal of Machine Learning Research",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2095705004",
+    "title": "Dropout: a simple way to prevent neural networks from overfitting",
+    "authors": [
+     "Srivastava, Nitish",
+     "Hinton, Geoffrey E.",
+     "Krizhevsky, Alex",
+     "Sutskever, Ilya",
+     "Salakhutdinov, Ruslan"
+    ],
+    "year": 2014,
+    "venue": null,
+    "doi": null,
+    "url": "https://openalex.org/W2095705004",
+    "abstract": "Deep neural nets with a large number of parameters are very powerful machine learning systems. However, overfitting is a serious problem in such networks. Large networks are also slow to use, making it difficult to deal with overfitting by combining the predictions of many different large neural nets at test time. Dropout is a technique for addressing this problem. The key idea is to randomly drop units (along with their connections) from the neural network during training. This prevents units from co-adapting too much. During training, dropout samples from an exponential number of different “thinned ” networks. At test time, it is easy to approximate the effect of averaging the predictions of all these thinned networks by simply using a single unthinned network that has smaller weights. This significantly reduces overfitting and gives major improvements over other regularization methods. We show that dropout improves the performance of neural networks on supervised learning tasks in vision, speech recognition, document classification and computational biology, obtaining state-of-the-art results on many benchmark data sets.",
+    "type": "article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 33,
+   "raw": "Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory networks. In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors, Advances in Neural Information Processing Systems 28, pages 2440-2448. Curran Associates, Inc., 2015.",
+   "parsed": {
+    "idx": 33,
+    "raw": "Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory networks. In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors, Advances in Neural Information Processing Systems 28, pages 2440-2448. Curran Associates, Inc., 2015.",
+    "title": "End-to-end memory networks",
+    "authors": [
+     "Sukhbaatar, S.",
+     "Szlam, A.",
+     "Weston, J.",
+     "Fergus, R."
+    ],
+    "year": 2015,
+    "venue": "Advances in Neural Information Processing Systems 28",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W1793121960",
+    "title": "End-To-End Memory Networks",
+    "authors": [
+     "Sukhbaatar, Sainbayar",
+     "Szlam, Arthur D.",
+     "Weston, Jason",
+     "Fergus, Rob"
+    ],
+    "year": 2015,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1503.08895",
+    "url": "https://openalex.org/W1793121960",
+    "abstract": "We introduce a neural network with a recurrent attention model over a possibly large external memory. The architecture is a form of Memory Network (Weston et al., 2015) but unlike the model in that work, it is trained end-to-end, and hence requires significantly less supervision during training, making it more generally applicable in realistic settings. It can also be seen as an extension of RNNsearch to the case where multiple computational steps (hops) are performed per output symbol. The flexibility of the model allows us to apply it to tasks as diverse as (synthetic) question answering and to language modeling. For the former our approach is competitive with Memory Networks, but with less supervision. For the latter, on the Penn TreeBank and Text8 datasets our approach demonstrates comparable performance to RNNs and LSTMs. In both cases we show that the key concept of multiple computational hops yields improved results.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 34,
+   "raw": "Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural networks. In Advances in Neural Information Processing Systems, pages 3104-3112, 2014.",
+   "parsed": {
+    "idx": 34,
+    "raw": "Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural networks. In Advances in Neural Information Processing Systems, pages 3104-3112, 2014.",
+    "title": "Sequence to sequence learning with neural networks",
+    "authors": [
+     "Sutskever, I.",
+     "Vinyals, O.",
+     "Le, Q. V."
+    ],
+    "year": 2014,
+    "venue": "Advances in Neural Information Processing Systems",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2130942839",
+    "title": "Sequence to Sequence Learning with Neural Networks",
+    "authors": [
+     "Sutskever, Ilya",
+     "Vinyals, Oriol",
+     "Le, Quoc Viet"
+    ],
+    "year": 2014,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1409.3215",
+    "url": "https://openalex.org/W2130942839",
+    "abstract": "Deep Neural Networks (DNNs) are powerful models that have achieved excellent performance on difficult learning tasks. Although DNNs work well whenever large labeled training sets are available, they cannot be used to map sequences to sequences. In this paper, we present a general end-to-end approach to sequence learning that makes minimal assumptions on the sequence structure. Our method uses a multilayered Long Short-Term Memory (LSTM) to map the input sequence to a vector of a fixed dimensionality, and then another deep LSTM to decode the target sequence from the vector. Our main result is that on an English to French translation task from the WMT'14 dataset, the translations produced by the LSTM achieve a BLEU score of 34.8 on the entire test set, where the LSTM's BLEU score was penalized on out-of-vocabulary words. Additionally, the LSTM did not have difficulty on long sentences. For comparison, a phrase-based SMT system achieves a BLEU score of 33.3 on the same dataset. When we used the LSTM to rerank the 1000 hypotheses produced by the aforementioned SMT system, its BLEU score increases to 36.5, which is close to the previous best result on this task. The LSTM also learned sensible phrase and sentence representations that are sensitive to word order and are relatively invariant to the active and the passive voice. Finally, we found that reversing the order of the words in all source sentences (but not target sentences) improved the LSTM's performance markedly, because doing so introduced many short term dependencies between the source and the target sentence which made the optimization problem easier.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 35,
+   "raw": "Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna. Rethinking the inception architecture for computer vision. CoRR, abs/1512.00567, 2015.",
+   "parsed": {
+    "idx": 35,
+    "raw": "Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna. Rethinking the inception architecture for computer vision. CoRR, abs/1512.00567, 2015.",
+    "title": "Rethinking the inception architecture for computer vision",
+    "authors": [
+     "Szegedy, C.",
+     "Vanhoucke, V.",
+     "Ioffe, S.",
+     "Shlens, J.",
+     "Wojna, Z."
+    ],
+    "year": 2015,
+    "venue": "CoRR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "crossref",
+    "id": "10.1109/cvpr.2016.308",
+    "title": "Rethinking the Inception Architecture for Computer Vision",
+    "authors": [
+     "Szegedy, Christian",
+     "Vanhoucke, Vincent",
+     "Ioffe, Sergey",
+     "Shlens, Jon",
+     "Wojna, Zbigniew"
+    ],
+    "year": 2016,
+    "venue": "2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "doi": "10.1109/cvpr.2016.308",
+    "url": "https://doi.org/10.1109/cvpr.2016.308",
+    "abstract": null,
+    "type": "proceedings-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2015 vs record 2016 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 36,
+   "raw": "Vinyals & Kaiser, Koo, Petrov, Sutskever, and Hinton. Grammar as a foreign language. In Advances in Neural Information Processing Systems, 2015.",
+   "parsed": {
+    "idx": 36,
+    "raw": "Vinyals & Kaiser, Koo, Petrov, Sutskever, and Hinton. Grammar as a foreign language. In Advances in Neural Information Processing Systems, 2015.",
+    "title": "Grammar as a foreign language",
+    "authors": [
+     "Vinyals",
+     "Kaiser",
+     "Koo",
+     "Petrov",
+     "Sutskever",
+     "Hinton"
+    ],
+    "year": 2015,
+    "venue": "Advances in Neural Information Processing Systems",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.97,
+   "match": {
+    "source": "openalex",
+    "id": "W1869752048",
+    "title": "Grammar as a Foreign Language",
+    "authors": [
+     "Vinyals, Oriol",
+     "Kaiser, Łukasz",
+     "Koo, Terry",
+     "Petrov, Slav",
+     "Sutskever, Ilya",
+     "Hinton, Geoffrey E."
+    ],
+    "year": 2014,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1412.7449",
+    "url": "https://openalex.org/W1869752048",
+    "abstract": "Syntactic constituency parsing is a fundamental problem in natural language processing and has been the subject of intensive research and engineering for decades. As a result, the most accurate parsers are domain specific, complex, and inefficient. In this paper we show that the domain agnostic attention-enhanced sequence-to-sequence model achieves state-of-the-art results on the most widely used syntactic constituency parsing dataset, when trained on a large synthetic corpus that was annotated using existing parsers. It also matches the performance of standard parsers when trained only on a small human-annotated dataset, which shows that this model is highly data-efficient, in contrast to sequence-to-sequence models without the attention mechanism. Our parser is also fast, processing over a hundred sentences per second with an unoptimized CPU implementation.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 0.5,
+    "venue": null,
+    "composite": 97.2
+   },
+   "issues": [
+    "year off by one: 2015 vs record 2014 (often preprint vs published)"
+   ],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 37,
+   "raw": "Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google's neural machine translation system: Bridging the gap between human and machine translation. arXiv preprint arXiv:1609.08144, 2016.",
+   "parsed": {
+    "idx": 37,
+    "raw": "Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google's neural machine translation system: Bridging the gap between human and machine translation. arXiv preprint arXiv:1609.08144, 2016.",
+    "title": "Google's neural machine translation system: Bridging the gap between human and machine translation",
+    "authors": [
+     "Wu, Y.",
+     "Schuster, M.",
+     "Chen, Z.",
+     "Le, Q. V.",
+     "Norouzi, M.",
+     "Macherey, W.",
+     "Krikun, M.",
+     "Cao, Y.",
+     "Gao, Q.",
+     "Macherey, K."
+    ],
+    "year": 2016,
+    "venue": "arXiv",
+    "doi": null,
+    "arxiv_id": "1609.08144",
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2525778437",
+    "title": "Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation",
+    "authors": [
+     "Wu, Yonghui",
+     "Schuster, Mike",
+     "Chen, Zhifeng",
+     "Le, Quoc Viet",
+     "Norouzi, Mohammad",
+     "Macherey, Wolfgang",
+     "Krikun, Maxim",
+     "Cao, Yuan Jie",
+     "Gao, Qin",
+     "Macherey, Klaus",
+     "Klingner, Jeff",
+     "Shah, Apurva",
+     "Johnson, Melvin",
+     "Liu, Xiaobing",
+     "Kaiser, Łukasz",
+     "Gouws, Stephan",
+     "Kato, Yoshikiyo",
+     "Kudo, Taku",
+     "Kazawa, Hideto",
+     "Stevens, Keith",
+     "Kurian, George Thomas",
+     "Patil, Nishant P.",
+     "Wang, Wei",
+     "Young, Cliff",
+     "Smith, Jason",
+     "Riesa, Jason",
+     "Rudnick, Alex",
+     "Vinyals, Oriol",
+     "Corrado, Greg S.",
+     "Hughes, Macduff",
+     "Dean, Jeffrey"
+    ],
+    "year": 2016,
+    "venue": "arXiv (Cornell University)",
+    "doi": "10.48550/arxiv.1609.08144",
+    "url": "https://openalex.org/W2525778437",
+    "abstract": "Neural Machine Translation (NMT) is an end-to-end learning approach for automated translation, with the potential to overcome many of the weaknesses of conventional phrase-based translation systems. Unfortunately, NMT systems are known to be computationally expensive both in training and in translation inference. Also, most NMT systems have difficulty with rare words. These issues have hindered NMT's use in practical deployments and services, where both accuracy and speed are essential. In this work, we present GNMT, Google's Neural Machine Translation system, which attempts to address many of these issues. Our model consists of a deep LSTM network with 8 encoder and 8 decoder layers using attention and residual connections. To improve parallelism and therefore decrease training time, our attention mechanism connects the bottom layer of the decoder to the top layer of the encoder. To accelerate the final translation speed, we employ low-precision arithmetic during inference computations. To improve handling of rare words, we divide words into a limited set of common sub-word units (\"wordpieces\") for both input and output. This method provides a good balance between the flexibility of \"character\"-delimited models and the efficiency of \"word\"-delimited models, naturally handles translation of rare words, and ultimately improves the overall accuracy of the system. Our beam search technique employs a length-normalization procedure and uses a coverage penalty, which encourages generation of an output sentence that is most likely to cover all the words in the source sentence. On the WMT'14 English-to-French and English-to-German benchmarks, GNMT achieves competitive results to state-of-the-art. Using a human side-by-side evaluation on a set of isolated simple sentences, it reduces translation errors by an average of 60% compared to Google's phrase-based production system.",
+    "type": "preprint"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  },
+  {
+   "idx": 38,
+   "raw": "Jie Zhou, Ying Cao, Xuguang Wang, Peng Li, and Wei Xu. Deep recurrent models with fast-forward connections for neural machine translation. CoRR, abs/1606.04199, 2016.",
+   "parsed": {
+    "idx": 38,
+    "raw": "Jie Zhou, Ying Cao, Xuguang Wang, Peng Li, and Wei Xu. Deep recurrent models with fast-forward connections for neural machine translation. CoRR, abs/1606.04199, 2016.",
+    "title": "Deep recurrent models with fast-forward connections for neural machine translation",
+    "authors": [
+     "Zhou, J.",
+     "Cao, Y.",
+     "Wang, X.",
+     "Li, P.",
+     "Xu, W."
+    ],
+    "year": 2016,
+    "venue": "CoRR",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1162/tacl_a_00105",
+    "title": "Deep Recurrent Models with Fast-Forward Connections for Neural                     Machine Translation",
+    "authors": [
+     "Zhou, Jie",
+     "Cao, Ying",
+     "Wang, Xuguang",
+     "Li, Peng",
+     "Xu, Wei"
+    ],
+    "year": 2016,
+    "venue": "Transactions of the Association for Computational Linguistics",
+    "doi": "10.1162/tacl_a_00105",
+    "url": "https://doi.org/10.1162/tacl_a_00105",
+    "abstract": "Neural machine translation (NMT) aims at solving machine translation (MT) problems using neural networks and has exhibited promising results in recent years. However, most of the existing NMT models are shallow and there is still a performance gap between a single NMT model and the best conventional MT system. In this work, we introduce a new type of linear connections, named fast-forward connections, based on deep Long Short-Term Memory (LSTM) networks, and an interleaved bi-directional architecture for stacking the LSTM layers. Fast-forward connections play an essential role in propagating the gradients and building a deep topology of depth 16. On the WMT’14 English-to-French task, we achieve BLEU=37.7 with a single attention model, which outperforms the corresponding single shallow model by 6.2 BLEU points. This is the first time that a single NMT model achieves state-of-the-art performance and outperforms the best conventional model by 0.7 BLEU points. We can still achieve BLEU=36.3 even without using an attention mechanism. After special handling of unknown words and model ensembling, we obtain the best score reported to date on this task with BLEU=40.4. Our models are also validated on the more difficult WMT’14 English-to-German task.",
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 39,
+   "raw": "Muhua Zhu, Yue Zhang, Wenliang Chen, Min Zhang, and Jingbo Zhu. Fast and accurate shift-reduce constituent parsing. In Proceedings of the 51st Annual Meeting of the ACL (Volume 1: Long Papers), pages 434-443. ACL, August 2013.",
+   "parsed": {
+    "idx": 39,
+    "raw": "Muhua Zhu, Yue Zhang, Wenliang Chen, Min Zhang, and Jingbo Zhu. Fast and accurate shift-reduce constituent parsing. In Proceedings of the 51st Annual Meeting of the ACL (Volume 1: Long Papers), pages 434-443. ACL, August 2013.",
+    "title": "Fast and accurate shift-reduce constituent parsing",
+    "authors": [
+     "Zhu, M.",
+     "Zhang, Y.",
+     "Chen, W.",
+     "Zhang, M.",
+     "Zhu, J."
+    ],
+    "year": 2013,
+    "venue": "Proceedings of the 51st Annual Meeting of the ACL (Volume 1: Long Papers)",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W2126433015",
+    "title": "Fast and Accurate Shift-Reduce Constituent Parsing",
+    "authors": [
+     "Zhu, Muhua",
+     "Zhang, Yue",
+     "Chen, Wenliang",
+     "Zhang, Min",
+     "Zhu, Jingbo"
+    ],
+    "year": 2013,
+    "venue": null,
+    "doi": "10.13140/2.1.2791.2961",
+    "url": "https://openalex.org/W2126433015",
+    "abstract": "Shift-reduce dependency parsers give comparable accuracies to their chartbased counterparts, yet the best shiftreduce constituent parsers still lag behind the state-of-the-art. One important reason is the existence of unary nodes in phrase structure trees, which leads to different numbers of shift-reduce actions between different outputs for the same input. This turns out to have a large empirical impact on the framework of global training and beam search. We propose a simple yet effective extension to the shift-reduce process, which eliminates size differences between action sequences in beam-search. Our parser gives comparable accuracies to the state-of-the-art chart parsers. With linear run-time complexity, our parser is over an order of magnitude faster than the fastest chart parser. 1",
+    "type": "article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": null,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  }
+ ],
+ "tortured": [],
+ "meta": {
+  "models": {
+   "parse": "deepseek-v4.1-flash-1017",
+   "judge": "deepseek-v4.1-flash-1017"
+  },
+  "seconds": 18.6,
+  "llm_calls": 5,
+  "llm_tokens_in": 2611,
+  "llm_tokens_out": 3013,
+  "cost_usd": 0.00972,
+  "api_calls": {
+   "crossref": 5,
+   "openalex": 1,
+   "openlibrary": 1
+  },
+  "cache_hits": 63,
+  "notes": [
+   "references read from: PDF (GROBID)"
+  ]
+ }
+}

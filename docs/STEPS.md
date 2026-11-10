@@ -99,11 +99,11 @@
 - RW CSV → DOI/PMID lookup.
 - ✅ Done when: a reference list containing a known retracted DOI gets flagged with date and reason.
 
-### 2.7 FastAPI + live progress (🤖)
+### 2.7 FastAPI + live progress (🤖) ✅
 - Routes from plan §4.9, background jobs, SSE events.
 - ✅ Done when: `curl` POST → job ID → events stream → final report.
 
-> **🚩 Checkpoint 1 (Tue 23:00):** an arXiv ID gives a real report through the API. Baseline numbers are logged. Commit + push.
+> **🚩 Checkpoint 1 (Tue 23:00): ✅ reached Tue ~20:00.** an arXiv ID gives a real report through the API. Baseline numbers are logged. Commit + push.
 
 ---
 
@@ -166,7 +166,7 @@
 - Three variants: direct / + grounding / + abstention. Report macro-F1, the accuracy-vs-coverage curve and ECE.
 - ✅ Done when: the numbers and a figure are logged.
 
-### 6.3 PDF upload via GROBID (🤖)
+### 6.3 PDF upload via GROBID (🤖) 🟡 upload + references done in 2.7 (40/40 on a test PDF); citation contexts from the PDF full text still to do
 - ✅ Done when: uploading a PDF gives a report on both local and deployed versions.
 
 > **🚩 Checkpoint 2 (Wed 24:00):** MVP + P1 live on the public URL. RQ1 + RQ4 logged. Commit + push.

@@ -2,6 +2,7 @@
 fastapi>=0.115
 uvicorn[standard]>=0.30
 sse-starlette>=2.1
+python-multipart>=0.0.9
 
 # HTTP + resilience
 httpx>=0.27

@@ -10,7 +10,7 @@ from ..config import get_settings
 from ..llm import Usage, current_usage
 from ..models import (Candidate, PaperInfo, ParsedRef, RefResult, RefType, Report, RunMeta, Status)
 from .match import best_match
-from .ingest import ingest_arxiv, normalize_arxiv_id
+from .ingest import grobid_references, ingest_arxiv, normalize_arxiv_id
 from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
 from .retraction import describe
@@ -127,4 +127,13 @@ async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thr
         ing = await ingest_arxiv(arxiv_id)
         aid = normalize_arxiv_id(arxiv_id)
         return ing.refs, PaperInfo(title=ing.title, source=f"arxiv:{aid}"), [f"references read from: {ing.method}", *ing.notes]
+    return await _run(load, sources=sources, t=t, on_event=on_event)
+
+
+async def check_pdf(pdf: bytes, filename: str = "upload.pdf", *, sources: list[str] | None = None,
+                    t: Thresholds = DEFAULT, on_event: EventFn = None) -> Report:
+    """Full run on an uploaded PDF (references extracted by GROBID)."""
+    async def load():
+        refs = await grobid_references(pdf)
+        return refs, PaperInfo(source=f"pdf:{filename}"), ["references read from: PDF (GROBID)"]
     return await _run(load, sources=sources, t=t, on_event=on_event)
