@@ -87,7 +87,7 @@
 - Field scores (title, authors, year, venue), diacritic folding, `et al.` handling, DOI–title consistency check, the 4 labels.
 - ✅ Done when: the unit tests on the edge cases from the AtomGPT "Known limitations" list pass.
 
-### 2.4 Bibliography-text path, end to end (🤖)
+### 2.4 Bibliography-text path, end to end (🤖) ✅
 - CLI: `python -m app.cli check --bib refs.txt` → report JSON.
 - ✅ Done when: a pasted 20-reference list (with 3 planted fakes) produces a report that flags the fakes.
 

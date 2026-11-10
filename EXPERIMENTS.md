@@ -153,3 +153,13 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Starting thresholds (to be tuned on dev only in step 3.1): verified composite ≥ 85 and title ≥ 85 and authors ≥ 60; same-work title ≥ 90; found ≥ 60. Weights: title 0.55, authors 0.30, venue 0.10, year 0.05.
 - Preview on the S5 references (5 sources, S2 excluded): article / preprint / book / dataset → **verified** (the preprint matched the genuine 2017 OpenAlex record, not Crossref's 2025 copy); fake → **not found** (closest composite 56.6).
 - Tests: 62 pass (56 offline + 6 live).
+
+### S7 — End-to-end on a 20-reference list with 3 planted fakes (step 2.4)
+- When / who: 2026-11-10 ~17:15 IST · Priyanshu
+- Command: `cd backend && .venv/Scripts/python -m app.cli check --bib tests/fixtures/bib20.txt --out ../eval/results/s7_bib20_report.json`
+- Fixture: `backend/tests/fixtures/bib20.txt` with answer key `bib20_answers.json`. 17 real references (journal articles, conference papers, arXiv preprints, 2 books) + 3 fakes: #18 fully invented, #19 real title (ResNet) with invented authors, #20 real DOI (AlphaFold's) on an invented title.
+- First run: **17/17 real verified · 3/3 fakes flagged** · 44.4 s cold · 3 LLM calls (batched parsing, 8 refs per call), **$0.0046** · API calls: crossref 17, openalex 11, datacite 7, s2 9, arxiv 4, openlibrary 4.
+- Bug found: #20 was labelled "not found" instead of "DOI belongs to a different work". The DOI-resolved record lost to unrelated records with higher composites. Fix: when the cited DOI resolves, that record wins unless another record matches the title at ≥ 90. Re-run: #18 not found · #19 detail mismatch (authors differ) · #20 detail mismatch (DOI → AlphaFold), with the AlphaFold record kept as evidence. Cached re-run 0.1 s.
+- Design note: identifiers (DOI, arXiv, ISBN, URL) are taken **only from the raw text by regex**, never from the LLM. A test confirms an LLM-invented DOI is ignored.
+- Tests: 70 pass (incl. live `test_live_pipeline.py`).
+- Caveat: this is a hand-made sanity set, **not** an evaluation result. RQ1 numbers come from CiteAudit/NeurIPS in step 3.

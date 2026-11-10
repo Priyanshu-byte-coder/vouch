@@ -1,0 +1,3 @@
+{"note": "Refs 1-17 are real. 18 is fully fabricated, 19 is a real title with invented authors, 20 attaches a real DOI (ref 10's) to an invented title.",
+ "fake_indices": [17, 18, 19],
+ "expected": {"17": ["not_found"], "18": ["detail_mismatch"], "19": ["detail_mismatch"]}}

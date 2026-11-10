@@ -184,8 +184,16 @@ def score_candidate(ref: ParsedRef, cand: Candidate) -> Scored:
 
 
 def best_match(ref: ParsedRef, candidates: list[Candidate]) -> Scored | None:
-    """Highest composite; a DOI that matches *and* agrees on title wins ties."""
+    """Pick the record that best explains the reference.
+
+    If the cited DOI resolves, that record is what the reference points to, so it wins even with a
+    low title score (that is how identifier hijacking gets reported). The exception is when some other
+    record matches the title almost exactly: then the work exists and only the DOI is wrong."""
     scored = [score_candidate(ref, c) for c in candidates]
     if not scored:
         return None
-    return max(scored, key=lambda x: (x.scores.composite or 0) + (5 if x.doi_match and (x.scores.title or 0) >= 85 else 0))
+    best = max(scored, key=lambda x: (x.scores.composite or 0) + (5 if x.doi_match and (x.scores.title or 0) >= 85 else 0))
+    doi_hits = [x for x in scored if x.doi_match]
+    if doi_hits and not best.doi_match and (best.scores.title or 0) < 90:
+        return max(doi_hits, key=lambda x: x.scores.composite or 0)
+    return best

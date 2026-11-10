@@ -122,3 +122,19 @@ def test_best_match_prefers_right_year_copy():  # S5: Crossref's top hit was a 2
     real = cand(source="openalex", title="Attention Is All You Need", authors=["Vaswani, Ashish", "Shazeer, Noam"],
                 year=2017, doi="10.48550/arxiv.1706.03762")
     assert best_match(r, [copy, real]).candidate.year == 2017
+
+
+def test_identifier_hijack_wins_over_unrelated_better_scoring_records():  # S7: ref 20 was 'not found'
+    r = ref(title="Graph transformers for protein folding at scale", authors=["Brown, T."], year=2021,
+            doi="10.1038/s41586-021-03819-2")
+    alphafold = cand(title="Highly accurate protein structure prediction with AlphaFold", authors=["Jumper, John"],
+                     year=2021, venue="Nature", doi="10.1038/s41586-021-03819-2")
+    lookalike = cand(source="openalex", title="Graph transformers for protein structure at scale", authors=["Li, X."])
+    v = decide(r, best_match(r, [alphafold, lookalike]))
+    assert v.status is Status.detail_mismatch and "different work" in v.issues[0]
+
+
+def test_wrong_doi_on_real_title_keeps_title_match():
+    r = ref(title="Deep learning", authors=["LeCun, Y."], year=2015, doi="10.1038/s41586-021-03819-2")
+    alphafold = cand(title="Highly accurate protein structure prediction with AlphaFold", doi="10.1038/s41586-021-03819-2")
+    assert best_match(r, [alphafold, REAL]).candidate.title == "Deep learning"
