@@ -20,6 +20,8 @@ out/
 # Caches and large local data
 *.sqlite
 *.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
 cache/
 eval/data/raw/
 
