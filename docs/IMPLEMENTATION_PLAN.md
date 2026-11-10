@@ -244,53 +244,13 @@ Compile the fingerprints into regexes (support `AND`/`NOT`) and scan the full te
 
 ---
 
-## 6. Team roles
+## 6. Ownership
 
-| Role | Owns | Person |
-|---|---|---|
-| **A — Pipeline** | ingest, parsers, resolvers, matcher, verdict, retraction, tortured phrases, API, deploy of the backend | _TBD_ |
-| **B — Research** | datasets, baseline E0, E1–E5, error analysis, figures, `EXPERIMENTS.md`, results section of README | _TBD_ |
-| **C — Product** | Next.js app, report UX, research page, Vercel deploy, demo video, slides, Unstop form | _TBD_ |
+**Priyanshu owns everything** (pipeline, research, product, deployment), building with Claude Code. Viranshul and Kuldeep review and help with hand-checking where possible.
 
-Everyone: hand-verification in E5, and final review of the README and video.
+## 7. Timeline
 
-**Daily syncs (15 min):** 09:00 and 21:00 IST. Each person brings what's done, what's blocked, and what's next.
-
----
-
-## 7. Timeline (IST)
-
-### Tue 10 Nov: foundations
-| Time | A — Pipeline | B — Research | C — Product |
-|---|---|---|---|
-| 07–09 | Read the plan · repo skeleton · `.env` | Request keys: **S2, OpenAlex**, LLM endpoint | Next.js scaffold, design tokens |
-| 09–13 | Resolvers (Crossref, OpenAlex, S2, arXiv) + cache | Download CiteAudit, AtomGPT data, SciFact, RW CSV, PPS list · build the dev/test split | Input page, report page using **mock JSON** (schema §4.8) |
-| 13–18 | Matcher + verdict v1 · bibliography-text path end to end | **E0 baseline running** (all three) | Evidence drawer, status chips, summary cards |
-| 18–23 | arXiv `.bbl`/`.bib` ingest · retraction check | E1 v1 on the dev split · first error analysis | Wire to the local API |
-| **23:00** | **Checkpoint 1:** an arXiv ID gives a real report locally · baseline numbers reproduced |||
-
-### Wed 11 Nov: make it work, measure it
-| Time | A | B | C |
-|---|---|---|---|
-| 08–12 | DBLP, DataCite, Open Library resolvers · LLM adjudicator · GROBID PDF path | Tune on dev → **E1 on test** (CiteAudit-300, NeurIPS-100) | SSE progress, example buttons |
-| 12–17 | Claim contexts + support check (quote grounding, abstain) | **E4 SciFact** · start CoverageSet (E2) | **Deploy:** VM (docker compose) + Vercel |
-| 17–23 | Tortured phrases · performance (concurrency, cache) · bug fixes | **E2** + **E3 ablations** | Research page with charts from `eval/results` |
-| **24:00** | **Checkpoint 2 = MVP + P1 deployed.** Public URL works on 3 example papers. RQ1 + RQ4 numbers in `EXPERIMENTS.md` |||
-
-### Thu 12 Nov: audit, write, ship
-| Time | Everyone |
-|---|---|
-| 08–12 | **E5 audit:** run 250 papers · split the flags three ways · hand-verify · B computes precision and prevalence |
-| 12–14 | **Code freeze 14:00.** Only bug fixes after this |
-| 14–17 | README → project README (all 10 submission fields, results tables, figures, acknowledgements, licence) · record the **demo video (≤ 3 min)** |
-| 17–20 | Dry run from a fresh browser · **Viranshul makes the repo public** + adds the LICENSE · fill in the Unstop form |
-| 20–23 | **Submit by 23:00** · screenshot the confirmation · post in the team chat |
-
-### Fri 13 – Sat 15 Nov: finals prep (if shortlisted)
-- 8–10 slides: problem → gap → method → results → demo → impact → limitations
-- Rehearse the live demo twice, with a recorded fallback
-- Q&A prep: thresholds, data leakage, false accusations, cost, ethics, comparison with CiteAudit and AtomGPT
-- Finals: **15 Nov, 12:00–18:00 IST**
+The step-by-step order, owners and "done when" checks are in **[STEPS.md](STEPS.md)**. Checkpoints: Tue 23:00 (backend MVP) · Wed 24:00 (deployed MVP + P1) · Thu 14:00 code freeze · Thu 23:00 submit.
 
 ---
 
@@ -303,7 +263,7 @@ Everyone: hand-verification in E5, and final review of the README and video.
 | Proposed solution | IDEATION §3 |
 | Key features | The 5 checks + evidence drawer + 3 input modes + batch/API |
 | Technology stack | §2 table |
-| Source code | GitHub repo (public at submission time) |
+| Source code | https://github.com/Priyanshu-byte-coder/citesentinel (public at submission time) |
 | Working prototype | Vercel URL + example buttons + video |
 | Implementation | §4 (condensed) + architecture diagram |
 | Datasets and external resources | §2 data tables + model names + every AI tool used |

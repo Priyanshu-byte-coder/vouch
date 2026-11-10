@@ -74,6 +74,9 @@ An open research-integrity screener. For every reference in a paper it checks: *
 | [docs/IDEATION.md](docs/IDEATION.md) | Problem + evidence, related work, gap, solution, contributions, research questions, ethics, pitch |
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Scope, architecture, stack, pipeline, API, evaluation plan, roles, hour-by-hour timeline, submission mapping, demo script |
 | [EXPERIMENTS.md](EXPERIMENTS.md) | Experiment log (every number we report must come from here) |
+| [docs/STEPS.md](docs/STEPS.md) | **Step-by-step runbook**: what to do next, who does it, how we know it's done |
+
+**Repo:** https://github.com/Priyanshu-byte-coder/citesentinel (owner: Priyanshu, handling build and deployment)
 
 ---
 
@@ -178,7 +181,7 @@ Reusing earlier work is allowed **only** with substantial new work done during t
 - [ ] Implementation explained
 - [ ] Datasets + external resources + AI tools acknowledged
 - [ ] Results / evaluation with real metrics
-- [ ] Repo link ready (make it public if required)
+- [ ] Repo public + LICENSE (Priyanshu-byte-coder/citesentinel)
 - [ ] Working demo (hosted link + short video)
 - [ ] Experiment log / research notes
 - [ ] Submitted on Unstop before **12 Nov, 11:00 PM IST**
