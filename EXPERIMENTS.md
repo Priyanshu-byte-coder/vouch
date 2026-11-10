@@ -1,4 +1,4 @@
-# Experiment Log — CiteSentinel
+# Experiment Log — Vouch
 
 Every run that produces a number goes here: what we tried, what happened and why, **including failures**. Judges will ask about experimentation in Round 2. Every number we report must trace back to an entry here and to a committed file in `eval/results/`.
 
@@ -27,9 +27,9 @@ Every run that produces a number goes here: what we tried, what happened and why
 |---|---|---|---|---|---|---|
 | CiteAudit-300 | AtomGPT (published) | 0.80 | 0.49 | 0.61 | 0.12 | From their README, scoring v2 |
 | CiteAudit-300 | AtomGPT (our re-run) | | | | | |
-| CiteAudit-300 | **CiteSentinel** | | | | | |
+| CiteAudit-300 | **Vouch** | | | | | |
 | NeurIPS-100 | AtomGPT (published) | n/a | 0.94 | n/a | n/a | Scoring v1, all fake |
-| NeurIPS-100 | **CiteSentinel** | n/a | | n/a | n/a | |
+| NeurIPS-100 | **Vouch** | n/a | | n/a | n/a | |
 
 ---
 
@@ -50,7 +50,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 
 ### S0 — LLM endpoint and model selection (setup)
 - When / who: 2026-11-10 ~08:30 IST · Priyanshu
-- Endpoint: Vultr Serverless Inference (OpenAI-compatible), subscription `citesentinel`
+- Endpoint: Vultr Serverless Inference (OpenAI-compatible), subscription `citesentinel` (Vultr label)
 - Test: parse one messy reference ("[12] Vaswani A., ... arXiv:1706.03762") into JSON, temperature 0
 - Results:
   | Model | Thinking on (max_tokens 400) | Thinking on (2000) | Thinking off | Latency (off) | Output tokens (off) |

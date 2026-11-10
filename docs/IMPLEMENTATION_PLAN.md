@@ -1,4 +1,4 @@
-# CiteSentinel — Implementation Plan
+# Vouch — Implementation Plan
 
 > Written Tue 10 Nov 2026, 07:00 IST. **Submit by Thu 12 Nov, 23:00 IST** (portal closes 13 Nov 00:00). About 64 hours.
 > Idea and research questions: [IDEATION.md](IDEATION.md). Running log: [../EXPERIMENTS.md](../EXPERIMENTS.md).
@@ -258,12 +258,12 @@ The step-by-step order, owners and "done when" checks are in **[STEPS.md](STEPS.
 
 | Field | Where it comes from |
 |---|---|
-| Project name | CiteSentinel |
+| Project name | Vouch |
 | Problem statement | IDEATION §1 (short form) |
 | Proposed solution | IDEATION §3 |
 | Key features | The 5 checks + evidence drawer + 3 input modes + batch/API |
 | Technology stack | §2 table |
-| Source code | https://github.com/Priyanshu-byte-coder/citesentinel (public at submission time) |
+| Source code | https://github.com/Priyanshu-byte-coder/vouch (public at submission time) |
 | Working prototype | Vercel URL + example buttons + video |
 | Implementation | §4 (condensed) + architecture diagram |
 | Datasets and external resources | §2 data tables + model names + every AI tool used |

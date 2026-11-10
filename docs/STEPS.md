@@ -1,4 +1,4 @@
-# CiteSentinel — Step-by-Step Runbook
+# Vouch — Step-by-Step Runbook
 
 > **Owner:** Priyanshu (all roles: pipeline, research, product, deploy), building with Claude Code.
 > **Rule:** one step at a time. A step is done only when its **✅ Done when** check passes. Then tick it and move on.
@@ -28,8 +28,8 @@
 ## Phase 0 — Setup
 
 ### 0.1 Repo ✅
-- 🤖 Created private repo `Priyanshu-byte-coder/citesentinel` and pushed all history.
-- ✅ Done when: https://github.com/Priyanshu-byte-coder/citesentinel shows the docs.
+- 🤖 Created private repo `Priyanshu-byte-coder/vouch` and pushed all history.
+- ✅ Done when: https://github.com/Priyanshu-byte-coder/vouch shows the docs.
 
 ### 0.2 Accounts and API keys (👤 you, ~20 min)
 | # | What | Where | Notes |

@@ -1,9 +1,11 @@
-# CiteSentinel — Ideation
+# Vouch — Ideation
 
+> **Tagline:** *Every citation, vouched for.*
+>
 > **One line:** An open research-integrity screener. It checks every reference in a paper (does it exist, are the details right, was it retracted, does it support the claim) and flags paper-mill language. It uses open scholarly databases and gives evidence for each verdict.
 
 - **Track:** DeepTech & Scientific Computing (fallback: Artificial Intelligence & Machine Learning)
-- **Status:** Idea locked 10 Nov 2026. Name is a working title.
+- **Status:** Idea locked 10 Nov 2026. Renamed from "Vouch" to **Vouch** the same day.
 - **Plan:** [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) · **Experiment log:** [../EXPERIMENTS.md](../EXPERIMENTS.md)
 
 ---
@@ -114,4 +116,4 @@ Upload a PDF, paste an arXiv ID, or paste a bibliography. You get a report with 
 | Running out of time | MVP = ①②③ + UI + RQ1. ④⑤ and RQ2–RQ5 are added in priority order (see plan) |
 
 ## 10. 30-second pitch
-> "Papers with fake references went from 1 in 2,800 to 1 in 277 in three years, and they're getting past peer review at top venues. Existing checkers look in one database. So they miss half the fakes, and they wrongly accuse real books and regional journals. CiteSentinel checks every reference against seven open databases, plus retractions, whether it supports the claim, and paper-mill language. Every verdict comes with evidence. On the CiteAudit benchmark we beat the published baseline's F1 of 0.61 *(replace with our measured number)*, and we measured how often single-database checkers wrongly accuse references by type and region. Paste any arXiv paper and see in a minute."
+> "Papers with fake references went from 1 in 2,800 to 1 in 277 in three years, and they're getting past peer review at top venues. Existing checkers look in one database. So they miss half the fakes, and they wrongly accuse real books and regional journals. Vouch checks every reference against seven open databases, plus retractions, whether it supports the claim, and paper-mill language. Every verdict comes with evidence. On the CiteAudit benchmark we beat the published baseline's F1 of 0.61 *(replace with our measured number)*, and we measured how often single-database checkers wrongly accuse references by type and region. Paste any arXiv paper and see in a minute."
