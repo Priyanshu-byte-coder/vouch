@@ -50,7 +50,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 ```
 
 ### S0 — LLM endpoint and model selection (setup)
-- When / who: 2026-11-10 ~08:30 IST · Priyanshu
+- When / who: 2026-11-10 13:14 IST (commit time) · Priyanshu
 - Endpoint: Vultr Serverless Inference (OpenAI-compatible), subscription `citesentinel` (Vultr label)
 - Test: parse one messy reference ("[12] Vaswani A., ... arXiv:1706.03762") into JSON, temperature 0
 - Results:
@@ -66,20 +66,20 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Learned: reasoning models spend the token budget on hidden thinking, so the JSON gets cut off. Always set max_tokens ≥ 2000 when thinking is on, and strip ``` code fences when parsing output.
 
 ### S1 — Source smoke test (step 0.3)
-- When / who: 2026-11-10 ~13:40 IST · Priyanshu
+- When / who: 2026-11-10 13:38 IST (commit time) · Priyanshu
 - Command: `backend/.venv/Scripts/python backend/scripts/smoke_test.py`
 - Results: Crossref ✅ · OpenAlex ✅ (key) · Semantic Scholar ✅ without a key (the shared pool sometimes returns 429) · arXiv ✅ · DataCite ✅ · Open Library ✅ · Retraction Watch repo ✅ (data for 2026-11-09) · LLM ✅ (33 models) · GROBID ⏳ (step 0.4) · **DBLP ❌** (HTTP 202 anti-bot challenge page)
 - Decision: drop DBLP from the cascade. CS venues are covered by OpenAlex, Crossref and S2.
 - Learned: **Crossref's top hit for "Attention is all you need" is a different paper, "Is Attention All You Need?" (Springer 2025).** Taking the first search result is unsafe; the matcher must score several candidates per source. Good example for the README.
 
 ### S2 — GROBID + datasets (steps 0.4, 1.1)
-- When / who: 2026-11-10 ~14:15 IST · Priyanshu
+- When / who: 2026-11-10 13:51 IST (commit time) · Priyanshu
 - GROBID `grobid/grobid:0.9.1-crf`: `processReferences` on arXiv:1706.03762 gave **40 references in 10.1 s** (the paper has 40). One entry had no article-level title (preprint/monograph tagging), so the parser must fall back to monograph titles.
 - Datasets: see `eval/data/SOURCES.md`. CiteAudit = 9,442 (6,475 real / 2,967 fake). CiteAudit-300 = 150/150. NeurIPS-2025 = 100 fake. SciFact 809/300/300 claims. Retraction Watch 73,718 notices.
 - Note: CiteAudit has no licence file, so we use it for evaluation only and never commit it.
 
 ### S3 — Dev/test split (step 1.2)
-- When / who: 2026-11-10 ~14:30 IST · Priyanshu
+- When / who: 2026-11-10 13:56 IST (commit time) · Priyanshu
 - Command: `backend/.venv/Scripts/python eval/data/make_splits.py` (seed 20261110)
 - Provenance check: all **300/300** CiteAudit-300 items appear verbatim in full CiteAudit. **0/100** NeurIPS-2025 items appear in CiteAudit.
 - Leakage removal: dev excludes **303 exact** duplicates (CiteAudit contains some test items more than once) and **144 near-duplicates** (token_sort_ratio ≥ 95 after normalisation) of any test item. Verified afterwards: overlap exact = 0, near = 0.
@@ -93,14 +93,14 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Note: near-duplicate removal matters. The same reference with different formatting would otherwise leak test answers into tuning.
 
 ### S4 — Semantic Scholar API key
-- When / who: 2026-11-10 ~14:45 IST · Priyanshu
+- When / who: 2026-11-10 14:00 IST (commit time) · Priyanshu
 - Key issued 2026-11-10 13:11 IST. Rate limit 1 request/second, cumulative across all endpoints, sent as the `x-api-key` header.
 - Validity: our key returns 200s, while a wrong key (or the capital-I spelling from the PDF image) returns **403 Forbidden**.
 - Throttling: at a steady 1 request every 2 s, **7/15 succeeded** (7×429, then 7×200, then 429). The 429 body says "TooManyRequestsException", so this is service-side throttling, not our pace.
 - Decision: S2 client = 1.1 s minimum gap + exponential backoff (2/4/8 s, 3 retries) + cache. S2 stays **after** Crossref/OpenAlex in the cascade. The S2-only baseline (E0b) runs in the background.
 
 ### E0a — Re-score AtomGPT released outputs (step 1.3a)
-- When / who: 2026-11-10 ~15:00 IST · Priyanshu
+- When / who: 2026-11-10 14:16 IST (commit time) · Priyanshu
 - Command: `backend/.venv/Scripts/python eval/baselines/rescore_atomgpt.py` → `eval/results/e0a_atomgpt_released_rescored.json`
 - Results (fake = positive, flagged = not "verified"):
   | Set | P | R | F1 [95% CI] | FPR | Matches published? |
@@ -115,13 +115,13 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Learned: (1) Our metric code reproduces the published numbers exactly. (2) **Early evidence for H2:** the single-source baseline wrongly flags real references from real papers **6× more often** than real generated-set references. (3) It misses 56% of generated fakes, so recall is the main thing to improve.
 
 ### Decision — baseline protocol (step 1.3b)
-- When / who: 2026-11-10 ~15:10 IST · Priyanshu
+- When / who: 2026-11-10 14:39 IST (commit time) · Priyanshu
 - We **do not** re-run AtomGPT's third-party code. The baseline is (1) their **published / released outputs**, re-scored exactly in E0a, plus (2) a **re-creation of their method inside our pipeline**: Semantic Scholar only, their documented v2 scoring (title 0.60 / authors 0.25 / venue 0.15, verified ≥ 80), and our LLM. This becomes a row in the E3 ablation.
 - Why: fewer moving parts and no third-party code execution. It also avoids a slow S2-only run under throttling and gives a controlled comparison where only the cascade and matcher differ.
 - Limitation to state in the README: the published baseline numbers come from a different extraction LLM (gpt-oss-20b for NeurIPS; not recorded for CiteAudit-300).
 
 ### S5 — Resolver check: 5 references × 6 sources (step 2.2)
-- When / who: 2026-11-10 ~16:00 IST · Priyanshu
+- When / who: 2026-11-10 14:47 IST (commit time) · Priyanshu
 - Command: `cd backend && .venv/Scripts/python scripts/resolver_check.py` · live asserts in `tests/test_live_resolvers.py`
 - Result (best candidate per source, ranked by title + authors + DOI):
   | Reference | Found correctly by | Not found / wrong |
@@ -136,7 +136,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Bug found by the tests: Crossref organisation authors ("Consortium X") were reformatted as persons ("X, Consortium"). Fixed: the bare `name` field is kept as-is.
 
 ### S6 — Matcher + verdict v1 (step 2.3)
-- When / who: 2026-11-10 ~16:30 IST · Priyanshu
+- When / who: 2026-11-10 17:06 IST (commit time) · Priyanshu
 - Code: `backend/app/pipeline/match.py`, `verdict.py` · tests: `backend/tests/test_match_verdict.py` (20 edge cases, each tied to a documented baseline weakness or an S5 finding)
 - Design vs the AtomGPT baseline:
   | Weakness (their README / our S5) | Our handling | Test |
@@ -155,7 +155,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Tests: 62 pass (56 offline + 6 live).
 
 ### S7 — End-to-end on a 20-reference list with 3 planted fakes (step 2.4)
-- When / who: 2026-11-10 ~17:15 IST · Priyanshu
+- When / who: 2026-11-10 17:12 IST (commit time) · Priyanshu
 - Command: `cd backend && .venv/Scripts/python -m app.cli check --bib tests/fixtures/bib20.txt --out ../eval/results/s7_bib20_report.json`
 - Fixture: `backend/tests/fixtures/bib20.txt` with answer key `bib20_answers.json`. 17 real references (journal articles, conference papers, arXiv preprints, 2 books) + 3 fakes: #18 fully invented, #19 real title (ResNet) with invented authors, #20 real DOI (AlphaFold's) on an invented title.
 - First run: **17/17 real verified · 3/3 fakes flagged** · 44.4 s cold · 3 LLM calls (batched parsing, 8 refs per call), **$0.0046** · API calls: crossref 17, openalex 11, datacite 7, s2 9, arxiv 4, openlibrary 4.
@@ -165,7 +165,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Caveat: this is a hand-made sanity set, **not** an evaluation result. RQ1 numbers come from CiteAudit/NeurIPS in step 3.
 
 ### S8 — arXiv path on 3 real papers (step 2.5)
-- When / who: 2026-11-10 ~18:30 IST · Priyanshu
+- When / who: 2026-11-10 17:21 IST (commit time) · Priyanshu
 - Command: `cd backend && .venv/Scripts/python -m app.cli check --arxiv <id> --out ../eval/results/s8_arxiv_<id>.json`
 - Pipeline: e-print → `.bib` entries for cited keys (structured, **no LLM**) → `.bbl` entries for the rest (LLM-parsed) → `\cite` contexts from `.tex` → GROBID if the source is PDF-only.
 - Papers (all about hallucinated-citation detection): CiteAudit 2602.23452 (`.bib`), AtomGPT detector 2607.09774 (`.bib`), HalluCiteChecker 2604.26835 (`.bbl`, 3 LLM calls, $0.006).
@@ -184,7 +184,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Tests: 78 pass.
 
 ### S9 — Retraction check (step 2.6)
-- When / who: 2026-11-10 ~19:15 IST · Priyanshu
+- When / who: 2026-11-10 17:26 IST (commit time) · Priyanshu
 - Data: Retraction Watch CSV (Crossref), 73,718 notices → index of **64,700 DOIs, 32,630 PMIDs, 69,639 long titles**, loaded in 3.6 s. 2,540 papers have several notices.
 - Rule: report the notice that applies **now**. A reinstatement dated after the last retraction wins; otherwise the most severe notice (Retraction > Expression of concern > Correction), latest if tied. Book-keeping reasons ("Updated to Retraction", "Upgrade/Update of Prior Notice(s)") are dropped.
 - Lookup order: cited DOI → matched record's DOI → **retraction-notice DOI → original** → PMID → exact title (≥ 6 words, notice prefixes stripped).
@@ -195,7 +195,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Tests: 84 pass.
 
 ### S10 — HTTP API + PDF path (step 2.7) · 🚩 Checkpoint 1
-- When / who: 2026-11-10 ~20:00 IST · Priyanshu
+- When / who: 2026-11-10 17:34 IST (commit time) · Priyanshu
 - Server: `cd backend && .venv/Scripts/python -m uvicorn app.main:app --port 8000`. Endpoints: `POST /api/check` (arXiv ID or bibliography), `POST /api/check/pdf`, `GET /api/jobs/{id}`, `GET /api/jobs/{id}/events` (SSE), `GET /api/health`.
 - Built in: background jobs (max 3 concurrent), an SSE event log clients can replay (`Last-Event-ID`), finished-report cache (versioned), per-IP rate limit (12 / 10 min, only accepted jobs count), input limits (100k chars, 20 MB PDF), retraction index warmed at startup.
 - Live check:

@@ -172,28 +172,39 @@ def year_score(cited: int | None, cand: int | None) -> float | None:
 
 # ---------------------------------------------------------------- combined
 
+NOTICE_PENALTY = 10.0  # composite points: prefer the original paper over a notice about it
+
+
 @dataclass
 class Scored:
     candidate: Candidate
     scores: FieldScores
     issues: list[str] = field(default_factory=list)
     doi_match: bool = False
+    notice: bool = False
 
 
-def score_candidate(ref: ParsedRef, cand: Candidate) -> Scored:
+def composite(s: FieldScores, weights: dict[str, float] = WEIGHTS, notice: bool = False) -> float | None:
+    """Weighted mean over the fields that are present (weights renormalised)."""
+    parts = {"title": s.title, "authors": s.authors, "venue": s.venue,
+             "year": None if s.year is None else 100 * s.year}
+    present = {k: v for k, v in parts.items() if v is not None}
+    total_w = sum(weights[k] for k in present)
+    if not total_w:
+        return None
+    value = round(sum(weights[k] * v for k, v in present.items()) / total_w, 1)
+    return max(0.0, value - NOTICE_PENALTY) if notice else value
+
+
+def score_candidate(ref: ParsedRef, cand: Candidate, weights: dict[str, float] = WEIGHTS) -> Scored:
     notice = is_notice(cand.title) and not is_notice(ref.title)
     s = FieldScores(title=title_score(ref.title, strip_notice_prefix(cand.title) if notice else cand.title),
                     authors=author_score(ref.authors, cand.authors),
                     venue=venue_score(ref.venue, cand.venue), year=year_score(ref.year, cand.year))
-    parts = {"title": s.title, "authors": s.authors, "venue": s.venue,
-             "year": None if s.year is None else 100 * s.year}
-    present = {k: v for k, v in parts.items() if v is not None}
-    total_w = sum(WEIGHTS[k] for k in present)
-    s.composite = round(sum(WEIGHTS[k] * v for k, v in present.items()) / total_w, 1) if total_w else None
+    s.composite = composite(s, weights, notice)
 
     issues = []
     if notice and s.composite is not None:
-        s.composite = max(0.0, s.composite - 10)  # prefer the original paper over a notice about it
         issues.append(f"best record is a notice about the work: '{cand.title[:80]}'")
     doi_match = bool(ref.doi and cand.doi and normalize_doi(ref.doi) == cand.doi)
     if doi_match and (s.title or 0) < 85:
@@ -208,16 +219,15 @@ def score_candidate(ref: ParsedRef, cand: Candidate) -> Scored:
         issues.append(f"venue '{ref.venue}' vs record '{cand.venue}'")
     if ref.doi and cand.doi and not doi_match and (s.title or 0) >= 90:
         issues.append(f"DOI cited as {normalize_doi(ref.doi)} but record has {cand.doi}")
-    return Scored(cand, s, issues, doi_match)
+    return Scored(cand, s, issues, doi_match, notice)
 
 
-def best_match(ref: ParsedRef, candidates: list[Candidate]) -> Scored | None:
+def select_best(scored: list[Scored]) -> Scored | None:
     """Pick the record that best explains the reference.
 
     If the cited DOI resolves, that record is what the reference points to, so it wins even with a
     low title score (that is how identifier hijacking gets reported). The exception is when some other
     record matches the title almost exactly: then the work exists and only the DOI is wrong."""
-    scored = [score_candidate(ref, c) for c in candidates]
     if not scored:
         return None
     best = max(scored, key=lambda x: (x.scores.composite or 0) + (5 if x.doi_match and (x.scores.title or 0) >= 85 else 0))
@@ -225,3 +235,7 @@ def best_match(ref: ParsedRef, candidates: list[Candidate]) -> Scored | None:
     if doi_hits and not best.doi_match and (best.scores.title or 0) < 90:
         return max(doi_hits, key=lambda x: x.scores.composite or 0)
     return best
+
+
+def best_match(ref: ParsedRef, candidates: list[Candidate], weights: dict[str, float] = WEIGHTS) -> Scored | None:
+    return select_best([score_candidate(ref, c, weights) for c in candidates])

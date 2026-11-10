@@ -103,7 +103,7 @@
 - Routes from plan §4.9, background jobs, SSE events.
 - ✅ Done when: `curl` POST → job ID → events stream → final report.
 
-> **🚩 Checkpoint 1 (Tue 23:00): ✅ reached Tue ~20:00.** an arXiv ID gives a real report through the API. Baseline numbers are logged. Commit + push.
+> **🚩 Checkpoint 1 (Tue 23:00): ✅ reached Tue 17:34 IST.** an arXiv ID gives a real report through the API. Baseline numbers are logged. Commit + push.
 
 ---
 
