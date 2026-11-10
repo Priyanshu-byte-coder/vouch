@@ -1,7 +1,7 @@
 # Threws Odyssey 2026 — Team Beyonders
 
-> **Status:** Ideation · **Project submission closes 12 Nov 2026, 1:30 PM EST = 13 Nov, 12:00 AM IST (midnight)**
-> Info collected 1 Nov 2026 from the Unstop listing, updated 10 Nov 2026 with the full brief (rules, judging criteria, submission requirements). Re-check the Unstop dashboard before deadlines.
+> **Status:** Ideation · **Project submission closes 13 Nov 2026, 12:00 AM IST (midnight after 12 Nov)**
+> Info collected 1 Nov 2026 from the Unstop listing, updated 10 Nov 2026 with the full official brief from the participant dashboard. Re-check the Unstop dashboard before deadlines.
 
 ---
 
@@ -22,7 +22,8 @@
 | Unstop listing | https://unstop.com/hackathons/threws-odyssey-2026-threws-the-research-world-1766434 |
 | Organiser | [Threws – The Research World](https://threws.com/) |
 | Organiser's conference | [ICSD – Intl. Conference on Sustainable Development, AI & Computing](https://icsd.threws.com/) |
-| Queries | "Contact the organisers" box on the Unstop page |
+| Queries | contact@threws.com, or the "Contact the organisers" box on Unstop |
+| Announcements | Official participant WhatsApp group (invite link is on the Unstop dashboard) |
 
 ---
 
@@ -34,12 +35,16 @@ It is **not a pure build-fast sprint**. The brief stresses three things: pick a 
 
 - **Category:** Applied Research
 - **Mode:** Online
-- **Team size:** 1–4 (each person can be on only one team)
+- **Team size:** 1–4 (we are 3; each person can be on only one team)
 - **Eligibility:** Students, freshers, working professionals, researchers, independent developers. Any background.
 - **Registration:** Closed (deadline was extended to 5 Nov 2026). 834 registered.
 - **Prize pool:** ₹1,50,000 cash + participation certificates. The prize split is not public.
 
 **What to build:** A working solution to a meaningful problem. It can be a software product, an AI/ML system, a research prototype, a cybersecurity tool, a data-driven app, or another tech solution that fits the chosen track.
+
+The brief says projects should show **a clear problem statement, a well-defined approach and a functional prototype**, and encourages us to **research existing solutions and explain how our approach improves on them or differs from them**.
+
+> *"Find meaningful problems, explore better solutions and build something that can make a difference. Build something worth discovering."* (official brief)
 
 ---
 
@@ -62,12 +67,12 @@ It is **not a pure build-fast sprint**. The brief stresses three things: pick a 
 
 ## Rounds & timeline
 
-| Round | Window (Unstop, EST) | IST |
-|---|---|---|
-| **1. Project Submission** | 8 Oct, 2:30 PM → **12 Nov 2026, 1:30 PM** | 9 Oct, 12:00 AM → **13 Nov, 12:00 AM** (aim for **12 Nov, 11:00 PM**) |
-| **2. Final Presentation & Demo** (shortlisted only) | 15 Nov 2026, 1:30 AM → 7:30 AM | **15 Nov, 12:00 PM → 6:00 PM** |
+| Round | IST (official, from the Unstop dashboard) |
+|---|---|
+| **1. Project Submission** (live now) | 9 Oct, 12:00 AM → **13 Nov 2026, 12:00 AM** (midnight between 12 and 13 Nov) |
+| **2. Final Presentation & Demo** (shortlisted only) | **15 Nov 2026, 12:00 PM → 6:00 PM** |
 
-> ⏱ Unstop times are New York local time. In November that is EST (UTC−5), so IST = EST + 10:30. The banner confirms this (registration "5 Nov, 1:29 PM EST" = "5 Nov, 11:59 PM IST"). Submit on **12 Nov by 11 PM IST** to leave a buffer.
+> ⏱ Submit on **12 Nov by 11 PM IST** to leave a buffer.
 
 ### Round 1 — Project Submission (on Unstop)
 Each submission must include:
@@ -118,6 +123,7 @@ No weights are published. Treat them as equal.
 - **All third-party resources must be acknowledged.**
 - Plagiarism, copied submissions, **fabricated results** or misrepresented work can lead to disqualification.
 - Projects must follow applicable laws, licences and ethical standards.
+- Organisers can reject submissions that don't meet the eligibility or submission requirements. The judging panel's decision is final.
 
 ---
 
