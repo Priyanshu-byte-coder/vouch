@@ -90,3 +90,10 @@ Every run that produces a number goes here: what we tried, what happened and why
   | dev_full | 8,995 | 6,252 / 2,743 | 5,737 / 3,258 | Tuning pool |
   | dev_1000 | 1,000 | 500 / 500 | 694 / 306 | Threshold tuning within API budget |
 - Note: near-duplicate removal matters. The same reference with different formatting would otherwise leak test answers into tuning.
+
+### S4 — Semantic Scholar API key
+- When / who: 2026-11-10 ~14:45 IST · Priyanshu
+- Key issued 2026-11-10 13:11 IST. Rate limit 1 request/second, cumulative across all endpoints, sent as the `x-api-key` header.
+- Validity: our key returns 200s, while a wrong key (or the capital-I spelling from the PDF image) returns **403 Forbidden**.
+- Throttling: at a steady 1 request every 2 s, **7/15 succeeded** (7×429, then 7×200, then 429). The 429 body says "TooManyRequestsException", so this is service-side throttling, not our pace.
+- Decision: S2 client = 1.1 s minimum gap + exponential backoff (2/4/8 s, 3 retries) + cache. S2 stays **after** Crossref/OpenAlex in the cascade. The S2-only baseline (E0b) runs in the background.

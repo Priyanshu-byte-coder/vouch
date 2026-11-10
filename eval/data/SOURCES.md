@@ -14,8 +14,13 @@
 | **Tortured phrases, social sciences** | 42 fingerprints | Check ⑤ | CC-BY-4.0 | [Zenodo 14753785](https://zenodo.org/records/14753785) |
 
 ## Live APIs (queried at run time, responses cached locally)
-Crossref REST · OpenAlex (API key) · Semantic Scholar Graph API · arXiv API · DataCite REST · Open Library Search · GROBID 0.9.1 (local Docker, `grobid/grobid:0.9.1-crf`).
+Crossref REST · OpenAlex (API key) · Semantic Scholar Graph API (API key, 1 req/s) · arXiv API · DataCite REST · Open Library Search · GROBID 0.9.1 (local Docker, `grobid/grobid:0.9.1-crf`).
 DBLP was dropped on 10 Nov 2026 because its API now returns an anti-bot challenge page.
 
 ## AI models
 Vultr Serverless Inference (OpenAI-compatible). Parsing: `deepseek-v4.1-flash-1017` (thinking off). Judging: `deepseek-v4.1-flash-1017` (thinking on), with other models to be compared. See `EXPERIMENTS.md` S0.
+
+## Required attribution
+- **Semantic Scholar:** data from the Semantic Scholar Academic Graph API. Cite: Kinney et al., *The Semantic Scholar Open Data Platform*, [arXiv:2301.10140](https://arxiv.org/abs/2301.10140) (2023). This is required by the API licence and has to appear in the README and on the web app.
+- **OpenAlex:** Priem, Piwowar & Orr, *OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts*, [arXiv:2205.01833](https://arxiv.org/abs/2205.01833) (2022).
+- **Crossref** metadata and the **Retraction Watch** database (Crossref).
