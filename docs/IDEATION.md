@@ -5,7 +5,7 @@
 > **One line:** An open research-integrity screener. It checks every reference in a paper (does it exist, are the details right, was it retracted, does it support the claim) and flags paper-mill language. It uses open scholarly databases and gives evidence for each verdict.
 
 - **Track:** DeepTech & Scientific Computing (fallback: Artificial Intelligence & Machine Learning)
-- **Status:** Idea locked 10 Nov 2026. Renamed from "Vouch" to **Vouch** the same day.
+- **Status:** Idea locked 10 Nov 2026. Renamed from the working title "CiteSentinel" to **Vouch** the same day.
 - **Plan:** [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) · **Experiment log:** [../EXPERIMENTS.md](../EXPERIMENTS.md)
 
 ---
