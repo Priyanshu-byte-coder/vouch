@@ -42,6 +42,8 @@ async def main() -> None:
         r["failed"].remove(source)
         r["tried"].append(source)
         fixed += 1
+        if fixed % 10 == 0:  # save progress so an interruption never loses work
+            path.write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in rows), encoding="utf-8")
         if n % 20 == 0:
             print(f"  {n}/{len(todo)} · fixed {fixed} · {(time.perf_counter() - t0) / 60:.1f} min", flush=True)
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")

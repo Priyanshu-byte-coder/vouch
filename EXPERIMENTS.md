@@ -231,3 +231,16 @@ Every run that produces a number goes here: what we tried, what happened and why
 - When / who: 2026-11-10 ~19:40 IST · Priyanshu approved the candidate config with FPR cap 0.10.
 - Frozen in `eval/configs/rq1.json` (record) and `backend/app/pipeline/tuned.json` (used by the app; `app/pipeline/tuned.py`). The API report cache version was bumped to v3.
 - **No changes to matcher, verdict or config until test results are logged.**
+
+### E1-test — Frozen config on the test sets (step 3.2), AS COLLECTED
+- When / who: 2026-11-10 23:30 IST · Priyanshu · config `eval/configs/rq1.json` (frozen, unchanged)
+- Collection: `eval/collect.py test_citeaudit300` (17.6 min, $0.086) and `test_neurips100` (8.0 min, $0.025). Same 5 sources as dev (no S2).
+- Command: `backend/.venv/Scripts/python eval/run_rq1_detection.py` → `eval/results/e1_test_results_as_collected.json`
+- **CiteAudit-300 (n=300):** P 0.797 · R 0.760 · **F1 0.778** [0.723, 0.828] · **FPR 0.193** [0.135, 0.257]
+  - generated: R 0.730, FPR 0.096 · real-world: R 0.917, **FPR 0.313**
+  - Paired vs AtomGPT on 299 shared citations: baseline F1 0.612 / FPR 0.121; Vouch F1 0.781 / FPR 0.188. Only Vouch correct **45**, only baseline correct **15**, exact McNemar **p = 0.0001**.
+- **NeurIPS-100 (all fake):** recall **1.000** vs baseline 0.940. Paired: only Vouch correct 6, only baseline correct 0, McNemar p = 0.031.
+- **H1 verdict: partially met.** F1 > 0.61 ✅ (0.778, CI excludes 0.61), recall +27 pts ✅. **FPR ≤ 0.12 ❌** (0.193; real-world subset 0.313). Dev CV FPR was 0.094, so the test FPR is much higher.
+- **Error analysis (29 real citations flagged):** **22 had an arXiv lookup that timed out** during collection (123 arXiv timeouts on this split). CiteAudit-300's real-world citations are mostly recent arXiv preprints (2025–26), which only arXiv (or a just-ingested OpenAlex record) knows. Rest: titles that changed between preprint and published versions (e.g. "Baitsao: …"), old-style arXiv IDs not extracted when written "arXiv preprint math/0503081", a book edition year (Sutton & Barto), and records not in any index.
+- **Correction of an earlier claim:** on dev, removing arXiv changed 2/1000 verdicts, so I called it negligible (S11). That does **not** hold for this test split, whose real-world references are recent preprints. The dev sample under-represents them.
+- Next (disclosed protocol): keep this result on record; retry **only failed network calls** (no config/method change) once arXiv stops rate-limiting us; report both numbers. Method improvements (LLM adjudicator, arXiv robustness, ID extraction) are decided on dev only and tested once more, disclosed as a second test look.
