@@ -1,0 +1,22 @@
+{
+ "status": "FROZEN 2026-11-10, approved by Priyanshu; do not change before test evaluation",
+ "tuned_on": "dev_1000",
+ "objective": "max F1 s.t. FPR <= 0.1 (5-fold CV inside dev)",
+ "dev_cv5_f1": 0.8604166666666666,
+ "dev_cv5_fpr": 0.094,
+ "weights": {
+  "title": 0.55,
+  "authors": 0.4,
+  "venue": 0.1,
+  "year": 0.05
+ },
+ "thresholds": {
+  "verified": 95,
+  "title_min": 95,
+  "author_min": 90,
+  "same_work_title": 90.0,
+  "found": 60.0,
+  "year_tolerance": 2,
+  "book_year_any": true
+ }
+}

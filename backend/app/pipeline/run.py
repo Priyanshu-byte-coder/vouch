@@ -15,6 +15,7 @@ from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
 from .retraction import describe
 from .retraction import get_index as get_retractions
+from .tuned import TUNED_THRESHOLDS, TUNED_WEIGHTS
 from .verdict import DEFAULT, Thresholds, decide
 
 # Per-source time budget per reference (S2 throttles hard; never let it stall a report)
@@ -108,7 +109,8 @@ async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, li
         current_usage.reset(u_tok)
         api_calls.reset(c_tok)
     s = get_settings()
-    report.meta = RunMeta(models={"parse": s.llm_model_parse, "judge": s.llm_model_judge},
+    report.meta = RunMeta(models={"parse": s.llm_model_parse, "judge": s.llm_model_judge,
+                                  "config": "tuned (eval/configs/rq1.json)" if t == TUNED_THRESHOLDS else "custom"},
                           seconds=round(time.perf_counter() - t0, 1), llm_calls=usage.calls,
                           llm_tokens_in=usage.tokens_in, llm_tokens_out=usage.tokens_out,
                           cost_usd=round(usage.cost_usd, 5), api_calls=dict(calls), cache_hits=cache.hits - hits0)
@@ -118,7 +120,8 @@ async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, li
     return report
 
 
-async def check_bibliography(text: str, *, sources: list[str] | None = None, t: Thresholds = DEFAULT, weights: dict[str, float] = WEIGHTS,
+async def check_bibliography(text: str, *, sources: list[str] | None = None, t: Thresholds = TUNED_THRESHOLDS,
+                             weights: dict[str, float] = TUNED_WEIGHTS,
                              on_event: EventFn = None, source_label: str = "bibliography") -> Report:
     """Full run on pasted bibliography text."""
     async def load():
@@ -126,7 +129,8 @@ async def check_bibliography(text: str, *, sources: list[str] | None = None, t: 
     return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights)
 
 
-async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thresholds = DEFAULT, weights: dict[str, float] = WEIGHTS,
+async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thresholds = TUNED_THRESHOLDS,
+                      weights: dict[str, float] = TUNED_WEIGHTS,
                       on_event: EventFn = None) -> Report:
     """Full run on an arXiv paper (LaTeX source preferred, PDF via GROBID as fallback)."""
     async def load():
@@ -137,7 +141,8 @@ async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thr
 
 
 async def check_pdf(pdf: bytes, filename: str = "upload.pdf", *, sources: list[str] | None = None,
-                    t: Thresholds = DEFAULT, weights: dict[str, float] = WEIGHTS, on_event: EventFn = None) -> Report:
+                    t: Thresholds = TUNED_THRESHOLDS, weights: dict[str, float] = TUNED_WEIGHTS,
+                    on_event: EventFn = None) -> Report:
     """Full run on an uploaded PDF (references extracted by GROBID)."""
     async def load():
         refs = await grobid_references(pdf)

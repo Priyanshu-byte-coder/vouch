@@ -109,9 +109,9 @@
 
 ## Phase 3 — Measure RQ1
 
-### 3.1 Tune on dev (🤖, 👤 approves thresholds)
+### 3.1 Tune on dev (🤖, 👤 approves thresholds) ✅ approved + frozen (eval/configs/rq1.json)
 - Grid-search weights and thresholds on the **dev split only**. Log every configuration tried.
-- ✅ Done when: the chosen config is frozen in `eval/configs/rq1.yaml` and the dev numbers are logged.
+- ✅ Done when: the chosen config is frozen in `eval/configs/rq1.json` and the dev numbers are logged.
 
 ### 3.2 E1 on test (🤖)
 - Run on CiteAudit-300 + NeurIPS-100 with the frozen config. Bootstrap 95% CIs. Error analysis on misses and false positives.

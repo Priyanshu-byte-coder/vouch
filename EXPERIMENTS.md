@@ -226,3 +226,8 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Outside check (not CiteAudit) with the candidate config:** 100 real references (3 arXiv papers + bib20 + retracted list), **1 wrongly called a mismatch**: AlexNet (NIPS 2012). The indexes only hold the 2017 *Communications of the ACM* reprint with full metadata, and OpenAlex's NIPS 2012 record has broken authors. A coverage gap, and a target for the LLM adjudicator (3.3). All 3 planted fakes flagged.
 - Regression found and fixed: with the stricter verified bar, Obokata 2014 became "can't verify" and lost its retraction flag (the lookup used the matched DOI only for verified refs). The lookup now runs whenever the work is clearly identified (title ≥ 95). Both retractions are caught again.
 - Not yet frozen. Test sets untouched.
+
+### Decision — config frozen (end of step 3.1)
+- When / who: 2026-11-10 ~19:40 IST · Priyanshu approved the candidate config with FPR cap 0.10.
+- Frozen in `eval/configs/rq1.json` (record) and `backend/app/pipeline/tuned.json` (used by the app; `app/pipeline/tuned.py`). The API report cache version was bumped to v3.
+- **No changes to matcher, verdict or config until test results are logged.**
