@@ -63,3 +63,10 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Decision: **parse = deepseek-v4.1-flash-1017 with thinking off** (`chat_template_kwargs.enable_thinking=false`, `reasoning_effort=none`). Fallback: qwen3.8-flash-next.
   **Judge = deepseek-v4.1-flash-1017 with thinking on** for now. Compare against glm-5.3 / qwen3.8-27b on the dev split in steps 3.3 and 6.2.
 - Learned: reasoning models spend the token budget on hidden thinking, so the JSON gets cut off. Always set max_tokens ≥ 2000 when thinking is on, and strip ``` code fences when parsing output.
+
+### S1 — Source smoke test (step 0.3)
+- When / who: 2026-11-10 ~13:40 IST · Priyanshu
+- Command: `backend/.venv/Scripts/python backend/scripts/smoke_test.py`
+- Results: Crossref ✅ · OpenAlex ✅ (key) · Semantic Scholar ✅ without a key (the shared pool sometimes returns 429) · arXiv ✅ · DataCite ✅ · Open Library ✅ · Retraction Watch repo ✅ (data for 2026-11-09) · LLM ✅ (33 models) · GROBID ⏳ (step 0.4) · **DBLP ❌** (HTTP 202 anti-bot challenge page)
+- Decision: drop DBLP from the cascade. CS venues are covered by OpenAlex, Crossref and S2.
+- Learned: **Crossref's top hit for "Attention is all you need" is a different paper, "Is Attention All You Need?" (Springer 2025).** Taking the first search result is unsafe; the matcher must score several candidates per source. Good example for the README.

@@ -52,7 +52,7 @@ Upload a PDF, paste an arXiv ID, or paste a bibliography. You get a report with 
 
 | Check | Question | How |
 |---|---|---|
-| **① Exists** | Is this a real work? | Look it up across several open databases in turn: Crossref → OpenAlex → Semantic Scholar → arXiv → DBLP → DataCite (datasets) → Open Library (books). Each step only runs if the previous one didn't find a match. Field-level matching on title, authors, year and venue. An AI model reviews only the borderline matches |
+| **① Exists** | Is this a real work? | Look it up across several open databases in turn: Crossref → OpenAlex → Semantic Scholar → arXiv → DataCite (datasets) → Open Library (books). Each step only runs if the previous one didn't find a match. Field-level matching on title, authors, year and venue. An AI model reviews only the borderline matches |
 | **② Accurate** | Are the authors, year, venue and DOI right? Does the DOI point to the cited title? | Field-by-field comparison with the matched record. Catches **partial corruption** and **identifier hijacking** (a real DOI attached to the wrong paper) |
 | **③ Retracted** | Was the cited work retracted, corrected or flagged? | Match DOIs and PubMed IDs against the **Retraction Watch** CSV (Crossref, updated daily) |
 | **④ Supports the claim** | Does the cited source support the sentence that cites it? | Find the citing sentence, fetch the source's abstract or text, and get an AI verdict (supports / contradicts / not enough info) with an evidence quote and a confidence score. Says **"needs human review"** when confidence is low |
@@ -87,7 +87,7 @@ Upload a PDF, paste an arXiv ID, or paste a bibliography. You get a report with 
 | Criterion | How we score |
 |---|---|
 | Innovation & originality | Multi-database open cascade + false-accusation study + integrated report. No existing tool does all of these |
-| Technical implementation | Async pipeline, 7 data sources, field matching, AI review, calibrated abstention, live web app |
+| Technical implementation | Async pipeline, 6 data sources, field matching, AI review, calibrated abstention, live web app |
 | Relevance & importance | Fabricated-reference prevalence is up ~10× in three years. It's the organiser's own domain (journals, ICSD conference, peer review) |
 | Quality of solution | Evidence for every verdict, clear labels, PDF + arXiv + bibliography input, fast |
 | Research, experimentation, data | 5 research questions, public benchmarks, a published baseline to beat, ablations, a field audit, a committed experiment log |
@@ -116,4 +116,4 @@ Upload a PDF, paste an arXiv ID, or paste a bibliography. You get a report with 
 | Running out of time | MVP = ①②③ + UI + RQ1. ④⑤ and RQ2–RQ5 are added in priority order (see plan) |
 
 ## 10. 30-second pitch
-> "Papers with fake references went from 1 in 2,800 to 1 in 277 in three years, and they're getting past peer review at top venues. Existing checkers look in one database. So they miss half the fakes, and they wrongly accuse real books and regional journals. Vouch checks every reference against seven open databases, plus retractions, whether it supports the claim, and paper-mill language. Every verdict comes with evidence. On the CiteAudit benchmark we beat the published baseline's F1 of 0.61 *(replace with our measured number)*, and we measured how often single-database checkers wrongly accuse references by type and region. Paste any arXiv paper and see in a minute."
+> "Papers with fake references went from 1 in 2,800 to 1 in 277 in three years, and they're getting past peer review at top venues. Existing checkers look in one database. So they miss half the fakes, and they wrongly accuse real books and regional journals. Vouch checks every reference against six open databases, plus retractions, whether it supports the claim, and paper-mill language. Every verdict comes with evidence. On the CiteAudit benchmark we beat the published baseline's F1 of 0.61 *(replace with our measured number)*, and we measured how often single-database checkers wrongly accuse references by type and region. Paste any arXiv paper and see in a minute."

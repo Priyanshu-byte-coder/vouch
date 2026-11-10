@@ -31,7 +31,7 @@ flowchart LR
   U[User: arXiv ID / PDF / bibliography] --> FE[Next.js app on Vercel]
   FE -->|POST /api/check, SSE progress| API[FastAPI on Vultr VM]
   subgraph Pipeline
-    ING[Ingest\narXiv source .bbl/.bib\nGROBID for PDF\nLLM parse fallback] --> RES[Resolver cascade\nCrossref → OpenAlex → S2 → arXiv → DBLP → DataCite → Open Library]
+    ING[Ingest\narXiv source .bbl/.bib\nGROBID for PDF\nLLM parse fallback] --> RES[Resolver cascade\nCrossref → OpenAlex → S2 → arXiv → DataCite → Open Library]
     RES --> MATCH[Field matcher\ntitle · authors · year · venue · DOI]
     MATCH -->|borderline only| ADJ[LLM adjudicator]
     MATCH --> VER[Verdict]
@@ -71,7 +71,7 @@ flowchart LR
 | OpenAlex | Search + abstracts (`abstract_inverted_index`), country filters for RQ2 | **Free API key ($1/day budget, search ≈ $0.001)**. Get it on day 1 |
 | Semantic Scholar | Title match, abstracts | Free API key (request on day 1; works without a key, but slower) |
 | arXiv API + e-print | Metadata, LaTeX source | Free, max 1 request every 3 s |
-| DBLP | CS venues | Free |
+| ~~DBLP~~ | ~~CS venues~~ | **Dropped 10 Nov:** the API now sits behind an anti-bot challenge (HTTP 202 + "Making sure you're not a bot"). OpenAlex, Crossref and S2 cover CS venues |
 | DataCite | Datasets and software DOIs | Free |
 | Open Library | Books (ISBN, title) | Free |
 | Retraction Watch | Retractions, corrections, expressions of concern | [Crossref GitLab CSV](https://gitlab.com/crossref/retraction-watch-data), updated daily |
@@ -110,7 +110,7 @@ threws-odyssey-2026/
 │   │   └── pipeline/
 │   │       ├── ingest.py        # arXiv source / PDF→GROBID / plain text
 │   │       ├── parse_refs.py    # .bbl/.bib parser, GROBID TEI parser, LLM fallback
-│   │       ├── resolvers/       # crossref.py openalex.py s2.py arxiv.py dblp.py datacite.py openlibrary.py
+│   │       ├── resolvers/       # crossref.py openalex.py s2.py arxiv.py datacite.py openlibrary.py
 │   │       ├── match.py         # field scoring
 │   │       ├── verdict.py       # thresholds + LLM adjudicator
 │   │       ├── retraction.py
@@ -152,7 +152,7 @@ Fields for each reference: `raw, title, authors[], year, venue, doi, arxiv_id, i
 1. **DOI given:** Crossref `/works/{doi}` (DataCite if Crossref returns 404). If found but the title similarity is < 85, raise `IDENTIFIER_MISMATCH` and keep searching by title.
 2. **arXiv ID given:** look up by ID on arXiv.
 3. **Title search**, routed by `type_guess`:
-   - Crossref `query.bibliographic` → OpenAlex `search` → S2 `paper/search/match` → DBLP (if CS) → DataCite (if dataset or software) → Open Library (if book or no venue)
+   - Crossref `query.bibliographic` → OpenAlex `search` → S2 `paper/search/match` → DataCite (if dataset or software) → Open Library (if book or no venue)
    - **Stop early** once a candidate scores ≥ `T_accept`
 4. Every API call is cached, rate-limited per source and logged with latency.
 

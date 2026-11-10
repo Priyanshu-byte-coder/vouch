@@ -44,7 +44,7 @@
 - Then: copy `.env.example` → `.env` and paste the keys in. **Don't paste keys in chat.** Tell Claude when it's done.
 - ✅ Done when: `.env` exists locally with at least the OpenAlex key, the Crossref email and the LLM key filled in.
 
-### 0.3 Local dev environment (🤖)
+### 0.3 Local dev environment (🤖) ✅
 - Create `backend/` with a Python 3.12 venv and `requirements.txt` (fastapi, uvicorn, httpx, pydantic, rapidfuzz, unidecode, bibtexparser, pymupdf, openai, pandas, python-dotenv, pytest).
 - Smoke-test each API with a single request: Crossref, OpenAlex, S2, arXiv, and the LLM `/models` endpoint.
 - ✅ Done when: the smoke-test script prints OK for every source and lists the LLM model names. We then pick `LLM_MODEL_PARSE` and `LLM_MODEL_JUDGE`.
@@ -118,7 +118,7 @@
 - ✅ Done when: the results summary table in `EXPERIMENTS.md` has our numbers next to the baseline's.
 
 ### 3.3 More sources + AI review (🤖)
-- Add DBLP, DataCite, Open Library + the LLM adjudicator for borderline matches → re-run on dev → re-freeze → re-test once.
+- Add DataCite, Open Library + the LLM adjudicator for borderline matches → re-run on dev → re-freeze → re-test once.
 - ✅ Done when: the v2 numbers are logged. Keep whichever version is honestly better on dev; the test set is not used for that choice.
 
 ---
