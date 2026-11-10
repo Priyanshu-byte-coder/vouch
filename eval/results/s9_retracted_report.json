@@ -1,0 +1,325 @@
+{
+ "paper": {
+  "title": null,
+  "source": "bibliography:bib_retracted.txt",
+  "n_refs": 4
+ },
+ "summary": {
+  "verified": 4,
+  "detail_mismatch": 0,
+  "not_found": 0,
+  "cant_verify": 0,
+  "retracted": 2,
+  "claims_checked": 0,
+  "claims_unsupported": 0,
+  "tortured_hits": 0
+ },
+ "references": [
+  {
+   "idx": 0,
+   "raw": "[1] Wakefield AJ, Murch SH, Anthony A, et al. Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children. Lancet. 1998;351(9103):637-641.",
+   "parsed": {
+    "idx": 0,
+    "raw": "[1] Wakefield AJ, Murch SH, Anthony A, et al. Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children. Lancet. 1998;351(9103):637-641.",
+    "title": "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children",
+    "authors": [
+     "Wakefield, AJ",
+     "Murch, SH",
+     "Anthony, A"
+    ],
+    "year": 1998,
+    "venue": "Lancet",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.9,
+   "match": {
+    "source": "crossref",
+    "id": "10.1016/s0140-6736(97)11096-0",
+    "title": "RETRACTED: Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children",
+    "authors": [
+     "Wakefield, AJ",
+     "Murch, SH",
+     "Anthony, A",
+     "Linnell, J",
+     "Casson, DM",
+     "Malik, M",
+     "Berelowitz, M",
+     "Dhillon, AP",
+     "Thomson, MA",
+     "Harvey, P",
+     "Valentine, A",
+     "Davies, SE",
+     "Walker-Smith, JA"
+    ],
+    "year": 1998,
+    "venue": "The Lancet",
+    "doi": "10.1016/s0140-6736(97)11096-0",
+    "url": "https://doi.org/10.1016/s0140-6736(97)11096-0",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 90.0
+   },
+   "issues": [
+    "cited work was RETRACTED (2010-02-06): Falsification/Fabrication of Data; Investigation by Company/Institution; Investigation by Third Party; Lack of Approval from Company/Institution"
+   ],
+   "retraction": {
+    "nature": "Retraction",
+    "date": "2010-02-06",
+    "reasons": [
+     "Falsification/Fabrication of Data",
+     "Investigation by Company/Institution",
+     "Investigation by Third Party",
+     "Lack of Approval from Company/Institution",
+     "Lack of IRB/IACUC Approval and/or Compliance",
+     "Manipulation of Results"
+    ],
+    "notice_doi": "10.1016/s0140-6736(10)60175-4",
+    "url": "http://retractionwatch.com/the-retraction-watch-leaderboard/top-10-most-highly-cited-retracted-papers/"
+   },
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 1,
+   "raw": "[2] Obokata H, Wakayama T, Sasai Y, et al. Stimulus-triggered fate conversion of somatic cells into pluripotency. Nature. 2014;505(7485):641-647.",
+   "parsed": {
+    "idx": 1,
+    "raw": "[2] Obokata H, Wakayama T, Sasai Y, et al. Stimulus-triggered fate conversion of somatic cells into pluripotency. Nature. 2014;505(7485):641-647.",
+    "title": "Stimulus-triggered fate conversion of somatic cells into pluripotency",
+    "authors": [
+     "Obokata, H",
+     "Wakayama, T",
+     "Sasai, Y"
+    ],
+    "year": 2014,
+    "venue": "Nature",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 0.9,
+   "match": {
+    "source": "crossref",
+    "id": "10.1038/nature13598",
+    "title": "Retraction Note: Stimulus-triggered fate conversion of somatic cells into pluripotency",
+    "authors": [
+     "Obokata, Haruko",
+     "Wakayama, Teruhiko",
+     "Sasai, Yoshiki",
+     "Kojima, Koji",
+     "Vacanti, Martin P.",
+     "Niwa, Hitoshi",
+     "Yamato, Masayuki",
+     "Vacanti, Charles A."
+    ],
+    "year": 2014,
+    "venue": "Nature",
+    "doi": "10.1038/nature13598",
+    "url": "https://doi.org/10.1038/nature13598",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 90.0
+   },
+   "issues": [
+    "cited work was RETRACTED (2014-07-02): Error in Image; Investigation by Company/Institution; Unreliable Image; Unreliable Results and/or Conclusions"
+   ],
+   "retraction": {
+    "nature": "Retraction",
+    "date": "2014-07-02",
+    "reasons": [
+     "Error in Image",
+     "Investigation by Company/Institution",
+     "Unreliable Image",
+     "Unreliable Results and/or Conclusions"
+    ],
+    "notice_doi": "10.1038/nature13598",
+    "url": "http://retractionwatch.com/2014/07/02/stap-stem-cell-papers-officially-retracted-as-nature-argues-peer-review-couldnt-have-detected-fatal-problems/"
+   },
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 2,
+   "raw": "[3] LeCun Y, Bengio Y, Hinton G. Deep learning. Nature. 2015;521(7553):436-444.",
+   "parsed": {
+    "idx": 2,
+    "raw": "[3] LeCun Y, Bengio Y, Hinton G. Deep learning. Nature. 2015;521(7553):436-444.",
+    "title": "Deep learning",
+    "authors": [
+     "LeCun, Y",
+     "Bengio, Y",
+     "Hinton, G"
+    ],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "crossref",
+    "id": "10.1038/nature14539",
+    "title": "Deep learning",
+    "authors": [
+     "LeCun, Yann",
+     "Bengio, Yoshua",
+     "Hinton, Geoffrey"
+    ],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14539",
+    "url": "https://doi.org/10.1038/nature14539",
+    "abstract": null,
+    "type": "journal-article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref"
+   ]
+  },
+  {
+   "idx": 3,
+   "raw": "[4] Jumper J, Evans R, Pritzel A, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021;596:583-589.",
+   "parsed": {
+    "idx": 3,
+    "raw": "[4] Jumper J, Evans R, Pritzel A, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021;596:583-589.",
+    "title": "Highly accurate protein structure prediction with AlphaFold",
+    "authors": [
+     "Jumper, J",
+     "Evans, R",
+     "Pritzel, A"
+    ],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": null,
+    "arxiv_id": null,
+    "isbn": null,
+    "url": null,
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
+   },
+   "status": "verified",
+   "confidence": 1.0,
+   "match": {
+    "source": "openalex",
+    "id": "W3177828909",
+    "title": "Highly accurate protein structure prediction with AlphaFold",
+    "authors": [
+     "Jumper, John",
+     "Evans, Richard",
+     "Pritzel, Alexander",
+     "Green, Tim",
+     "Figurnov, Michael",
+     "Ronneberger, Olaf",
+     "Tunyasuvunakool, Kathryn",
+     "Bates, Russ",
+     "Žídek, Augustin",
+     "Potapenko, Anna",
+     "Bridgland, Alex",
+     "Meyer, Clemens",
+     "Köhl, Simon",
+     "Ballard, Andrew J.",
+     "Cowie, Andrew",
+     "Romera‐Paredes, Bernardino",
+     "Nikolov, Stanislav",
+     "Jain, Rishub",
+     "Adler, Jonas",
+     "Back, Trevor",
+     "Petersen, Stig",
+     "Reiman, David",
+     "Clancy, Ellen",
+     "Zieliński, Michał",
+     "Steinegger, Martin",
+     "Pacholska, Michalina",
+     "Berghammer, Tamas",
+     "Bodenstein, Sebastian W.",
+     "Silver, David",
+     "Vinyals, Oriol",
+     "Senior, Andrew",
+     "Kavukcuoglu, Koray",
+     "Kohli, Pushmeet",
+     "Hassabis, Demis"
+    ],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-021-03819-2",
+    "url": "https://openalex.org/W3177828909",
+    "abstract": "Abstract Proteins are essential to life, and understanding their structure can facilitate a mechanistic understanding of their function. Through an enormous experimental effort 1–4 , the structures of around 100,000 unique proteins have been determined 5 , but this represents a small fraction of the billions of known protein sequences 6,7 . Structural coverage is bottlenecked by the months to years of painstaking effort required to determine a single protein structure. Accurate computational approaches are needed to address this gap and to enable large-scale structural bioinformatics. Predicting the three-dimensional structure that a protein will adopt based solely on its amino acid sequence—the structure prediction component of the ‘protein folding problem’ 8 —has been an important open research problem for more than 50 years 9 . Despite recent progress 10–14 , existing methods fall far short of atomic accuracy, especially when no homologous structure is available. Here we provide the first computational method that can regularly predict protein structures with atomic accuracy even in cases in which no similar structure is known. We validated an entirely redesigned version of our neural network-based model, AlphaFold, in the challenging 14th Critical Assessment of protein Structure Prediction (CASP14) 15 , demonstrating accuracy competitive with experimental structures in a majority of cases and greatly outperforming other methods. Underpinning the latest version of AlphaFold is a novel machine learning approach that incorporates physical and biological knowledge about protein structure, leveraging multi-sequence alignments, into the design of the deep learning algorithm.",
+    "type": "article"
+   },
+   "field_scores": {
+    "title": 100.0,
+    "authors": 100.0,
+    "year": 1.0,
+    "venue": 100.0,
+    "composite": 100.0
+   },
+   "issues": [],
+   "retraction": null,
+   "claims": [],
+   "sources_tried": [
+    "crossref",
+    "openalex"
+   ]
+  }
+ ],
+ "tortured": [],
+ "meta": {
+  "models": {
+   "parse": "deepseek-v4.1-flash-1017",
+   "judge": "deepseek-v4.1-flash-1017"
+  },
+  "seconds": 3.0,
+  "llm_calls": 0,
+  "llm_tokens_in": 0,
+  "llm_tokens_out": 0,
+  "cost_usd": 0.0,
+  "api_calls": {},
+  "cache_hits": 6,
+  "notes": []
+ }
+}

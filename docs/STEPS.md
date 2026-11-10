@@ -95,7 +95,7 @@
 - Fetch the e-print → parse `.bbl`/`.bib`. Map `\cite{}` to sentences (contexts for step 6).
 - ✅ Done when: `check --arxiv <id>` works on 3 real recent papers.
 
-### 2.6 Retraction check (🤖)
+### 2.6 Retraction check (🤖) ✅
 - RW CSV → DOI/PMID lookup.
 - ✅ Done when: a reference list containing a known retracted DOI gets flagged with date and reason.
 

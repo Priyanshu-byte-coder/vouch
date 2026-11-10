@@ -153,3 +153,14 @@ def test_short_title_alone_is_not_same_work():  # S8: 'Delft' (GitHub software) 
     resnet = ref(title="Deep residual learning", authors=["Smith, J."], year=2016)
     real = cand(title="Deep Residual Learning", authors=["He, Kaiming"], year=2016)
     assert decide(resnet, best_match(resnet, [real])).status is Status.detail_mismatch  # 3+ words: still mismatch
+
+
+def test_original_paper_preferred_over_notice():  # S9
+    r = ref(title="Stimulus-triggered fate conversion of somatic cells into pluripotency", authors=["Obokata, H."], year=2014)
+    note = cand(title="Retraction Note: Stimulus-triggered fate conversion of somatic cells into pluripotency",
+                authors=["Obokata, Haruko"], year=2014, doi="10.1038/nature13598")
+    orig = cand(source="openalex", title="Stimulus-triggered fate conversion of somatic cells into pluripotency",
+                authors=["Obokata, Haruko"], year=2014, doi="10.1038/nature12968")
+    assert best_match(r, [note, orig]).candidate.doi == "10.1038/nature12968"
+    alone = best_match(r, [note])
+    assert alone.scores.title == 100 and any("notice about the work" in i for i in alone.issues)

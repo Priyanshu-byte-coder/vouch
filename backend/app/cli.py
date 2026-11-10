@@ -21,7 +21,8 @@ def print_report(report) -> None:
         print(f"Note: {n}")
     for r in report.references:
         title = r.parsed.title or r.raw[:70]
-        print(f"{ICON[r.status.value]} [{r.idx + 1:>2}] {r.status.value:15s} {title[:72]}")
+        flag = " 🚫" if r.retraction and r.retraction.nature == "Retraction" else " ⚠️" if r.retraction else ""
+        print(f"{ICON[r.status.value]}{flag} [{r.idx + 1:>2}] {r.status.value:15s} {title[:72]}")
         if r.match and r.status.value != "verified":
             print(f"        closest: {r.match.source}: {r.match.title[:70]} ({r.match.year})")
         for issue in r.issues:
@@ -30,7 +31,7 @@ def print_report(report) -> None:
             print(f"        cited as: \"{r.parsed.contexts[0][:110]}\"")
     s, m = report.summary, report.meta
     print(f"\n{len(report.references)} references: {s.verified} verified · {s.detail_mismatch} detail mismatch · "
-          f"{s.not_found} not found · {s.cant_verify} can't verify")
+          f"{s.not_found} not found · {s.cant_verify} can't verify · {s.retracted} retracted")
     print(f"{m.seconds}s · LLM {m.llm_calls} calls, ${m.cost_usd:.4f} · API {m.api_calls} · cache hits {m.cache_hits}")
 
 

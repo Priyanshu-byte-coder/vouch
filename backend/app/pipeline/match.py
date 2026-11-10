@@ -22,6 +22,20 @@ WEIGHTS = {"title": 0.55, "authors": 0.30, "venue": 0.10, "year": 0.05}
 _LATEX = re.compile(r"\\[a-zA-Z]+\*?|[{}$]")
 
 
+# Records that are notices *about* a paper, not the paper itself
+_NOTICE = re.compile(r"^\s*(?:retraction note|retraction notice|notice of retraction|retracted article|retracted|retraction|"
+                     r"correction to|correction|erratum to|erratum|corrigendum to|corrigendum|expression of concern|"
+                     r"editorial expression of concern|withdrawn|withdrawal)\s*[:\-–—]\s*", re.IGNORECASE)
+
+
+def strip_notice_prefix(t: str | None) -> str:
+    return _NOTICE.sub("", t or "")
+
+
+def is_notice(t: str | None) -> bool:
+    return bool(_NOTICE.match(t or ""))
+
+
 def norm_title(t: str | None) -> str:
     t = _LATEX.sub(" ", fold(t or "")).lower()
     t = re.sub(r"[^a-z0-9]+", " ", t)
@@ -167,7 +181,9 @@ class Scored:
 
 
 def score_candidate(ref: ParsedRef, cand: Candidate) -> Scored:
-    s = FieldScores(title=title_score(ref.title, cand.title), authors=author_score(ref.authors, cand.authors),
+    notice = is_notice(cand.title) and not is_notice(ref.title)
+    s = FieldScores(title=title_score(ref.title, strip_notice_prefix(cand.title) if notice else cand.title),
+                    authors=author_score(ref.authors, cand.authors),
                     venue=venue_score(ref.venue, cand.venue), year=year_score(ref.year, cand.year))
     parts = {"title": s.title, "authors": s.authors, "venue": s.venue,
              "year": None if s.year is None else 100 * s.year}
@@ -176,6 +192,9 @@ def score_candidate(ref: ParsedRef, cand: Candidate) -> Scored:
     s.composite = round(sum(WEIGHTS[k] * v for k, v in present.items()) / total_w, 1) if total_w else None
 
     issues = []
+    if notice and s.composite is not None:
+        s.composite = max(0.0, s.composite - 10)  # prefer the original paper over a notice about it
+        issues.append(f"best record is a notice about the work: '{cand.title[:80]}'")
     doi_match = bool(ref.doi and cand.doi and normalize_doi(ref.doi) == cand.doi)
     if doi_match and (s.title or 0) < 85:
         issues.append(f"DOI {cand.doi} belongs to a different work: '{cand.title}'")

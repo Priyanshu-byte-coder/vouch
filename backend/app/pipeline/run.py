@@ -13,6 +13,8 @@ from .match import best_match
 from .ingest import ingest_arxiv, normalize_arxiv_id
 from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
+from .retraction import describe
+from .retraction import get_index as get_retractions
 from .verdict import DEFAULT, Thresholds, decide
 
 # Per-source time budget per reference (S2 throttles hard; never let it stall a report)
@@ -52,11 +54,17 @@ async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DE
             break  # confident match: stop early
     best = best_match(ref, candidates)
     v = decide(ref, best, all_sources_failed=not tried, t=t)
-    issues = v.issues + ([f"sources unavailable: {', '.join(failed)}"] if failed else [])
+    # keep the record as evidence when it explains the verdict (e.g. a hijacked DOI)
+    match = best.candidate if best and ((best.scores.composite or 0) >= t.found
+                                         or v.status is Status.detail_mismatch) else None
+    # Check ③: retraction / correction / expression of concern, by cited DOI, matched DOI, then exact title
+    retraction = get_retractions().lookup(
+        dois=[ref.doi, match.doi if match and v.status is Status.verified else None],
+        title=ref.title if v.status is Status.verified else None)
+    issues = ([describe(retraction)] if retraction else []) + v.issues
+    issues += [f"sources unavailable: {', '.join(failed)}"] if failed else []
     return RefResult(idx=ref.idx, raw=ref.raw, parsed=ref, status=v.status, confidence=v.confidence,
-                     # keep the record as evidence when it explains the verdict (e.g. a hijacked DOI)
-                     match=best.candidate if best and ((best.scores.composite or 0) >= t.found
-                                                       or v.status is Status.detail_mismatch) else None,
+                     match=match, retraction=retraction,
                      field_scores=best.scores if best else None, issues=issues,
                      sources_tried=tried + [f"{f} (failed)" for f in failed])
 

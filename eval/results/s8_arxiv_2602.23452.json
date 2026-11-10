@@ -718,8 +718,7 @@
     "composite": 56.7
    },
    "issues": [
-    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'REFERENCE ARCHITECTURE FOR THE SOFTWARE PLATFORM FOR VERIFICATION OF MATHEMATICAL MODELS', score 56.7)",
-    "sources unavailable: s2"
+    "no match in scholarly indexes, which rarely cover this kind of source (other) (closest: 'REFERENCE ARCHITECTURE FOR THE SOFTWARE PLATFORM FOR VERIFICATION OF MATHEMATICAL MODELS', score 56.7)"
    ],
    "retraction": null,
    "claims": [],
@@ -729,7 +728,7 @@
     "arxiv",
     "datacite",
     "openlibrary",
-    "s2 (failed)"
+    "s2"
    ]
   },
   {
@@ -2174,15 +2173,15 @@
    "parse": "deepseek-v4.1-flash-1017",
    "judge": "deepseek-v4.1-flash-1017"
   },
-  "seconds": 20.6,
+  "seconds": 7.9,
   "llm_calls": 0,
   "llm_tokens_in": 0,
   "llm_tokens_out": 0,
   "cost_usd": 0.0,
   "api_calls": {
-   "s2": 7
+   "s2": 2
   },
-  "cache_hits": 92,
+  "cache_hits": 94,
   "notes": [
    "references read from: bib"
   ]

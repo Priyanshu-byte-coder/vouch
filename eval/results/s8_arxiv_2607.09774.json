@@ -1837,7 +1837,7 @@
    "parse": "deepseek-v4.1-flash-1017",
    "judge": "deepseek-v4.1-flash-1017"
   },
-  "seconds": 0.2,
+  "seconds": 3.7,
   "llm_calls": 0,
   "llm_tokens_in": 0,
   "llm_tokens_out": 0,

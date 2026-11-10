@@ -182,3 +182,14 @@ Every run that produces a number goes here: what we tried, what happened and why
   "Can't verify" items are software, web pages, news and tools (GPTZero, Citely, SwanRef, Playwright, Grobid, Crossref REST API...) plus one real paper cited with a **shortened title** ("Literary runaway…", composite 86.7, title < 85). That last one is a target for threshold tuning (3.1) and the LLM adjudicator (3.3).
 - **0 false "not found" / "detail mismatch" on 79 real references.** Unlabelled sanity set, not an evaluation result.
 - Tests: 78 pass.
+
+### S9 — Retraction check (step 2.6)
+- When / who: 2026-11-10 ~19:15 IST · Priyanshu
+- Data: Retraction Watch CSV (Crossref), 73,718 notices → index of **64,700 DOIs, 32,630 PMIDs, 69,639 long titles**, loaded in 3.6 s. 2,540 papers have several notices.
+- Rule: report the notice that applies **now**. A reinstatement dated after the last retraction wins; otherwise the most severe notice (Retraction > Expression of concern > Correction), latest if tied. Book-keeping reasons ("Updated to Retraction", "Upgrade/Update of Prior Notice(s)") are dropped.
+- Lookup order: cited DOI → matched record's DOI → **retraction-notice DOI → original** → PMID → exact title (≥ 6 words, notice prefixes stripped).
+- Check: `backend/tests/fixtures/bib_retracted.txt` (4 refs, **no DOIs in the text**): Wakefield 1998 (Lancet MMR), Obokata 2014 (Nature STAP cells), LeCun 2015, Jumper 2021.
+  - First run: Wakefield 🚫 caught; **Obokata missed**. Crossref's best match was the *Retraction Note* itself ("Retraction Note: Stimulus-triggered…", DOI 10.1038/nature13598), whose DOI is the notice DOI, not the paper's.
+  - Fixes: (1) map notice DOI → original; (2) matcher recognises notice records ("Retraction Note:", "RETRACTED:", "Correction to:", "Erratum:"...), scores them on the stripped title and ranks them 10 points below the original; (3) title fallback also runs when the DOI isn't in the database.
+  - Re-run: **2/2 retracted caught** (Wakefield 2010-02-06 falsification of data; Obokata 2014-07-02 unreliable images), 2/2 clean. Regression: bib20 + 3 arXiv papers unchanged, 0 retracted among 99 refs.
+- Tests: 84 pass.

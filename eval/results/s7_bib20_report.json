@@ -33,7 +33,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "article"
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -85,7 +87,9 @@
     "arxiv_id": "1706.03762",
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -144,7 +148,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -198,7 +204,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -251,7 +259,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "book"
+    "type_guess": "book",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -303,7 +313,9 @@
     "arxiv_id": "1412.6980",
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 0.97,
@@ -359,7 +371,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "article"
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -414,7 +428,9 @@
     "arxiv_id": "2107.06751",
     "isbn": null,
     "url": null,
-    "type_guess": "preprint"
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -471,7 +487,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -527,7 +545,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "article"
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -610,7 +630,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "article"
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -680,7 +702,9 @@
     "arxiv_id": "1301.3781",
     "isbn": null,
     "url": null,
-    "type_guess": "preprint"
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -733,7 +757,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "book"
+    "type_guess": "book",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -786,7 +812,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "article"
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -852,7 +880,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 0.93,
@@ -909,7 +939,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -971,7 +1003,9 @@
     "arxiv_id": "2205.01833",
     "isbn": null,
     "url": null,
-    "type_guess": "preprint"
+    "type_guess": "preprint",
+    "key": null,
+    "contexts": []
    },
    "status": "verified",
    "confidence": 1.0,
@@ -1024,7 +1058,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "not_found",
    "confidence": 0.43,
@@ -1067,7 +1103,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "conference"
+    "type_guess": "conference",
+    "key": null,
+    "contexts": []
    },
    "status": "detail_mismatch",
    "confidence": 1.0,
@@ -1126,7 +1164,9 @@
     "arxiv_id": null,
     "isbn": null,
     "url": null,
-    "type_guess": "article"
+    "type_guess": "article",
+    "key": null,
+    "contexts": []
    },
    "status": "detail_mismatch",
    "confidence": 0.9,
@@ -1206,12 +1246,13 @@
    "parse": "deepseek-v4.1-flash-1017",
    "judge": "deepseek-v4.1-flash-1017"
   },
-  "seconds": 0.1,
+  "seconds": 3.6,
   "llm_calls": 0,
   "llm_tokens_in": 0,
   "llm_tokens_out": 0,
   "cost_usd": 0.0,
   "api_calls": {},
-  "cache_hits": 66
+  "cache_hits": 66,
+  "notes": []
  }
 }
