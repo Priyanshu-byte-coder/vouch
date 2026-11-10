@@ -113,7 +113,7 @@
 - Grid-search weights and thresholds on the **dev split only**. Log every configuration tried.
 - ✅ Done when: the chosen config is frozen in `eval/configs/rq1.json` and the dev numbers are logged.
 
-### 3.2 E1 on test (🤖)
+### 3.2 E1 on test (🤖) ✅ F1 0.781 vs 0.612, recall 0.760 vs 0.493 (p<0.001) · FPR 0.187 vs 0.121 ❌ → 3.3
 - Run on CiteAudit-300 + NeurIPS-100 with the frozen config. Bootstrap 95% CIs. Error analysis on misses and false positives.
 - ✅ Done when: the results summary table in `EXPERIMENTS.md` has our numbers next to the baseline's.
 

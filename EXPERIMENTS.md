@@ -28,9 +28,9 @@ Every run that produces a number goes here: what we tried, what happened and why
 | CiteAudit-300 | AtomGPT (published) | 0.80 | 0.49 | 0.61 | 0.12 | From their README, scoring v2 |
 | CiteAudit-300 | AtomGPT (released outputs, re-scored by us, E0a) | 0.804 | 0.493 | 0.612 [0.534, 0.679] | 0.121 | Exact match, n=299. Generated: R 0.444 FPR 0.036 · Real-world: R 0.750 FPR 0.227 |
 | CiteAudit-300 | Our pipeline, S2-only + AtomGPT v2 scoring (baseline re-created in our code, E3) | | | | | |
-| CiteAudit-300 | **Vouch** | | | | | |
+| CiteAudit-300 | **Vouch** (frozen config, E1, after retries) | 0.803 | 0.760 | 0.781 | 0.187 | Paired McNemar p = 9e-05 vs baseline |
 | NeurIPS-100 | AtomGPT (published) | n/a | 0.94 | n/a | n/a | Scoring v1, all fake |
-| NeurIPS-100 | **Vouch** | n/a | | n/a | n/a | |
+| NeurIPS-100 | **Vouch** (E1) | 1.000 | 1.000 | 1.000 | n/a | 6 fakes the baseline missed; p = 0.031 |
 
 ---
 
@@ -244,3 +244,12 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Error analysis (29 real citations flagged):** **22 had an arXiv lookup that timed out** during collection (123 arXiv timeouts on this split). CiteAudit-300's real-world citations are mostly recent arXiv preprints (2025–26), which only arXiv (or a just-ingested OpenAlex record) knows. Rest: titles that changed between preprint and published versions (e.g. "Baitsao: …"), old-style arXiv IDs not extracted when written "arXiv preprint math/0503081", a book edition year (Sutton & Barto), and records not in any index.
 - **Correction of an earlier claim:** on dev, removing arXiv changed 2/1000 verdicts, so I called it negligible (S11). That does **not** hold for this test split, whose real-world references are recent preprints. The dev sample under-represents them.
 - Next (disclosed protocol): keep this result on record; retry **only failed network calls** (no config/method change) once arXiv stops rate-limiting us; report both numbers. Method improvements (LLM adjudicator, arXiv robustness, ID extraction) are decided on dev only and tested once more, disclosed as a second test look.
+
+### E1-test — after retrying failed network calls (step 3.2, disclosed)
+- When / who: 2026-11-10 23:38–23:55 IST · Priyanshu · same frozen config, same method. Only failed (citation, source) lookups were re-sent (`eval/patch_failed.py`) once arXiv stopped returning 429.
+- Retries: CiteAudit-300 119/125 fixed (6 still failing) · NeurIPS-100 36/36. → `eval/results/e1_test_results_retried.json` (as-collected kept in `e1_test_results_as_collected.json`).
+- **CiteAudit-300:** P 0.803 · R 0.760 · **F1 0.781** [0.727, 0.830] · **FPR 0.187** [0.130, 0.247]. Paired vs AtomGPT (n=299): only Vouch correct 46, only baseline correct 15, McNemar p = 9e-05.
+- **NeurIPS-100:** recall 1.000 (unchanged).
+- **Correction of my E1 hypothesis:** arXiv timeouts were **not** the main cause of the false positives. With arXiv answering, FPR only moved 0.193 → 0.187 (one fewer FP).
+- **Error analysis (28 real citations flagged, complete data):** 13 · right record not found in any of the 5 sources (mostly recent preprints) · 7 · title changed between versions or truncated (80–95) · 4 · title ok, authors partly match · 4 · year/venue (editions, reprints). **19/28 are also flagged under the untuned default config**: the false positives come mainly from **source coverage**, not threshold strictness. The tuned config catches 26 more fakes (of 150) for 9 more false positives.
+- Implication: S2 (excluded from tuning only for rate-limit reasons) is the baseline's only source and it has fewer FPs on these citations, so it likely covers recent preprints we miss. → Step 3.3: add S2 to the cascade + LLM adjudicator for borderline matches, validate on **dev** (CV), then **one disclosed second test run**.
