@@ -119,3 +119,18 @@ Every run that produces a number goes here: what we tried, what happened and why
 - We **do not** re-run AtomGPT's third-party code. The baseline is (1) their **published / released outputs**, re-scored exactly in E0a, plus (2) a **re-creation of their method inside our pipeline**: Semantic Scholar only, their documented v2 scoring (title 0.60 / authors 0.25 / venue 0.15, verified ≥ 80), and our LLM. This becomes a row in the E3 ablation.
 - Why: fewer moving parts and no third-party code execution. It also avoids a slow S2-only run under throttling and gives a controlled comparison where only the cascade and matcher differ.
 - Limitation to state in the README: the published baseline numbers come from a different extraction LLM (gpt-oss-20b for NeurIPS; not recorded for CiteAudit-300).
+
+### S5 — Resolver check: 5 references × 6 sources (step 2.2)
+- When / who: 2026-11-10 ~16:00 IST · Priyanshu
+- Command: `cd backend && .venv/Scripts/python scripts/resolver_check.py` · live asserts in `tests/test_live_resolvers.py`
+- Result (best candidate per source, ranked by title + authors + DOI):
+  | Reference | Found correctly by | Not found / wrong |
+  |---|---|---|
+  | Article: LeCun et al., *Deep learning*, Nature 2015 (DOI) | Crossref, OpenAlex (exact DOI) | **S2: 404 for this DOI**; S2 search returns other "deep learning" papers |
+  | Preprint: *Attention Is All You Need* (arXiv ID) | OpenAlex, S2, arXiv | **Crossref's top hit is a 2025 copy** with DOI 10.65215/r5bs2d54 (year mismatch) |
+  | Book: Goodfellow et al., *Deep Learning*, MIT Press 2016 | OpenAlex, Open Library | Crossref, S2, arXiv return other papers with "deep learning" in the title |
+  | Dataset: Zenodo 10.5281/zenodo.5031935 | DataCite (exact DOI); OpenAlex/S2/arXiv find the arXiv version | Crossref |
+  | **Fake**: "Hierarchical contrastive attention networks for low-resource citation verification" | — (best strict title similarity ≤ 64 anywhere) | ✅ correct |
+- **Key finding for the matcher (and for the pitch):** the baseline's title measure (`token_set_ratio`) scores **100** for "Deep learning" against "PyTorch: …Deep Learning", "Deep Learning with Differential Privacy", "Towards Deep Learning Models Resistant…", because short titles are a subset of many others. A strict measure (`token_sort_ratio`) gives 35–50 for those. **Short titles need strict title similarity plus author/year evidence.**
+- Other notes: S2 still throttles (two lookups gave up after 6 retries / ~100 s), so S2 runs last with a time budget. Crossref ~7 s per query (polite pool). A cached re-run takes 4.4 s.
+- Bug found by the tests: Crossref organisation authors ("Consortium X") were reformatted as persons ("X, Consortium"). Fixed: the bare `name` field is kept as-is.

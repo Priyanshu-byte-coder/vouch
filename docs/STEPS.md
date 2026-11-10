@@ -79,7 +79,7 @@
 - `models.py` (pydantic schema from plan §4.8), `config.py`, `cache.py` (SQLite), `llm.py` (OpenAI-compatible, JSON mode, token and cost logging)
 - ✅ Done when: unit tests pass, and one LLM JSON call works and is logged.
 
-### 2.2 Resolvers (🤖)
+### 2.2 Resolvers (🤖) ✅ (all 6 sources, incl. DataCite + Open Library pulled forward from 3.3)
 - Crossref (DOI + bibliographic search), OpenAlex (search + abstract), Semantic Scholar (match), arXiv (by ID + search). All async, cached, rate-limited.
 - ✅ Done when: 5 known references (article, preprint, book, dataset, fake) return sensible candidates from each source in a test script.
 
@@ -118,7 +118,7 @@
 - ✅ Done when: the results summary table in `EXPERIMENTS.md` has our numbers next to the baseline's.
 
 ### 3.3 More sources + AI review (🤖)
-- Add DataCite, Open Library + the LLM adjudicator for borderline matches → re-run on dev → re-freeze → re-test once.
+- (DataCite + Open Library already built in 2.2.) Add the LLM adjudicator for borderline matches → re-run on dev → re-freeze → re-test once.
 - ✅ Done when: the v2 numbers are logged. Keep whichever version is honestly better on dev; the test set is not used for that choice.
 
 ---
