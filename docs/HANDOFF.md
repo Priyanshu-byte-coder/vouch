@@ -67,6 +67,10 @@ Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1–4.3, **5.
 - Running at 15:30: `eval/coverage_rq2.py run` (RQ2, 225 OpenAlex-sampled real works × baseline re-creation / Vouch / Vouch-no-OpenAlex; then `report`, add to EXPERIMENTS as E2, research page §, README RQ2 line, SUBMISSION). Next: `eval/audit_e5.py run` (30 papers selected; per-paper data gitignored; user hand-labels `eval/data/raw/audit/flags.csv`, then `report`).
 - Left for the user: hand-label audit flags (8.3), LICENSE + make repo public (9.2), demo video (9.3), Unstop form (9.4). Rotate keys after the hackathon; delete the VM after the finals.
 
+## 6d. SUBMITTED on Unstop (11 Nov 2026, evening)
+- Video https://youtu.be/OhIqgDQpIck · site https://vouch-theta-one.vercel.app · repo public (MIT). Keep the Vultr VM running until the finals (Sun 15 Nov, 12:00–18:00 IST) if shortlisted; then delete it and rotate all keys shared in chat (Vultr, OpenAlex ×3, S2, Vercel token, inference key).
+- If shortlisted: prepare a finals deck + live-demo plan (examples are pre-run; /report/demo works without the API).
+
 ## 6c. Done 11 Nov evening
 - 7.1 RQ2 (E2), 8.2–8.3 audit (E5: 9/60 flags correct, precision 0.15; labels AI-assisted with web evidence, spot-checked by the team, file `eval/data/raw/audit/flags_labelled.csv`), physics/RevTeX fixes (S16, cache v8 on server), repo public + MIT, favicon/OG image.
 - Video: `video/` (scenes.html + record.js + compose.py). Final with teammate's voice-over: `video/out/Vouch_final_captions.mp4` / `Vouch_final_clean.mp4` (also copied to the user's Downloads as Vouch_demo_final_*.mp4), 4:52, −16 LUFS.

@@ -204,26 +204,26 @@
 
 ## Phase 9 — Ship
 
-### 9.1 Project README (🤖 drafts, 👤 edits)
+### 9.1 Project README (🤖 drafts, 👤 edits) ✅ project README + docs/SUBMISSION.md
 - Convert README.md into the project README: all 10 Unstop fields, architecture, results tables and figures, how to run, datasets and AI tools used, limitations, acknowledgements. Keep the hackathon brief in `docs/HACKATHON.md`.
 - ✅ Done when: someone new could run it and understand our results from the README alone.
 
-### 9.2 Licence + public repo (👤 you)
+### 9.2 Licence + public repo (👤 you) ✅ MIT, public 11 Nov
 - Choose a licence (MIT or Apache-2.0) → 🤖 adds the LICENSE → you run `gh repo edit --visibility public` (or use repo Settings).
 - ✅ Done when: the repo is public and the licence shows in its About section.
 
-### 9.3 Demo video ≤ 3 min (👤 records, 🤖 writes the script)
+### 9.3 Demo video ≤ 3 min (👤 records, 🤖 writes the script) ✅ 4:52 video with teammate voice-over: https://youtu.be/OhIqgDQpIck
 - Follow plan §9. Upload to YouTube (unlisted or public).
 - ✅ Done when: the link plays in a logged-out browser.
 
-### 9.4 Fresh-browser dry run (👤)
+### 9.4 Fresh-browser dry run (👤) ✅
 - ✅ Done when: the live URL, example buttons, a new arXiv ID, PDF upload and the research page all work from incognito.
 
-### 9.5 Unstop form (👤 submits, 🤖 drafts every field)
+### 9.5 Unstop form (👤 submits, 🤖 drafts every field) ✅ submitted on Unstop, 11 Nov 2026 evening
 - Fill all 10 fields, using the mapping in plan §8.
 - ✅ Done when: submitted and a confirmation screenshot is saved. **Target 21:00, hard stop 23:00.**
 
-### 9.6 Tell the team
+### 9.6 Tell the team ✅
 - Share the links with Viranshul and Kuldeep. Optionally add a pointer from `Viranshul-P/threws-odyssey-2026` to the new repo.
 
 ---
