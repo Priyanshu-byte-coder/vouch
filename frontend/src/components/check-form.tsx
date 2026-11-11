@@ -33,6 +33,8 @@ export function CheckForm() {
     try {
       const id = await start();
       router.push(`/report/${id}`);
+      // This page stays mounted in the background (Cache Components); re-enable the form for when the user comes back.
+      setTimeout(() => setBusy(null), 1500);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
       setBusy(null);
