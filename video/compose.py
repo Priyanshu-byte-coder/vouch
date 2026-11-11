@@ -14,7 +14,7 @@ LEAD = 0.3  # the slide recorder starts ~0.3 s before the timeline starts
 
 
 def frames(p: Path) -> int:
-    r = subprocess.run(["ffprobe", "-v", "error", "-count_packets", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", str(p)],
+    r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_packets", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", str(p)],
                        capture_output=True, text=True, check=True)
     return int(r.stdout.strip())
 
@@ -50,9 +50,18 @@ def ts(t: float, srt: bool = False) -> str:
 
 
 def main() -> None:
+    import sys
+    if "--script-only" in sys.argv:  # reuse the encoded parts
+        da, db = frames(OUT / "intro.cfr.mp4") / 30.0, frames(OUT / "demo.cfr.mp4") / 30.0
+        offs = [0.0, da - FADE, da - FADE + db - FADE]
+        return write_script(offs)
     offs = join([OUT / "intro.webm", OUT / "demo.webm", OUT / "outro.webm"], OUT / "vouch_demo_captions.mp4")
     if all((OUT / f"{p}-clean.webm").exists() for p in ("intro", "demo", "outro")):
         join([OUT / f"{p}-clean.webm" for p in ("intro", "demo", "outro")], OUT / "vouch_demo_clean.mp4")
+    write_script(offs)
+
+
+def write_script(offs: list[float]) -> None:
     lines = []
     for part, off, lead in (("intro", offs[0], LEAD), ("demo", offs[1], 0.0), ("outro", offs[2], LEAD)):
         for x in json.loads((OUT / f"{part}.timeline.json").read_text(encoding="utf-8")):
