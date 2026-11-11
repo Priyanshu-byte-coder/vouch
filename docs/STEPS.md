@@ -125,7 +125,7 @@
 
 ## Phase 4 — Frontend
 
-### 4.1 Scaffold + design (🤖)
+### 4.1 Scaffold + design (🤖) ✅ Next.js 16.4 + Tailwind 4.3; pages /, /report/[id] (demo), /research; build passes
 - Next.js + Tailwind + shadcn/ui in `frontend/`. Pages `/`, `/report/[id]`, `/research`, using mock JSON.
 - ✅ Done when: `npm run dev` shows all 3 pages with mock data.
 

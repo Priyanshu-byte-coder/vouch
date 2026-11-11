@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* Vouch: "scholarly journal meets archive ledger". Paper, ink, and rubber-stamp verdicts. */
+:root {
+  --paper: #f3ede2;
+  --paper-deep: #eae2d3;
+  --card: #fbf8f2;
+  --ink: #1c1a16;
+  --ink-soft: #4a453c;
+  --ink-faint: #8a8172;
+  --rule: #d3c8b4;
+  --link: #1f3a5f;
+  --verified: #2e6a55;
+  --mismatch: #a8640f;
+  --notfound: #9e2b25;
+  --unverified: #5b6670;
+  --retracted: #7a1d33;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-link: var(--link);
+  --color-verified: var(--verified);
+  --color-mismatch: var(--mismatch);
+  --color-notfound: var(--notfound);
+  --color-unverified: var(--unverified);
+  --color-retracted: var(--retracted);
+  --font-display: var(--font-newsreader);
+  --font-sans: var(--font-public-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-public-sans), ui-sans-serif, sans-serif;
+  font-feature-settings: "kern", "liga";
+}
+
+/* Paper grain over everything (pointer-events off, very low opacity) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+::selection {
+  background: #e6d3a3;
+  color: var(--ink);
+}
+
+/* Double rule, like a journal masthead */
+.rule-double {
+  border-top: 1px solid var(--ink);
+  box-shadow: 0 3px 0 -2px var(--paper), 0 4px 0 -2px var(--ink);
+}
+
+/* Ruled ledger rows */
+.ledger-row + .ledger-row {
+  border-top: 1px dashed var(--rule);
+}
+
+/* Rubber-stamp texture: slightly uneven ink via a mask */
+.stamp {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='60'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/><feComponentTransfer><feFuncA type='discrete' tableValues='0 1 1 1 1 1 1 1'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23s)'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='60'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/><feComponentTransfer><feFuncA type='discrete' tableValues='0 1 1 1 1 1 1 1'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23s)'/></svg>");
+}
+
+/* Staggered entrance */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.6) rotate(-9deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.96) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(-3deg);
+  }
+}
+.stamp-in {
+  animation: stamp-in 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .stamp-in {
+    animation: none;
+  }
+}
+
+/* Old-style numerals for the ledger index */
+.numerals-old {
+  font-variant-numeric: oldstyle-nums;
+}
