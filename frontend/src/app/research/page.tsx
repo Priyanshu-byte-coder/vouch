@@ -1,72 +1,366 @@
+import { Caption, ChartTitle, Confusion, PairBars, Slope, SplitStrip, Squares, Stacked, Steps, BASE, OURS } from "@/components/charts";
+import { Stamp } from "@/components/stamp";
 import research from "@/lib/research.json";
+import { SOURCE_LABEL, STATUS_META } from "@/lib/types";
 
 const ca = research.citeaudit300;
 const ne = research.neurips100;
+const S = research.story;
+const n = (o: Record<string, number>, k: string) => o[k] ?? 0;
+const pct = (v: number) => `${Math.round(v * 100)}%`;
 
-type Row = { label: string; better: "higher" | "lower"; base: number; ours: number; ci?: number[] };
-const ROWS: Row[] = [
-  { label: "Recall (fakes caught)", better: "higher", base: ca.baseline.recall!, ours: ca.vouch.recall!, ci: ca.ci95.recall },
-  { label: "F1", better: "higher", base: ca.baseline.f1!, ours: ca.vouch.f1!, ci: ca.ci95.f1 },
-  { label: "Precision", better: "higher", base: ca.baseline.precision!, ours: ca.vouch.precision!, ci: ca.ci95.precision },
-  { label: "False-positive rate (real flagged)", better: "lower", base: ca.baseline.fpr!, ours: ca.vouch.fpr!, ci: ca.ci95.fpr },
-];
+const C = { verified: "var(--verified)", detail_mismatch: "var(--mismatch)", not_found: "var(--notfound)", cant_verify: "var(--unverified)" };
+const SRC_COLOR: Record<string, string> = { crossref: "#1f3a5f", openalex: "#2e6a55", s2: "#a8640f", arxiv: "#9e2b25", datacite: "#5b6670", openlibrary: "#7a1d33" };
 
-function Bars() {
-  const W = 560;
-  const x = (v: number) => 150 + v * (W - 170);
+function fakeSegments(labels: Record<string, number>) {
+  return [
+    { label: "passed as verified (missed)", value: n(labels, "verified"), color: "var(--notfound)", muted: true },
+    { label: "unverified", value: n(labels, "cant_verify"), color: C.cant_verify },
+    { label: "detail mismatch", value: n(labels, "detail_mismatch"), color: C.detail_mismatch },
+    { label: "not found", value: n(labels, "not_found"), color: C.not_found },
+  ];
+}
+function realSegments(labels: Record<string, number>) {
+  return [
+    { label: "verified (correct)", value: n(labels, "verified"), color: C.verified },
+    { label: "unverified (false alarm)", value: n(labels, "cant_verify"), color: C.cant_verify },
+    { label: "mismatch (false alarm)", value: n(labels, "detail_mismatch"), color: C.detail_mismatch },
+    { label: "not found (false alarm)", value: n(labels, "not_found"), color: C.not_found },
+  ];
+}
+function baselineSegments(labels: Record<string, number>, truth: "real" | "fake") {
+  const v = n(labels, "verified");
+  return [
+    truth === "fake"
+      ? { label: "passed as verified (missed)", value: v, color: "var(--notfound)", muted: true }
+      : { label: "verified (correct)", value: v, color: C.verified },
+    { label: truth === "fake" ? "partial" : "partial (false alarm)", value: n(labels, "partial"), color: C.detail_mismatch },
+    { label: truth === "fake" ? "likely hallucinated" : "likely hallucinated (false alarm)", value: n(labels, "likely hallucinated"), color: C.not_found },
+  ];
+}
+
+function Big({ v, k, sub }: { v: string; k: string; sub: string }) {
   return (
-    <svg viewBox={`0 0 ${W} ${ROWS.length * 58 + 20}`} className="w-full" role="img" aria-label="Baseline vs Vouch on CiteAudit-300">
-      {[0, 0.25, 0.5, 0.75, 1].map((t) => (
-        <g key={t}>
-          <line x1={x(t)} x2={x(t)} y1={6} y2={ROWS.length * 58 + 6} stroke="var(--rule)" strokeDasharray="2 3" />
-          <text x={x(t)} y={ROWS.length * 58 + 18} textAnchor="middle" className="fill-ink-faint font-mono text-[9px]">
-            {t.toFixed(2)}
-          </text>
-        </g>
-      ))}
-      {ROWS.map((r, i) => {
-        const y = 14 + i * 58;
-        return (
-          <g key={r.label}>
-            <text x={0} y={y + 12} className="fill-ink text-[11px]">
-              {r.label}
-            </text>
-            <text x={0} y={y + 26} className="fill-ink-faint text-[9px] italic">
-              {r.better} is better
-            </text>
-            <rect x={x(0)} y={y} width={x(r.base) - x(0)} height={13} fill="var(--unverified)" opacity={0.45} />
-            <text x={x(r.base) + 5} y={y + 10} className="fill-ink-soft font-mono text-[9.5px]">
-              {r.base.toFixed(3)} baseline
-            </text>
-            <rect x={x(0)} y={y + 17} width={x(r.ours) - x(0)} height={13} fill="var(--ink)" />
-            {r.ci && (
-              <g stroke="var(--mismatch)" strokeWidth={1.5}>
-                <line x1={x(r.ci[0])} x2={x(r.ci[1])} y1={y + 23.5} y2={y + 23.5} />
-                <line x1={x(r.ci[0])} x2={x(r.ci[0])} y1={y + 19} y2={y + 28} />
-                <line x1={x(r.ci[1])} x2={x(r.ci[1])} y1={y + 19} y2={y + 28} />
-              </g>
-            )}
-            <text x={x(Math.max(r.ours, r.ci?.[1] ?? 0)) + 6} y={y + 27} className="fill-ink font-mono text-[9.5px] font-medium">
-              {r.ours.toFixed(3)} Vouch
-            </text>
-          </g>
-        );
-      })}
-    </svg>
+    <div className="bg-card p-5">
+      <p className="font-mono text-[0.62rem] tracking-widest text-ink-faint uppercase">{k}</p>
+      <p className="mt-1.5 font-display text-4xl tracking-tight">{v}</p>
+      <p className="mt-1 text-xs text-ink-soft">{sub}</p>
+    </div>
   );
 }
 
-function Tally({ n, color, label }: { n: number; color: string; label: string }) {
+function Section({ kicker, title, lede, children }: { kicker: string; title: string; lede?: string; children: React.ReactNode }) {
   return (
-    <div>
-      <div className="flex flex-wrap gap-[3px]">
-        {Array.from({ length: n }).map((_, i) => (
-          <span key={i} className="h-3 w-3 rounded-[1px]" style={{ background: color }} />
-        ))}
+    <section className="mt-16 border-t border-rule pt-8">
+      <div className="mb-7 max-w-3xl">
+        <p className="font-mono text-[0.65rem] tracking-[0.2em] text-ink-faint uppercase">{kicker}</p>
+        <h2 className="mt-1.5 font-display text-3xl leading-tight">{title}</h2>
+        {lede && <p className="mt-2 text-sm leading-relaxed text-ink-soft">{lede}</p>}
       </div>
-      <p className="mt-2 text-sm text-ink-soft">
-        <span className="font-display text-2xl text-ink">{n}</span> {label}
-      </p>
+      {children}
+    </section>
+  );
+}
+
+export default function ResearchPage() {
+  const p = ca.paired;
+  const d = S.data;
+  const winTest = S.test.winning_source_real_verified as Record<string, number>;
+  const winDev = S.dev.winning_source_real_verified as Record<string, number>;
+  const kindTest = S.test.fake_mismatch_issue_kind as Record<string, number>;
+  const kindDev = S.dev.fake_mismatch_issue_kind as Record<string, number>;
+  const fakeTest = S.test.labels_by_truth.fake as Record<string, number>;
+  const realTest = S.test.labels_by_truth.real as Record<string, number>;
+  const baseFake = S.baseline_labels_by_truth.fake as Record<string, number>;
+  const baseReal = S.baseline_labels_by_truth.real as Record<string, number>;
+  const neLabels = S.neurips_labels as Record<string, number>;
+  const gridSize = Object.values(S.grid.thresholds).reduce((a, v) => a * v.length, 1) * Object.values(S.grid.weights).reduce((a, v) => a * v.length, 1);
+  const srcSeg = (w: Record<string, number>) =>
+    Object.entries(w)
+      .sort((a, b) => b[1] - a[1])
+      .map(([k, v]) => ({ label: SOURCE_LABEL[k] ?? k, value: v, color: SRC_COLOR[k] ?? "var(--ink)" }));
+
+  return (
+    <div className="mx-auto max-w-6xl px-6 pt-14 pb-10">
+      <header className="rise grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+        <div>
+          <p className="font-mono text-[0.7rem] tracking-[0.2em] text-ink-faint uppercase">Research · RQ1 · fabricated references</p>
+          <h1 className="mt-3 font-display text-5xl leading-[1.02] font-medium tracking-tight">
+            Six open indexes beat <span className="italic">one</span>.
+          </h1>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-soft">
+            Same benchmark as the published AtomGPT detector (Semantic Scholar only). Thresholds tuned on separate data, test set
+            touched twice, both results shown. Every number traces to a script and a committed results file.
+          </p>
+        </div>
+        <div className="grid grid-cols-3 gap-px overflow-hidden rounded-sm border border-ink/70 bg-ink/70">
+          <Big v={ca.vouch.f1!.toFixed(2)} k="F1" sub={`baseline ${ca.baseline.f1!.toFixed(2)}`} />
+          <Big v={pct(ca.vouch.recall!)} k="fakes caught" sub={`baseline ${pct(ca.baseline.recall!)}`} />
+          <Big v={`${p.only_ours_correct}:${p.only_baseline_correct}`} k="head to head" sub="citations only one got right" />
+        </div>
+      </header>
+
+      {/* 1. data */}
+      <Section kicker="1 · What we tested on" title="One public benchmark, split so the test set never taught us anything." lede="CiteAudit (9,442 citations, half invented by language models, half from real papers). The 300-item test set is the one the baseline published numbers on. Everything near it was removed from tuning data.">
+        <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+          <div>
+            <SplitStrip
+              total={d.citeaudit_total}
+              parts={[
+                { label: "test · CiteAudit-300 (150 real / 150 fake), the baseline’s own set", n: d.test_citeaudit300, color: "var(--notfound)" },
+                { label: "copies and near-copies of test items, removed", n: d.removed_exact + d.removed_near - d.test_citeaudit300, color: "var(--mismatch)" },
+                { label: "dev · 1,000 sampled (500 / 500) for tuning", n: d.dev_1000, color: "var(--ink)" },
+                { label: "rest of the pool, unused", n: d.dev_full - d.dev_1000, color: "var(--ink-faint)", muted: true },
+              ]}
+            />
+            <Caption>Near-copies = same reference with different formatting (token-sort similarity ≥ 95). Without this step, test answers leak into tuning.</Caption>
+          </div>
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-rule bg-rule">
+            <Big v="100" k="NeurIPS-100" sub="confirmed fabricated citations in accepted NeurIPS 2025 papers (2nd test set)" />
+            <Big v={d.retraction_notices.toLocaleString()} k="Retraction Watch" sub="notices indexed for the retraction check" />
+          </div>
+        </div>
+      </Section>
+
+      {/* 2. tuning */}
+      <Section kicker="2 · How we tuned" title="A grid search on dev with a false-alarm budget, cross-validated." lede={`${gridSize.toLocaleString()} weight–threshold combinations replayed offline on the 1,000 dev citations. Objective: best F1 with at most 10% of real references flagged. Ties go to fewer false alarms.`}>
+        <div className="grid gap-10 lg:grid-cols-3">
+          <div>
+            <ChartTitle kicker="F1 on dev" title="Before, after, and the honest estimate" />
+            <Steps
+              items={[
+                { label: "Shipped defaults", value: S.dev_default.f1, note: `recall ${pct(S.dev_default.recall)} · FPR ${pct(S.dev_default.fpr!)}` },
+                { label: "Tuned, scored on the same data", value: S.dev_tuned_in_sample.f1, note: "optimistic: it saw these citations" },
+                { label: "Tuned, 5-fold cross-validated", value: S.dev_cv5.f1, note: `recall ${pct(S.dev_cv5.recall)} · FPR ${pct(S.dev_cv5.fpr!)} · what we expected on test`, emphasis: true },
+              ]}
+            />
+          </div>
+          <div>
+            <ChartTitle kicker="Trade-off" title="Recall at each false-alarm budget" />
+            <Frontier />
+            <Caption>Pure F1 would pick FPR 0.19: one real reference in five flagged. We capped it at 0.10 (dashed), below the baseline’s 0.12.</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="Stability" title="What each fold chose" />
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="text-left font-mono text-[0.62rem] tracking-wider text-ink-faint uppercase">
+                  <th className="pb-1 font-normal">fold</th>
+                  <th className="pb-1 font-normal">verified ≥</th>
+                  <th className="pb-1 font-normal">title ≥</th>
+                  <th className="pb-1 font-normal">authors ≥</th>
+                  <th className="pb-1 font-normal">year ±</th>
+                  <th className="pb-1 font-normal">w authors</th>
+                </tr>
+              </thead>
+              <tbody className="font-mono">
+                {S.fold_configs.map((f, i) => (
+                  <tr key={i} className="border-t border-rule">
+                    <td className="py-1 text-ink-faint">{i + 1}</td>
+                    <td className={f.verified === S.frozen.thresholds.verified ? "font-semibold" : "text-ink-faint"}>{f.verified}</td>
+                    <td className={f.title_min === S.frozen.thresholds.title_min ? "font-semibold" : "text-ink-faint"}>{f.title_min}</td>
+                    <td className={f.author_min === S.frozen.thresholds.author_min ? "font-semibold" : "text-ink-faint"}>{f.author_min}</td>
+                    <td className={f.year_tolerance === S.frozen.thresholds.year_tolerance ? "font-semibold" : "text-ink-faint"}>{f.year_tolerance}</td>
+                    <td className={f.w_authors === S.frozen.weights.authors ? "font-semibold" : "text-ink-faint"}>{f.w_authors}</td>
+                  </tr>
+                ))}
+                <tr className="border-t-2 border-ink">
+                  <td className="py-1 text-ink-faint">frozen</td>
+                  <td className="font-semibold">{S.frozen.thresholds.verified}</td>
+                  <td className="font-semibold">{S.frozen.thresholds.title_min}</td>
+                  <td className="font-semibold">{S.frozen.thresholds.author_min}</td>
+                  <td className="font-semibold">{S.frozen.thresholds.year_tolerance}</td>
+                  <td className="font-semibold">{S.frozen.weights.authors}</td>
+                </tr>
+              </tbody>
+            </table>
+            <Caption>Bold = agrees with the frozen configuration. Strict title (95) was chosen in every fold; the author bar moved between 60 and 100.</Caption>
+          </div>
+        </div>
+      </Section>
+
+      {/* 3. head to head */}
+      <Section kicker="3 · Head to head on CiteAudit-300" title="Vouch versus the published baseline, on the same 300 citations." lede="Baseline: AtomGPT hallucination detector, its released per-citation outputs re-scored by us (numbers reproduce its README exactly). Vouch: frozen configuration, six sources. Ochre bars are 95% bootstrap intervals.">
+        <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr]">
+          <div>
+            <PairBars
+              rows={[
+                { label: "Recall", sub: "of 150 fakes caught · higher is better", base: ca.baseline.recall!, ours: ca.vouch.recall!, ci: ca.ci95.recall },
+                { label: "F1", sub: "higher is better", base: ca.baseline.f1!, ours: ca.vouch.f1!, ci: ca.ci95.f1 },
+                { label: "Precision", sub: "flags that were real fakes", base: ca.baseline.precision!, ours: ca.vouch.precision!, ci: ca.ci95.precision },
+                { label: "False-alarm rate", sub: "of 150 real refs flagged · lower is better", base: ca.baseline.fpr!, ours: ca.vouch.fpr!, ci: ca.ci95.fpr },
+              ]}
+            />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <Confusion title="Baseline (Semantic Scholar only)" tone="base" TP={ca.baseline.TP} FN={ca.baseline.FN} FP={ca.baseline.FP} TN={ca.baseline.TN} />
+              <Confusion title="Vouch (six indexes)" tone="ours" TP={ca.vouch.TP} FN={ca.vouch.FN} FP={ca.vouch.FP} TN={ca.vouch.TN} />
+            </div>
+          </div>
+          <div className="space-y-8">
+            <div>
+              <ChartTitle kicker={`Paired on ${p.n_common} shared citations`} title="When exactly one system was right" />
+              <Squares groups={[{ n: p.only_ours_correct, color: OURS, label: "only Vouch correct" }, { n: p.only_baseline_correct, color: BASE, label: "only the baseline correct" }]} />
+              <Caption>Exact McNemar test, p = {p.mcnemar_p.toExponential(0)}. The same 150 real citations produce 20 false alarms for Vouch and 18 for the baseline: a tie within noise.</Caption>
+            </div>
+            <div>
+              <ChartTitle kicker="Where the 150 fakes went" title="Half of them walk past a single index" />
+              <p className="mb-1 text-[0.68rem] text-ink-faint">baseline</p>
+              <Stacked segments={baselineSegments(baseFake, "fake")} height={18} />
+              <p className="mt-3 mb-1 text-[0.68rem] text-ink-faint">Vouch</p>
+              <Stacked segments={fakeSegments(fakeTest)} height={18} />
+            </div>
+            <div>
+              <ChartTitle kicker="Where the 150 real references went" title="Both pass about 130; the rest are false alarms" />
+              <p className="mb-1 text-[0.68rem] text-ink-faint">baseline</p>
+              <Stacked segments={baselineSegments(baseReal, "real")} height={18} />
+              <p className="mt-3 mb-1 text-[0.68rem] text-ink-faint">Vouch</p>
+              <Stacked segments={realSegments(realTest)} height={18} />
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 4. by type + NeurIPS */}
+      <Section kicker="4 · Two kinds of fake, two test sets" title="Generated fakes, real-world fakes, and 100 that got through NeurIPS review.">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <ChartTitle kicker="CiteAudit-300 by citation origin" title="Generated by an LLM (209) vs taken from real papers (91)" />
+            <PairBars
+              rows={[
+                { label: "Recall · generated", sub: "higher is better", base: S.by_type.baseline.generated.recall, ours: S.by_type.vouch.generated.recall },
+                { label: "Recall · real-world", sub: "higher is better", base: S.by_type.baseline.realworld.recall, ours: S.by_type.vouch.realworld.recall },
+                { label: "False alarms · generated", sub: "lower is better", base: S.by_type.baseline.generated.fpr!, ours: S.by_type.vouch.generated.fpr! },
+                { label: "False alarms · real-world", sub: "lower is better", base: S.by_type.baseline.realworld.fpr!, ours: S.by_type.vouch.realworld.fpr! },
+              ]}
+            />
+            <Caption>Real-world references from real papers are where single-index checkers wrongly accuse: 1 in 4.5 flagged by the baseline. Vouch does not fix this yet (0.224): these are mostly very recent preprints no index holds.</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="NeurIPS-100 · all fabricated" title={`Vouch flags ${Math.round(ne.vouch.recall! * 100)} of 100, the baseline ${Math.round(ne.baseline.recall! * 100)}`} />
+            <div className="flex flex-wrap items-start gap-8">
+              <NeuripsGrid />
+              <div className="min-w-[14rem] flex-1">
+                <p className="mb-1 text-[0.68rem] text-ink-faint">how Vouch caught them</p>
+                <Stacked segments={fakeSegments(neLabels)} height={18} />
+                <Caption>Outlined squares: caught only by Vouch. The single miss is a real paper cited with invented co-authors whose Semantic Scholar record lists no authors at all, so it passed on title + year.</Caption>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 5. test looks */}
+      <Section kicker="5 · Every look at the test set" title="We touched the test set twice. Here is both, plus what changed in between." lede="Rule: tune on dev only, report every test run. The only change between the two looks was adding Semantic Scholar as a sixth source, decided on dev.">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
+          <div>
+            <Slope
+              stages={["defaults, 6 sources\n(replayed offline)", "frozen, 5 sources\nlook 1, as collected", "frozen, 5 sources\nlook 1, retried", "frozen, 6 sources\nlook 2 · final"]}
+              series={[
+                { name: "F1", color: OURS, values: [S.test_untuned_6src.f1, S.test_5src_as_collected.f1, S.test_5src_retried.f1, S.test_6src.f1] },
+                { name: "false alarms", color: "var(--notfound)", values: [S.test_untuned_6src.fpr!, S.test_5src_as_collected.fpr!, S.test_5src_retried.fpr!, S.test_6src.fpr!] },
+                { name: "baseline F1", color: BASE, values: [ca.baseline.f1!, ca.baseline.f1!, ca.baseline.f1!, ca.baseline.f1!], dashed: true },
+                { name: "baseline FA", color: "#c98b8b", values: [ca.baseline.fpr!, ca.baseline.fpr!, ca.baseline.fpr!, ca.baseline.fpr!], dashed: true },
+              ]}
+            />
+            <Caption>Look 1 had 123 arXiv time-outs; retrying them changed one verdict. The false alarms were a coverage problem, not a threshold problem (19 of 28 also fire under the untuned defaults).</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="Adding Semantic Scholar · dev, frozen config" title="A sixth index cut false alarms by a fifth" />
+            <PairBars
+              baseLabel="5 sources"
+              oursLabel="6 sources"
+              rows={[
+                { label: "False alarms", sub: "lower is better", base: S.s2_on_dev.five.fpr, ours: S.s2_on_dev.six.fpr },
+                { label: "Recall", base: S.s2_on_dev.five.recall, ours: S.s2_on_dev.six.recall },
+                { label: "F1", base: S.s2_on_dev.five.f1, ours: S.s2_on_dev.six.f1 },
+              ]}
+            />
+            <Caption>8 real citations newly verified, 4 fakes newly let through. Kept.</Caption>
+          </div>
+        </div>
+      </Section>
+
+      {/* 6. inside the verdicts */}
+      <Section kicker="6 · Inside the verdicts" title="Which index vouched, and how fakes gave themselves away.">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <ChartTitle kicker="Record that verified each real reference" title="No single index is enough" />
+            <p className="mb-1 text-[0.68rem] text-ink-faint">test · {Object.values(winTest).reduce((a, b) => a + b, 0)} verified real references</p>
+            <Stacked segments={srcSeg(winTest)} />
+            <p className="mt-4 mb-1 text-[0.68rem] text-ink-faint">dev · {Object.values(winDev).reduce((a, b) => a + b, 0)} verified real references</p>
+            <Stacked segments={srcSeg(winDev)} />
+            <Caption>Sources are asked in order and the cascade stops at the first confident match, so later indexes show only what earlier ones missed. Semantic Scholar has no record for the DOI of LeCun et al. “Deep learning” (Nature 2015); Crossref’s top hit for “Attention Is All You Need” is a 2025 copy.</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="Fakes flagged as detail mismatch" title="The invented field is usually an author" />
+            <p className="mb-1 text-[0.68rem] text-ink-faint">test · {Object.values(kindTest).reduce((a, b) => a + b, 0)} fakes</p>
+            <Stacked segments={[{ label: "authors differ", value: n(kindTest, "authors"), color: C.detail_mismatch }, { label: "title or venue differs", value: n(kindTest, "other"), color: "var(--link)" }, { label: "year differs", value: n(kindTest, "year"), color: C.cant_verify }, { label: "DOI points elsewhere", value: n(kindTest, "doi"), color: C.not_found }].filter((s) => s.value > 0)} />
+            <p className="mt-4 mb-1 text-[0.68rem] text-ink-faint">dev · {Object.values(kindDev).reduce((a, b) => a + b, 0)} fakes</p>
+            <Stacked segments={[{ label: "authors differ", value: n(kindDev, "authors"), color: C.detail_mismatch }, { label: "title or venue differs", value: n(kindDev, "other"), color: "var(--link)" }, { label: "year differs", value: n(kindDev, "year"), color: C.cant_verify }, { label: "DOI points elsewhere", value: n(kindDev, "doi"), color: C.not_found }].filter((s) => s.value > 0)} />
+            <Caption>Typical fake: a real paper with one or two invented names inside a long author list. The author check requires 90% of cited authors to appear in the record.</Caption>
+          </div>
+        </div>
+      </Section>
+
+      {/* 7. negative result */}
+      <Section kicker="7 · What did not work" title="An LLM judge made things worse." lede="We let a language model re-examine every borderline flag (cited reference + top-3 records → same work or not). Dev only, 422 calls, $0.65.">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
+          <div>
+            <ChartTitle kicker="Even at its strictest setting" title="What the judge un-flagged" />
+            <Squares size={9} groups={[{ n: S.adjudicator.unflagged_fakes, color: "var(--notfound)", label: "fakes it accepted as real" }, { n: S.adjudicator.rescued_real, color: "var(--verified)", label: "real references it rescued" }]} />
+          </div>
+          <div>
+            <PairBars
+              baseLabel="with judge"
+              oursLabel="without"
+              rows={[
+                { label: "Recall", base: S.adjudicator.best_adjudicated.recall, ours: S.adjudicator.frozen.recall },
+                { label: "F1", base: S.adjudicator.best_adjudicated.f1, ours: S.adjudicator.frozen.f1 },
+                { label: "False alarms", sub: "lower is better", base: S.adjudicator.best_adjudicated.fpr, ours: S.adjudicator.frozen.fpr },
+              ]}
+            />
+            <Caption>Cross-validation switched the judge off in {S.adjudicator.cv_folds_off} of 5 folds. It forgives one or two garbled names in a long author list (“minor differences”), which is exactly how this benchmark’s fakes are built. Strict field matching wins; the judge is kept only to explain verdicts.</Caption>
+          </div>
+        </div>
+      </Section>
+
+      {/* 8. takeaways */}
+      <section className="mt-16 grid gap-10 border-t border-rule pt-8 lg:grid-cols-3">
+        <div>
+          <h2 className="font-display text-2xl italic">Four findings</h2>
+          <ol className="mt-4 space-y-3 text-sm leading-relaxed text-ink-soft">
+            <li><b className="text-ink">No single index is enough.</b> Six open sources, each catching what the others miss.</li>
+            <li><b className="text-ink">Lenient title matching hides fakes.</b> Strict, length-aware titles plus author checks give most of the +25 recall points.</li>
+            <li><b className="text-ink">An LLM judge is too forgiving</b> of invented co-authors. Deterministic matching beat it 5 folds out of 5.</li>
+            <li><b className="text-ink">Thresholds are a policy.</b> We publish the trade-off curve and chose a 10% false-alarm cap.</li>
+          </ol>
+        </div>
+        <div>
+          <h2 className="font-display text-2xl italic">Limitations</h2>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink-soft">
+            <li>False-alarm rate (0.140) is not below the baseline’s (0.121); intervals overlap, 20 vs 18 on the same citations.</li>
+            <li>Recent preprints and new book editions cause most false alarms: indexes lag arXiv.</li>
+            <li>A record with no author list can verify a citation on title alone (the one NeurIPS miss). Fix known, not applied after the last test look.</li>
+            <li>CiteAudit counts any invented field as a fake; a “detail mismatch” is a warning, not an accusation.</li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="font-display text-2xl italic">Protocol</h2>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink-soft">
+            <li><span className="font-mono text-xs text-ink-faint">01</span> Reproduce the baseline from its released outputs (exact).</li>
+            <li><span className="font-mono text-xs text-ink-faint">02</span> Remove every copy of a test item from tuning data.</li>
+            <li><span className="font-mono text-xs text-ink-faint">03</span> Tune on dev with 5-fold cross-validation under a false-alarm cap; freeze.</li>
+            <li><span className="font-mono text-xs text-ink-faint">04</span> Run test; log every run, including failures, in <code className="font-mono text-xs">EXPERIMENTS.md</code>.</li>
+          </ul>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {(["verified", "detail_mismatch", "not_found", "cant_verify"] as const).map((s) => (
+              <span key={s} className="inline-flex items-center gap-1.5 text-[0.68rem] text-ink-soft">
+                <Stamp status={s} size="sm" /> {STATUS_META[s].label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -89,131 +383,26 @@ function NeuripsGrid() {
 }
 
 function Frontier() {
-  const pts = research.dev.frontier.filter((p) => p.fpr_cap <= 0.12);
-  const W = 300, H = 150;
+  const pts = research.dev.frontier.filter((q) => q.fpr_cap <= 0.12);
+  const W = 300, H = 160;
   const x = (v: number) => 34 + ((v - 0.05) / (0.125 - 0.05)) * (W - 50);
   const y = (v: number) => H - 24 - ((v - 0.6) / 0.3) * (H - 40);
-  const d = pts.map((p, i) => `${i ? "L" : "M"}${x(p.fpr).toFixed(1)},${y(p.recall).toFixed(1)}`).join(" ");
+  const dd = pts.map((q, i) => `${i ? "L" : "M"}${x(q.fpr).toFixed(1)},${y(q.recall).toFixed(1)}`).join(" ");
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-sm" role="img" aria-label="Recall vs false-positive rate on dev">
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-sm" role="img" aria-label="Recall vs false-alarm rate on dev">
       <line x1={34} x2={W - 10} y1={H - 24} y2={H - 24} stroke="var(--ink-faint)" />
       <line x1={34} x2={34} y1={10} y2={H - 24} stroke="var(--ink-faint)" />
-      <text x={W / 2} y={H - 4} textAnchor="middle" className="fill-ink-faint text-[9px]">false-positive rate</text>
+      <text x={W / 2} y={H - 4} textAnchor="middle" className="fill-ink-faint text-[9px]">false-alarm rate</text>
       <text x={10} y={H / 2} transform={`rotate(-90 10 ${H / 2})`} textAnchor="middle" className="fill-ink-faint text-[9px]">recall</text>
-      <path d={d} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
-      {pts.map((p) => (
-        <circle key={p.fpr_cap} cx={x(p.fpr)} cy={y(p.recall)} r={2.8} fill="var(--card)" stroke="var(--ink)" />
+      <path d={dd} fill="none" stroke="var(--ink)" strokeWidth={1.6} />
+      {pts.map((q) => (
+        <g key={q.fpr_cap}>
+          <circle cx={x(q.fpr)} cy={y(q.recall)} r={2.8} fill="var(--card)" stroke="var(--ink)" />
+          <text x={x(q.fpr)} y={y(q.recall) - 6} textAnchor="middle" className="fill-ink-soft font-mono text-[8px]">{q.recall.toFixed(2)}</text>
+        </g>
       ))}
       <line x1={x(0.1)} x2={x(0.1)} y1={10} y2={H - 24} stroke="var(--mismatch)" strokeDasharray="3 3" />
       <text x={x(0.1) + 3} y={18} className="fill-mismatch text-[9px]">our cap</text>
     </svg>
-  );
-}
-
-const FINDINGS = [
-  ["No single index is enough.", "Semantic Scholar has no record for the DOI of LeCun, Bengio & Hinton's “Deep learning” (Nature 2015), and Crossref's top hit for “Attention Is All You Need” is a 2025 copy. Adding Semantic Scholar as a sixth source cut false alarms on dev by 20%."],
-  ["Lenient title matching hides fakes.", "The baseline's title similarity gives “Deep learning” a perfect score against “PyTorch: … Deep Learning Library”. Strict, length-aware matching plus author checks is where most of the +25 points of recall come from."],
-  ["An LLM judge made things worse.", "Asked whether a record is the same work, the model accepted 89 fakes for every 4 real references it rescued, because it forgives one or two invented names in a long author list. Cross-validation switched it off in 5 of 5 folds."],
-  ["Thresholds are a policy choice.", "Maximising F1 alone would flag one real reference in five. We tune for the best F1 with at most 10% of real references flagged, and show the trade-off."],
-];
-
-const LIMITS = [
-  "On CiteAudit-300 the false-positive rate (0.140) is not lower than the baseline's (0.121); the difference is within the confidence interval (20 vs 18 false alarms on the same citations).",
-  "Records without author lists can verify a citation on title alone (the one NeurIPS miss). The fix is known but was not applied after the last test run.",
-  "Very recent preprints and books in new editions are the main sources of false alarms; scholarly indexes lag behind arXiv.",
-  "CiteAudit counts any invented field as a hallucinated citation. Under a looser definition, the “detail mismatch” label would be read as a warning, not a fake.",
-];
-
-export default function ResearchPage() {
-  const p = ca.paired;
-  return (
-    <div className="mx-auto max-w-6xl px-6 pt-14">
-      <header className="rise max-w-3xl">
-        <p className="font-mono text-[0.7rem] tracking-[0.2em] text-ink-faint uppercase">Research · RQ1 · detecting fabricated references</p>
-        <h1 className="mt-3 font-display text-5xl leading-[1.02] font-medium tracking-tight">
-          Does checking six open indexes beat a <span className="italic">single-index</span> checker?
-        </h1>
-        <p className="mt-5 font-display text-lg leading-relaxed text-ink-soft">
-          Compared on the same benchmark the published baseline used, with thresholds tuned on separate data and the test set
-          kept aside.
-        </p>
-      </header>
-
-      <section className="mt-14 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-        <div>
-          <h2 className="font-display text-2xl italic">CiteAudit-300 · 150 real, 150 fake citations</h2>
-          <p className="mt-1 mb-5 text-sm text-ink-soft">
-            Baseline: AtomGPT hallucination detector (Semantic Scholar only), its released per-citation outputs. Vouch: frozen
-            configuration, 95% bootstrap intervals in ochre.
-          </p>
-          <Bars />
-        </div>
-        <div className="space-y-10">
-          <div>
-            <h3 className="font-display text-xl italic">Same {p.n_common} citations, head to head</h3>
-            <p className="mt-1 mb-4 text-sm text-ink-soft">Cases where exactly one of the two systems was right.</p>
-            <div className="space-y-4">
-              <Tally n={p.only_ours_correct} color="var(--ink)" label="only Vouch correct" />
-              <Tally n={p.only_baseline_correct} color="var(--unverified)" label="only the baseline correct" />
-            </div>
-            <p className="mt-3 font-mono text-xs text-ink-faint">exact McNemar test, p = {p.mcnemar_p.toExponential(0)}</p>
-          </div>
-          <div>
-            <h3 className="font-display text-xl italic">100 hallucinated citations from accepted NeurIPS 2025 papers</h3>
-            <p className="mt-1 mb-4 text-sm text-ink-soft">
-              Vouch flags {Math.round(ne.vouch.recall! * 100)}; the baseline {Math.round(ne.baseline.recall! * 100)}. Outlined: caught only by Vouch.
-            </p>
-            <NeuripsGrid />
-          </div>
-        </div>
-      </section>
-
-      <section className="mt-20 grid gap-12 lg:grid-cols-[1fr_1.5fr]">
-        <div>
-          <h2 className="font-display text-2xl italic">The trade-off we chose</h2>
-          <p className="mt-1 mb-4 text-sm text-ink-soft">Development set (1,000 citations), best recall achievable at each false-positive budget.</p>
-          <Frontier />
-          <p className="mt-3 text-xs text-ink-faint">
-            Dev, 5-fold cross-validated: F1 {research.dev.cv5.f1!.toFixed(3)}, false-positive rate {research.dev.cv5.fpr!.toFixed(3)}.
-          </p>
-        </div>
-        <div>
-          <h2 className="font-display text-2xl italic">What we learned</h2>
-          <ol className="mt-4 space-y-5">
-            {FINDINGS.map(([t, b], i) => (
-              <li key={t} className="grid grid-cols-[2rem_1fr] gap-2">
-                <span className="font-display text-2xl text-ink-faint italic">{i + 1}</span>
-                <p className="text-sm leading-relaxed text-ink-soft">
-                  <span className="font-semibold text-ink">{t}</span> {b}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="mt-20 grid gap-12 border-t border-rule pt-10 lg:grid-cols-2">
-        <div>
-          <h2 className="font-display text-2xl italic">Protocol</h2>
-          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-ink-soft">
-            <li>Development: 1,000 CiteAudit citations, with exact and near-duplicates of test items removed.</li>
-            <li>Weights and thresholds tuned on development only, 5-fold cross-validated, under a 10% false-positive cap.</li>
-            <li>Test sets used twice, both runs reported: five sources (F1 0.781), then six sources (F1 0.792).</li>
-            <li>Every number comes from a script in the repository and a committed results file.</li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-display text-2xl italic">Limitations</h2>
-          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-ink-soft">
-            {LIMITS.map((l) => (
-              <li key={l} className="flex gap-2">
-                <span className="text-mismatch">¶</span>
-                <span>{l}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    </div>
   );
 }

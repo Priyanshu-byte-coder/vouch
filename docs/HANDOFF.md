@@ -40,8 +40,8 @@ An open research-integrity screener: for each reference in a paper it checks ①
 | `backend/app/pipeline/adjudicate.py` | LLM adjudicator (tested, **off**) |
 | `backend/app/pipeline/run.py` | orchestrator: `check_bibliography / check_arxiv / check_pdf` (cascade with early stop, time budgets, retraction, optional adjudicator) |
 | `backend/app/main.py, jobs.py, cli.py` | FastAPI (`/api/check`, `/api/check/pdf`, `/api/jobs/{id}`, `/api/jobs/{id}/events` SSE: status, parsed, ref_done, done, report, error; `/api/health`), job store, CLI (`python -m app.cli check --arxiv ID | --bib FILE`) |
-| `eval/` | `data/download.py`, `data/make_splits.py`, `common.py`, `metrics.py`, `collect.py`, `patch_failed.py`, `add_source.py`, `tune_rq1.py`, `run_rq1_detection.py`, `adjudicate_eval.py`, `baselines/rescore_atomgpt.py`; `configs/rq1.json` (frozen), `results/*.json` |
-| `frontend/src/` | `app/{page,layout,globals.css}`, `app/report/[id]/page.tsx`, `app/research/page.tsx`, `components/{check-form,report-view,report-loader,evidence-card,stamp,site-header,site-footer}.tsx`, `lib/{types.ts,mock-report.json,research.json}` |
+| `eval/` | `export_frontend_stats.py` (writes chart data → `frontend/src/lib/research.json`; re-run after any results change), `data/download.py`, `data/make_splits.py`, `common.py`, `metrics.py`, `collect.py`, `patch_failed.py`, `add_source.py`, `tune_rq1.py`, `run_rq1_detection.py`, `adjudicate_eval.py`, `baselines/rescore_atomgpt.py`; `configs/rq1.json` (frozen), `results/*.json` |
+| `frontend/src/` | `components/{charts,legend}.tsx` (SVG charts, stamp legend), `lib/{api,export}.ts`, `app/{page,layout,globals.css}`, `app/report/[id]/page.tsx`, `app/research/page.tsx`, `components/{check-form,report-view,report-loader,evidence-card,stamp,site-header,site-footer}.tsx`, `lib/{types.ts,mock-report.json,research.json}` |
 | `docs/` | IDEATION, IMPLEMENTATION_PLAN, STEPS (runbook with ✅), HACKATHON brief in README, this HANDOFF |
 | `EXPERIMENTS.md` | full experiment log S0–S12, E0a, E1, E3a/b, decisions |
 

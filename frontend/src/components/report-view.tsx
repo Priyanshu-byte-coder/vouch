@@ -115,6 +115,7 @@ export function ReportView({ report, live }: { report: Report; live?: LiveState 
           >
             <Stamp status={st} size="sm" />
             <span className="font-display text-4xl leading-none">{counts[st]}</span>
+            <span className="text-[0.68rem] leading-snug text-ink-soft">{STATUS_META[st].blurb}</span>
           </button>
         ))}
         <button
@@ -123,6 +124,7 @@ export function ReportView({ report, live }: { report: Report; live?: LiveState 
         >
           <RetractedStamp nature="Retraction" />
           <span className="font-display text-4xl leading-none text-retracted">{retracted}</span>
+          <span className="text-[0.68rem] leading-snug text-ink-soft">Exists, but a retraction notice is on record in Retraction Watch.</span>
         </button>
       </div>
 
