@@ -86,3 +86,11 @@ def test_unpack_formats():
     assert set(unpack(buf.getvalue())) == {"main.tex", "refs.bbl"}
     assert unpack(gzip.compress(TEX.encode()))["main.tex"].lstrip().startswith(r"\section")
     assert unpack(b"%PDF-1.5 ...") == {"__pdf__": ""}
+
+
+def test_revtex_bibinfo_macros():  # E5 audit: APS bibliographies leaked "author author" / "journal journal"
+    from app.pipeline.latex import latex_to_text
+    s = r"\BibitemOpen \bibfield {author} {\bibinfo {author} {\bibnamefont {S.~W.}\ \bibnamefont {Hawking}},\ }\href@noop {} {\bibfield {journal} {\bibinfo {journal} {Commun. Math. Phys.}}\ }\textbf {\bibinfo {volume} {43}},\ \bibinfo {pages} {199} (\bibinfo {year} {1975})\BibitemShut {NoStop}"
+    out = latex_to_text(s)
+    assert "author" not in out and "journal journal" not in out and "NoStop" not in out
+    assert "Hawking" in out and "Commun. Math. Phys." in out and "1975" in out

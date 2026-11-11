@@ -17,7 +17,7 @@ _ACCENTS = {"'": "\u0301", "`": "\u0300", "^": "\u0302", '"': "\u0308", "~": "\u
 _SPECIAL = {r"\ss": "ss", r"\o": "o", r"\O": "O", r"\aa": "a", r"\AA": "A", r"\ae": "ae", r"\AE": "AE",
             r"\l": "l", r"\L": "L", r"\i": "i", r"\oe": "oe", r"\&": "&", r"\%": "%", r"\$": "$", r"\_": "_",
             r"\#": "#", "---": "—", "--": "–", "``": '"', "''": '"'}
-_KEEP_ARG = r"(?:emph|textit|textbf|textsc|textrm|texttt|textsf|mbox|text|mathrm|mathit|mathbf|bibinfo\{[^}]*\}|bibfield\{[^}]*\}|em|bf|it|sc|url|path|doi|BIBentryALTinterwordspacing|BIBentrySTDinterwordspacing)"
+_KEEP_ARG = r"(?:emph|textit|textbf|textsc|textrm|texttt|textsf|mbox|text|mathrm|mathit|mathbf|bibinfo\s*\{[^}]*\}|bibfield\s*\{[^}]*\}|em|bf|it|sc|url|path|doi|BIBentryALTinterwordspacing|BIBentrySTDinterwordspacing)"
 
 
 def _accent(m: re.Match) -> str:
@@ -29,6 +29,9 @@ def latex_to_text(s: str) -> str:
     s = re.sub(r"(?<!\\)%.*", "", s)                                    # comments
     s = re.sub(r"\\href\{[^}]*\}\{([^}]*)\}", r"\1", s)
     s = re.sub(r"\\(?:newblock|bibitem|penalty\d*|allowbreak|relax|protect|nobreak|ignorespaces)\b", " ", s)
+    # RevTeX (APS) bibliographies: \BibitemOpen, \BibitemShut {NoStop}, \href@noop {} {...}, \doibase
+    s = re.sub(r"\\BibitemShut\s*\{[^}]*\}|\\BibitemOpen|\\doibase\s*\{?[^\s}]*\}?|\\href@noop\s*\{\}|@noop", " ", s)
+    s = re.sub(r"\\(?:bibinfo|bibfield)\s*\{[^}]*\}", " ", s)              # drop the field name, keep {content}
     s = re.sub(r"\\([`'^\"~=.uvHckr])\s*\{?\\?([A-Za-z])\}?", _accent, s)  # \"{o}, \'e, \c{c}
     for k, v in _SPECIAL.items():
         s = s.replace("{" + k + "}", v).replace(k + "{}", v)

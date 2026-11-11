@@ -40,6 +40,13 @@ def _year_ok(ref: ParsedRef, best: Scored, t: Thresholds) -> bool:
 
 def decide(ref: ParsedRef, best: Scored | None, *, all_sources_failed: bool = False,
            t: Thresholds = DEFAULT) -> Verdict:
+    # Physics (APS/RevTeX) style cites articles without a title. If the cited DOI resolves, judge the
+    # reference on authors and year; there is no title that could be "attached to the wrong work".
+    if best is not None and best.doi_match and not ref.title:
+        authors_ok = best.scores.authors is None or best.scores.authors >= t.author_min
+        if authors_ok and _year_ok(ref, best, t):
+            return Verdict(Status.verified, 0.9, ["cited without a title; matched by DOI, authors and year"])
+        return Verdict(Status.detail_mismatch, 0.8, [i for i in best.issues if not i.startswith("DOI ")])
     # A real DOI attached to a different title is a mismatch however low the overall score is.
     if best is not None and best.doi_match and (best.scores.title or 0) < 85:
         return Verdict(Status.detail_mismatch, 0.9, best.issues)

@@ -164,3 +164,18 @@ def test_original_paper_preferred_over_notice():  # S9
     assert best_match(r, [note, orig]).candidate.doi == "10.1038/nature12968"
     alone = best_match(r, [note])
     assert alone.scores.title == 100 and any("notice about the work" in i for i in alone.issues)
+
+
+def test_titleless_physics_citation_verified_by_doi():  # E5 audit: APS style omits article titles
+    r = ref(title=None, authors=["Hawking, S. W."], year=1975, doi="10.1007/BF02345020")
+    rec = cand(title="Particle creation by black holes", authors=["Hawking, S. W."], year=1975,
+               venue="Communications in Mathematical Physics", doi="10.1007/bf02345020")
+    v = decide(r, best_match(r, [rec]))
+    assert v.status is Status.verified
+
+
+def test_titleless_citation_with_wrong_authors_is_mismatch_not_hijack():
+    r = ref(title=None, authors=["Smith, J."], year=1975, doi="10.1007/BF02345020")
+    rec = cand(title="Particle creation by black holes", authors=["Hawking, S. W."], year=1975, doi="10.1007/bf02345020")
+    v = decide(r, best_match(r, [rec]))
+    assert v.status is Status.detail_mismatch and not any("different work" in i for i in v.issues)
