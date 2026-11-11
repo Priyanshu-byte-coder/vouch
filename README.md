@@ -130,3 +130,7 @@ Tests: `cd backend && .venv/Scripts/python -m pytest -m "not live"`.
 - **GROBID** (Apache-2.0).
 
 Dataset details: [eval/data/SOURCES.md](eval/data/SOURCES.md).
+
+## License
+
+Code: [MIT](LICENSE). Datasets keep their own licences (see above); CiteAudit is not redistributed.
