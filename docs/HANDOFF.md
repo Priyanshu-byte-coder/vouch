@@ -21,7 +21,8 @@
 - API server: `cd backend && .venv/Scripts/python -m uvicorn app.main:app --port 8000`.
 - Frontend: `cd frontend && npm run dev` (port 3000) / `npm run build`. **Next.js 16.4 with Cache Components**: read `frontend/node_modules/next/dist/docs/` before using unfamiliar APIs. Route params are runtime data and must be read inside `<Suspense>` (done in `/report/[id]`). Run `npx next typegen` after adding routes (for `PageProps<'/route'>` types).
 - Rate limits: arXiv 1 req / 3 s (429s when busy); S2 1 req/s but in practice ~1 answer / 16 s; OpenAlex $1/day per key (3 keys rotate). Crossref is free.
-- The Chrome extension was not connected, so visual checks were done by fetching pages from the dev server. The user can open http://localhost:3000 himself.
+- The Chrome extension was not connected. Visual checks: headless Edge screenshots, e.g. `"/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --headless=new --window-size=1440,1800 --virtual-time-budget=6000 --screenshot=out.png URL` (it fast-forwards time, so mid-run SSE frames are not captured).
+- Only one `next dev` per folder: a second one crashed the first ("Jest worker encountered 2 child process exceptions"); the classifier will not let Claude kill the user's dev server, so ask the user to restart it.
 
 ## 3. What Vouch is (one line)
 An open research-integrity screener: for each reference in a paper it checks ① exists (6 open indexes), ② details accurate (field matching), ③ retracted (Retraction Watch), ④ claim support (TODO), ⑤ tortured phrases (TODO), and gives evidence for every verdict. Labels: verified / detail_mismatch / not_found / cant_verify.
@@ -54,7 +55,7 @@ An open research-integrity screener: for each reference in a paper it checks ①
 - Outside check: 100 real references (3 arXiv papers + fixtures), 1 wrongly flagged (AlexNet: only the 2017 CACM reprint is indexed).
 
 ## 6. Where we are in docs/STEPS.md
-Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, **4.1**. Partially: 6.3 (PDF upload works; contexts from PDF full text not yet).
+Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1, **4.2** (frontend calls the API via `src/lib/api.ts`; `NEXT_PUBLIC_API_URL`, see `frontend/.env.example`; report page streams SSE; JSON/CSV export in `src/lib/export.ts`). Partially: 6.3 (PDF upload works; contexts from PDF full text not yet).
 
 ## 7. Next steps (in order)
 1. **4.2 Wire frontend to API:** `NEXT_PUBLIC_API_URL` (default http://localhost:8000). In `check-form.tsx`, POST `/api/check` ({arxiv_id} or {bibliography}) or `/api/check/pdf` (multipart "file"), then `router.push('/report/' + job_id)`. In `report-loader.tsx`, for non-"demo" ids, open an `EventSource` on `/api/jobs/{id}/events`, accumulate `ref_done` into a partial Report, show progress (`parsed.n_refs`), and on `report` set the full report. Handle `error` and 404 (jobs are in memory). Example buttons: arXiv examples should call the API (2602.23452, 2604.26835); the "Demo mix" stays `/report/demo`. CORS is already `*`.

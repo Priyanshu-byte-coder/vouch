@@ -129,7 +129,7 @@
 - Next.js + Tailwind + shadcn/ui in `frontend/`. Pages `/`, `/report/[id]`, `/research`, using mock JSON.
 - ✅ Done when: `npm run dev` shows all 3 pages with mock data.
 
-### 4.2 Wire to the API (🤖)
+### 4.2 Wire to the API (🤖) ✅ form → API, live SSE report, JSON/CSV export, error/expired states; tested on 2 arXiv papers + 2 bibliographies
 - Input tabs (arXiv / bibliography / PDF), live progress from SSE, report table, evidence drawer, download JSON/CSV.
 - ✅ Done when: a local end-to-end run from the browser works on 3 papers.
 

@@ -113,9 +113,37 @@ body::before {
   animation: stamp-in 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) both;
 }
 
+/* Live progress: indeterminate bar and skeleton rows */
+@keyframes indeterminate {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(400%);
+  }
+}
+.indeterminate {
+  animation: indeterminate 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--paper-deep) 25%, var(--paper) 50%, var(--paper-deep) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise,
-  .stamp-in {
+  .stamp-in,
+  .indeterminate,
+  .shimmer {
     animation: none;
   }
 }

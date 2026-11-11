@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { startArxiv, startBibliography, startPdf } from "@/lib/api";
 
 type Tab = "arxiv" | "pdf" | "bib";
 
@@ -23,14 +24,35 @@ export function CheckForm() {
   const [arxiv, setArxiv] = useState("");
   const [bib, setBib] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [busy, setBusy] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const ready = (tab === "arxiv" && arxiv.trim()) || (tab === "bib" && bib.trim().length > 20) || (tab === "pdf" && file);
 
+  async function run(key: string, start: () => Promise<string>) {
+    setBusy(key);
+    setError(null);
+    try {
+      const id = await start();
+      router.push(`/report/${id}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+      setBusy(null);
+    }
+  }
+
   function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!ready) return;
-    // Step 4.1: UI only. Step 4.2 sends this to the API and opens the live report.
-    router.push("/report/demo");
+    if (!ready || busy) return;
+    if (tab === "arxiv") run("form", () => startArxiv(arxiv));
+    else if (tab === "bib") run("form", () => startBibliography(bib));
+    else if (file) run("form", () => startPdf(file));
+  }
+
+  function example(ex: (typeof EXAMPLES)[number]) {
+    if (busy) return;
+    if (ex.demo || !ex.arxiv) router.push("/report/demo");
+    else run(ex.label, () => startArxiv(ex.arxiv!));
   }
 
   return (
@@ -43,7 +65,10 @@ export function CheckForm() {
             type="button"
             role="tab"
             aria-selected={tab === t.id}
-            onClick={() => setTab(t.id)}
+            onClick={() => {
+              setTab(t.id);
+              setError(null);
+            }}
             className={`relative -mb-px rounded-t-md border border-b-0 px-3.5 py-1.5 text-sm transition-colors ${
               tab === t.id ? "z-10 border-ink/70 bg-card text-ink" : "border-rule bg-paper-deep text-ink-soft hover:text-ink"
             }`}
@@ -93,12 +118,17 @@ export function CheckForm() {
           </p>
           <button
             type="submit"
-            disabled={!ready}
+            disabled={!ready || !!busy}
             className="rounded-sm border-2 border-ink bg-ink px-5 py-2 text-sm font-semibold tracking-wide text-card transition hover:bg-transparent hover:text-ink disabled:cursor-not-allowed disabled:opacity-35"
           >
-            Check citations →
+            {busy === "form" ? "Starting…" : "Check citations →"}
           </button>
         </div>
+        {error && (
+          <p role="alert" className="mt-4 border-l-2 border-notfound pl-3 text-sm text-notfound">
+            {error}
+          </p>
+        )}
       </div>
 
       <div className="mt-6">
@@ -108,10 +138,11 @@ export function CheckForm() {
             <button
               key={ex.label}
               type="button"
-              onClick={() => router.push("/report/demo")}
-              className="group rounded-sm border border-rule bg-card/60 px-3 py-1.5 text-left text-sm hover:border-ink-soft"
+              onClick={() => example(ex)}
+              disabled={!!busy}
+              className="group rounded-sm border border-rule bg-card/60 px-3 py-1.5 text-left text-sm hover:border-ink-soft disabled:opacity-50"
             >
-              <span className="font-medium">{ex.label}</span>
+              <span className="font-medium">{busy === ex.label ? "Starting…" : ex.label}</span>
               <span className="block text-[0.7rem] text-ink-faint group-hover:text-ink-soft">{ex.note}</span>
             </button>
           ))}
