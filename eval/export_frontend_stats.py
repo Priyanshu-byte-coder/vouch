@@ -115,6 +115,7 @@ def main() -> None:
         "baseline_labels_by_truth": baseline_labels(),
         "ablations": json.loads((EVAL / "results" / "e3_ablations.json").read_text(encoding="utf-8")),
         "scifact": json.loads((EVAL / "results" / "e4_scifact.json").read_text(encoding="utf-8")),
+        "coverage": json.loads((EVAL / "results" / "e2_coverage.json").read_text(encoding="utf-8")),
         "test": replay("test_citeaudit300"),
         "dev": replay("dev_1000"),
     }

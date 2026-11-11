@@ -175,7 +175,7 @@
 
 ## Phase 7 — P2: research depth
 
-### 7.1 E2 CoverageSet / RQ2 (🤖, 👤 spot-checks 30 items)
+### 7.1 E2 CoverageSet / RQ2 (🤖, 👤 spot-checks 30 items) ✅ 225 real works; datasets 70% flagged by baseline vs articles 5%; region effect not found; research page §6b
 - Sample ~600 real references by type × region (Indian and Global South vs. others) through OpenAlex/Crossref, plus ~300 generated fakes. Run the baseline and ours.
 - ✅ Done when: the FPR-by-stratum table and chart are logged.
 

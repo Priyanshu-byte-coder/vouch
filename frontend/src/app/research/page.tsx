@@ -10,6 +10,7 @@ const AB = S.ablations.dev_1000;
 const AM = AB.matching as Record<string, { f1: number; recall: number; fpr: number }>;
 const AB_COST = AB.cost;
 const SF = S.scifact;
+const CV = S.coverage as unknown as { n: number; cells: Record<string, Record<string, { n: number; fpr: number; hard_rate: number }>> };
 const n = (o: Record<string, number>, k: string) => o[k] ?? 0;
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 
@@ -306,6 +307,12 @@ export default function ResearchPage() {
         </div>
       </Section>
 
+      {/* RQ2 coverage */}
+      <Section kicker="6b · Who gets wrongly accused (RQ2)" title="Real datasets, chapters and reports get accused; articles almost never." lede={`${CV.n} real works sampled from OpenAlex across 5 types × 3 author regions, written as plain citations without DOIs. Every one is real, so every flag is a false accusation. Because the sample comes from OpenAlex, the fair comparison is the baseline vs Vouch without OpenAlex; full Vouch is shown for completeness but benefits from that circularity.`}>
+        <CoverageMatrix />
+        <Caption>Bar length = share of real references flagged (any verdict other than verified). Grey: baseline re-created (Semantic Scholar only, AtomGPT v2 scoring). Ochre: Vouch without OpenAlex. Black: Vouch, six sources. The single-index baseline calls {Math.round(CV.cells["dataset|all"].baseline.hard_rate * 100)}% of real datasets “likely hallucinated”. Our hypothesis that Indian and Global South references are flagged more is <b>not</b> supported in this sample (India {Math.round(CV.cells["all|India"].baseline.fpr * 100)}%, Global North {Math.round(CV.cells["all|Global North"].baseline.fpr * 100)}% for the baseline). Without OpenAlex, Vouch is no better than the baseline overall: open-index coverage of non-article works is the bottleneck.</Caption>
+      </Section>
+
       {/* 7. ablations */}
       <Section kicker="7 · What each part adds (RQ3)" title="Sources cut false alarms; strict matching catches the fakes." lede="Offline replay of the collected records with the frozen configuration. The cascade always asks Crossref, then OpenAlex, then the type-routed indexes, then Semantic Scholar, so each prefix below is exactly what a shorter cascade would decide. Dev set, 1,000 citations.">
         <div className="grid gap-10 lg:grid-cols-2">
@@ -491,5 +498,55 @@ function CoverageCurve({ points }: { points: { abstain_pct: number; accuracy: nu
         <circle key={p.abstain_pct} cx={x(p.abstain_pct)} cy={y(p.accuracy)} r={2.6} fill="var(--card)" stroke="var(--ink)" />
       ))}
     </svg>
+  );
+}
+
+const CV_TYPES = ["article", "book-chapter", "book", "report", "dataset", "all"];
+const CV_REGIONS = ["India", "Global South (other)", "Global North", "all"];
+const CV_SYS: [string, string][] = [["baseline", "var(--unverified)"], ["vouch_no_openalex", "var(--mismatch)"], ["vouch", "var(--ink)"]];
+
+function CoverageMatrix() {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[640px] border-collapse text-xs">
+        <thead>
+          <tr>
+            <th className="w-28" />
+            {CV_REGIONS.map((r) => (
+              <th key={r} className="pb-2 text-left font-mono text-[0.62rem] font-normal tracking-wider text-ink-faint uppercase">
+                {r === "all" ? "all regions" : r}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {CV_TYPES.map((t) => (
+            <tr key={t} className={`border-t ${t === "all" ? "border-ink" : "border-rule"}`}>
+              <td className="py-2 pr-3 align-top font-medium">{t === "all" ? "all types" : t}</td>
+              {CV_REGIONS.map((r) => {
+                const cell = CV.cells[`${t}|${r}`];
+                return (
+                  <td key={r} className="py-2 pr-4 align-top">
+                    {cell ? (
+                      <div className="space-y-[3px]">
+                        {CV_SYS.map(([k, color]) => (
+                          <div key={k} className="flex items-center gap-1.5">
+                            <span className="h-2 rounded-[1px]" style={{ width: `${cell[k].fpr * 7}rem`, minWidth: 2, background: color }} />
+                            <span className="font-mono text-[0.6rem] text-ink-soft">{Math.round(cell[k].fpr * 100)}%</span>
+                          </div>
+                        ))}
+                        <span className="font-mono text-[0.55rem] text-ink-faint">n={cell.vouch.n}</span>
+                      </div>
+                    ) : (
+                      <span className="text-ink-faint">—</span>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

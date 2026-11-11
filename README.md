@@ -57,7 +57,7 @@ The false-positive rate is *not* lower than the baseline's (20 vs 18 false alarm
 **RQ4 — claim support (SciFact dev, 340 expert-labelled claim–abstract pairs):** macro-F1 **0.843**, calibration error 0.038;
 abstaining on the least-confident answers raises accuracy from 0.850 to **0.908 at 20% abstention**.
 
-**RQ2 — false accusations by reference type × region:** see [EXPERIMENTS.md](EXPERIMENTS.md) (E2) and the research page.
+**RQ2 — who gets wrongly accused (225 real works sampled from OpenAlex, 5 types × 3 regions):** a single-index checker (baseline method re-created) flags **70% of real datasets** (68% as "likely hallucinated"), 36% of book chapters and 26% of reports, but only 5% of articles. Our hypothesis that Indian and Global South references are flagged more was **not** supported (India 22%, Global North 36%). Without OpenAlex, Vouch is no better than the baseline (30% vs 31%), so OpenAlex's coverage of non-article works is what matters; full Vouch's 5% is partly circular because the sample came from OpenAlex.
 
 ### Protocol
 1. Reproduce the baseline from its released outputs (exact match to its README).

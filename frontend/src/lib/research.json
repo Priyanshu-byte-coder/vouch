@@ -1060,6 +1060,574 @@
     "seconds": 56.9
    }
   },
+  "coverage": {
+   "n": 218,
+   "per_cell": 15,
+   "seed": 20261111,
+   "atomgpt_config": {
+    "title": 0.6,
+    "authors": 0.25,
+    "journal": 0.15,
+    "verified": 80.0,
+    "partial": 60.0,
+    "top_k": 5
+   },
+   "cells": {
+    "all|Global North": {
+     "baseline": {
+      "n": 72,
+      "flagged": 26,
+      "hard": 21,
+      "fpr": 0.361,
+      "hard_rate": 0.292
+     },
+     "vouch_no_openalex": {
+      "n": 72,
+      "flagged": 27,
+      "hard": 23,
+      "fpr": 0.375,
+      "hard_rate": 0.319
+     },
+     "vouch": {
+      "n": 72,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.014,
+      "hard_rate": 0.0
+     }
+    },
+    "all|Global South (other)": {
+     "baseline": {
+      "n": 74,
+      "flagged": 26,
+      "hard": 21,
+      "fpr": 0.351,
+      "hard_rate": 0.284
+     },
+     "vouch_no_openalex": {
+      "n": 74,
+      "flagged": 21,
+      "hard": 17,
+      "fpr": 0.284,
+      "hard_rate": 0.23
+     },
+     "vouch": {
+      "n": 74,
+      "flagged": 5,
+      "hard": 3,
+      "fpr": 0.068,
+      "hard_rate": 0.041
+     }
+    },
+    "all|India": {
+     "baseline": {
+      "n": 72,
+      "flagged": 16,
+      "hard": 10,
+      "fpr": 0.222,
+      "hard_rate": 0.139
+     },
+     "vouch_no_openalex": {
+      "n": 72,
+      "flagged": 17,
+      "hard": 16,
+      "fpr": 0.236,
+      "hard_rate": 0.222
+     },
+     "vouch": {
+      "n": 72,
+      "flagged": 4,
+      "hard": 3,
+      "fpr": 0.056,
+      "hard_rate": 0.042
+     }
+    },
+    "all|all": {
+     "baseline": {
+      "n": 218,
+      "flagged": 68,
+      "hard": 52,
+      "fpr": 0.312,
+      "hard_rate": 0.239
+     },
+     "vouch_no_openalex": {
+      "n": 218,
+      "flagged": 65,
+      "hard": 56,
+      "fpr": 0.298,
+      "hard_rate": 0.257
+     },
+     "vouch": {
+      "n": 218,
+      "flagged": 10,
+      "hard": 6,
+      "fpr": 0.046,
+      "hard_rate": 0.028
+     }
+    },
+    "article|Global North": {
+     "baseline": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "article|Global South (other)": {
+     "baseline": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 1,
+      "fpr": 0.067,
+      "hard_rate": 0.067
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.067,
+      "hard_rate": 0.0
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "article|India": {
+     "baseline": {
+      "n": 13,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.077,
+      "hard_rate": 0.0
+     },
+     "vouch_no_openalex": {
+      "n": 13,
+      "flagged": 2,
+      "hard": 2,
+      "fpr": 0.154,
+      "hard_rate": 0.154
+     },
+     "vouch": {
+      "n": 13,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "article|all": {
+     "baseline": {
+      "n": 43,
+      "flagged": 2,
+      "hard": 1,
+      "fpr": 0.047,
+      "hard_rate": 0.023
+     },
+     "vouch_no_openalex": {
+      "n": 43,
+      "flagged": 3,
+      "hard": 2,
+      "fpr": 0.07,
+      "hard_rate": 0.047
+     },
+     "vouch": {
+      "n": 43,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "book-chapter|Global North": {
+     "baseline": {
+      "n": 14,
+      "flagged": 4,
+      "hard": 2,
+      "fpr": 0.286,
+      "hard_rate": 0.143
+     },
+     "vouch_no_openalex": {
+      "n": 14,
+      "flagged": 6,
+      "hard": 5,
+      "fpr": 0.429,
+      "hard_rate": 0.357
+     },
+     "vouch": {
+      "n": 14,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.071,
+      "hard_rate": 0.0
+     }
+    },
+    "book-chapter|Global South (other)": {
+     "baseline": {
+      "n": 15,
+      "flagged": 5,
+      "hard": 3,
+      "fpr": 0.333,
+      "hard_rate": 0.2
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 6,
+      "hard": 6,
+      "fpr": 0.4,
+      "hard_rate": 0.4
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "book-chapter|India": {
+     "baseline": {
+      "n": 15,
+      "flagged": 7,
+      "hard": 5,
+      "fpr": 0.467,
+      "hard_rate": 0.333
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 6,
+      "hard": 6,
+      "fpr": 0.4,
+      "hard_rate": 0.4
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "book-chapter|all": {
+     "baseline": {
+      "n": 44,
+      "flagged": 16,
+      "hard": 10,
+      "fpr": 0.364,
+      "hard_rate": 0.227
+     },
+     "vouch_no_openalex": {
+      "n": 44,
+      "flagged": 18,
+      "hard": 17,
+      "fpr": 0.409,
+      "hard_rate": 0.386
+     },
+     "vouch": {
+      "n": 44,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.023,
+      "hard_rate": 0.0
+     }
+    },
+    "book|Global North": {
+     "baseline": {
+      "n": 15,
+      "flagged": 5,
+      "hard": 2,
+      "fpr": 0.333,
+      "hard_rate": 0.133
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 3,
+      "hard": 3,
+      "fpr": 0.2,
+      "hard_rate": 0.2
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "book|Global South (other)": {
+     "baseline": {
+      "n": 15,
+      "flagged": 2,
+      "hard": 0,
+      "fpr": 0.133,
+      "hard_rate": 0.0
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 2,
+      "hard": 2,
+      "fpr": 0.133,
+      "hard_rate": 0.133
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 1,
+      "fpr": 0.067,
+      "hard_rate": 0.067
+     }
+    },
+    "book|India": {
+     "baseline": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.067,
+      "hard_rate": 0.0
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 1,
+      "fpr": 0.067,
+      "hard_rate": 0.067
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "book|all": {
+     "baseline": {
+      "n": 45,
+      "flagged": 8,
+      "hard": 2,
+      "fpr": 0.178,
+      "hard_rate": 0.044
+     },
+     "vouch_no_openalex": {
+      "n": 45,
+      "flagged": 6,
+      "hard": 6,
+      "fpr": 0.133,
+      "hard_rate": 0.133
+     },
+     "vouch": {
+      "n": 45,
+      "flagged": 1,
+      "hard": 1,
+      "fpr": 0.022,
+      "hard_rate": 0.022
+     }
+    },
+    "dataset|Global North": {
+     "baseline": {
+      "n": 15,
+      "flagged": 14,
+      "hard": 14,
+      "fpr": 0.933,
+      "hard_rate": 0.933
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 14,
+      "hard": 14,
+      "fpr": 0.933,
+      "hard_rate": 0.933
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "dataset|Global South (other)": {
+     "baseline": {
+      "n": 15,
+      "flagged": 12,
+      "hard": 12,
+      "fpr": 0.8,
+      "hard_rate": 0.8
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 5,
+      "hard": 5,
+      "fpr": 0.333,
+      "hard_rate": 0.333
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 1,
+      "fpr": 0.067,
+      "hard_rate": 0.067
+     }
+    },
+    "dataset|India": {
+     "baseline": {
+      "n": 14,
+      "flagged": 5,
+      "hard": 4,
+      "fpr": 0.357,
+      "hard_rate": 0.286
+     },
+     "vouch_no_openalex": {
+      "n": 14,
+      "flagged": 6,
+      "hard": 6,
+      "fpr": 0.429,
+      "hard_rate": 0.429
+     },
+     "vouch": {
+      "n": 14,
+      "flagged": 3,
+      "hard": 3,
+      "fpr": 0.214,
+      "hard_rate": 0.214
+     }
+    },
+    "dataset|all": {
+     "baseline": {
+      "n": 44,
+      "flagged": 31,
+      "hard": 30,
+      "fpr": 0.705,
+      "hard_rate": 0.682
+     },
+     "vouch_no_openalex": {
+      "n": 44,
+      "flagged": 25,
+      "hard": 25,
+      "fpr": 0.568,
+      "hard_rate": 0.568
+     },
+     "vouch": {
+      "n": 44,
+      "flagged": 4,
+      "hard": 4,
+      "fpr": 0.091,
+      "hard_rate": 0.091
+     }
+    },
+    "report|Global North": {
+     "baseline": {
+      "n": 13,
+      "flagged": 3,
+      "hard": 3,
+      "fpr": 0.231,
+      "hard_rate": 0.231
+     },
+     "vouch_no_openalex": {
+      "n": 13,
+      "flagged": 4,
+      "hard": 1,
+      "fpr": 0.308,
+      "hard_rate": 0.077
+     },
+     "vouch": {
+      "n": 13,
+      "flagged": 0,
+      "hard": 0,
+      "fpr": 0.0,
+      "hard_rate": 0.0
+     }
+    },
+    "report|Global South (other)": {
+     "baseline": {
+      "n": 14,
+      "flagged": 6,
+      "hard": 5,
+      "fpr": 0.429,
+      "hard_rate": 0.357
+     },
+     "vouch_no_openalex": {
+      "n": 14,
+      "flagged": 7,
+      "hard": 4,
+      "fpr": 0.5,
+      "hard_rate": 0.286
+     },
+     "vouch": {
+      "n": 14,
+      "flagged": 3,
+      "hard": 1,
+      "fpr": 0.214,
+      "hard_rate": 0.071
+     }
+    },
+    "report|India": {
+     "baseline": {
+      "n": 15,
+      "flagged": 2,
+      "hard": 1,
+      "fpr": 0.133,
+      "hard_rate": 0.067
+     },
+     "vouch_no_openalex": {
+      "n": 15,
+      "flagged": 2,
+      "hard": 1,
+      "fpr": 0.133,
+      "hard_rate": 0.067
+     },
+     "vouch": {
+      "n": 15,
+      "flagged": 1,
+      "hard": 0,
+      "fpr": 0.067,
+      "hard_rate": 0.0
+     }
+    },
+    "report|all": {
+     "baseline": {
+      "n": 42,
+      "flagged": 11,
+      "hard": 9,
+      "fpr": 0.262,
+      "hard_rate": 0.214
+     },
+     "vouch_no_openalex": {
+      "n": 42,
+      "flagged": 13,
+      "hard": 6,
+      "fpr": 0.31,
+      "hard_rate": 0.143
+     },
+     "vouch": {
+      "n": 42,
+      "flagged": 4,
+      "hard": 1,
+      "fpr": 0.095,
+      "hard_rate": 0.024
+     }
+    }
+   },
+   "baseline_errors_excluded": 7
+  },
   "test": {
    "n": 300,
    "labels_by_truth": {

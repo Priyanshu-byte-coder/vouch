@@ -16,7 +16,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 |---|---|---|---|---|
 | E0 | — | Published baseline (AtomGPT detector) on CiteAudit-300 + NeurIPS-100, with our LLM. Re-score their released outputs | B | ✅ E0a done · E0b replaced by the E3 'S2-only, AtomGPT scoring' ablation (decision 10 Nov) |
 | E1 | RQ1 | Our cascade on CiteAudit-300 + NeurIPS-100 (thresholds tuned on the CiteAudit dev split) | B | ✅ |
-| E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ⬜ |
+| E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ✅ E2 (step 7.1) |
 | E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ✅ E3 (step 7.2), E3a, E3b |
 | E4 | RQ4 | SciFact claim support: direct vs. + quote grounding vs. + abstention | B | ✅ E4 (step 6.2) |
 | E5 | RQ5 | Real-paper audit: 200 arXiv + 50 Indian-affiliated papers, flags hand-verified | All | ⬜ |
@@ -337,3 +337,21 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Scans the full text of arXiv (LaTeX, after removing comments/equations/figures) and PDF (GROBID abstract + body) inputs; pasted bibliographies have no full text.
 - Checks: test PDF `test-inputs/07-tortured-phrases.pdf` → **8 hits** (counterfeit consciousness ×2, profound learning, profound neural organization, colossal information, irregular woodland, flag to commotion, backing vector machine), its 3 references verified. **0 hits** on CiteAudit (arXiv LaTeX) and HalluCiteChecker (PDF). Unit tests: 3 (incl. a clean paragraph using the correct terms → 0 hits).
 - Not evaluated on a labelled corpus; the fingerprints are a curated subset of what the Problematic Paper Screener uses. Report cache v5 → v6.
+
+### E2 — CoverageSet: false accusations by type × region (step 7.1)
+- When / who: 2026-11-11 15:15–15:38 IST · Priyanshu · `eval/coverage_rq2.py` (build / run / report) → set `eval/data/coverageset.jsonl` (committed; OpenAlex metadata is CC0), runs `eval/data/raw/coverage_runs.jsonl`, results `eval/results/e2_coverage.json`.
+- Set: **225 real works** sampled from OpenAlex (seed 20261111, published 2012–2024), 15 per cell: 5 types (article, book chapter, book, report, dataset) × 3 author-institution regions (India; other Global South: BR NG ID PK BD KE ZA EG VN PH MX CO; Global North: US GB DE FR CA AU NL JP). Formatted as plain APA-like citations **without DOIs**. All real, so every flag is a false accusation.
+- Systems on the same LLM-parsed references: **baseline re-created** (Semantic Scholar only, AtomGPT v2 scoring from its released config: title token_set 0.60 / authors 0.25 / journal 0.15, renormalised over available fields, verified ≥ 80, partial ≥ 60, top-5); **Vouch without OpenAlex**; **Vouch** (six sources). 7 items dropped where the baseline's S2 lookup failed → n = 218. ~15 min.
+- **Flagged share (any non-verified verdict) / hard accusations (baseline "likely hallucinated"; Vouch not found or mismatch):**
+  | Type | Baseline | Vouch − OpenAlex | Vouch |
+  |---|---|---|---|
+  | article (n=43) | 0.05 / 0.02 | 0.07 / 0.05 | 0.00 / 0.00 |
+  | book (45) | 0.18 / 0.04 | 0.13 / 0.13 | 0.02 / 0.02 |
+  | report (42) | 0.26 / 0.21 | 0.31 / 0.14 | 0.10 / 0.02 |
+  | book chapter (44) | 0.36 / 0.23 | 0.41 / 0.39 | 0.02 / 0.00 |
+  | **dataset (44)** | **0.70 / 0.68** | 0.57 / 0.57 | 0.09 / 0.09 |
+  | **all (218)** | 0.31 / 0.24 | 0.30 / 0.26 | 0.05 / 0.03 |
+  By region (baseline): India 0.22, other Global South 0.35, Global North 0.36. (Vouch − OpenAlex: 0.24 / 0.28 / 0.38.)
+- **H2 verdict: half supported.** Type: yes, strongly. A single-index checker calls 68% of real datasets "likely hallucinated" and flags 36% of book chapters vs 5% of articles. **Region: not supported** in this sample; Indian references were flagged *less* than Global North ones (the Global North dataset cell, 93%, drives it). An interim look at the first 61 rows suggested the opposite; it did not hold.
+- **Vouch without OpenAlex is no better than the baseline overall (0.30 vs 0.31)**; it helps only on Global South datasets (0.33 vs 0.80). Full Vouch's 0.05 is partly circular (the set was sampled from OpenAlex), so we do not claim it as a coverage result. Honest reading: open-index coverage of non-article works is the bottleneck, and OpenAlex is the index that covers them.
+- Limitations: 15 per cell (wide intervals); region = any author institution in that region; citations generated from metadata are cleaner than real ones.
