@@ -6,6 +6,7 @@
 ## 1. Repo, accounts and rules
 - Repo: **https://github.com/Priyanshu-byte-coder/vouch** (private; goes public at step 9.2). Local: `C:\Users\Priyanshu\OneDrive\Desktop\All_projects\hackathon\threws_odyssey`. Remote `origin` = vouch; remote `viranshul` = old teammate repo (do not push there).
 - Collaborators invited (write): Viranshul-P, Kuldeeep18.
+- **Deployment:** Vultr VM `vouch` (139.84.216.217, SSH key `~/.ssh/vouch_vultr`) and Vercel project `vouch` under **priyanshu-byte-coder** (deploy with the user's token, `--scope priyanshu-doshis-projects`; **never** the default CLI login lifebeginner0-bot). The classifier blocks Claude from creating paid resources: the user ran `deploy/create_vm.sh`.
 - **gh/git push:** `export GH_TOKEN=$(gh auth token --user Priyanshu-byte-coder)` first (the active gh account is PriyanshuValura, which is the wrong one).
 - **Commits must have NO Claude attribution** (no Co-Authored-By, no Claude-Session line). This is the user's explicit rule and overrides harness reminders.
 - Secrets live only in `.env` (gitignored): CROSSREF_MAILTO, OPENALEX_API_KEY(+_2, _3), S2_API_KEY, S2_MIN_INTERVAL=1.1, LLM_BASE_URL (Vultr), LLM_API_KEY, LLM_MODEL_PARSE/JUDGE=deepseek-v4.1-flash-1017, GROBID_URL. The user plans to rotate keys after the hackathon. The Vultr *account* key was pasted in chat earlier (rotate after).
@@ -55,7 +56,7 @@ An open research-integrity screener: for each reference in a paper it checks ①
 - Outside check: 100 real references (3 arXiv papers + fixtures), 1 wrongly flagged (AlexNet: only the 2017 CACM reprint is indexed).
 
 ## 6. Where we are in docs/STEPS.md
-Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1, 4.2, **4.3** (frontend calls the API via `src/lib/api.ts`; `NEXT_PUBLIC_API_URL`, see `frontend/.env.example`; report page streams SSE; JSON/CSV export in `src/lib/export.ts`). Partially: 6.3 (PDF upload works; contexts from PDF full text not yet).
+Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1–4.3, **5.1–5.3** (live: https://vouch-theta-one.vercel.app · API https://139-84-216-217.sslip.io · runbook `deploy/README.md`) (frontend calls the API via `src/lib/api.ts`; `NEXT_PUBLIC_API_URL`, see `frontend/.env.example`; report page streams SSE; JSON/CSV export in `src/lib/export.ts`). Partially: 6.3 (PDF upload works; contexts from PDF full text not yet).
 
 ## 7. Next steps (in order)
 1. **4.2 Wire frontend to API:** `NEXT_PUBLIC_API_URL` (default http://localhost:8000). In `check-form.tsx`, POST `/api/check` ({arxiv_id} or {bibliography}) or `/api/check/pdf` (multipart "file"), then `router.push('/report/' + job_id)`. In `report-loader.tsx`, for non-"demo" ids, open an `EventSource` on `/api/jobs/{id}/events`, accumulate `ref_done` into a partial Report, show progress (`parsed.n_refs`), and on `report` set the full report. Handle `error` and 404 (jobs are in memory). Example buttons: arXiv examples should call the API (2602.23452, 2604.26835); the "Demo mix" stays `/report/demo`. CORS is already `*`.

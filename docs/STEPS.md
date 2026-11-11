@@ -141,16 +141,16 @@
 
 ## Phase 5 — Deploy
 
-### 5.1 Vultr VM (👤 approves the cost, 🤖 sets it up)
+### 5.1 Vultr VM (👤 approves the cost, 🤖 sets it up) ✅ vc2-2c-4gb Bangalore, API+GROBID+Caddy at https://139-84-216-217.sslip.io
 - ⚠️ Creates a billable server (`vc2-2c-4gb`, ~$20/month, Mumbai or Bangalore). Delete it after the finals.
 - docker compose: `api` + `grobid` + `caddy` (HTTPS through an `sslip.io` hostname). `.env` is copied over SSH, never committed.
 - ✅ Done when: `https://api.<ip>.sslip.io/api/health` returns OK from your phone.
 
-### 5.2 Vercel frontend (🤖 runs `vercel`, 👤 logged in)
+### 5.2 Vercel frontend (🤖 runs `vercel`, 👤 logged in) ✅ https://vouch-theta-one.vercel.app (account priyanshu-byte-coder), CORS locked to it
 - Set `NEXT_PUBLIC_API_URL`, then `vercel --prod`.
 - ✅ Done when: the public URL runs a full check end to end.
 
-### 5.3 Demo safety (🤖)
+### 5.3 Demo safety (🤖) ✅ examples pre-run on server, static demo fallback, auto-restart, 60 checks/IP/10 min, runbook deploy/README.md
 - Cache warm-up, a request timeout, a friendly error message, a rate limit on the public API.
 - ✅ Done when: three checks in parallel don't break it.
 
