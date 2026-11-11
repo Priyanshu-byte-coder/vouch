@@ -19,7 +19,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 | E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ✅ E2 (step 7.1) |
 | E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ✅ E3 (step 7.2), E3a, E3b |
 | E4 | RQ4 | SciFact claim support: direct vs. + quote grounding vs. + abstention | B | ✅ E4 (step 6.2) |
-| E5 | RQ5 | Real-paper audit: 200 arXiv + 50 Indian-affiliated papers, flags hand-verified | All | ⬜ |
+| E5 | RQ5 | Real-paper audit (scaled to 30 papers: 20 recent cs + 10 India-affiliated), flags hand-verified | All | 🟡 run done, labels pending |
 
 ## Results summary (fill as runs finish)
 
@@ -361,3 +361,10 @@ Every run that produces a number goes here: what we tried, what happened and why
 - Audit paper 25 (a physics paper) gave 78 "detail mismatch" out of 129 references. Cause: APS style cites journal articles **without titles**; with no cited title, a resolving DOI looked like "a real DOI attached to a different work". Also RevTeX `ibinfo {author} {…}` macros (with spaces) leaked "author author / journal journal" into the reference text.
 - Fixes: (1) no cited title + resolving DOI → judged on authors and year (verified if they agree, otherwise mismatch without the hijack message); (2) RevTeX macros stripped. Tests added (89 pass). Report cache v6 → v7.
 - **Disclosure:** replaying the frozen test collections with this fix changes **one** CiteAudit-300 verdict: a real Nature news item whose title the LLM parser failed to extract (it was a false alarm, now verified): FPR 0.140 → 0.133, F1 0.792 → 0.794. The fix was motivated by the audit, not by the test set, but the **reported headline numbers stay those of the frozen run** (`e1_test_results_6sources.json`). Dev: 1 such item. NeurIPS-100: none.
+
+### E5 — Audit of 30 recent arXiv papers (step 8.2), before hand labels
+- When / who: 2026-11-11 15:40–18:00 IST · Priyanshu · `eval/audit_e5.py` (select / run / flags / report). Scaled down from the plan (200 + 50 papers) to fit the time and the hand-labelling budget. Per-paper reports and the flag sheet stay in `eval/data/raw/audit/` (gitignored); only aggregates are published (IDEATION §8).
+- Papers: 20 sampled (seed 20261111) from the 200 newest cs.CL / cs.LG / cs.AI submissions; 10 sampled from 2026 arXiv works with an Indian author affiliation (OpenAlex). Paper 16 (PDF-only) was run through the production API because the local GROBID container was down.
+- **Bugs found by the audit:** two physics papers (APS/RevTeX) produced 228 false "detail mismatch" flags. Fixed (S16), and a second bug in that fix (the DOI was stripped with `\doibase`) was caught on the re-run and fixed (90 tests). The 3 affected papers were re-run with the fixed code; earlier reports kept in `raw/audit/prefix/`. Flags went from 294 to 61.
+- **Results (30 papers, 1,910 references):** verified 1,677 (87.8%) · can't verify 172 (9.0%) · not found 19 (1.0%) · detail mismatch 42 (2.2%). 18 papers have at least one hard flag (not found or mismatch); 8 have two or more. 0 retracted citations, 0 tortured phrases. Claim checks: 204 supported, 5 contradicted, 489 abstract can't tell, 294 abstained.
+- **Next (8.3):** hand-label the 61 flags (`correct` / `wrong` / `unsure`) → flag precision and prevalence. Until then these flags are *candidates*, not findings.
