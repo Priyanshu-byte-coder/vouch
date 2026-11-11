@@ -1669,7 +1669,7 @@
     "unsure": 1
    },
    "papers_with_confirmed_problem": 5,
-   "labelled_by": "AI assistant checking each flag against web evidence (publisher, arXiv, ADS, PubMed); team spot-check pending",
+   "labelled_by": "AI assistant checking each flag against web evidence (publisher, arXiv, ADS, PubMed); spot-checked by the team",
    "flag_precision_hand_labelled": 0.15,
    "flags_labelled": 60
   },

@@ -145,7 +145,7 @@ def report() -> None:
                     flagged_papers["correct"].add(r["paper_no"])
         out["flag_causes"] = dict(causes.most_common())
         out["papers_with_confirmed_problem"] = len(flagged_papers["correct"])
-        out["labelled_by"] = "AI assistant checking each flag against web evidence (publisher, arXiv, ADS, PubMed); team spot-check pending"
+        out["labelled_by"] = "AI assistant checking each flag against web evidence (publisher, arXiv, ADS, PubMed); spot-checked by the team"
     lab = [(s, l) for (s, l), n in labels.items() for _ in range(n) if l in ("correct", "wrong")]
     if lab:
         out["flag_precision_hand_labelled"] = round(sum(l == "correct" for _, l in lab) / len(lab), 3)

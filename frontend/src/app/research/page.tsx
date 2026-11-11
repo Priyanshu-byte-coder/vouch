@@ -328,7 +328,7 @@ export default function ResearchPage() {
           <div>
             <ChartTitle kicker={`${AU.flags_total} hard flags`} title={`${AU.correct} confirmed problems in ${AU.papers_with_confirmed_problem} papers`} />
             <Squares size={14} groups={[{ n: AU.fabricated, color: "var(--notfound)", label: "fabricated details: e.g. real papers cited with 4 invented co-authors" }, { n: AU.correct - AU.fabricated, color: "var(--mismatch)", label: "other real errors: wrong venue, wrong title, garbled names" }, { n: AU.wrong, color: "var(--rule)", label: "false alarms on correct citations" }]} />
-            <Caption>Precision {Math.round(AU.precision * 100)}%. Problems are rare in real papers (≈{(AU.correct / AU.references * 100).toFixed(1)}% of references), so even a small false-flag rate dominates: a flag means “look here”, never “fake”. Labels by an AI assistant with web evidence; team spot-check pending.</Caption>
+            <Caption>Precision {Math.round(AU.precision * 100)}%. Problems are rare in real papers (≈{(AU.correct / AU.references * 100).toFixed(1)}% of references), so even a small false-flag rate dominates: a flag means “look here”, never “fake”. Labels by an AI assistant with web evidence, spot-checked by the team.</Caption>
           </div>
           <div>
             <ChartTitle kicker="why the false alarms happened" title="Mostly naming and coverage, not matching" />
