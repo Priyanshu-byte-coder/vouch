@@ -31,7 +31,7 @@ from .pipeline.resolvers import SOURCES
 from .pipeline.retraction import get_index as get_retractions
 from .pipeline.run import check_arxiv, check_bibliography, check_pdf
 
-REPORT_VERSION = "v7"           # bump when the pipeline changes so cached reports are recomputed
+REPORT_VERSION = "v8"           # bump when the pipeline changes so cached reports are recomputed
 MAX_BIB_CHARS = 100_000
 MAX_PDF_BYTES = 20 * 1024 * 1024
 RATE_LIMIT = (int(os.getenv("VOUCH_RATE_LIMIT", "12")), 600)  # jobs per IP per 10 minutes

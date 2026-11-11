@@ -94,3 +94,9 @@ def test_revtex_bibinfo_macros():  # E5 audit: APS bibliographies leaked "author
     out = latex_to_text(s)
     assert "author" not in out and "journal journal" not in out and "NoStop" not in out
     assert "Hawking" in out and "Commun. Math. Phys." in out and "1975" in out
+
+
+def test_revtex_doibase_keeps_doi():  # the DOI must survive the RevTeX cleanup
+    from app.pipeline.latex import latex_to_text
+    out = latex_to_text(r"\bibinfo {author} {J.~D. Bekenstein},\ \href {\doibase 10.1103/PhysRevD.7.2333} {\bibfield {journal} {\bibinfo {journal} {Phys. Rev. D}}\ \textbf {\bibinfo {volume} {7}},\ \bibinfo {pages} {2333} (\bibinfo {year} {1973})}\BibitemShut {NoStop}")
+    assert "10.1103/PhysRevD.7.2333" in out and "Bekenstein" in out

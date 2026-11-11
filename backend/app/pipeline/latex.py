@@ -30,7 +30,8 @@ def latex_to_text(s: str) -> str:
     s = re.sub(r"\\href\{[^}]*\}\{([^}]*)\}", r"\1", s)
     s = re.sub(r"\\(?:newblock|bibitem|penalty\d*|allowbreak|relax|protect|nobreak|ignorespaces)\b", " ", s)
     # RevTeX (APS) bibliographies: \BibitemOpen, \BibitemShut {NoStop}, \href@noop {} {...}, \doibase
-    s = re.sub(r"\\BibitemShut\s*\{[^}]*\}|\\BibitemOpen|\\doibase\s*\{?[^\s}]*\}?|\\href@noop\s*\{\}|@noop", " ", s)
+    s = re.sub(r"\\doibase\s*\{?\s*([^\s}]+)\}?", r" doi:\1 ", s)            # keep the DOI itself
+    s = re.sub(r"\\BibitemShut\s*\{[^}]*\}|\\BibitemOpen|\\href@noop\s*\{\}|@noop", " ", s)
     s = re.sub(r"\\(?:bibinfo|bibfield)\s*\{[^}]*\}", " ", s)              # drop the field name, keep {content}
     s = re.sub(r"\\([`'^\"~=.uvHckr])\s*\{?\\?([A-Za-z])\}?", _accent, s)  # \"{o}, \'e, \c{c}
     for k, v in _SPECIAL.items():
