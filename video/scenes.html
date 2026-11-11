@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Vouch · Threws Odyssey 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=block" rel="stylesheet" />
+<style>
+  :root { --paper:#f3ede2; --deep:#eae2d3; --card:#fbf8f2; --ink:#1c1a16; --soft:#4a453c; --faint:#8a8172; --rule:#d3c8b4;
+          --green:#2e6a55; --ochre:#a8640f; --red:#9e2b25; --slate:#5b6670; --wine:#7a1d33; --link:#1f3a5f; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); color: var(--ink); font-family: "Public Sans", sans-serif; }
+  body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:50; opacity:.07; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .serif { font-family: "Newsreader", serif; }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  .kicker { font-family: "IBM Plex Mono", monospace; font-size: 22px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); }
+  .scene { position: absolute; inset: 0; padding: 110px 140px 200px; opacity: 0; transition: opacity .6s ease; }
+  .scene.active { opacity: 1; }
+  [data-at] { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  [data-at].in { opacity: 1; transform: none; }
+  [data-at].pop { transform: scale(1.5) rotate(-8deg); }
+  [data-at].pop.in { transform: scale(1) rotate(-3deg); transition: opacity .3s, transform .45s cubic-bezier(.3,1.5,.5,1); }
+  h1 { font-family: "Newsreader", serif; font-weight: 500; letter-spacing: -.02em; line-height: 1.02; }
+  h2 { font-family: "Newsreader", serif; font-weight: 500; font-size: 76px; line-height: 1.05; letter-spacing: -.015em; }
+  .rule { border-top: 2px solid var(--ink); box-shadow: 0 6px 0 -4px var(--paper), 0 8px 0 -4px var(--ink); }
+  .stamp { display:inline-block; border:4px solid currentColor; border-radius:6px; padding:6px 18px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; font-size:30px;
+           box-shadow: inset 0 0 0 3px var(--card), inset 0 0 0 5px currentColor; transform: rotate(-3deg); background: var(--card); }
+  .stamp.sm { font-size: 20px; padding: 3px 12px; border-width: 3px; }
+  .solid { background: var(--wine); color: var(--card) !important; box-shadow:none; border-color: var(--wine); }
+  .card { background: var(--card); border: 2px solid rgba(28,26,22,.7); border-radius: 6px; }
+  .bar { height: 34px; border-radius: 4px; width: 0; transition: width 1.4s cubic-bezier(.2,.7,.2,1); }
+  .in .bar, .bar.in { width: var(--w); }
+  .grid100 { display:grid; grid-template-columns: repeat(10, 30px); gap: 6px; }
+  .grid100 span { width:20px; height:20px; border-radius:3px; background: var(--rule); transition: background .25s; }
+  /* chrome */
+  #brand { position:absolute; top:34px; left:48px; display:flex; align-items:center; gap:14px; z-index:40; font-family:"Newsreader",serif; font-style:italic; font-size:34px; color: var(--ink); opacity:.85; }
+  #brand small { font-family:"IBM Plex Mono",monospace; font-style:normal; font-size:15px; letter-spacing:.2em; color:var(--faint); text-transform:uppercase; }
+  #cap { position:absolute; left:0; right:0; bottom:0; height:150px; z-index:45; display:flex; align-items:center; justify-content:center; padding:0 160px;
+         background: rgba(28,26,22,.93); color:#fbf8f2; font-size:36px; line-height:1.3; text-align:center; font-weight:500; transition: opacity .3s; }
+  body.nocap #cap { display:none; }
+  body.nocap .scene { padding-bottom: 120px; }
+  #prog { position:absolute; left:0; bottom:150px; height:5px; background: var(--green); z-index:46; width:0; }
+  body.nocap #prog { bottom: 0; }
+  .pill { display:inline-flex; align-items:center; gap:12px; padding:14px 26px; border:2px solid var(--rule); border-radius:999px; font-size:28px; background:var(--card); color: var(--soft); transition: all .4s; }
+  .pill.lit { border-color: var(--green); color: var(--ink); box-shadow: 0 0 0 6px rgba(46,106,85,.15); }
+  .pill .dot { width:14px; height:14px; border-radius:50%; background: var(--rule); transition: background .4s; }
+  .pill.lit .dot { background: var(--green); }
+</style>
+</head>
+<body>
+<div id="brand">
+  <svg width="42" height="42" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#2e6a55" stroke-width="1.6"/><circle cx="20" cy="20" r="14.5" fill="none" stroke="#2e6a55" stroke-width=".8" stroke-dasharray="1.2 1.6"/><path d="M13 20.5l4.6 4.6L27.5 15" fill="none" stroke="#2e6a55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  Vouch <small>Team Beyonders · Threws Odyssey 2026</small>
+</div>
+<div id="prog"></div>
+<div id="cap"></div>
+
+<!-- ================= INTRO ================= -->
+<section class="scene" id="title" data-part="intro" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:60px">
+  <svg data-at="0.2" class="pop" width="230" height="230" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#2e6a55" stroke-width="1.4"/><circle cx="20" cy="20" r="14.5" fill="none" stroke="#2e6a55" stroke-width=".7" stroke-dasharray="1.2 1.6"/><path d="M13 20.5l4.6 4.6L27.5 15" fill="none" stroke="#2e6a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <p class="kicker" data-at="0.9" style="margin-top:36px">Team Beyonders presents</p>
+  <h1 data-at="1.3" style="font-size:190px;margin-top:10px;font-style:italic">Vouch</h1>
+  <p class="serif" data-at="2.0" style="font-size:54px;color:var(--soft);margin-top:6px">Every citation, <i>vouched for.</i></p>
+  <div data-at="3.0" style="margin-top:46px;display:flex;gap:18px;font-size:24px;color:var(--soft)">
+    <span class="pill">Threws Odyssey 2026</span><span class="pill">DeepTech &amp; Scientific Computing</span><span class="pill">Priyanshu Doshi · Viranshul · Kuldeep Goklani</span>
+  </div>
+</section>
+
+<section class="scene" id="problem" data-part="intro">
+  <p class="kicker" data-at="0.2">The problem</p>
+  <h2 data-at="0.5" style="margin-top:14px;max-width:1500px">AI writes references that look real, <i>and aren't.</i></h2>
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:80px;margin-top:44px">
+    <div>
+      <div data-at="5.5" class="card" style="padding:40px 46px">
+        <p class="kicker" style="font-size:18px">Papers citing a reference that does not exist</p>
+        <div style="display:flex;align-items:baseline;gap:40px;margin-top:20px">
+          <div><p class="serif" style="font-size:110px;line-height:1;color:var(--faint)">1 in <span data-count="2828" data-from="2828" data-to="2828" data-at2="5.5">2,828</span></p><p class="mono" style="font-size:24px;color:var(--faint)">2023</p></div>
+          <p class="serif" style="font-size:70px;color:var(--red)">→</p>
+          <div><p class="serif" style="font-size:150px;line-height:1;color:var(--red)">1 in <span class="countdown" data-from="2828" data-to="277" data-start="6.6" data-dur="2.4">2,828</span></p><p class="mono" style="font-size:24px;color:var(--red)">early 2026</p></div>
+        </div>
+        <p class="mono" style="font-size:16px;color:var(--faint);margin-top:16px">GESIS, arXiv:2607.22693</p>
+      </div>
+    </div>
+    <div>
+      <div data-at="1.6" class="card" style="padding:34px 40px;position:relative">
+        <p class="kicker" style="font-size:16px">a citation in an accepted NeurIPS 2025 paper</p>
+        <p class="serif" style="font-size:34px;line-height:1.35;margin-top:14px">John Doe and Jane Smith. <i>WebVoyager: Building an end-to-end web agent with large multimodal models.</i> arXiv:2401.00001, 2024.</p>
+        <span data-at="3.4" class="stamp pop" style="position:absolute;right:30px;bottom:-26px;color:var(--ochre)">Mismatch</span>
+      </div>
+      <div data-at="11.5" style="margin-top:46px;display:flex;gap:30px;align-items:center">
+        <div class="grid100" id="np-grid" style="grid-template-columns:repeat(10,20px);gap:4px"></div>
+        <p class="serif" style="font-size:34px;line-height:1.15"><b style="font-size:72px;color:var(--red)">100</b><br/>fabricated citations in papers<br/><i>accepted</i> at NeurIPS 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="gap" data-part="intro">
+  <p class="kicker" data-at="0.2">Why existing checkers fall short</p>
+  <h2 data-at="0.5" style="margin-top:14px">One database is not enough.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:90px;margin-top:70px;align-items:start">
+    <div data-at="2.5" class="card" style="padding:44px">
+      <p class="kicker" style="font-size:18px">Published baseline · AtomGPT detector</p>
+      <p class="serif" style="font-size:52px;margin-top:10px">Semantic Scholar <i>only</i></p>
+      <p style="font-size:26px;color:var(--soft);margin-top:34px">Fake citations caught on its own benchmark</p>
+      <div style="display:flex;align-items:center;gap:20px;margin-top:14px"><div class="bar" style="--w:49%;background:var(--slate);max-width:100%"></div><b class="serif" style="font-size:64px">49%</b></div>
+      <p style="font-size:24px;color:var(--faint);margin-top:6px">half of the fakes walk straight through</p>
+    </div>
+    <div data-at="7.5">
+      <p style="font-size:30px;color:var(--soft)">and it accuses <b>real</b> work its one database doesn't hold:</p>
+      <div style="margin-top:30px;display:flex;flex-direction:column;gap:26px">
+        <div class="card" style="padding:22px 30px;display:flex;justify-content:space-between;align-items:center"><span class="serif" style="font-size:34px">a real <b>dataset</b></span><span class="stamp sm" style="color:var(--red)">Hallucinated?</span></div>
+        <div class="card" style="padding:22px 30px;display:flex;justify-content:space-between;align-items:center"><span class="serif" style="font-size:34px">a real <b>book chapter</b></span><span class="stamp sm" style="color:var(--red)">Hallucinated?</span></div>
+        <div class="card" style="padding:22px 30px;display:flex;justify-content:space-between;align-items:center"><span class="serif" style="font-size:34px">a real <b>technical report</b></span><span class="stamp sm" style="color:var(--red)">Hallucinated?</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="solution" data-part="intro">
+  <p class="kicker" data-at="0.2">Our solution</p>
+  <h2 data-at="0.5" style="margin-top:14px"><i>Vouch</i>: an open research-integrity screener.</h2>
+  <div data-at="3.2" style="display:flex;gap:20px;margin-top:40px">
+    <span class="pill lit"><span class="dot"></span>arXiv ID</span><span class="pill lit"><span class="dot"></span>PDF upload</span><span class="pill lit"><span class="dot"></span>Reference list</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:56px">
+    <div data-at="8.0" class="card" style="padding:30px"><p class="serif" style="font-size:40px;color:var(--faint);font-style:italic">i.</p><p style="font-size:32px;font-weight:600;margin-top:8px">Exists?</p><p style="font-size:22px;color:var(--soft);margin-top:10px">six open indexes</p></div>
+    <div data-at="9.2" class="card" style="padding:30px"><p class="serif" style="font-size:40px;color:var(--faint);font-style:italic">ii.</p><p style="font-size:32px;font-weight:600;margin-top:8px">Details right?</p><p style="font-size:22px;color:var(--soft);margin-top:10px">title, authors, year, venue, DOI</p></div>
+    <div data-at="10.4" class="card" style="padding:30px"><p class="serif" style="font-size:40px;color:var(--faint);font-style:italic">iii.</p><p style="font-size:32px;font-weight:600;margin-top:8px">Retracted?</p><p style="font-size:22px;color:var(--soft);margin-top:10px">Retraction Watch</p></div>
+    <div data-at="11.6" class="card" style="padding:30px"><p class="serif" style="font-size:40px;color:var(--faint);font-style:italic">iv.</p><p style="font-size:32px;font-weight:600;margin-top:8px">Supports the claim?</p><p style="font-size:22px;color:var(--soft);margin-top:10px">citing sentence vs abstract</p></div>
+    <div data-at="12.8" class="card" style="padding:30px"><p class="serif" style="font-size:40px;color:var(--faint);font-style:italic">v.</p><p style="font-size:32px;font-weight:600;margin-top:8px">Paper-mill text?</p><p style="font-size:22px;color:var(--soft);margin-top:10px">tortured phrases</p></div>
+  </div>
+  <div data-at="15.5" style="display:flex;gap:30px;margin-top:56px;align-items:center">
+    <span class="stamp sm" style="color:var(--green)">Verified</span><span class="stamp sm" style="color:var(--ochre)">Mismatch</span><span class="stamp sm" style="color:var(--red)">Not found</span><span class="stamp sm" style="color:var(--slate)">Unverified</span><span class="stamp sm solid">Retracted</span>
+    <span style="font-size:26px;color:var(--soft);margin-left:20px">every verdict with its evidence</span>
+  </div>
+</section>
+
+<section class="scene" id="how" data-part="intro">
+  <p class="kicker" data-at="0.2">How it works</p>
+  <h2 data-at="0.5" style="margin-top:14px">Six open indexes, checked field by field.</h2>
+  <div style="display:flex;gap:18px;margin-top:60px;flex-wrap:wrap" id="idx">
+    <span class="pill" data-light="2.0"><span class="dot"></span>Crossref</span>
+    <span class="pill" data-light="2.8"><span class="dot"></span>OpenAlex</span>
+    <span class="pill" data-light="3.6"><span class="dot"></span>arXiv</span>
+    <span class="pill" data-light="4.4"><span class="dot"></span>DataCite</span>
+    <span class="pill" data-light="5.2"><span class="dot"></span>Open Library</span>
+    <span class="pill" data-light="6.0"><span class="dot"></span>Semantic Scholar</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:60px">
+    <div data-at="7.5" class="card" style="padding:32px">
+      <p class="kicker" style="font-size:16px">field by field</p>
+      <div style="margin-top:18px;display:flex;flex-direction:column;gap:14px;font-size:22px">
+        <div style="display:grid;grid-template-columns:110px 1fr 50px;align-items:center;gap:12px"><span>title</span><div class="bar" style="--w:100%;height:14px;background:var(--green)"></div><span class="mono">100</span></div>
+        <div style="display:grid;grid-template-columns:110px 1fr 50px;align-items:center;gap:12px"><span>authors</span><div class="bar" style="--w:20%;height:14px;background:var(--red)"></div><span class="mono">20</span></div>
+        <div style="display:grid;grid-template-columns:110px 1fr 50px;align-items:center;gap:12px"><span>year</span><div class="bar" style="--w:100%;height:14px;background:var(--green)"></div><span class="mono">100</span></div>
+        <div style="display:grid;grid-template-columns:110px 1fr 50px;align-items:center;gap:12px"><span>venue</span><div class="bar" style="--w:88%;height:14px;background:var(--ochre)"></div><span class="mono">88</span></div>
+      </div>
+    </div>
+    <div data-at="10.0" class="card" style="padding:32px">
+      <p class="kicker" style="font-size:16px">retractions</p>
+      <p class="serif" style="font-size:78px;margin-top:10px">73,718</p>
+      <p style="font-size:24px;color:var(--soft)">Retraction Watch notices</p>
+      <span class="stamp sm solid" style="margin-top:22px">Retracted</span>
+    </div>
+    <div data-at="13.0" class="card" style="padding:32px">
+      <p class="kicker" style="font-size:16px">claim support · open LLM on Vultr</p>
+      <p style="font-size:24px;margin-top:16px;font-style:italic;color:var(--soft)">“…web search [CITATION] grounds answers in retrieved evidence”</p>
+      <p style="font-size:22px;margin-top:16px;border-left:4px solid var(--green);padding-left:14px">abstract says: <i>“models must collect references while browsing…”</i></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OUTRO ================= -->
+<section class="scene" id="results" data-part="outro">
+  <p class="kicker" data-at="0.2">Results · CiteAudit-300, the baseline's own benchmark</p>
+  <h2 data-at="0.5" style="margin-top:14px">Better than the published baseline.</h2>
+  <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:90px;margin-top:56px">
+    <div data-at="4.5" style="display:flex;flex-direction:column;gap:40px">
+      <div><p style="font-size:30px;font-weight:600">F1 score</p>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:10px"><div class="bar" style="--w:44%;background:var(--slate);opacity:.6"></div><span class="mono" style="font-size:30px">0.61 baseline</span></div>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:8px"><div class="bar" style="--w:57%;background:var(--ink)"></div><b class="mono" style="font-size:34px">0.79 Vouch</b></div></div>
+      <div><p style="font-size:30px;font-weight:600">Fake citations caught</p>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:10px"><div class="bar" style="--w:35%;background:var(--slate);opacity:.6"></div><span class="mono" style="font-size:30px">49% baseline</span></div>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:8px"><div class="bar" style="--w:54%;background:var(--ink)"></div><b class="mono" style="font-size:34px">75% Vouch</b></div></div>
+    </div>
+    <div>
+      <div data-at="11.0" class="card" style="padding:34px">
+        <p class="kicker" style="font-size:16px">same citations, head to head</p>
+        <div id="h2h" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:18px"></div>
+        <p style="font-size:30px;margin-top:16px"><b class="serif" style="font-size:66px">44</b> only Vouch right &nbsp; <b class="serif" style="font-size:66px;color:var(--slate)">8</b> only baseline</p>
+        <p class="mono" style="font-size:22px;color:var(--faint);margin-top:6px">McNemar p = 4 × 10⁻⁷</p>
+      </div>
+      <div data-at="20.5" class="card" style="padding:30px 34px;margin-top:30px;display:flex;align-items:center;gap:30px">
+        <p class="serif" style="font-size:92px;line-height:1;color:var(--red)">99<span style="font-size:46px;color:var(--faint)">/100</span></p>
+        <p style="font-size:28px">real NeurIPS 2025 fakes flagged<br/><span style="color:var(--faint)">baseline 94/100</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="why" data-part="outro">
+  <p class="kicker" data-at="0.2">Ablations · why it works</p>
+  <h2 data-at="0.5" style="margin-top:14px">Indexes remove false alarms. Field checks catch fakes.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:56px">
+    <div data-at="2.0" class="card" style="padding:36px">
+      <p class="kicker" style="font-size:16px">real references wrongly flagged</p>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:22px;font-size:24px">
+        <div style="display:grid;grid-template-columns:260px 1fr 70px;align-items:center;gap:14px"><span>Crossref only</span><div class="bar" style="--w:55%;height:26px;background:var(--red)"></div><span class="mono">55%</span></div>
+        <div style="display:grid;grid-template-columns:260px 1fr 70px;align-items:center;gap:14px"><span>+ OpenAlex</span><div class="bar" style="--w:12%;height:26px;background:var(--red)"></div><span class="mono">12%</span></div>
+        <div style="display:grid;grid-template-columns:260px 1fr 70px;align-items:center;gap:14px"><span>+ arXiv, DataCite, OL</span><div class="bar" style="--w:7.8%;height:26px;background:var(--red)"></div><span class="mono">7.8%</span></div>
+        <div style="display:grid;grid-template-columns:260px 1fr 70px;align-items:center;gap:14px"><b>all six</b><div class="bar" style="--w:6.2%;height:26px;background:var(--green)"></div><b class="mono">6.2%</b></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <div data-at="8.0" class="card" style="padding:30px 36px">
+        <p class="kicker" style="font-size:16px">F1, same six indexes</p>
+        <div style="display:grid;grid-template-columns:260px 1fr 70px;align-items:center;gap:14px;margin-top:16px;font-size:24px"><span>title-only matching</span><div class="bar" style="--w:61%;height:26px;background:var(--slate)"></div><span class="mono">0.61</span></div>
+        <div style="display:grid;grid-template-columns:260px 1fr 70px;align-items:center;gap:14px;margin-top:12px;font-size:24px"><b>strict field matching</b><div class="bar" style="--w:87%;height:26px;background:var(--ink)"></div><b class="mono">0.87</b></div>
+      </div>
+      <div data-at="13.5" class="card" style="padding:30px 36px">
+        <p class="kicker" style="font-size:16px">negative result · an AI judge for borderline cases</p>
+        <div id="judge" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:16px"></div>
+        <p style="font-size:24px;margin-top:12px"><b style="color:var(--red)">89 fakes accepted</b> for 4 real rescued → switched off</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="claims" data-part="outro">
+  <p class="kicker" data-at="0.2">Claim support · SciFact (Allen AI) · who gets accused</p>
+  <h2 data-at="0.5" style="margin-top:14px">Calibrated claims. Measured false accusations.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:56px">
+    <div data-at="1.5" class="card" style="padding:36px">
+      <p class="kicker" style="font-size:16px">340 expert-labelled claim–abstract pairs</p>
+      <div style="display:flex;gap:60px;margin-top:20px;align-items:baseline">
+        <div><p class="serif" style="font-size:96px;line-height:1">0.84</p><p style="font-size:24px;color:var(--soft)">macro-F1</p></div>
+        <div><p class="serif" style="font-size:96px;line-height:1;color:var(--green)">0.91</p><p style="font-size:24px;color:var(--soft)">accuracy when it may<br/>say “not sure” (20%)</p></div>
+      </div>
+    </div>
+    <div data-at="9.0" class="card" style="padding:36px">
+      <p class="kicker" style="font-size:16px">225 real works · single-database checker flags</p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;font-size:24px">
+        <div style="display:grid;grid-template-columns:200px 1fr 70px;align-items:center;gap:14px"><b>datasets</b><div class="bar" style="--w:70%;height:26px;background:var(--red)"></div><b class="mono">70%</b></div>
+        <div style="display:grid;grid-template-columns:200px 1fr 70px;align-items:center;gap:14px"><span>book chapters</span><div class="bar" style="--w:36%;height:26px;background:var(--red)"></div><span class="mono">36%</span></div>
+        <div style="display:grid;grid-template-columns:200px 1fr 70px;align-items:center;gap:14px"><span>reports</span><div class="bar" style="--w:26%;height:26px;background:var(--red)"></div><span class="mono">26%</span></div>
+        <div style="display:grid;grid-template-columns:200px 1fr 70px;align-items:center;gap:14px"><span>articles</span><div class="bar" style="--w:5%;height:26px;background:var(--slate)"></div><span class="mono">5%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="rigor" data-part="outro">
+  <p class="kicker" data-at="0.2">Research rigor</p>
+  <h2 data-at="0.5" style="margin-top:14px">Every number is reproducible.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:70px">
+    <div data-at="1.5" class="card" style="padding:32px"><p class="serif" style="font-size:52px;color:var(--green)">✓</p><p style="font-size:28px;font-weight:600">Baseline reproduced exactly</p><p style="font-size:22px;color:var(--soft);margin-top:8px">from its released outputs</p></div>
+    <div data-at="3.0" class="card" style="padding:32px"><p class="serif" style="font-size:52px;color:var(--green)">✓</p><p style="font-size:28px;font-weight:600">Tuned on separate data</p><p style="font-size:22px;color:var(--soft);margin-top:8px">5-fold cross-validation, near-duplicates removed</p></div>
+    <div data-at="4.5" class="card" style="padding:32px"><p class="serif" style="font-size:52px;color:var(--green)">✓</p><p style="font-size:28px;font-weight:600">Every test run reported</p><p style="font-size:22px;color:var(--soft);margin-top:8px">both looks, with confidence intervals</p></div>
+    <div data-at="6.0" class="card" style="padding:32px"><p class="serif" style="font-size:52px;color:var(--green)">✓</p><p style="font-size:28px;font-weight:600">Negative results published</p><p style="font-size:22px;color:var(--soft);margin-top:8px">and our limitations, in EXPERIMENTS.md</p></div>
+  </div>
+</section>
+
+<section class="scene" id="close" data-part="outro" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:60px">
+  <svg data-at="0.2" class="pop" width="170" height="170" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#2e6a55" stroke-width="1.4"/><circle cx="20" cy="20" r="14.5" fill="none" stroke="#2e6a55" stroke-width=".7" stroke-dasharray="1.2 1.6"/><path d="M13 20.5l4.6 4.6L27.5 15" fill="none" stroke="#2e6a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <h1 data-at="0.6" style="font-size:130px;font-style:italic;margin-top:20px">Vouch</h1>
+  <div data-at="1.4" style="display:flex;gap:18px;margin-top:30px">
+    <span class="pill lit"><span class="dot"></span>open source · MIT</span><span class="pill lit"><span class="dot"></span>live today</span><span class="pill lit"><span class="dot"></span>&lt; 0.1¢ per reference</span>
+  </div>
+  <p class="mono" data-at="2.4" style="font-size:30px;margin-top:44px">vouch-theta-one.vercel.app</p>
+  <p class="mono" data-at="2.8" style="font-size:26px;color:var(--faint);margin-top:10px">github.com/Priyanshu-byte-coder/vouch</p>
+  <p class="serif" data-at="9.5" style="font-size:64px;margin-top:50px"><i>Thank you!</i> — Team Beyonders</p>
+</section>
+
+<script>
+const W = (t) => Math.max(3.2, t.split(/\s+/).length / 2.35 + 0.9);   // seconds a voice needs for a caption
+const CAPS = {
+  title: ["Hello judges! We are Team Beyonders, and this is our project: Vouch.", "Every citation, vouched for."],
+  problem: ["Science runs on citations. But AI writing tools now invent references that look completely real.",
+            "Papers citing references that don't exist went from one in 2,828 in 2023, to one in 277 this year.",
+            "And 100 fabricated citations were found inside papers accepted at NeurIPS 2025, one of the world's top AI conferences."],
+  gap: ["Today's open checkers look in a single database.",
+        "The published AtomGPT detector uses only Semantic Scholar. On its own benchmark, it misses half of the fakes,",
+        "and it wrongly accuses real datasets, book chapters and reports that its one database doesn't hold."],
+  solution: ["So we built Vouch: an open research-integrity screener.",
+             "Give it an arXiv ID, a PDF, or a reference list. For every reference, Vouch asks five questions.",
+             "Does it exist? Are its details right? Was it retracted? Does it support the claim? And is the paper free of paper-mill language?",
+             "Every verdict comes with its evidence. The labels describe evidence, never people."],
+  how: ["Vouch searches six open scholarly indexes in turn: Crossref, OpenAlex, arXiv, DataCite, Open Library and Semantic Scholar.",
+        "It compares title, authors, year, venue and DOI field by field, and checks 73,718 Retraction Watch notices.",
+        "An open language model, served on Vultr, reads each citing sentence against the cited abstract, and must quote its evidence."],
+  results: ["Now, the research. We evaluated on CiteAudit-300: the exact benchmark the baseline published on.",
+            "Vouch reaches an F1 of 0.79 against 0.61, and catches 75 percent of the fakes, against 49.",
+            "Head to head on the same citations, Vouch is right 44 times where the baseline is wrong, and only 8 times the other way: significant at p below one in a million.",
+            "And on the 100 real fakes from NeurIPS 2025, Vouch flags 99."],
+  why: ["Our ablations show why it works. Adding indexes cuts false alarms on real references from 55 percent to 6.",
+        "Strict field matching is what catches the fakes: title-only matching is no better than the baseline.",
+        "And an AI judge for borderline cases made things worse, so cross-validation switched it off."],
+  claims: ["For claim support, we tested on SciFact: 0.84 macro-F1, and 0.91 accuracy when the model may say 'not sure'.",
+           "We also measured who gets wrongly accused: a single-database checker flags 70 percent of real datasets, but only 5 percent of articles."],
+  rigor: ["And everything is reproducible: we tuned only on separate data, report every test run, and publish our negative results and limitations."],
+  close: ["Vouch is open source, live today, and costs less than a tenth of a cent per reference: for authors, reviewers and conference chairs.",
+          "Thank you! We are Team Beyonders, and this was Vouch."],
+};
+const params = new URLSearchParams(location.search);
+const part = params.get("part") || "intro";
+if (params.get("cap") === "0") document.body.classList.add("nocap");
+const scenes = [...document.querySelectorAll(`.scene[data-part="${part}"]`)];
+document.querySelectorAll(".scene").forEach(s => { if (s.dataset.part !== part) s.style.display = "none"; });
+
+// decorations
+const npg = document.getElementById("np-grid"); for (let i = 0; i < 100; i++) npg.appendChild(document.createElement("span"));
+const h2h = document.getElementById("h2h"); for (let i = 0; i < 52; i++) { const s = document.createElement("span"); s.style.cssText = `width:22px;height:22px;border-radius:2px;background:${i < 44 ? "var(--ink)" : "var(--slate)"};opacity:0;transition:opacity .2s ${i * 0.04}s`; h2h.appendChild(s); }
+const jd = document.getElementById("judge"); for (let i = 0; i < 93; i++) { const s = document.createElement("span"); s.style.cssText = `width:16px;height:16px;border-radius:2px;background:${i < 89 ? "var(--red)" : "var(--green)"};opacity:0;transition:opacity .15s ${i * 0.02}s`; jd.appendChild(s); }
+
+const sleep = (s) => new Promise(r => setTimeout(r, s * 1000));
+const cap = document.getElementById("cap");
+const timeline = [];   // [{scene, start, end, text}] for the script file
+
+async function playScene(sc, t0) {
+  const segs = CAPS[sc.id];
+  const durs = segs.map(W);
+  const total = durs.reduce((a, b) => a + b, 0) + 0.6;
+  sc.classList.add("active");
+  const start = performance.now();
+  const at = (sec, fn) => setTimeout(fn, sec * 1000);
+  sc.querySelectorAll("[data-at]").forEach(el => at(+el.dataset.at, () => el.classList.add("in")));
+  sc.querySelectorAll("[data-light]").forEach(el => at(+el.dataset.light, () => el.classList.add("lit")));
+  sc.querySelectorAll(".countdown").forEach(el => at(+el.dataset.start, () => {
+    const a = +el.dataset.from, b = +el.dataset.to, d = +el.dataset.dur * 1000, t1 = performance.now();
+    const step = () => { const p = Math.min(1, (performance.now() - t1) / d); const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(a + (b - a) * e).toLocaleString("en-US"); if (p < 1) requestAnimationFrame(step); };
+    step();
+  }));
+  if (sc.id === "problem") at(12.0, () => [...npg.children].forEach((s, i) => setTimeout(() => s.style.background = "var(--red)", i * 25)));
+  if (sc.id === "results") at(12.0, () => [...h2h.children].forEach(s => s.style.opacity = 1));
+  if (sc.id === "why") at(14.2, () => [...jd.children].forEach(s => s.style.opacity = 1));
+  let t = t0;
+  for (let i = 0; i < segs.length; i++) {
+    cap.style.opacity = 0; await sleep(0.15); cap.textContent = segs[i]; cap.style.opacity = 1;
+    timeline.push({ scene: sc.id, start: +t.toFixed(1), end: +(t + durs[i]).toFixed(1), text: segs[i] });
+    t += durs[i];
+    await sleep(durs[i] - 0.15);
+  }
+  await sleep(0.6);
+  sc.classList.remove("active");
+  await sleep(0.5);
+  return t + 1.1;
+}
+
+window.play = async () => {
+  await document.fonts.ready;
+  const prog = document.getElementById("prog");
+  const totalEst = scenes.reduce((a, sc) => a + CAPS[sc.id].map(W).reduce((x, y) => x + y, 0) + 1.1, 0);
+  const t0 = performance.now();
+  const tick = () => { prog.style.width = `${Math.min(100, (performance.now() - t0) / 10 / totalEst)}%`; if (!window.__done) requestAnimationFrame(tick); };
+  tick();
+  let t = 0;
+  for (const sc of scenes) t = await playScene(sc, t);
+  window.__done = true;
+  return timeline;
+};
+window.estimate = () => scenes.reduce((a, sc) => a + CAPS[sc.id].map(W).reduce((x, y) => x + y, 0) + 1.1, 0);
+</script>
+</body>
+</html>

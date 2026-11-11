@@ -36,3 +36,8 @@ test-inputs/05-*.pdf
 
 # Deploy state (VM id/IP)
 deploy/vm.env
+
+# Video build outputs
+video/out/
+video/node_modules/
+video_seal.png
