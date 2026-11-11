@@ -1,0 +1,7 @@
+{$API_DOMAIN} {
+	encode gzip
+	# flush immediately so Server-Sent Events stream live
+	reverse_proxy api:8000 {
+		flush_interval -1
+	}
+}

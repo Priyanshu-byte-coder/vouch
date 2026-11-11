@@ -1,0 +1,35 @@
+# Vouch backend on one VM: API + GROBID + Caddy (automatic HTTPS).
+#   cd deploy && API_DOMAIN=<ip-with-dashes>.sslip.io docker compose up -d --build
+# Secrets come from ../.env (copied over SSH, never committed).
+services:
+  api:
+    build: ../backend
+    env_file: ../.env
+    environment:
+      GROBID_URL: http://grobid:8070
+      CACHE_PATH: /srv/vouch/cache/cache.sqlite
+      VOUCH_CORS_ORIGINS: ${VOUCH_CORS_ORIGINS:-*}
+      VOUCH_RATE_LIMIT: ${VOUCH_RATE_LIMIT:-20}
+    volumes:
+      - vouch-cache:/srv/vouch/cache
+    depends_on: [grobid]
+    restart: unless-stopped
+
+  grobid:
+    image: grobid/grobid:0.9.1-crf
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2
+    ports: ["80:80", "443:443"]
+    environment:
+      API_DOMAIN: ${API_DOMAIN:?set API_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    depends_on: [api]
+    restart: unless-stopped
+
+volumes:
+  vouch-cache:
+  caddy-data:

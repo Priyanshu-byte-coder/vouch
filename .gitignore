@@ -33,3 +33,6 @@ Thumbs.db
 
 # arXiv PDFs used for manual tests (not ours to redistribute)
 test-inputs/05-*.pdf
+
+# Deploy state (VM id/IP)
+deploy/vm.env
