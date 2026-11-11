@@ -19,6 +19,7 @@ import random
 import re
 import sys
 import time
+import urllib.parse
 import xml.etree.ElementTree as ET
 from collections import Counter
 from pathlib import Path
@@ -103,7 +104,9 @@ def write_flags() -> None:
                 rows.append({"paper_no": d["paper_no"], "group": d["group"], "ref_no": r["idx"] + 1, "status": r["status"],
                              "retraction": (r.get("retraction") or {}).get("nature", ""), "cited": r["raw"][:400],
                              "best_record": f"{m.get('title', '')} | {'; '.join((m.get('authors') or [])[:4])} | {m.get('year', '')} | {m.get('doi') or m.get('url') or ''}" if m else "",
-                             "issue": (r.get("issues") or [""])[0][:300], "label": old.get(key, "")})
+                             "issue": (r.get("issues") or [""])[0][:300],
+                             "check_on_scholar": "https://scholar.google.com/scholar?q=" + urllib.parse.quote((r["parsed"].get("title") or r["raw"])[:200]),
+                             "label": old.get(key, "")})
     with FLAGS.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]) if rows else ["paper_no"])
         w.writeheader()
