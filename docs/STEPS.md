@@ -133,7 +133,7 @@
 - Input tabs (arXiv / bibliography / PDF), live progress from SSE, report table, evidence drawer, download JSON/CSV.
 - ✅ Done when: a local end-to-end run from the browser works on 3 papers.
 
-### 4.3 Example papers (🤖, 👤 picks)
+### 4.3 Example papers (🤖, 👤 picks) ✅ NeurIPS-fakes / Retracted / CiteAudit examples in `frontend/src/lib/examples.json`, pre-run by `backend/scripts/warm_examples.py` (0.02 s replay)
 - Pre-run and cache 3 demo papers (one with a fake, one with a retraction, one clean) for the "Try an example" buttons.
 - ✅ Done when: the example buttons load instantly.
 

@@ -55,11 +55,11 @@ An open research-integrity screener: for each reference in a paper it checks ①
 - Outside check: 100 real references (3 arXiv papers + fixtures), 1 wrongly flagged (AlexNet: only the 2017 CACM reprint is indexed).
 
 ## 6. Where we are in docs/STEPS.md
-Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1, **4.2** (frontend calls the API via `src/lib/api.ts`; `NEXT_PUBLIC_API_URL`, see `frontend/.env.example`; report page streams SSE; JSON/CSV export in `src/lib/export.ts`). Partially: 6.3 (PDF upload works; contexts from PDF full text not yet).
+Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1, 4.2, **4.3** (frontend calls the API via `src/lib/api.ts`; `NEXT_PUBLIC_API_URL`, see `frontend/.env.example`; report page streams SSE; JSON/CSV export in `src/lib/export.ts`). Partially: 6.3 (PDF upload works; contexts from PDF full text not yet).
 
 ## 7. Next steps (in order)
 1. **4.2 Wire frontend to API:** `NEXT_PUBLIC_API_URL` (default http://localhost:8000). In `check-form.tsx`, POST `/api/check` ({arxiv_id} or {bibliography}) or `/api/check/pdf` (multipart "file"), then `router.push('/report/' + job_id)`. In `report-loader.tsx`, for non-"demo" ids, open an `EventSource` on `/api/jobs/{id}/events`, accumulate `ref_done` into a partial Report, show progress (`parsed.n_refs`), and on `report` set the full report. Handle `error` and 404 (jobs are in memory). Example buttons: arXiv examples should call the API (2602.23452, 2604.26835); the "Demo mix" stays `/report/demo`. CORS is already `*`.
-2. **4.3** Pre-run and cache the example papers (the report cache in `main.py` makes repeats instant).
+2. ~~4.3~~ done. **After every deploy run `backend/scripts/warm_examples.py --api <URL>`** so the example buttons are instant (report cache is per server; version now v4).
 3. **5.1** Vultr VM (`vc2-2c-4gb`, Mumbai/Bangalore, ~$20/mo; **user must approve/run**: paid), docker compose `api + grobid + caddy` (sslip.io HTTPS), copy `.env` over SSH, download the RW CSV on the VM (`retraction.ensure_data()`). **5.2** Vercel: user runs `npm i -g vercel; vercel login`, then `vercel --prod` with NEXT_PUBLIC_API_URL. **5.3** demo safety.
 4. **6.1–6.2** claim support (contexts → abstract → LLM verdict with quote grounding + abstain) and SciFact eval (E4). **6.3** PDF contexts via GROBID full text.
 5. **7.1** RQ2 false-accusation study (CoverageSet by type × region), **7.2** E3 ablations table (per-source removal, S2-only + AtomGPT scoring re-creation).

@@ -1,0 +1,33 @@
+[
+ {
+  "id": "neurips",
+  "label": "NeurIPS 2025 fakes",
+  "note": "6 fake citations from accepted papers + 4 real",
+  "kind": "bib",
+  "value": "[1] Vaswani A, Shazeer N, Parmar N, Uszkoreit J, Jones L, Gomez AN, Kaiser L, Polosukhin I. Attention is all you need. Advances in Neural Information Processing Systems 30, 2017.\n[2] John Doe and Jane Smith. Webvoyager: Building an end-to-end web agent with large multimodal models. arXiv preprint arXiv:2401.00001, 2024.\n[3] Diederik P. Kingma and Jimmy Ba. Deepfm: a factorization-machine based neural network for ctr prediction. In International Conference on Learning Representations, 2015.\n[4] He K, Zhang X, Ren S, Sun J. Deep residual learning for image recognition. CVPR 2016.\n[5] Yair Leviathan, Clemens Rosenbaum, and Slav Petrov. Fast inference from transformers via speculative decoding. In ICML, 2023.\n[6] Tri Dao, Shizhe Ma, Wenxuan Sun, Albert Gu, Sam Smith, Aapo Kyrola, Christopher D Manning, and Christopher Re. An empirical study of state space models for large language modeling. arXiv preprint arXiv:2406.07887, 2024.\n[7] Devlin J, Chang MW, Lee K, Toutanova K. BERT: Pre-training of deep bidirectional transformers for language understanding. NAACL 2019.\n[8] Nuo Lou and et al. Dsp: Diffusion-based span prediction for masked text modeling. arXiv preprint arXiv:2305.XXXX, 2023.\n[9] Itay Hubara, Matthieu Courbariaux, Daniel Soudry, Rami El-Yaniv, and Yoshua Bengio. Quantizing deep convolutional networks for efficient inference: A whitepaper. arXiv preprint arXiv:1612.01462, 2017.\n[10] Kingma DP, Ba J. Adam: A method for stochastic optimization. ICLR 2015.",
+  "source": "Fakes [2,3,5,6,8,9]: confirmed hallucinated citations in accepted NeurIPS 2025 papers (GPTZero audit, via the AtomGPT detector dataset, Apache-2.0)."
+ },
+ {
+  "id": "retracted",
+  "label": "Retracted papers",
+  "note": "Wakefield, STAP cells, Surgisphere + 2 sound",
+  "kind": "bib",
+  "value": "[1] Wakefield AJ, Murch SH, Anthony A, et al. Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children. Lancet. 1998;351(9103):637-641.\n[2] LeCun Y, Bengio Y, Hinton G. Deep learning. Nature. 2015;521(7553):436-444.\n[3] Obokata H, Wakayama T, Sasai Y, et al. Stimulus-triggered fate conversion of somatic cells into pluripotency. Nature. 2014;505(7485):641-647.\n[4] Mehra MR, Desai SS, Ruschitzka F, Patel AN. Hydroxychloroquine or chloroquine with or without a macrolide for treatment of COVID-19: a multinational registry analysis. Lancet. 2020.\n[5] Jumper J, Evans R, Pritzel A, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021;596:583-589.",
+  "source": "Three famous retractions (Lancet 1998, Nature 2014, Lancet 2020) between two sound papers."
+ },
+ {
+  "id": "citeaudit",
+  "label": "CiteAudit (2026)",
+  "note": "a real arXiv paper, 33 references",
+  "kind": "arxiv",
+  "value": "2602.23452",
+  "source": "A clean real paper: expect verified and unverified (tools, news), no fakes."
+ },
+ {
+  "id": "demo",
+  "label": "Demo mix",
+  "note": "every stamp in one report",
+  "kind": "demo",
+  "value": ""
+ }
+]

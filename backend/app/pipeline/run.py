@@ -72,11 +72,13 @@ async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DE
                                          or v.status is Status.detail_mismatch) else None
     # Check ③: retraction / correction / expression of concern, by cited DOI, matched DOI, then exact title.
     # The matched record's DOI is used whenever the work is clearly identified (title >= 95), whatever the
-    # verdict: a strict "verified" bar must not hide a retraction (S11).
+    # verdict: a strict "verified" bar must not hide a retraction (S11). The cited title is always looked up
+    # (exact match of a >= 6-word title): the best record can be a data deposit or a notice rather than the
+    # paper itself (Surgisphere, Lancet 2020, step 4.3). This changes only the retraction flag, never the status.
     identified = best is not None and (best.scores.title or 0) >= 95 and not best.notice
     retraction = get_retractions().lookup(
         dois=[ref.doi, match.doi if match and identified else None],
-        title=ref.title if identified else None)
+        title=ref.title)
     issues = ([describe(retraction)] if retraction else []) + v.issues
     issues += [f"sources unavailable: {', '.join(failed)}"] if failed else []
     return RefResult(idx=ref.idx, raw=ref.raw, parsed=ref, status=v.status, confidence=v.confidence,

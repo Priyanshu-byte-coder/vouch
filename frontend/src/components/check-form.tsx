@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { startArxiv, startBibliography, startPdf } from "@/lib/api";
+import examples from "@/lib/examples.json";
 
 type Tab = "arxiv" | "pdf" | "bib";
 
@@ -12,11 +13,8 @@ const TABS: { id: Tab; label: string; hint: string }[] = [
   { id: "bib", label: "Bibliography", hint: "Paste a reference list" },
 ];
 
-export const EXAMPLES = [
-  { label: "CiteAudit (2026)", note: "a benchmark paper on fake citations", arxiv: "2602.23452" },
-  { label: "HalluCiteChecker (2026)", note: "a citation-checking toolkit", arxiv: "2604.26835" },
-  { label: "Demo mix", note: "3 planted fakes + 2 retracted papers", demo: true },
-];
+/** Shared with backend/scripts/warm_examples.py, which pre-runs them so these buttons load instantly. */
+export const EXAMPLES = examples as { id: string; label: string; note: string; kind: "arxiv" | "bib" | "demo"; value: string; source?: string }[];
 
 export function CheckForm() {
   const router = useRouter();
@@ -51,8 +49,9 @@ export function CheckForm() {
 
   function example(ex: (typeof EXAMPLES)[number]) {
     if (busy) return;
-    if (ex.demo || !ex.arxiv) router.push("/report/demo");
-    else run(ex.label, () => startArxiv(ex.arxiv!));
+    if (ex.kind === "demo") router.push("/report/demo");
+    else if (ex.kind === "arxiv") run(ex.label, () => startArxiv(ex.value));
+    else run(ex.label, () => startBibliography(ex.value));
   }
 
   return (
@@ -136,8 +135,9 @@ export function CheckForm() {
         <div className="flex flex-wrap gap-2">
           {EXAMPLES.map((ex) => (
             <button
-              key={ex.label}
+              key={ex.id}
               type="button"
+              title={ex.source}
               onClick={() => example(ex)}
               disabled={!!busy}
               className="group rounded-sm border border-rule bg-card/60 px-3 py-1.5 text-left text-sm hover:border-ink-soft disabled:opacity-50"
