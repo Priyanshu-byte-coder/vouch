@@ -1628,13 +1628,58 @@
    },
    "baseline_errors_excluded": 7
   },
+  "audit": {
+   "papers": 30,
+   "errors": 0,
+   "references": 1910,
+   "status": {
+    "verified": 1677,
+    "cant_verify": 172,
+    "not_found": 19,
+    "detail_mismatch": 42
+   },
+   "papers_with_hard_flag": 18,
+   "papers_with_2plus_hard_flags": 8,
+   "retracted_citations": 0,
+   "tortured_hits": 0,
+   "claims": {
+    "SUPPORTS": 204,
+    "NOT_ENOUGH_INFO": 489,
+    "ABSTAIN": 294,
+    "CONTRADICTS": 5
+   },
+   "hand_labels": {
+    "not_found|wrong": 15,
+    "detail_mismatch|wrong": 36,
+    "detail_mismatch|correct": 6,
+    "not_found|correct": 3,
+    "not_found|unsure": 1
+   },
+   "flag_causes": {
+    "venue name (abbreviation, series, repository)": 13,
+    "work not in any index (thesis, web page, dataset, very new or very old)": 12,
+    "author names (transliteration, diacritics, collaborations)": 6,
+    "fabricated details (invented authors, title or venue)": 6,
+    "other false alarm on a correct citation": 5,
+    "broken or incomplete index record": 5,
+    "version, edition or year difference": 5,
+    "real error (garbled names, wrong venue or title)": 3,
+    "cited without a title": 3,
+    "Vouch parsing error": 2,
+    "unsure": 1
+   },
+   "papers_with_confirmed_problem": 5,
+   "labelled_by": "AI assistant checking each flag against web evidence (publisher, arXiv, ADS, PubMed); team spot-check pending",
+   "flag_precision_hand_labelled": 0.15,
+   "flags_labelled": 60
+  },
   "test": {
    "n": 300,
    "labels_by_truth": {
     "real": {
-     "verified": 129,
+     "verified": 130,
      "cant_verify": 13,
-     "detail_mismatch": 7,
+     "detail_mismatch": 6,
      "not_found": 1
     },
     "fake": {
@@ -1645,7 +1690,7 @@
     }
    },
    "winning_source_real_verified": {
-    "crossref": 53,
+    "crossref": 54,
     "openalex": 62,
     "openlibrary": 1,
     "arxiv": 1,
@@ -1694,9 +1739,9 @@
    "n": 1000,
    "labels_by_truth": {
     "real": {
-     "verified": 469,
+     "verified": 470,
      "cant_verify": 22,
-     "detail_mismatch": 6,
+     "detail_mismatch": 5,
      "not_found": 3
     },
     "fake": {
@@ -1707,7 +1752,7 @@
     }
    },
    "winning_source_real_verified": {
-    "crossref": 223,
+    "crossref": 224,
     "openalex": 213,
     "openlibrary": 3,
     "datacite": 19,

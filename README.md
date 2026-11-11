@@ -59,6 +59,8 @@ abstaining on the least-confident answers raises accuracy from 0.850 to **0.908 
 
 **RQ2 — who gets wrongly accused (225 real works sampled from OpenAlex, 5 types × 3 regions):** a single-index checker (baseline method re-created) flags **70% of real datasets** (68% as "likely hallucinated"), 36% of book chapters and 26% of reports, but only 5% of articles. Our hypothesis that Indian and Global South references are flagged more was **not** supported (India 22%, Global North 36%). Without OpenAlex, Vouch is no better than the baseline (30% vs 31%), so OpenAlex's coverage of non-article works is what matters; full Vouch's 5% is partly circular because the sample came from OpenAlex.
 
+**RQ5 — real papers (30 recent arXiv papers, 1,910 references; every flag checked against outside evidence):** 61 hard flags, **9 confirmed problems in 5 papers** (6 with fabricated details, e.g. real papers cited with 4 invented co-authors), **51 false alarms → precision 15%**. Problems are rare in real papers (≈0.5% of references), so flags must be read as "look here". The top false-alarm causes are venue abbreviations (13), works no index holds (12) and name transliteration (6).
+
 ### Protocol
 1. Reproduce the baseline from its released outputs (exact match to its README).
 2. Split CiteAudit so no copy or near-copy (token-sort ≥ 95) of a test item is in the tuning data.

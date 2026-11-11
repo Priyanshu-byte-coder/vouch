@@ -10,6 +10,15 @@ const AB = S.ablations.dev_1000;
 const AM = AB.matching as Record<string, { f1: number; recall: number; fpr: number }>;
 const AB_COST = AB.cost;
 const SF = S.scifact;
+const AUraw = S.audit as unknown as { references: number; papers_with_confirmed_problem: number; flag_precision_hand_labelled: number; hand_labels: Record<string, number>; flag_causes: Record<string, number> };
+const AU = (() => {
+  const h = AUraw.hand_labels;
+  const correct = Object.entries(h).filter(([k]) => k.endsWith("|correct")).reduce((a, [, v]) => a + v, 0);
+  const wrong = Object.entries(h).filter(([k]) => k.endsWith("|wrong")).reduce((a, [, v]) => a + v, 0);
+  const causes = Object.entries(AUraw.flag_causes).filter(([k]) => !k.startsWith("fabricated") && !k.startsWith("real error") && k !== "unsure") as [string, number][];
+  return { references: AUraw.references, papers_with_confirmed_problem: AUraw.papers_with_confirmed_problem, precision: AUraw.flag_precision_hand_labelled,
+           correct, wrong, flags_total: Object.values(h).reduce((a, b) => a + b, 0), fabricated: AUraw.flag_causes["fabricated details (invented authors, title or venue)"] ?? 0, causes };
+})();
 const CV = S.coverage as unknown as { n: number; cells: Record<string, Record<string, { n: number; fpr: number; hard_rate: number }>> };
 const n = (o: Record<string, number>, k: string) => o[k] ?? 0;
 const pct = (v: number) => `${Math.round(v * 100)}%`;
@@ -311,6 +320,30 @@ export default function ResearchPage() {
       <Section kicker="6b · Who gets wrongly accused (RQ2)" title="Real datasets, chapters and reports get accused; articles almost never." lede={`${CV.n} real works sampled from OpenAlex across 5 types × 3 author regions, written as plain citations without DOIs. Every one is real, so every flag is a false accusation. Because the sample comes from OpenAlex, the fair comparison is the baseline vs Vouch without OpenAlex; full Vouch is shown for completeness but benefits from that circularity.`}>
         <CoverageMatrix />
         <Caption>Bar length = share of real references flagged (any verdict other than verified). Grey: baseline re-created (Semantic Scholar only, AtomGPT v2 scoring). Ochre: Vouch without OpenAlex. Black: Vouch, six sources. The single-index baseline calls {Math.round(CV.cells["dataset|all"].baseline.hard_rate * 100)}% of real datasets “likely hallucinated”. Our hypothesis that Indian and Global South references are flagged more is <b>not</b> supported in this sample (India {Math.round(CV.cells["all|India"].baseline.fpr * 100)}%, Global North {Math.round(CV.cells["all|Global North"].baseline.fpr * 100)}% for the baseline). Without OpenAlex, Vouch is no better than the baseline overall: open-index coverage of non-article works is the bottleneck.</Caption>
+      </Section>
+
+      {/* RQ5 audit */}
+      <Section kicker="6c · Real papers (RQ5)" title="30 recent arXiv papers: rare problems, real fabrications, honest precision." lede={`${AU.references.toLocaleString()} references from 20 recent cs.CL/LG/AI papers and 10 India-affiliated papers. Every one of the ${AU.flags_total} hard flags was checked against outside evidence (publisher pages, arXiv, ADS, PubMed).`}>
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.25fr]">
+          <div>
+            <ChartTitle kicker={`${AU.flags_total} hard flags`} title={`${AU.correct} confirmed problems in ${AU.papers_with_confirmed_problem} papers`} />
+            <Squares size={14} groups={[{ n: AU.fabricated, color: "var(--notfound)", label: "fabricated details: e.g. real papers cited with 4 invented co-authors" }, { n: AU.correct - AU.fabricated, color: "var(--mismatch)", label: "other real errors: wrong venue, wrong title, garbled names" }, { n: AU.wrong, color: "var(--rule)", label: "false alarms on correct citations" }]} />
+            <Caption>Precision {Math.round(AU.precision * 100)}%. Problems are rare in real papers (≈{(AU.correct / AU.references * 100).toFixed(1)}% of references), so even a small false-flag rate dominates: a flag means “look here”, never “fake”. Labels by an AI assistant with web evidence; team spot-check pending.</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="why the false alarms happened" title="Mostly naming and coverage, not matching" />
+            <div className="space-y-2">
+              {AU.causes.map(([cause, n]) => (
+                <div key={cause} className="grid grid-cols-[1fr_9rem_2rem] items-center gap-3 text-xs">
+                  <span className="text-ink-soft">{cause}</span>
+                  <span className="h-2.5 rounded-sm bg-rule"><span className="block h-full rounded-sm bg-unverified" style={{ width: `${(n / AU.causes[0][1]) * 100}%` }} /></span>
+                  <span className="text-right font-mono">{n}</span>
+                </div>
+              ))}
+            </div>
+            <Caption>The largest cause, venue abbreviations (JHEP, JINST, PTEP…), is fixable with a fuller abbreviation table; we did not apply it because it would change the frozen configuration behind the RQ1 numbers.</Caption>
+          </div>
+        </div>
       </Section>
 
       {/* 7. ablations */}

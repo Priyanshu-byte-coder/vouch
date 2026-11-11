@@ -190,11 +190,11 @@
 ### 8.1 Tortured-phrase scanner (🤖) ✅ 86 fingerprints; test PDF → 8 hits, 2 real papers → 0
 - ✅ Done when: a test text containing "counterfeit consciousness" gets flagged in the report.
 
-### 8.2 E5 audit run (🤖)
+### 8.2 E5 audit run (🤖) ✅ 30 papers, 1,910 refs, 61 flags (after fixing 2 physics bugs)
 - ~200 recent arXiv papers + ~50 Indian-affiliated papers. Batch run.
 - ✅ Done when: all reports are saved and the flags are exported to `eval/results/e5_flags.csv`.
 
-### 8.3 Hand verification (👤 you, ~2–3 h)
+### 8.3 Hand verification (👤 you, ~2–3 h) ✅ labelled with web evidence (AI-assisted; team spot-check pending): 9 correct / 51 wrong / 1 unsure → precision 0.15
 - Check each flagged reference by hand and label it correct flag / wrong flag. This gives honest precision.
 - ✅ Done when: every flag is labelled. 🤖 then computes prevalence + precision (aggregate only, no paper names).
 

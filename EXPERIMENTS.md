@@ -19,7 +19,7 @@ Every run that produces a number goes here: what we tried, what happened and why
 | E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ✅ E2 (step 7.1) |
 | E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ✅ E3 (step 7.2), E3a, E3b |
 | E4 | RQ4 | SciFact claim support: direct vs. + quote grounding vs. + abstention | B | ✅ E4 (step 6.2) |
-| E5 | RQ5 | Real-paper audit (scaled to 30 papers: 20 recent cs + 10 India-affiliated), flags hand-verified | All | 🟡 run done, labels pending |
+| E5 | RQ5 | Real-paper audit (scaled to 30 papers: 20 recent cs + 10 India-affiliated), flags hand-verified | All | ✅ E5 (steps 8.2–8.3) |
 
 ## Results summary (fill as runs finish)
 
@@ -368,3 +368,10 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Bugs found by the audit:** two physics papers (APS/RevTeX) produced 228 false "detail mismatch" flags. Fixed (S16), and a second bug in that fix (the DOI was stripped with `\doibase`) was caught on the re-run and fixed (90 tests). The 3 affected papers were re-run with the fixed code; earlier reports kept in `raw/audit/prefix/`. Flags went from 294 to 61.
 - **Results (30 papers, 1,910 references):** verified 1,677 (87.8%) · can't verify 172 (9.0%) · not found 19 (1.0%) · detail mismatch 42 (2.2%). 18 papers have at least one hard flag (not found or mismatch); 8 have two or more. 0 retracted citations, 0 tortured phrases. Claim checks: 204 supported, 5 contradicted, 489 abstract can't tell, 294 abstained.
 - **Next (8.3):** hand-label the 61 flags (`correct` / `wrong` / `unsure`) → flag precision and prevalence. Until then these flags are *candidates*, not findings.
+
+### E5 — Audit labels (step 8.3)
+- When / who: 2026-11-11 ~18:45 IST · labelled by the AI assistant, each flag checked against outside evidence (publisher pages, arXiv, NASA ADS, PubMed, proceedings, web search); team spot-check pending. Labels, evidence and a cause per flag are in `eval/data/raw/audit/flags_labelled.csv` (local only). Aggregates in `eval/results/e5_audit.json`.
+- **Of 61 hard flags: 9 correct, 51 false alarms, 1 unsure → precision 0.15** (9/60).
+- **Confirmed problems: 9 references (0.47% of 1,910) in 5 of 30 papers.** 6 are fabricated details: real papers cited with invented co-authors (4 refs in one paper, e.g. a single-author JFM 2024 paper cited with 4 extra authors), a non-existent title, or invented author + journal + year (2 refs in another paper). 3 are other real errors (wrong venue, wrong title, garbled author names).
+- **Why the 51 false alarms:** venue names (abbreviations like JHEP/JINST/PTEP, book series, HAL) 13 · work not in any index (theses, web pages, datasets, 1904–1923 papers, a 2-week-old ICLR paper) 12 · author names (transliteration, diacritics, collaborations) 6 · broken or incomplete index records 5 · version/edition/year differences 5 · other 5 · cited without a title 3 · Vouch parsing errors 2.
+- **Reading:** on real papers, problems are rare (base rate ~0.5%), so even a 2.7% false-flag rate on real references gives low precision. CiteAudit's balanced 50/50 benchmark hides this. The single largest cause (venue abbreviations) is fixable with a fuller abbreviation table; we did **not** apply it, because it would change the frozen RQ1 configuration. A "mismatch" on a real paper should be read as "look here", which is how the UI words it.

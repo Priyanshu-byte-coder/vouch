@@ -35,6 +35,7 @@ from app.pipeline.run import check_arxiv  # noqa: E402
 
 DIR = EVAL / "data" / "raw" / "audit"
 PAPERS, FLAGS, OUT = DIR / "papers.json", DIR / "flags.csv", EVAL / "results" / "e5_audit.json"
+LABELLED = DIR / "flags_labelled.csv"  # labels + evidence; read by report() when present
 SEED, N_RECENT, N_INDIA = 20261111, 20, 10
 HARD = {"not_found", "detail_mismatch"}
 
@@ -126,14 +127,25 @@ def report() -> None:
         retracted += sum(1 for r in refs if (r.get("retraction") or {}).get("nature") == "Retraction")
         claims.update(c["label"] for r in refs for c in r.get("claims", []))
     labels = Counter()
-    if FLAGS.exists():
-        with FLAGS.open(encoding="utf-8") as fh:
+    src = LABELLED if LABELLED.exists() else FLAGS
+    if src.exists():
+        with src.open(encoding="utf-8-sig") as fh:
             labels = Counter((r["status"], (r.get("label") or "").strip().lower() or "unlabelled") for r in csv.DictReader(fh))
     n_refs = sum(status.values())
     out = {"papers": len(reps), "errors": len(_reports()) - len(reps), "references": n_refs, "status": dict(status),
            "papers_with_hard_flag": sum(1 for x in per_paper_hard if x), "papers_with_2plus_hard_flags": sum(1 for x in per_paper_hard if x >= 2),
            "retracted_citations": retracted, "tortured_hits": tortured, "claims": dict(claims),
            "hand_labels": {f"{s}|{l}": n for (s, l), n in labels.items()}}
+    causes, flagged_papers = Counter(), {"correct": set()}
+    if LABELLED.exists():
+        with LABELLED.open(encoding="utf-8-sig") as fh:
+            for r in csv.DictReader(fh):
+                causes[r.get("cause", "")] += 1
+                if r.get("label") == "correct":
+                    flagged_papers["correct"].add(r["paper_no"])
+        out["flag_causes"] = dict(causes.most_common())
+        out["papers_with_confirmed_problem"] = len(flagged_papers["correct"])
+        out["labelled_by"] = "AI assistant checking each flag against web evidence (publisher, arXiv, ADS, PubMed); team spot-check pending"
     lab = [(s, l) for (s, l), n in labels.items() for _ in range(n) if l in ("correct", "wrong")]
     if lab:
         out["flag_precision_hand_labelled"] = round(sum(l == "correct" for _, l in lab) / len(lab), 3)
