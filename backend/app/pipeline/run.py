@@ -12,10 +12,11 @@ from ..models import (Candidate, PaperInfo, ParsedRef, RefResult, RefType, Repor
 from .adjudicate import adjudicate
 from .claims import check_claims
 from .match import WEIGHTS, best_match, score_candidate
-from .ingest import grobid_references, ingest_arxiv, normalize_arxiv_id
+from .ingest import grobid_paper, ingest_arxiv, normalize_arxiv_id
 from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
 from .retraction import describe
+from .tortured import fingerprints, scan as scan_tortured
 from .retraction import get_index as get_retractions
 from .tuned import ADJUDICATOR, CLAIM_TAU, TUNED_THRESHOLDS, TUNED_WEIGHTS
 from .verdict import DEFAULT, Thresholds, decide
@@ -120,7 +121,9 @@ async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, li
     hits0 = cache.hits
     u_tok, c_tok = current_usage.set(usage), api_calls.set(calls)
     try:
-        refs, paper, notes = await load()
+        loaded = await load()
+        refs, paper, notes = loaded[:3]
+        text = loaded[3] if len(loaded) > 3 else None  # full text, when the input has one (arXiv, PDF)
         if on_event:
             await on_event("parsed", {"n_refs": len(refs), "title": paper.title, "notes": notes})
         report = await check_references(refs, paper, sources=sources, t=t, weights=weights,
@@ -134,6 +137,11 @@ async def _run(load: Callable[[], Awaitable[tuple[list[ParsedRef], PaperInfo, li
                           seconds=round(time.perf_counter() - t0, 1), llm_calls=usage.calls,
                           llm_tokens_in=usage.tokens_in, llm_tokens_out=usage.tokens_out,
                           cost_usd=round(usage.cost_usd, 5), api_calls=dict(calls), cache_hits=cache.hits - hits0)
+    # Check ⑤: tortured phrases in the full text
+    if text:
+        report.tortured = scan_tortured(text)
+        notes = [*notes, f"full text scanned for {len(fingerprints())} tortured-phrase fingerprints"]
+        report.refresh_summary()
     report.meta.notes = notes
     if on_event:
         await on_event("done", {"summary": report.summary.model_dump()})
@@ -157,7 +165,7 @@ async def check_arxiv(arxiv_id: str, *, sources: list[str] | None = None, t: Thr
     async def load():
         ing = await ingest_arxiv(arxiv_id)
         aid = normalize_arxiv_id(arxiv_id)
-        return ing.refs, PaperInfo(title=ing.title, source=f"arxiv:{aid}"), [f"references read from: {ing.method}", *ing.notes]
+        return ing.refs, PaperInfo(title=ing.title, source=f"arxiv:{aid}"), [f"references read from: {ing.method}", *ing.notes], ing.text
     return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights,
                       adjudicator=ADJUDICATOR if t == TUNED_THRESHOLDS else None)
 
@@ -167,7 +175,9 @@ async def check_pdf(pdf: bytes, filename: str = "upload.pdf", *, sources: list[s
                     on_event: EventFn = None) -> Report:
     """Full run on an uploaded PDF (references extracted by GROBID)."""
     async def load():
-        refs = await grobid_references(pdf)
-        return refs, PaperInfo(source=f"pdf:{filename}"), ["references read from: PDF (GROBID)"]
+        title, refs, text = await grobid_paper(pdf)
+        n_ctx = sum(1 for r in refs if r.contexts)
+        return refs, PaperInfo(title=title, source=f"pdf:{filename}"), [
+            "references read from: PDF (GROBID)", f"citing sentences found for {n_ctx} of {len(refs)} references"], text
     return await _run(load, sources=sources, t=t, on_event=on_event, weights=weights,
                       adjudicator=ADJUDICATOR if t == TUNED_THRESHOLDS else None)

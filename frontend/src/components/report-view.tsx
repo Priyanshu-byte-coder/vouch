@@ -143,6 +143,8 @@ export function ReportView({ report, live }: { report: Report; live?: LiveState 
         );
       })()}
 
+      <TorturedPanel report={report} />
+
       {/* proportional ledger bar */}
       <div className="mt-3 flex h-2 overflow-hidden rounded-full" aria-hidden="true">
         {ORDER.slice()
@@ -222,6 +224,52 @@ export function ReportView({ report, live }: { report: Report; live?: LiveState 
           ))}
         {!live && shown.length === 0 && <li className="px-4 py-8 text-center text-sm text-ink-faint italic">Nothing in this view.</li>}
       </ol>
+    </div>
+  );
+}
+
+function TorturedPanel({ report }: { report: Report }) {
+  const hits = report.tortured ?? [];
+  const scanned = report.meta.notes?.find((n) => n.includes("tortured-phrase"));
+  if (!hits.length) {
+    return scanned ? (
+      <p className="mt-2 text-sm text-ink-soft">
+        <span className="font-mono text-[0.65rem] tracking-widest text-ink-faint uppercase">paper-mill language · </span>
+        no tortured phrases in the full text ({scanned.replace("full text scanned for ", "")} checked).
+      </p>
+    ) : null;
+  }
+  return (
+    <div className="mt-6 rounded-sm border border-notfound/60 bg-notfound/5 p-4">
+      <p className="font-mono text-[0.65rem] tracking-widest text-notfound uppercase">Paper-mill language · {hits.length} tortured phrase{hits.length > 1 ? "s" : ""}</p>
+      <p className="mt-1 text-xs text-ink-soft">
+        Synonym-swapped jargon typical of paraphrasing tools used by paper mills (Cabanac, Labbé &amp; Magazinov 2021). A reason to read
+        the passage, not proof of misconduct.
+      </p>
+      <ul className="mt-3 space-y-2">
+        {hits.slice(0, 12).map((h, i) => (
+          <li key={i} className="grid gap-1 text-sm md:grid-cols-[16rem_1fr]">
+            <span>
+              <span className="font-semibold text-notfound line-through decoration-1">{h.phrase}</span>
+              <span className="text-ink-faint"> → </span>
+              <span className="text-ink">{h.expected}</span>
+            </span>
+            <span className="text-xs leading-relaxed text-ink-soft italic">
+              {(() => {
+                const at = h.snippet.toLowerCase().indexOf(h.phrase.toLowerCase());
+                if (at < 0) return h.snippet;
+                return (
+                  <>
+                    {h.snippet.slice(0, at)}
+                    <mark className="rounded-sm bg-notfound/15 px-0.5 text-ink not-italic">{h.snippet.slice(at, at + h.phrase.length)}</mark>
+                    {h.snippet.slice(at + h.phrase.length)}
+                  </>
+                );
+              })()}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

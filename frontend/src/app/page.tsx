@@ -14,7 +14,7 @@ const CHECKS = [
   { n: "ii", title: "Accurate", body: "Title, authors, year, venue, DOI compared field by field." },
   { n: "iii", title: "Not retracted", body: "73,718 Retraction Watch notices." },
   { n: "iv", title: "Supports the claim", body: "Citing sentence vs the cited abstract, with the quote (arXiv papers)." },
-  { n: "v", title: "No paper-mill language", body: "Tortured-phrase fingerprints.", soon: true },
+  { n: "v", title: "No paper-mill language", body: "86 tortured-phrase fingerprints in the full text." },
 ];
 
 function MiniBar({ base, ours, label }: { base: number; ours: number; label: (v: number) => string }) {
@@ -242,7 +242,6 @@ export default function Home() {
                 <div>
                   <h3 className="text-sm font-semibold">
                     {c.title}
-                    {c.soon && <span className="ml-2 font-mono text-[0.58rem] tracking-widest text-mismatch uppercase">in progress</span>}
                   </h3>
                   <p className="text-xs text-ink-soft">{c.body}</p>
                 </div>

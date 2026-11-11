@@ -166,7 +166,7 @@
 - Three variants: direct / + grounding / + abstention. Report macro-F1, the accuracy-vs-coverage curve and ECE.
 - ✅ Done when: the numbers and a figure are logged.
 
-### 6.3 PDF upload via GROBID (🤖) 🟡 upload + references done in 2.7 (40/40 on a test PDF); citation contexts from the PDF full text still to do
+### 6.3 PDF upload via GROBID (🤖) 🟡 upload + references done in 2.7 (40/40 on a test PDF); citation contexts from the PDF full text still to do ✅ citing sentences + title from GROBID full text (14/16 refs on the test PDF)
 - ✅ Done when: uploading a PDF gives a report on both local and deployed versions.
 
 > **🚩 Checkpoint 2 (Wed 24:00):** MVP + P1 live on the public URL. RQ1 + RQ4 logged. Commit + push.
@@ -187,7 +187,7 @@
 
 ## Phase 8 — P3: tortured phrases + real-paper audit
 
-### 8.1 Tortured-phrase scanner (🤖)
+### 8.1 Tortured-phrase scanner (🤖) ✅ 86 fingerprints; test PDF → 8 hits, 2 real papers → 0
 - ✅ Done when: a test text containing "counterfeit consciousness" gets flagged in the report.
 
 ### 8.2 E5 audit run (🤖)

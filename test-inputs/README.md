@@ -24,6 +24,7 @@ Check http://localhost:8000/api/health shows `"grobid":true` and `"retraction_in
 | A6 | Bibliography tab | paste `03-wrong-details.txt` | 4 refs: 1 verified (#4 ResNet), **3 mismatch**: #1 "year 2009 vs record 2017", #2 "authors differ" (AlphaFold with invented authors), #3 "DOI … belongs to a different work: Adam" (real DOI, fake title). ~1 min. |
 | A7 | Bibliography tab | paste `04-software-and-web.txt` | 4 refs: 1 verified (#4 PyTorch), 3 unverified (Python docs, HF docs, Wikipedia). Shows that non-scholarly sources are sent to a human, not called fake. ~1 min. |
 | A8 | PDF tab | upload `05-hallucitechecker.pdf` | Title shows the file name. **16 refs** (GROBID finds 16 of the 18 the LaTeX source has): 15 verified, 1 unverified (rapidfuzz software release). ~1 min. |
+| A8b | PDF tab | upload `07-tortured-phrases.pdf` | 3 refs verified, red **Paper-mill language** panel with 8 tortured phrases ("counterfeit consciousness" → artificial intelligence, …). |
 | A9 | arXiv tab | `1706.03762` (Attention Is All You Need), **not pre-run** | Watch it stream live: stage line, progress bar, rows appearing one by one, then the page switches to "Needs attention" if anything was flagged. Expect mostly verified. If arXiv is busy it can take a few minutes. |
 
 On every finished report also try: the five stamp boxes (filter), **Needs attention / All references**, clicking a row

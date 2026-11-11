@@ -33,6 +33,7 @@ class Ingested:
     refs: list[ParsedRef]
     method: str  # "bib", "bbl", "bib+bbl", "grobid"
     notes: list[str] = field(default_factory=list)
+    text: str | None = None  # full text, for the tortured-phrase scan
 
 
 ARXIV_ID = re.compile(r"^(?:\d{4}\.\d{4,5}|[a-z][a-z-]*(?:\.[A-Za-z]{2})?/\d{7})(?:v\d+)?$")
@@ -161,32 +162,78 @@ async def from_latex(files: dict[str, str]) -> tuple[list[ParsedRef], str, list[
     return refs, method, notes
 
 
-async def grobid_references(pdf: bytes) -> list[ParsedRef]:
-    """Extract references from a PDF.
+async def grobid_paper(pdf: bytes) -> tuple[str | None, list[ParsedRef], str | None]:
+    """Title, references and body text of a PDF; each reference gets the sentences that cite it (step 6.3).
 
-    GROBID splits the bibliography and keeps each raw reference string; the fields are then parsed by
-    the same LLM parser as pasted bibliographies. GROBID's own field parsing drops titles and shifts
-    author names on some references (EXPERIMENTS.md S10), so it is only used when no raw text exists."""
-    structured = await _grobid_structured(pdf)
-    raws = [r.raw for r in structured]
-    if structured and all(len(r) > 20 for r in raws):
-        return await parse_references(raws)
-    return structured
-
-
-async def _grobid_structured(pdf: bytes) -> list[ParsedRef]:
-    """GROBID's structured references (raw strings kept as evidence)."""
+    GROBID's full-text model links in-text citations (<ref type="bibr" target="#b3">) to bibliography
+    entries. GROBID splits the bibliography and keeps each raw reference string; the fields are then
+    parsed by the same LLM parser as pasted bibliographies, because GROBID's own field parsing drops
+    titles and shifts author names on some references (EXPERIMENTS.md S10). If the full-text call
+    fails, the references-only endpoint is used and no citing sentences are attached."""
     try:
-        r = await http().post(f"{get_settings().grobid_url}/api/processReferences", timeout=180.0,
+        root = await _grobid("processFulltextDocument", pdf, {"segmentSentences": "1"})
+        listbibl = root.find(".//t:back//t:listBibl", TEI)
+        title = (root.findtext(".//t:teiHeader//t:titleStmt/t:title", "", TEI) or "").strip() or None
+        structured, ids = _parse_bibl(listbibl if listbibl is not None else ET.Element("x"))
+        contexts = _bibr_contexts(root, ids)
+        parts = [root.find(".//t:teiHeader//t:abstract", TEI), root.find(".//t:text/t:body", TEI)]
+        text = " ".join(" ".join(p.itertext()) for p in parts if p is not None) or None
+    except SourceError:
+        root = await _grobid("processReferences", pdf, {})
+        title, (structured, ids), contexts, text = None, _parse_bibl(root), {}, None
+    raws = [r.raw for r in structured]
+    refs = await parse_references(raws) if structured and all(len(r) > 20 for r in raws) else structured
+    for i, r in enumerate(refs):
+        r.contexts = contexts.get(ids[i], []) if i < len(ids) else []
+    return title, refs, text
+
+
+async def _grobid(endpoint: str, pdf: bytes, extra: dict) -> ET.Element:
+    try:
+        r = await http().post(f"{get_settings().grobid_url}/api/{endpoint}", timeout=240.0,
                               files={"input": ("paper.pdf", pdf, "application/pdf")},
-                              data={"includeRawCitations": "1", "consolidateCitations": "0"})
+                              data={"includeRawCitations": "1", "consolidateCitations": "0", **extra})
     except httpx.HTTPError as e:
         raise SourceError(f"grobid: {type(e).__name__} (is the GROBID container running?)") from e
     if r.status_code != 200:
         raise SourceError(f"grobid: HTTP {r.status_code}")
-    root = ET.fromstring(r.text)
-    refs = []
+    return ET.fromstring(r.text)
+
+
+_XML_ID = "{http://www.w3.org/XML/1998/namespace}id"
+
+
+def _bibr_contexts(root: ET.Element, ids: list[str], max_per_ref: int = 3) -> dict[str, list[str]]:
+    """Body sentences that cite each bibliography entry, citation markers replaced by [CITATION]."""
+    out: dict[str, list[str]] = {}
+    body = root.find(".//t:text/t:body", TEI)
+    if body is None:
+        return out
+    known = set(ids)
+    for sent in body.iter(f"{{{TEI['t']}}}s"):
+        targets, parts = [], [sent.text or ""]
+        for el in sent:
+            if el.tag == f"{{{TEI['t']}}}ref" and el.get("type") == "bibr":
+                parts.append("[CITATION]")
+                targets += [t.lstrip("#") for t in (el.get("target") or "").split()]
+            else:
+                parts.append("".join(el.itertext()))
+            parts.append(el.tail or "")
+        text = re.sub(r"\s+", " ", "".join(parts)).strip()
+        text = re.sub(r"(\[CITATION\][\s,;–-]*){2,}", "[CITATION] ", text).strip()
+        if not 20 <= len(text) <= 800:
+            continue
+        for t in dict.fromkeys(targets):
+            if t in known and len(out.setdefault(t, [])) < max_per_ref and text not in out[t]:
+                out[t].append(text)
+    return out
+
+
+def _parse_bibl(root: ET.Element) -> tuple[list[ParsedRef], list[str]]:
+    """GROBID's structured references (raw strings kept as evidence) and their xml:ids, in order."""
+    refs, xml_ids = [], []
     for i, b in enumerate(root.iter(f"{{{TEI['t']}}}biblStruct")):
+        xml_ids.append(b.get(_XML_ID) or f"b{i}")
         title = (b.findtext(".//t:analytic/t:title", None, TEI) or b.findtext(".//t:monogr/t:title", None, TEI) or "").strip()
         authors = []
         for p in b.findall(".//t:analytic/t:author/t:persName", TEI) or b.findall(".//t:monogr/t:author/t:persName", TEI):
@@ -206,7 +253,7 @@ async def _grobid_structured(pdf: bytes) -> list[ParsedRef]:
         refs.append(ParsedRef(idx=i, raw=raw, title=title or None, authors=authors, year=year, venue=venue or None,
                               doi=ids["doi"] or normalize_doi(doi), arxiv_id=ids["arxiv_id"] or (re.sub(r"^arXiv:", "", arx) if arx else None),
                               url=ids["url"], type_guess=RefType.preprint if (ids["arxiv_id"] or arx) else RefType.other))
-    return refs
+    return refs, xml_ids
 
 
 async def ingest_arxiv(arxiv_id: str) -> Ingested:
@@ -221,10 +268,12 @@ async def ingest_arxiv(arxiv_id: str) -> Ingested:
     title = meta.title if meta else None
     files = unpack(await fetch_eprint(aid))
     if "__pdf__" in files or not any(k.lower().endswith((".bbl", ".bib", ".tex")) for k in files):
-        pdf = await fetch_pdf(aid)
-        return Ingested(title, await grobid_references(pdf), "grobid", ["no LaTeX source on arXiv; parsed the PDF"])
+        _, refs, text = await grobid_paper(await fetch_pdf(aid))
+        return Ingested(title, refs, "grobid", ["no LaTeX source on arXiv; parsed the PDF"], text)
     refs, method, notes = await from_latex(files)
+    tex = "\n".join(v for k, v in files.items() if k.lower().endswith(".tex"))
+    text = latex.latex_to_text(latex.strip_tex_noise(tex)) if tex else None
     if not refs:  # LaTeX without a usable bibliography: fall back to the PDF
-        pdf = await fetch_pdf(aid)
-        return Ingested(title, await grobid_references(pdf), "grobid", notes + ["no bibliography in the source; parsed the PDF"])
-    return Ingested(title, refs, method, notes)
+        _, refs, pdf_text = await grobid_paper(await fetch_pdf(aid))
+        return Ingested(title, refs, "grobid", notes + ["no bibliography in the source; parsed the PDF"], text or pdf_text)
+    return Ingested(title, refs, method, notes, text)

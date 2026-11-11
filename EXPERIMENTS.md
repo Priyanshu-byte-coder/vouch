@@ -325,3 +325,15 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Matching, six sources (dev F1):** strict frozen **0.873** · untuned defaults 0.740 · lenient (verified ≥ 80, no author floor) 0.643 · **title only 0.607**. Test: 0.792 / 0.677 / 0.601 / 0.536.
 - **Finding:** sources and matching do different jobs. More indexes remove false alarms (55% → 6% of real references flagged); strict field matching is what catches fakes: with title-only matching even six indexes score about the baseline's 0.61.
 - Cost / latency per reference (cold, collection logs): median 5.9 s (dev) / 8.5 s (test), p90 ~36 s (S2 throttling), 3.4–3.7 indexes asked. LLM parsing ≈ $0.0003 per reference (S11: $0.275 / 1,000). Test-set rows are analysis only; no choices were made from them.
+
+### S14 — Citing sentences from PDFs (step 6.3)
+- When / who: 2026-11-11 ~16:00 IST · Priyanshu
+- PDF path now uses GROBID `processFulltextDocument` (sentence segmentation on): in-text citations (`<ref type="bibr" target="#bN">`) are linked to bibliography entries, giving up to 3 citing sentences per reference (markers → `[CITATION]`), plus the paper title from the TEI header (PDF reports used to show the file name). Raw reference strings are still parsed by the LLM (S10). Falls back to `processReferences` if full text fails. The arXiv PDF-only fallback uses the same path.
+- HalluCiteChecker PDF: title extracted, **14 of 16** references got citing sentences, 7 claim checks run; 16 refs / 15 verified as before. $0.0024.
+
+### S15 — Tortured-phrase scanner (step 8.1)
+- When / who: 2026-11-11 ~16:20 IST · Priyanshu
+- `backend/app/pipeline/tortured.py` + `backend/app/data/tortured_phrases.csv`: **86 fingerprints** = 45 documented computing/medical examples from Cabanac, Labbé & Magazinov 2021 (arXiv:2107.06751) + 41 social-science fingerprints (Zenodo 14753785, CC-BY-4.0). Whole-word, case-insensitive, line breaks allowed. "web of things" removed (a real research term).
+- Scans the full text of arXiv (LaTeX, after removing comments/equations/figures) and PDF (GROBID abstract + body) inputs; pasted bibliographies have no full text.
+- Checks: test PDF `test-inputs/07-tortured-phrases.pdf` → **8 hits** (counterfeit consciousness ×2, profound learning, profound neural organization, colossal information, irregular woodland, flag to commotion, backing vector machine), its 3 references verified. **0 hits** on CiteAudit (arXiv LaTeX) and HalluCiteChecker (PDF). Unit tests: 3 (incl. a clean paragraph using the correct terms → 0 hits).
+- Not evaluated on a labelled corpus; the fingerprints are a curated subset of what the Problematic Paper Screener uses. Report cache v5 → v6.
