@@ -67,6 +67,11 @@ Done: 0.1–0.4, 1.1–1.3, 2.1–2.7 (Checkpoint 1), 3.1–3.3, 4.1–4.3, **5.
 - Running at 15:30: `eval/coverage_rq2.py run` (RQ2, 225 OpenAlex-sampled real works × baseline re-creation / Vouch / Vouch-no-OpenAlex; then `report`, add to EXPERIMENTS as E2, research page §, README RQ2 line, SUBMISSION). Next: `eval/audit_e5.py run` (30 papers selected; per-paper data gitignored; user hand-labels `eval/data/raw/audit/flags.csv`, then `report`).
 - Left for the user: hand-label audit flags (8.3), LICENSE + make repo public (9.2), demo video (9.3), Unstop form (9.4). Rotate keys after the hackathon; delete the VM after the finals.
 
+## 6c. Done 11 Nov evening
+- 7.1 RQ2 (E2), 8.2–8.3 audit (E5: 9/60 flags correct, precision 0.15; labels AI-assisted with web evidence, **team spot-check pending**, file `eval/data/raw/audit/flags_labelled.csv`), physics/RevTeX fixes (S16, cache v8 on server), repo public + MIT, favicon/OG image.
+- Video: `video/` (scenes.html + record.js + compose.py). Final with teammate's voice-over: `video/out/Vouch_final_captions.mp4` / `Vouch_final_clean.mp4` (also copied to the user's Downloads as Vouch_demo_final_*.mp4), 4:52, −16 LUFS.
+- Left: team spot-check of ~10 audit labels; upload the video (YouTube unlisted or Drive) and put the link in `docs/SUBMISSION.md`; submit on Unstop by Thu 12 Nov 23:00 IST.
+
 ## 7. Next steps (in order)
 1. **4.2 Wire frontend to API:** `NEXT_PUBLIC_API_URL` (default http://localhost:8000). In `check-form.tsx`, POST `/api/check` ({arxiv_id} or {bibliography}) or `/api/check/pdf` (multipart "file"), then `router.push('/report/' + job_id)`. In `report-loader.tsx`, for non-"demo" ids, open an `EventSource` on `/api/jobs/{id}/events`, accumulate `ref_done` into a partial Report, show progress (`parsed.n_refs`), and on `report` set the full report. Handle `error` and 404 (jobs are in memory). Example buttons: arXiv examples should call the API (2602.23452, 2604.26835); the "Demo mix" stays `/report/demo`. CORS is already `*`.
 2. ~~4.3~~ done. **After every deploy run `backend/scripts/warm_examples.py --api <URL>`** so the example buttons are instant (report cache is per server; version now v4).
