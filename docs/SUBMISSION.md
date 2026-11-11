@@ -33,7 +33,7 @@ Python 3.12, FastAPI, httpx (async), Server-Sent Events, SQLite cache, GROBID 0.
 https://github.com/Priyanshu-byte-coder/vouch
 
 **Working prototype / demonstration**
-https://vouch-theta-one.vercel.app (try the "NeurIPS 2025 fakes" and "Retracted papers" examples) · research results: https://vouch-theta-one.vercel.app/research · demo video: <add link>
+https://vouch-theta-one.vercel.app (try the "NeurIPS 2025 fakes" and "Retracted papers" examples) · research results: https://vouch-theta-one.vercel.app/research · demo video: https://youtu.be/OhIqgDQpIck
 
 **Brief explanation of the implementation**
 References are read from the arXiv LaTeX source (.bib/.bbl and the sentences that cite them), from a PDF via GROBID's full-text model, or from a pasted list; an LLM parses the fields, while DOIs and arXiv IDs are taken from the raw text only. Each reference goes through the index cascade, which stops at the first confident match. Every candidate is scored field by field (strict length-aware title similarity, author matching that handles initials, et al. and diacritics, venue abbreviations, year tolerance), and a verdict is made with thresholds tuned by 5-fold cross-validation under a 10% false-alarm cap. Identified works are looked up in Retraction Watch and, when citing sentences exist, compared with their abstract by the LLM, which must quote evidence that is checked against the abstract and abstains below a confidence threshold set on SciFact. The full text is scanned for tortured phrases. Results stream to the browser over Server-Sent Events; lookups and reports are cached.

@@ -5,7 +5,7 @@ it checks whether the work **exists**, whether its **details are right**, whethe
 **supports the sentence that cites it**, and it scans the paper for **paper-mill language**. Every verdict comes with
 its evidence. Only open scholarly databases are used, so every result can be reproduced.
 
-**Live demo:** https://vouch-theta-one.vercel.app · **Research results:** https://vouch-theta-one.vercel.app/research ·
+**Demo video (4:52):** https://youtu.be/OhIqgDQpIck · **Live demo:** https://vouch-theta-one.vercel.app · **Research results:** https://vouch-theta-one.vercel.app/research ·
 **API:** https://139-84-216-217.sslip.io/api/health
 
 Team Beyonders (Threws Odyssey 2026, DeepTech & Scientific Computing): Priyanshu Doshi, Viranshul, Kuldeep Goklani.
