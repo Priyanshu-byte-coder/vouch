@@ -4,6 +4,7 @@ Reasoning models spend their token budget on hidden "thinking" (EXPERIMENTS.md S
 parsing calls run with thinking off; judging calls can turn it on with a larger budget.
 """
 
+import asyncio
 import json
 import re
 from contextvars import ContextVar
@@ -82,15 +83,28 @@ def _is_retryable_status(e: BaseException) -> bool:
     return isinstance(e, APIStatusError) and (e.status_code == 429 or e.status_code >= 500)
 
 
+MAX_PARALLEL = 4  # the inference endpoint answers bursts with 429 (E4, step 6.2)
+_slots: dict[int, asyncio.Semaphore] = {}
+
+
+def _slot() -> asyncio.Semaphore:
+    """One semaphore per event loop (eval scripts and the API each run their own loop)."""
+    loop = id(asyncio.get_running_loop())
+    if loop not in _slots:
+        _slots[loop] = asyncio.Semaphore(MAX_PARALLEL)
+    return _slots[loop]
+
+
 @retry(retry=retry_if_exception_type(_RETRYABLE) | retry_if_exception_type(APIStatusError),
-       wait=wait_exponential(multiplier=1, min=2, max=20), stop=stop_after_attempt(4), reraise=True)
+       wait=wait_exponential(multiplier=2, min=3, max=60), stop=stop_after_attempt(7), reraise=True)
 async def _complete(model: str, messages: list[dict], thinking: bool, max_tokens: int, temperature: float):
     extra = {"chat_template_kwargs": {"enable_thinking": thinking}}
     if not thinking:
         extra["reasoning_effort"] = "none"
     try:
-        return await get_client().chat.completions.create(
-            model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, extra_body=extra)
+        async with _slot():
+            return await get_client().chat.completions.create(
+                model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, extra_body=extra)
     except APIStatusError as e:
         if not _is_retryable_status(e):
             raise LLMJSONError(f"LLM request rejected: HTTP {e.status_code}") from e

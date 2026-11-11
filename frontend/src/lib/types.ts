@@ -133,3 +133,10 @@ export const SOURCE_LABEL: Record<string, string> = {
   datacite: "DataCite",
   openlibrary: "Open Library",
 };
+
+export const CLAIM_META: Record<ClaimCheck["label"], { label: string; color: string; blurb: string }> = {
+  SUPPORTS: { label: "Supported", color: "var(--verified)", blurb: "The abstract states or directly implies what the sentence cites it for." },
+  CONTRADICTS: { label: "Contradicted", color: "var(--notfound)", blurb: "The abstract says something incompatible with the citing sentence. Worth a close look." },
+  NOT_ENOUGH_INFO: { label: "Abstract can't tell", color: "var(--unverified)", blurb: "The abstract does not settle it; the claim may be in the full text. Not a sign of a problem." },
+  ABSTAIN: { label: "Needs a human", color: "var(--mismatch)", blurb: "The model was not confident enough (below the threshold tuned on SciFact), so it does not give a verdict." },
+};

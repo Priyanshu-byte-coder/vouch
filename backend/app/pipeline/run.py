@@ -10,13 +10,14 @@ from ..config import get_settings
 from ..llm import Usage, current_usage
 from ..models import (Candidate, PaperInfo, ParsedRef, RefResult, RefType, Report, RunMeta, Status)
 from .adjudicate import adjudicate
+from .claims import check_claims
 from .match import WEIGHTS, best_match, score_candidate
 from .ingest import grobid_references, ingest_arxiv, normalize_arxiv_id
 from .parse_refs import parse_references, split_bibliography
 from .resolvers import SOURCES, SourceError, api_calls
 from .retraction import describe
 from .retraction import get_index as get_retractions
-from .tuned import ADJUDICATOR, TUNED_THRESHOLDS, TUNED_WEIGHTS
+from .tuned import ADJUDICATOR, CLAIM_TAU, TUNED_THRESHOLDS, TUNED_WEIGHTS
 from .verdict import DEFAULT, Thresholds, decide
 
 # Per-source time budget per reference (S2 throttles hard; never let it stall a report)
@@ -42,7 +43,8 @@ def cascade_order(ref: ParsedRef, sources: list[str]) -> list[str]:
 
 
 async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DEFAULT,
-                          weights: dict[str, float] = WEIGHTS, adjudicator: dict | None = None) -> RefResult:
+                          weights: dict[str, float] = WEIGHTS, adjudicator: dict | None = None,
+                          claims: bool = True) -> RefResult:
     candidates: list[Candidate] = []
     tried, failed = [], []
     for name in cascade_order(ref, sources):
@@ -79,10 +81,14 @@ async def check_reference(ref: ParsedRef, sources: list[str], t: Thresholds = DE
     retraction = get_retractions().lookup(
         dois=[ref.doi, match.doi if match and identified else None],
         title=ref.title)
+    # Check ④: does the cited work's abstract support the citing sentences? Only for a clearly identified work.
+    claim_checks = []
+    if claims and ref.contexts and identified:
+        claim_checks = await check_claims(ref.contexts, best.candidate, candidates, tau=CLAIM_TAU)
     issues = ([describe(retraction)] if retraction else []) + v.issues
     issues += [f"sources unavailable: {', '.join(failed)}"] if failed else []
     return RefResult(idx=ref.idx, raw=ref.raw, parsed=ref, status=v.status, confidence=v.confidence,
-                     match=match, retraction=retraction,
+                     match=match, retraction=retraction, claims=claim_checks,
                      field_scores=best.scores if best else None, issues=issues,
                      sources_tried=tried + [f"{f} (failed)" for f in failed])
 

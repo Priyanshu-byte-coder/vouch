@@ -13,7 +13,7 @@ const CHECKS = [
   { n: "i", title: "Exists", body: "Six open indexes, several candidates each." },
   { n: "ii", title: "Accurate", body: "Title, authors, year, venue, DOI compared field by field." },
   { n: "iii", title: "Not retracted", body: "73,718 Retraction Watch notices." },
-  { n: "iv", title: "Supports the claim", body: "Citing sentence vs the cited abstract.", soon: true },
+  { n: "iv", title: "Supports the claim", body: "Citing sentence vs the cited abstract, with the quote (arXiv papers)." },
   { n: "v", title: "No paper-mill language", body: "Tortured-phrase fingerprints.", soon: true },
 ];
 

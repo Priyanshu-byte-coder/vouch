@@ -6,6 +6,10 @@ import { SOURCE_LABEL, STATUS_META } from "@/lib/types";
 const ca = research.citeaudit300;
 const ne = research.neurips100;
 const S = research.story;
+const AB = S.ablations.dev_1000;
+const AM = AB.matching as Record<string, { f1: number; recall: number; fpr: number }>;
+const AB_COST = AB.cost;
+const SF = S.scifact;
 const n = (o: Record<string, number>, k: string) => o[k] ?? 0;
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 
@@ -302,8 +306,63 @@ export default function ResearchPage() {
         </div>
       </Section>
 
+      {/* 7. ablations */}
+      <Section kicker="7 · What each part adds (RQ3)" title="Sources cut false alarms; strict matching catches the fakes." lede="Offline replay of the collected records with the frozen configuration. The cascade always asks Crossref, then OpenAlex, then the type-routed indexes, then Semantic Scholar, so each prefix below is exactly what a shorter cascade would decide. Dev set, 1,000 citations.">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <ChartTitle kicker="Adding indexes in cascade order" title="Real references wrongly flagged: 55% → 6%" />
+            <Slope
+              stages={["Crossref\nonly", "+ OpenAlex", "+ arXiv, DataCite,\nOpen Library", "+ Semantic\nScholar"]}
+              series={[
+                { name: "F1", color: OURS, values: Object.values(AB.cumulative).map((m) => m.f1) },
+                { name: "recall", color: "var(--link)", values: Object.values(AB.cumulative).map((m) => m.recall) },
+                { name: "false alarms", color: "var(--notfound)", values: Object.values(AB.cumulative).map((m) => m.fpr) },
+              ]}
+            />
+            <Caption>With one index, every reference it does not hold looks fake: high recall, useless precision. Each added index mostly removes false alarms. Same pattern on the test set (63% → 14%).</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="Same six indexes, different matching" title="Title-only matching is no better than the baseline" />
+            <PairBars
+              baseLabel="ablated"
+              oursLabel="strict"
+              rows={[
+                { label: "Title only", sub: "no author / year / venue checks", base: AM["title only"].f1, ours: AM["frozen (strict fields)"].f1 },
+                { label: "Lenient thresholds", sub: "verified ≥ 80, no author floor", base: AM["lenient (verified >= 80, no author floor)"].f1, ours: AM["frozen (strict fields)"].f1 },
+                { label: "Untuned defaults", sub: "before the dev grid search", base: AM["untuned defaults"].f1, ours: AM["frozen (strict fields)"].f1 },
+              ]}
+            />
+            <Caption>F1 on dev. Title-only matching on all six indexes scores {AM["title only"].f1.toFixed(2)}, about the published baseline&apos;s 0.61: the sources alone do not catch fakes, the author and field checks do. Median cold lookup {AB_COST.median_seconds_cold} s per reference, {AB_COST.mean_sources_queried} indexes asked on average.</Caption>
+          </div>
+        </div>
+      </Section>
+
+      {/* 8. claim support */}
+      <Section kicker="8 · Claim support (RQ4)" title="Does the cited abstract support the sentence? Checked on SciFact." lede={`An open model compares a claim with the cited abstract and must quote its evidence. ${SF.config.dev_pairs} expert-labelled claim–abstract pairs (SciFact dev, used for nothing else); the abstention threshold τ = ${SF.config.tau} was set on ${SF.config.train_pairs} train pairs.`}>
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <ChartTitle kicker="Accuracy when the least-confident answers are left to a human" title="Abstaining buys accuracy" />
+            <CoverageCurve points={SF.dev_coverage_curve} />
+            <Caption>Each point drops the least-confident share of answers. At 20% abstention accuracy rises from {SF.dev_coverage_curve[0].accuracy.toFixed(3)} to {SF.dev_coverage_curve[4].accuracy.toFixed(3)} (hypothesis H4: ≥ 5 points).</Caption>
+          </div>
+          <div>
+            <ChartTitle kicker="Three variants on SciFact dev" title="Well calibrated, and better when it may say “not sure”" />
+            <PairBars
+              baseLabel="direct"
+              oursLabel="+ abstention"
+              rows={[
+                { label: "Accuracy", sub: `answered: ${Math.round(SF.dev.abstention.coverage * 100)}% with abstention`, base: SF.dev.direct.accuracy, ours: SF.dev.abstention.accuracy },
+                { label: "Macro-F1", sub: "3 classes", base: SF.dev.direct.macro_f1, ours: SF.dev.abstention.macro_f1 },
+                { label: "Calibration error (ECE)", sub: "lower is better", base: SF.dev.direct.ece, ours: SF.dev.abstention.ece },
+              ]}
+            />
+            <Caption>With the train-chosen τ the model answered {Math.round(SF.dev.abstention.coverage * 100)}% of pairs and gained {((SF.dev.abstention.accuracy - SF.dev.direct.accuracy) * 100).toFixed(1)} points: just short of H4 at that coverage. Quote grounding changed no answer on SciFact (every quote was real) and stays as a safety net. Total cost ${SF.cost.usd}. On real papers most citing sentences are long and cite several works, so most come back as “abstract can&apos;t tell”.</Caption>
+          </div>
+        </div>
+      </Section>
+
       {/* 7. negative result */}
-      <Section kicker="7 · What did not work" title="An LLM judge made things worse." lede="We let a language model re-examine every borderline flag (cited reference + top-3 records → same work or not). Dev only, 422 calls, $0.65.">
+      <Section kicker="9 · What did not work" title="An LLM judge made things worse." lede="We let a language model re-examine every borderline flag (cited reference + top-3 records → same work or not). Dev only, 422 calls, $0.65.">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div>
             <ChartTitle kicker="Even at its strictest setting" title="What the judge un-flagged" />
@@ -403,6 +462,34 @@ function Frontier() {
       ))}
       <line x1={x(0.1)} x2={x(0.1)} y1={10} y2={H - 24} stroke="var(--mismatch)" strokeDasharray="3 3" />
       <text x={x(0.1) + 3} y={18} className="fill-mismatch text-[9px]">our cap</text>
+    </svg>
+  );
+}
+
+function CoverageCurve({ points }: { points: { abstain_pct: number; accuracy: number }[] }) {
+  const W = 360, H = 180, L = 36, B = 30, T = 12, R = 12;
+  const lo = 0.8, hi = 1.0;
+  const x = (v: number) => L + (v / 60) * (W - L - R);
+  const y = (v: number) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
+  const d = points.map((p, i) => `${i ? "L" : "M"}${x(p.abstain_pct)},${y(p.accuracy)}`).join(" ");
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-md" role="img" aria-label="Accuracy vs share abstained">
+      {[0.8, 0.85, 0.9, 0.95, 1].map((t) => (
+        <g key={t}>
+          <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="var(--rule)" strokeDasharray="2 3" />
+          <text x={L - 5} y={y(t) + 3} textAnchor="end" className="fill-ink-faint font-mono text-[8px]">{t.toFixed(2)}</text>
+        </g>
+      ))}
+      {[0, 20, 40, 60].map((t) => (
+        <text key={t} x={x(t)} y={H - B + 13} textAnchor="middle" className="fill-ink-faint font-mono text-[8px]">{t}%</text>
+      ))}
+      <text x={(W + L) / 2} y={H - 3} textAnchor="middle" className="fill-ink-faint text-[9px]">share of answers left to a human</text>
+      <line x1={x(20)} x2={x(20)} y1={T} y2={H - B} stroke="var(--mismatch)" strokeDasharray="3 3" />
+      <text x={x(20) + 3} y={T + 9} className="fill-mismatch text-[9px]">H4: 20%</text>
+      <path d={d} fill="none" stroke="var(--ink)" strokeWidth={1.8} />
+      {points.map((p) => (
+        <circle key={p.abstain_pct} cx={x(p.abstain_pct)} cy={y(p.accuracy)} r={2.6} fill="var(--card)" stroke="var(--ink)" />
+      ))}
     </svg>
   );
 }

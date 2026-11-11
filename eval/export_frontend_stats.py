@@ -113,6 +113,8 @@ def main() -> None:
         "neurips_labels": test6["splits"]["test_neurips100"]["tuned"]["labels"],
         "test_labels": test6["splits"]["test_citeaudit300"]["tuned"]["labels"],
         "baseline_labels_by_truth": baseline_labels(),
+        "ablations": json.loads((EVAL / "results" / "e3_ablations.json").read_text(encoding="utf-8")),
+        "scifact": json.loads((EVAL / "results" / "e4_scifact.json").read_text(encoding="utf-8")),
         "test": replay("test_citeaudit300"),
         "dev": replay("dev_1000"),
     }

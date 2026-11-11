@@ -158,11 +158,11 @@
 
 ## Phase 6 — P1: claim support + PDF
 
-### 6.1 Claim support (🤖)
+### 6.1 Claim support (🤖) ✅ claims.py, evidence card shows verdict + quote, report summary line
 - Context → abstract → LLM verdict, the quote-grounding check, abstention.
 - ✅ Done when: the evidence drawer shows claim checks with highlighted quotes.
 
-### 6.2 E4 SciFact (🤖)
+### 6.2 E4 SciFact (🤖) ✅ dev macro-F1 0.843 → 0.893 with abstention (85% answered), ECE 0.038; research page §8
 - Three variants: direct / + grounding / + abstention. Report macro-F1, the accuracy-vs-coverage curve and ECE.
 - ✅ Done when: the numbers and a figure are logged.
 
@@ -179,7 +179,7 @@
 - Sample ~600 real references by type × region (Indian and Global South vs. others) through OpenAlex/Crossref, plus ~300 generated fakes. Run the baseline and ours.
 - ✅ Done when: the FPR-by-stratum table and chart are logged.
 
-### 7.2 E3 ablations / RQ3 (🤖)
+### 7.2 E3 ablations / RQ3 (🤖) ✅ cascade prefixes exact; Crossref-only FPR 0.55 → six sources 0.06; title-only F1 0.61 vs strict 0.87; research page §7
 - Remove one source at a time, remove the adjudicator, title-only matching. Measure cost and latency.
 - ✅ Done when: the ablation table is logged.
 

@@ -19,3 +19,5 @@ def _load() -> tuple[dict[str, float], Thresholds, dict]:
 TUNED_WEIGHTS, TUNED_THRESHOLDS, TUNED_INFO = _load()
 # LLM adjudicator settings (step 3.3); None = adjudicator disabled
 ADJUDICATOR: dict | None = TUNED_INFO.get("adjudicator")
+# Claim-support abstention threshold (step 6.2, E4); answers below it become ABSTAIN
+CLAIM_TAU: float = float(TUNED_INFO.get("claims", {}).get("tau", 0.0))

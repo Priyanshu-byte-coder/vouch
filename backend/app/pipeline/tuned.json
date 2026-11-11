@@ -18,5 +18,9 @@
   "found": 60.0,
   "year_tolerance": 2,
   "book_year_any": true
+ },
+ "claims": {
+  "tau": 0.85,
+  "from": "E4 (eval/results/e4_scifact.json): confidence below which the least-confident 20% of SciFact train answers fall"
  }
 }

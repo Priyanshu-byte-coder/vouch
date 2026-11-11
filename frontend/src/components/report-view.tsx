@@ -14,7 +14,8 @@ function byline(r: RefResult) {
   const a = r.parsed.authors;
   const authors = a.length ? a.slice(0, 3).join(", ") + (a.length > 3 ? " et al." : "") : null;
   const issue = r.status !== "verified" && r.issues[0] ? r.issues[0].replace(/\s*\(closest:.*\)\s*$/, "") : null;
-  return [authors, r.parsed.year, issue].filter(Boolean).join(" · ");
+  const contra = r.claims.some((c) => c.label === "CONTRADICTS") ? "abstract contradicts a citing sentence" : null;
+  return [authors, r.parsed.year, issue, contra].filter(Boolean).join(" · ");
 }
 
 function needsAttention(r: RefResult) {
@@ -127,6 +128,20 @@ export function ReportView({ report, live }: { report: Report; live?: LiveState 
           <span className="text-[0.68rem] leading-snug text-ink-soft">Exists, but a retraction notice is on record in Retraction Watch.</span>
         </button>
       </div>
+
+      {(() => {
+        const cl = refs.flatMap((r) => r.claims);
+        if (!cl.length) return null;
+        const n = (l: string) => cl.filter((c) => c.label === l).length;
+        return (
+          <p className="mt-4 text-sm text-ink-soft">
+            <span className="font-mono text-[0.65rem] tracking-widest text-ink-faint uppercase">claim support · </span>
+            {cl.length} citing sentences compared with the cited abstracts: <b className="text-verified">{n("SUPPORTS")} supported</b>,{" "}
+            <b className="text-notfound">{n("CONTRADICTS")} contradicted</b>, {n("NOT_ENOUGH_INFO")} where the abstract can&apos;t tell,{" "}
+            {n("ABSTAIN")} left to a human. Open a row to see the quote.
+          </p>
+        );
+      })()}
 
       {/* proportional ledger bar */}
       <div className="mt-3 flex h-2 overflow-hidden rounded-full" aria-hidden="true">

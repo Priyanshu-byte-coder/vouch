@@ -1,5 +1,5 @@
 import { RetractedStamp } from "@/components/stamp";
-import { SOURCE_LABEL, type RefResult } from "@/lib/types";
+import { CLAIM_META, SOURCE_LABEL, type RefResult } from "@/lib/types";
 
 function ScoreBar({ label, value, max = 100 }: { label: string; value: number | null; max?: number }) {
   const v = value == null ? null : Math.round((value / max) * 100);
@@ -64,6 +64,37 @@ export function EvidenceCard({ r }: { r: RefResult }) {
           </>
         )}
       </div>
+
+      {r.claims.length > 0 && (
+        <div className="md:col-span-2">
+          <h4 className="mb-2 font-mono text-[0.65rem] tracking-widest text-ink-faint uppercase">Does the cited abstract support the citing sentence?</h4>
+          <ul className="space-y-3">
+            {r.claims.map((c, i) => {
+              const meta = CLAIM_META[c.label];
+              return (
+                <li key={i} className="grid gap-2 rounded-sm border border-rule bg-paper/40 p-3 md:grid-cols-[9rem_1fr]">
+                  <div>
+                    <span className="inline-block rounded-sm px-1.5 py-0.5 font-mono text-[0.62rem] tracking-wider text-card uppercase" style={{ background: meta.color }}>
+                      {meta.label}
+                    </span>
+                    <p className="mt-1 font-mono text-[0.62rem] text-ink-faint">confidence {Math.round(c.confidence * 100)}%</p>
+                  </div>
+                  <div className="space-y-1.5 text-sm leading-relaxed">
+                    <p className="text-ink-soft italic">“{highlightCitation(c.context)}”</p>
+                    {c.evidence_quote && (
+                      <p className="border-l-2 pl-2.5 text-ink" style={{ borderColor: meta.color }}>
+                        <span className="mr-1 font-mono text-[0.6rem] tracking-wider text-ink-faint uppercase">abstract says</span>
+                        {c.evidence_quote}
+                      </p>
+                    )}
+                    <p className="text-[0.7rem] text-ink-faint">{meta.blurb}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
 
       <div>
         <h4 className="mb-2 font-mono text-[0.65rem] tracking-widest text-ink-faint uppercase">Best record found</h4>

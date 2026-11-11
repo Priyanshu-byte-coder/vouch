@@ -15,10 +15,10 @@ Every run that produces a number goes here: what we tried, what happened and why
 | ID | RQ | Description | Owner | Status |
 |---|---|---|---|---|
 | E0 | — | Published baseline (AtomGPT detector) on CiteAudit-300 + NeurIPS-100, with our LLM. Re-score their released outputs | B | ✅ E0a done · E0b replaced by the E3 'S2-only, AtomGPT scoring' ablation (decision 10 Nov) |
-| E1 | RQ1 | Our cascade on CiteAudit-300 + NeurIPS-100 (thresholds tuned on the CiteAudit dev split) | B | ⬜ |
+| E1 | RQ1 | Our cascade on CiteAudit-300 + NeurIPS-100 (thresholds tuned on the CiteAudit dev split) | B | ✅ |
 | E2 | RQ2 | CoverageSet: false-positive rate by reference type × region, baseline vs. ours | B | ⬜ |
-| E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ⬜ |
-| E4 | RQ4 | SciFact claim support: direct vs. + quote grounding vs. + abstention | B | ⬜ |
+| E3 | RQ3 | Ablations: each source, the adjudicator, title-only matching. Cost and latency per reference | B | ✅ E3 (step 7.2), E3a, E3b |
+| E4 | RQ4 | SciFact claim support: direct vs. + quote grounding vs. + abstention | B | ✅ E4 (step 6.2) |
 | E5 | RQ5 | Real-paper audit: 200 arXiv + 50 Indian-affiliated papers, flags hand-verified | All | ⬜ |
 
 ## Results summary (fill as runs finish)
@@ -292,3 +292,36 @@ Every run that produces a number goes here: what we tried, what happened and why
 - **Bug found: Surgisphere (Lancet 2020) retraction missed.** Its best record was a figshare data deposit ("Data from Mehra et al. …", title < 95), so the work counted as not identified and the retraction lookup was skipped, although Retraction Watch has the exact title.
 - Fix: the cited title is now always looked up (exact normalised match, ≥ 6 words, as before); matched-DOI lookup still needs the work identified. This changes only the retraction flag, never verified/flagged status, so RQ1 numbers are unaffected. Check: **0 title hits** across all 1,400 eval citations (dev_1000, CiteAudit-300, NeurIPS-100), so no new false retraction flags there. Re-run: **3/3 retractions caught**. Report cache version v3 → v4.
 - Cached example replay: POST → final report event **0.02 s**. (Over `localhost` on Windows each new connection first tries IPv6 and costs ~2 s in Python clients; the frontend's local default is now `127.0.0.1`.)
+
+### E4 — Claim support on SciFact (steps 6.1–6.2)
+- When / who: 2026-11-11 15:05 IST · Priyanshu
+- Code: `backend/app/pipeline/claims.py` (statement + cited abstract → SUPPORTS / CONTRADICTS / NOT_ENOUGH_INFO, confidence, verbatim quote; quote grounding by fuzzy partial match ≥ 90; abstention below τ). Model deepseek-v4.1-flash, thinking off, temperature 0.
+- Data: SciFact claim–abstract pairs. Gold = rationale label, or NOT_ENOUGH_INFO for a cited abstract without rationale. **Train sample 200 pairs (seed 20261111) only to set τ; dev 340 pairs (138 S / 71 C / 131 NEI) as test** (SciFact test labels are hidden). Command: `eval/claims_eval.py` → `eval/results/e4_scifact.json`. Cost **$0.094**, 219 calls on the final run.
+- τ = 0.85: confidence below which the lowest 20% of grounded train answers fall (fixed before looking at dev).
+- **Dev results:**
+  | Variant | Answered | Accuracy | Macro-F1 | ECE |
+  |---|---|---|---|---|
+  | direct | 100% | 0.850 | 0.843 | 0.038 |
+  | + quote grounding | 100% | 0.850 | 0.843 | 0.038 |
+  | + grounding + abstention (τ 0.85) | 85% | **0.899** | **0.893** | 0.021 |
+- Accuracy vs abstention (dev): 0% 0.850 · 10% 0.886 · **20% 0.908** · 30% 0.924 · 40% 0.931.
+- **H4:** "abstaining on the least-confident 20% raises accuracy by ≥ 5 points": met on the curve (+5.8 at 20%). With the train-chosen τ, dev abstained on only 15% (confidences are coarse: 0.6/0.7/0.8/0.85/0.9/0.95), gain **+4.9**: just short. Both reported.
+- **Quote grounding never fired** (0 SUPPORTS/CONTRADICTS answers with a quote not in the abstract). On clean SciFact abstracts the model quoted faithfully; grounding stays as a safety net, with no measured effect here.
+- Caveats: SciFact abstracts are likely in the model's training data; SciFact claims are short single claims, while real citing sentences are long and cite several works. On CiteAudit's own paper (16 citing sentences): 1 supported, 8 "abstract can't tell", 7 abstained, 0 contradicted.
+- Engineering: the inference endpoint answered 8 parallel calls with HTTP 429. Added a global cap of 4 concurrent LLM calls and longer back-off (7 tries, up to 60 s) in `app/llm.py`.
+- Product: claim checks run for references whose work is identified (title ≥ 95) and that have citing sentences (arXiv LaTeX path); τ from `tuned.json` → `claims.tau`. Report cache v4 → v5.
+
+### E3 — Ablations (step 7.2), offline replay, frozen config
+- When / who: 2026-11-11 15:20 IST · Priyanshu · `eval/ablations.py` → `eval/results/e3_ablations.json`. No new API calls, no tuning.
+- **Cumulative cascade (exact replay: the cascade order is fixed, Crossref → OpenAlex → arXiv/DataCite/Open Library → S2):**
+  | Sources | dev P | dev R | dev F1 | dev FPR | test F1 | test FPR |
+  |---|---|---|---|---|---|---|
+  | Crossref only | 0.631 | 0.944 | 0.756 | **0.552** | 0.721 | 0.633 |
+  | + OpenAlex | 0.874 | 0.848 | 0.861 | 0.122 | 0.771 | 0.233 |
+  | + arXiv, DataCite, Open Library | 0.914 | 0.830 | 0.870 | 0.078 | 0.781 | 0.187 |
+  | + Semantic Scholar (all six) | 0.930 | 0.822 | **0.873** | **0.062** | 0.792 | 0.140 |
+  Sanity check: the 5- and 6-source rows reproduce E3b and both disclosed test looks exactly.
+- **Leave-one-out** (exact for S2; approximate for earlier sources, whose removal leaves later sources un-queried in our data, so an upper bound on harm): without Crossref F1 0.724 / FPR 0.506 · without OpenAlex 0.763 / 0.484 · without DataCite 0.867 / 0.098 · without arXiv 0.870 / 0.068 · without Open Library 0.872 / 0.064 · without S2 0.870 / 0.078 (dev).
+- **Matching, six sources (dev F1):** strict frozen **0.873** · untuned defaults 0.740 · lenient (verified ≥ 80, no author floor) 0.643 · **title only 0.607**. Test: 0.792 / 0.677 / 0.601 / 0.536.
+- **Finding:** sources and matching do different jobs. More indexes remove false alarms (55% → 6% of real references flagged); strict field matching is what catches fakes: with title-only matching even six indexes score about the baseline's 0.61.
+- Cost / latency per reference (cold, collection logs): median 5.9 s (dev) / 8.5 s (test), p90 ~36 s (S2 throttling), 3.4–3.7 indexes asked. LLM parsing ≈ $0.0003 per reference (S11: $0.275 / 1,000). Test-set rows are analysis only; no choices were made from them.
