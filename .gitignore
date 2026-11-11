@@ -30,3 +30,6 @@ eval/data/raw/
 Thumbs.db
 .vscode/
 .idea/
+
+# arXiv PDFs used for manual tests (not ours to redistribute)
+test-inputs/05-*.pdf

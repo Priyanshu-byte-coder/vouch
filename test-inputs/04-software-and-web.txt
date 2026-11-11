@@ -1,0 +1,4 @@
+[1] Python Software Foundation. The Python Language Reference, version 3.12. https://docs.python.org/3.12/reference/
+[2] Hugging Face. Transformers documentation. https://huggingface.co/docs/transformers (accessed 2025).
+[3] Wikipedia contributors. Citation. Wikipedia, The Free Encyclopedia, 2024.
+[4] Paszke A, Gross S, Massa F, et al. PyTorch: An imperative style, high-performance deep learning library. NeurIPS 2019.

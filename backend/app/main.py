@@ -26,7 +26,7 @@ from .cache import get_cache, make_key
 from .config import get_settings
 from .jobs import Job, JobStore
 from .models import Report
-from .pipeline.ingest import normalize_arxiv_id
+from .pipeline.ingest import is_arxiv_id, normalize_arxiv_id
 from .pipeline.resolvers import SOURCES
 from .pipeline.retraction import get_index as get_retractions
 from .pipeline.run import check_arxiv, check_bibliography, check_pdf
@@ -99,8 +99,10 @@ async def _cached_or_run(job: Job, key: str, run, refresh: bool) -> Report:
 
 @app.post("/api/check")
 async def create_check(req: CheckRequest, request: Request) -> dict:
-    _rate_limit(request)
     sources = _sources(req.skip_s2)
+    if req.arxiv_id and not is_arxiv_id(normalize_arxiv_id(req.arxiv_id)):
+        raise HTTPException(422, f"'{req.arxiv_id[:60]}' is not an arXiv ID (expected e.g. 2602.23452 or an arxiv.org/abs/ link)")
+    _rate_limit(request)  # only accepted requests count
     if req.arxiv_id:
         aid = normalize_arxiv_id(req.arxiv_id)
         key = make_key(REPORT_VERSION, "arxiv", aid, sources)

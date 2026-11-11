@@ -93,7 +93,7 @@ export function ReportView({ report, live }: { report: Report; live?: LiveState 
       <div className="rise">
         <p className="font-mono text-[0.7rem] tracking-[0.2em] text-ink-faint uppercase">Citation report · {report.paper.source}</p>
         <h1 className="mt-3 max-w-4xl font-display text-3xl leading-tight font-medium sm:text-[2.6rem]">
-          {report.paper.title ?? "Pasted bibliography"}
+          {report.paper.title ?? (report.paper.source.startsWith("pdf:") ? report.paper.source.slice(4) : "Pasted bibliography")}
         </h1>
         <p className="mt-3 text-sm text-ink-soft">
           {live ? `${refs.length} of ${report.paper.n_refs || "?"} references checked so far` : `${refs.length} references checked`}

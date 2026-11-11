@@ -1,0 +1,4 @@
+[1] Wakefield AJ, Murch SH, Anthony A, et al. Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children. Lancet. 1998;351(9103):637-641.
+[2] Obokata H, Wakayama T, Sasai Y, et al. Stimulus-triggered fate conversion of somatic cells into pluripotency. Nature. 2014;505(7485):641-647.
+[3] LeCun Y, Bengio Y, Hinton G. Deep learning. Nature. 2015;521(7553):436-444.
+[4] Jumper J, Evans R, Pritzel A, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021;596:583-589.

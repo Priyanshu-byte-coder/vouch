@@ -35,6 +35,14 @@ class Ingested:
     notes: list[str] = field(default_factory=list)
 
 
+ARXIV_ID = re.compile(r"^(?:\d{4}\.\d{4,5}|[a-z][a-z-]*(?:\.[A-Za-z]{2})?/\d{7})(?:v\d+)?$")
+
+
+def is_arxiv_id(s: str) -> bool:
+    """New-style (2602.23452, 2602.23452v2) or old-style (hep-th/9901001) arXiv identifier."""
+    return bool(ARXIV_ID.match(s))
+
+
 def normalize_arxiv_id(s: str) -> str:
     s = s.strip()
     s = re.sub(r"^(?:https?://)?(?:www\.)?(?:export\.)?arxiv\.org/(?:abs|pdf)/", "", s, flags=re.I)
@@ -203,7 +211,13 @@ async def _grobid_structured(pdf: bytes) -> list[ParsedRef]:
 
 async def ingest_arxiv(arxiv_id: str) -> Ingested:
     aid = normalize_arxiv_id(arxiv_id)
-    meta = await arxiv_source.by_id(aid)
+    try:
+        meta = await arxiv_source.by_id(aid)
+    except SourceError:  # metadata API throttled: the title is optional, the e-print may still come through
+        meta = None
+    else:
+        if meta is None:
+            raise ValueError(f"arXiv has no paper with ID {aid}")
     title = meta.title if meta else None
     files = unpack(await fetch_eprint(aid))
     if "__pdf__" in files or not any(k.lower().endswith((".bbl", ".bib", ".tex")) for k in files):

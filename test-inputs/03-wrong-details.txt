@@ -1,0 +1,4 @@
+[1] Vaswani A, Shazeer N, Parmar N, Uszkoreit J, Jones L, Gomez AN, Kaiser L, Polosukhin I. Attention is all you need. Advances in Neural Information Processing Systems 2009.
+[2] Smith J, Brown K, Patel R. Highly accurate protein structure prediction with AlphaFold. Nature 2021;596:583-589.
+[3] Kingma DP, Ba J. Quantum annealing for large-scale portfolio optimisation. 2014. doi:10.48550/arXiv.1412.6980
+[4] He K, Zhang X, Ren S, Sun J. Deep residual learning for image recognition. CVPR 2016.

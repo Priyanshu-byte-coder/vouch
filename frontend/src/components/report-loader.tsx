@@ -127,6 +127,16 @@ function LiveReport({ id }: { id: string }) {
   return <ReportView key="live" report={partial} live={{ phase: s.phase === "done" ? "checking" : s.phase, kind: s.kind, done: refs.length, total: s.nRefs, elapsed }} />;
 }
 
+/** Turn a pipeline error ("SourceError: arxiv: gave up after 5 attempts (HTTP 429)") into a sentence for people. */
+function explain(message: string | null) {
+  const m = (message ?? "").replace(/^\w+Error: /, "");
+  if (/arxiv/i.test(m) && /404|no paper/i.test(m)) return "arXiv has no paper with this ID. Check the number and try again.";
+  if (/arxiv/i.test(m) && /429|gave up|timeout/i.test(m)) return "arXiv is limiting requests right now. Wait a minute and try again.";
+  if (/grobid/i.test(m)) return "The PDF reader (GROBID) is not available. Try the arXiv ID or paste the reference list instead.";
+  if (/no references|0 references/i.test(m)) return "No reference list was found in this document.";
+  return m || "Unknown error.";
+}
+
 function Failed({ expired, message }: { expired: boolean; message: string | null }) {
   return (
     <div className="rise max-w-2xl">
@@ -139,7 +149,7 @@ function Failed({ expired, message }: { expired: boolean; message: string | null
       <p className="mt-3 text-ink-soft">
         {expired
           ? "Reports are kept in memory for a while and then dropped. Run the check again; papers checked before come back from the cache in seconds."
-          : message}
+          : explain(message)}
       </p>
       <div className="mt-6 flex gap-3 text-sm">
         <Link href="/" className="rounded-sm border-2 border-ink bg-ink px-4 py-1.5 font-semibold text-card hover:bg-transparent hover:text-ink">

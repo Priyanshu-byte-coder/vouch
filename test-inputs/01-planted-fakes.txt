@@ -1,0 +1,8 @@
+[1] Hochreiter S, Schmidhuber J. Long short-term memory. Neural Computation 1997;9(8):1735-1780.
+[2] Kingma DP, Ba J. Adam: A method for stochastic optimization. ICLR 2015.
+[3] Okonkwo R, Lindqvist M. Recursive entropy pruning for multilingual retrieval. Transactions on Speculative Computing 2022;4:11-29.
+[4] He K, Zhang X, Ren S, Sun J. Deep residual learning for image recognition. CVPR 2016.
+[5] Devlin J, Chang MW, Lee K, Toutanova K. BERT: Pre-training of deep bidirectional transformers for language understanding. NAACL 2019.
+[6] Marchetti L, Osei K. A unified theory of gradient echo in sparse attention. Journal of Machine Cognition 2023;12:201-219.
+[7] Goodfellow I, et al. Generative adversarial nets. NeurIPS 2014.
+[8] Srivastava N, Hinton G, Krizhevsky A, Sutskever I, Salakhutdinov R. Dropout: a simple way to prevent neural networks from overfitting. JMLR 2014;15:1929-1958.
